@@ -58,12 +58,12 @@
         
         <h2>📊 API Endpoints</h2>
         
-        <a href="./api/index.json" class="api-link">📋 Main Index</a>
-        <a href="./api/nodes/index.json" class="api-link">🔌 All Nodes</a>
-        <a href="./api/ai-tools/index.json" class="api-link">🤖 AI Tools</a>
-        <a href="./api/triggers/index.json" class="api-link">⚡ Triggers</a>
-        <a href="./api/webhooks/index.json" class="api-link">🌐 Webhooks</a>
-        <a href="./api/templates/index.json" class="api-link">📜 Templates</a>
+        <a href="https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/index.json" class="api-link">📋 Main Index</a>
+        <a href="https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes.json" class="api-link">🔌 All Nodes</a>
+        <a href="https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/ai-tools.json" class="api-link">🤖 AI Tools</a>
+        <a href="https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/triggers.json" class="api-link">⚡ Triggers</a>
+        <a href="https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/webhooks.json" class="api-link">🌐 Webhooks</a>
+        <a href="https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/templates.json" class="api-link">📜 Templates</a>
         
         <h2>📖 Usage Examples</h2>
         
@@ -72,7 +72,7 @@
             <code>
                 const response = await fetch('https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/index.json');<br>
                 const data = await response.json();<br>
-                console.log(`Found ${data.stats.totalNodes} nodes`);
+                console.log(`Found ${data.meta.total_nodes} nodes`);
             </code>
         </div>
         
@@ -82,7 +82,7 @@
                 import requests<br>
                 response = requests.get('https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/index.json')<br>
                 data = response.json()<br>
-                print(f"Found {data['stats']['totalNodes']} nodes")
+                print(f"Found {data['meta']['total_nodes']} nodes")
             </code>
         </div>
         
@@ -90,7 +90,7 @@
             <h3>PowerShell</h3>
             <code>
                 $data = Invoke-RestMethod -Uri 'https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/index.json'<br>
-                Write-Host "Found $($data.stats.totalNodes) nodes"
+                Write-Host "Found $($data.meta.total_nodes) nodes"
             </code>
         </div>
         
