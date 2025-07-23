@@ -95,10 +95,10 @@ jobs:
         # Show API endpoints
         echo "### 📋 Main Endpoints" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "- [API Index](https://fbarco.github.io/docu-n8n-mcp/api/index.json)" >> $GITHUB_STEP_SUMMARY
-        echo "- [All Nodes](https://fbarco.github.io/docu-n8n-mcp/api/nodes.json)" >> $GITHUB_STEP_SUMMARY
-        echo "- [AI Tools](https://fbarco.github.io/docu-n8n-mcp/api/ai-tools.json)" >> $GITHUB_STEP_SUMMARY
-        echo "- [Search Index](https://fbarco.github.io/docu-n8n-mcp/api/search.json)" >> $GITHUB_STEP_SUMMARY
+        echo "- [API Index](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/index.json)" >> $GITHUB_STEP_SUMMARY
+        echo "- [All Nodes](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes.json)" >> $GITHUB_STEP_SUMMARY
+        echo "- [AI Tools](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/ai-tools.json)" >> $GITHUB_STEP_SUMMARY
+        echo "- [Search Index](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/search.json)" >> $GITHUB_STEP_SUMMARY
         
     - name: Setup Pages
       uses: actions/configure-pages@v4
@@ -143,6 +143,6 @@ jobs:
           - Updated statistics and manifests
           - All JSON files validated
           
-          **API Base URL:** https://fbarco.github.io/docu-n8n-mcp/api/
+          **API Base URL:** https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/
         draft: false
         prerelease: false

@@ -6,56 +6,56 @@ A publicly accessible, static JSON API that provides comprehensive information a
 
 ## 🌐 Live API
 
-**Base URL**: `https://fbarco.github.io/docu-n8n-mcp/api/`
+**Base URL**: `https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/`
 
 The API is hosted on GitHub Pages and updated automatically when new n8n nodes are released.
 
 ## 📋 Available Endpoints
 
 ### 🎯 Main Collections
-- **All Nodes**: [`/api/nodes.json`](https://fbarco.github.io/docu-n8n-mcp/api/nodes.json) - Complete list of all 526+ nodes
-- **AI Tools**: [`/api/ai-tools.json`](https://fbarco.github.io/docu-n8n-mcp/api/ai-tools.json) - 263+ nodes that can be used as AI tools
-- **Triggers**: [`/api/triggers.json`](https://fbarco.github.io/docu-n8n-mcp/api/triggers.json) - 108+ trigger nodes for automation
-- **Webhooks**: [`/api/webhooks.json`](https://fbarco.github.io/docu-n8n-mcp/api/webhooks.json) - 79+ webhook nodes for integrations
-- **Search Index**: [`/api/search.json`](https://fbarco.github.io/docu-n8n-mcp/api/search.json) - Optimized for searching nodes
+- **All Nodes**: [`/api/nodes.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes.json) - Complete list of all 526+ nodes
+- **AI Tools**: [`/api/ai-tools.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/ai-tools.json) - 263+ nodes that can be used as AI tools
+- **Triggers**: [`/api/triggers.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/triggers.json) - 108+ trigger nodes for automation
+- **Webhooks**: [`/api/webhooks.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/webhooks.json) - 79+ webhook nodes for integrations
+- **Search Index**: [`/api/search.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/search.json) - Optimized for searching nodes
 
 ### 📂 By Category
-- **Transform**: [`/api/categories/transform.json`](https://fbarco.github.io/docu-n8n-mcp/api/categories/transform.json) - Data transformation nodes
-- **Trigger**: [`/api/categories/trigger.json`](https://fbarco.github.io/docu-n8n-mcp/api/categories/trigger.json) - Event triggers and schedulers
-- **Input**: [`/api/categories/input.json`](https://fbarco.github.io/docu-n8n-mcp/api/categories/input.json) - Data input sources
-- **Output**: [`/api/categories/output.json`](https://fbarco.github.io/docu-n8n-mcp/api/categories/output.json) - Data output destinations
+- **Transform**: [`/api/categories/transform.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/categories/transform.json) - Data transformation nodes
+- **Trigger**: [`/api/categories/trigger.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/categories/trigger.json) - Event triggers and schedulers
+- **Input**: [`/api/categories/input.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/categories/input.json) - Data input sources
+- **Output**: [`/api/categories/output.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/categories/output.json) - Data output destinations
 
 ### 📦 By Package
-- **Core Nodes**: [`/api/packages/n8n-nodes-base.json`](https://fbarco.github.io/docu-n8n-mcp/api/packages/n8n-nodes-base.json) - Official n8n core nodes
-- **LangChain**: [`/api/packages/_n8n_n8n-nodes-langchain.json`](https://fbarco.github.io/docu-n8n-mcp/api/packages/_n8n_n8n-nodes-langchain.json) - AI and LangChain nodes
+- **Core Nodes**: [`/api/packages/n8n-nodes-base.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/packages/n8n-nodes-base.json) - Official n8n core nodes
+- **LangChain**: [`/api/packages/_n8n_n8n-nodes-langchain.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/packages/_n8n_n8n-nodes-langchain.json) - AI and LangChain nodes
 
 ### 🔍 Individual Nodes
 - **Single Node**: `/api/nodes/{node_type}.json`
-- **Example**: [`/api/nodes/nodes-base_httpRequest.json`](https://fbarco.github.io/docu-n8n-mcp/api/nodes/nodes-base_httpRequest.json)
-- **Example**: [`/api/nodes/nodes-base_slack.json`](https://fbarco.github.io/docu-n8n-mcp/api/nodes/nodes-base_slack.json)
+- **Example**: [`/api/nodes/nodes-base_httpRequest.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes/nodes-base_httpRequest.json)
+- **Example**: [`/api/nodes/nodes-base_slack.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes/nodes-base_slack.json)
 
 ### 📊 Metadata & Indices
-- **API Index**: [`/api/index.json`](https://fbarco.github.io/docu-n8n-mcp/api/index.json) - API overview and statistics
-- **Nodes Manifest**: [`/api/nodes-manifest.json`](https://fbarco.github.io/docu-n8n-mcp/api/nodes-manifest.json) - Complete directory of all nodes
-- **Category Stats**: [`/api/category-stats.json`](https://fbarco.github.io/docu-n8n-mcp/api/category-stats.json) - Statistics by category
-- **Package Stats**: [`/api/package-stats.json`](https://fbarco.github.io/docu-n8n-mcp/api/package-stats.json) - Statistics by package
+- **API Index**: [`/api/index.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/index.json) - API overview and statistics
+- **Nodes Manifest**: [`/api/nodes-manifest.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-manifest.json) - Complete directory of all nodes
+- **Category Stats**: [`/api/category-stats.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/category-stats.json) - Statistics by category
+- **Package Stats**: [`/api/package-stats.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/package-stats.json) - Statistics by package
 
 ## 🚀 Usage Examples
 
 ### JavaScript/Node.js
 ```javascript
 // Get all AI tools
-const response = await fetch('https://fbarco.github.io/docu-n8n-mcp/api/ai-tools.json');
+const response = await fetch('https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/ai-tools.json');
 const aiTools = await response.json();
 console.log(`Found ${aiTools.length} AI tools`);
 
 // Get specific node info with full schema
-const nodeResponse = await fetch('https://fbarco.github.io/docu-n8n-mcp/api/nodes/nodes-base_httpRequest.json');
+const nodeResponse = await fetch('https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes/nodes-base_httpRequest.json');
 const httpNode = await nodeResponse.json();
 console.log('HTTP Request node properties:', httpNode.properties_schema);
 
 // Search for Slack-related nodes
-const searchResponse = await fetch('https://fbarco.github.io/docu-n8n-mcp/api/search.json');
+const searchResponse = await fetch('https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/search.json');
 const searchIndex = await searchResponse.json();
 const slackNodes = searchIndex.filter(node => node.keywords.includes('slack'));
 ```
@@ -65,50 +65,50 @@ const slackNodes = searchIndex.filter(node => node.keywords.includes('slack'));
 import requests
 
 # Get all nodes
-response = requests.get('https://fbarco.github.io/docu-n8n-mcp/api/nodes.json')
+response = requests.get('https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes.json')
 all_nodes = response.json()
 print(f"Total nodes: {len(all_nodes)}")
 
 # Get only AI tools
-ai_tools = requests.get('https://fbarco.github.io/docu-n8n-mcp/api/ai-tools.json').json()
+ai_tools = requests.get('https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/ai-tools.json').json()
 print(f"AI Tools available: {len(ai_tools)}")
 
 # Get nodes by category
-transform_nodes = requests.get('https://fbarco.github.io/docu-n8n-mcp/api/categories/transform.json').json()
+transform_nodes = requests.get('https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/categories/transform.json').json()
 print(f"Transform nodes: {len(transform_nodes)}")
 
 # Get specific node with full details
-slack_node = requests.get('https://fbarco.github.io/docu-n8n-mcp/api/nodes/nodes-base_slack.json').json()
+slack_node = requests.get('https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes/nodes-base_slack.json').json()
 print(f"Slack node version: {slack_node['version']}")
 ```
 
 ### curl
 ```bash
 # Get API overview and statistics
-curl https://fbarco.github.io/docu-n8n-mcp/api/index.json | jq '.meta'
+curl https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/index.json | jq '.meta'
 
 # Get specific node information
-curl https://fbarco.github.io/docu-n8n-mcp/api/nodes/nodes-base_slack.json | jq '.display_name'
+curl https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes/nodes-base_slack.json | jq '.display_name'
 
 # Get all webhook nodes
-curl https://fbarco.github.io/docu-n8n-mcp/api/webhooks.json | jq 'length'
+curl https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/webhooks.json | jq 'length'
 
 # Search for HTTP-related nodes
-curl https://fbarco.github.io/docu-n8n-mcp/api/search.json | jq '.[] | select(.keywords | contains("http"))'
+curl https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/search.json | jq '.[] | select(.keywords | contains("http"))'
 ```
 
 ### PowerShell
 ```powershell
 # Get API statistics
-$stats = Invoke-RestMethod 'https://fbarco.github.io/docu-n8n-mcp/api/index.json'
+$stats = Invoke-RestMethod 'https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/index.json'
 Write-Host "Total nodes: $($stats.meta.total_nodes)"
 
 # Get all AI tools
-$aiTools = Invoke-RestMethod 'https://fbarco.github.io/docu-n8n-mcp/api/ai-tools.json'
+$aiTools = Invoke-RestMethod 'https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/ai-tools.json'
 $aiTools | Select-Object node_type, display_name | Format-Table
 
 # Get specific node
-$httpNode = Invoke-RestMethod 'https://fbarco.github.io/docu-n8n-mcp/api/nodes/nodes-base_httpRequest.json'
+$httpNode = Invoke-RestMethod 'https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes/nodes-base_httpRequest.json'
 Write-Host "HTTP Request node description: $($httpNode.description)"
 ```
 

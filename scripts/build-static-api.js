@@ -136,7 +136,7 @@ try {
             version: node.version,
             file_name: fileName,
             api_url: `/api/nodes/${fileName}`,
-            raw_url: `https://fbarco.github.io/docu-n8n-mcp/api/nodes/${fileName}`
+            raw_url: `https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes/${fileName}`
         };
     });
     
@@ -192,8 +192,8 @@ try {
         name: 'docu-n8n-mcp',
         title: 'n8n Nodes Documentation API',
         description: 'Static JSON API for n8n node documentation and metadata',
-        base_url: 'https://fbarco.github.io/docu-n8n-mcp',
-        api_base: 'https://fbarco.github.io/docu-n8n-mcp/api',
+        base_url: 'https://federico-barco-agencycic.github.io/docu-n8n-mcp',
+        api_base: 'https://federico-barco-agencycic.github.io/docu-n8n-mcp/api',
         total_nodes: allNodes.length,
         generated_at: new Date().toISOString(),
         version: '1.0.0',

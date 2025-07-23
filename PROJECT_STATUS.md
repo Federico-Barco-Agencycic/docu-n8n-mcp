@@ -36,18 +36,18 @@ docu-n8n-mcp/
 ```
 
 ### 🚀 **Endpoints Principales**
-- `https://fbarco.github.io/docu-n8n-mcp/api/index.json`
-- `https://fbarco.github.io/docu-n8n-mcp/api/nodes.json`
-- `https://fbarco.github.io/docu-n8n-mcp/api/ai-tools.json`
-- `https://fbarco.github.io/docu-n8n-mcp/api/search.json`
-- `https://fbarco.github.io/docu-n8n-mcp/api/nodes/{node-type}.json`
+- `https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/index.json`
+- `https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes.json`
+- `https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/ai-tools.json`
+- `https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/search.json`
+- `https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes/{node-type}.json`
 
 ### 📝 **Próximos Pasos**
 
 1. **Crear repositorio en GitHub**:
    ```bash
    # Ya está inicializado y con commit inicial
-   git remote add origin https://github.com/fbarco/docu-n8n-mcp.git
+   git remote add origin https://github.com/federico-barco-agencycic/docu-n8n-mcp.git
    git branch -M main
    git push -u origin main
    ```
@@ -58,7 +58,7 @@ docu-n8n-mcp/
    - El workflow se ejecutará automáticamente
 
 3. **La API estará disponible públicamente en**:
-   `https://fbarco.github.io/docu-n8n-mcp/api/`
+   `https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/`
 
 ### 🔄 **Automatización Configurada**
 - ✅ **Actualización diaria** a las 2:00 AM UTC

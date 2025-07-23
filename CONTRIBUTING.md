@@ -56,7 +56,7 @@ npm install
 cp ../n8n-mcp/data/nodes.db ./data/nodes.db
 
 # Or download it
-curl -L -o data/nodes.db "https://github.com/fbarco/n8n-mcp/raw/main/data/nodes.db"
+curl -L -o data/nodes.db "https://github.com/federico-barco-agencycic/n8n-mcp/raw/main/data/nodes.db"
 
 # Build and test
 npm run deploy

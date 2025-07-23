@@ -27,11 +27,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fbarco/docu-n8n-mcp.git"
+    "url": "https://github.com/federico-barco-agencycic/docu-n8n-mcp.git"
   },
-  "homepage": "https://fbarco.github.io/docu-n8n-mcp/",
+  "homepage": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/",
   "bugs": {
-    "url": "https://github.com/fbarco/docu-n8n-mcp/issues"
+    "url": "https://github.com/federico-barco-agencycic/docu-n8n-mcp/issues"
   },
   "dependencies": {
     "better-sqlite3": "^9.2.2"
