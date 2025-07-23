@@ -1,0 +1,19 @@
+{
+  "node_type": "nodes-base.set",
+  "display_name": "Set",
+  "description": "Add or edit fields on an input item and optionally remove other fields",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "3.4",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_set.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.set"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

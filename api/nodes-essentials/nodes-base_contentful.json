@@ -1,0 +1,88 @@
+{
+  "node_type": "nodes-base.contentful",
+  "display_name": "Contentful",
+  "description": "Consume Contentful API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "entry"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "get"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "get"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "get"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "getAll"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "getAll"
+    },
+    {
+      "name": "contentTypeId",
+      "displayName": "Content Type ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "entryId",
+      "displayName": "Entry ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "assetId",
+      "displayName": "Asset ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "get",
+      "name": "Get"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_contentful.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.contentful"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

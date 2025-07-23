@@ -1,0 +1,124 @@
+{
+  "node_type": "nodes-base.strava",
+  "display_name": "Strava",
+  "description": "Consume Strava API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1.1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "activity"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "name",
+      "displayName": "Name",
+      "type": "string",
+      "description": "The name of the activity",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "type",
+      "displayName": "Type",
+      "type": "string",
+      "description": "Type of activity. For example - Run, Ride etc.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "startDate",
+      "displayName": "Start Date",
+      "type": "dateTime",
+      "description": "ISO 8601 formatted date time",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "elapsedTime",
+      "displayName": "Elapsed Time (Seconds)",
+      "type": "number",
+      "description": "In seconds",
+      "required": true,
+      "default": 0
+    },
+    {
+      "name": "activityId",
+      "displayName": "Activity ID",
+      "type": "string",
+      "description": "ID or email of activity",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "activityId",
+      "displayName": "Activity ID",
+      "type": "string",
+      "description": "ID or email of activity",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "activityId",
+      "displayName": "Activity ID",
+      "type": "string",
+      "description": "ID or email of activity",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "keys",
+      "displayName": "Keys",
+      "type": "multiOptions",
+      "description": "Desired stream types to return",
+      "required": true,
+      "default": []
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a new activity"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get an activity"
+    },
+    {
+      "operation": "getComments",
+      "name": "Get Comments",
+      "description": "Get all activity comments"
+    },
+    {
+      "operation": "getKudos",
+      "name": "Get Kudos",
+      "description": "Get all activity kudos"
+    },
+    {
+      "operation": "getLaps",
+      "name": "Get Laps",
+      "description": "Get all activity laps"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_strava.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.strava"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

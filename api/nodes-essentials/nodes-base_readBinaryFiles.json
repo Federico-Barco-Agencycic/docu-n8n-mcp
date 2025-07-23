@@ -1,0 +1,36 @@
+{
+  "node_type": "nodes-base.readBinaryFiles",
+  "display_name": "Read Binary Files",
+  "description": "Reads binary files from disk",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "fileSelector",
+      "displayName": "File Selector",
+      "type": "string",
+      "description": "Pattern for files to read",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "dataPropertyName",
+      "displayName": "Property Name",
+      "type": "string",
+      "description": "Name of the binary property to which to write the data of the read files",
+      "required": true,
+      "default": "data"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_readBinaryFiles.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.readBinaryFiles"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

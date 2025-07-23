@@ -1,0 +1,36 @@
+{
+  "node_type": "nodes-base.seaTableTrigger",
+  "display_name": "SeaTable Trigger",
+  "description": "Starts the workflow when SeaTable events occur",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "2",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "tableName",
+      "displayName": "Table Name",
+      "type": "options",
+      "description": "The name of SeaTable table to access. Choose from the list, or specify the name using an <a href=\"https://docs.n8n.io/code-examples/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "assetColumn",
+      "displayName": "Signature Column",
+      "type": "options",
+      "description": "Select the digital-signature column that should be tracked. Choose from the list, or specify the name using an <a href=\"https://docs.n8n.io/code-examples/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_seaTableTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.seaTableTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

@@ -1,0 +1,49 @@
+{
+  "node_type": "nodes-base.googleBusinessProfileTrigger",
+  "display_name": "Google Business Profile Trigger",
+  "description": "Fetches reviews from Google Business Profile and starts the workflow on specified polling intervals.",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "event",
+      "displayName": "Event",
+      "type": "options",
+      "required": true,
+      "default": "reviewAdded"
+    },
+    {
+      "name": "account",
+      "displayName": "Account",
+      "type": "resourceLocator",
+      "description": "The Google Business Profile account",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "location",
+      "displayName": "Location",
+      "type": "resourceLocator",
+      "description": "The specific location or business associated with the account",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleBusinessProfileTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.googleBusinessProfileTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

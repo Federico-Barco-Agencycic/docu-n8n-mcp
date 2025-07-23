@@ -1,0 +1,27 @@
+{
+  "node_type": "nodes-langchain.vectorStoreZepLoad",
+  "display_name": "Zep Vector Store: Load",
+  "description": "Load data from Zep Vector Store index",
+  "category": "transform",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "collectionName",
+      "displayName": "Collection Name",
+      "type": "string",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_vectorStoreZepLoad.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-langchain.vectorStoreZepLoad"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

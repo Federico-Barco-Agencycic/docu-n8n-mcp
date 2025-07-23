@@ -1,0 +1,19 @@
+{
+  "node_type": "nodes-langchain.textSplitterTokenSplitter",
+  "display_name": "Token Splitter",
+  "description": "Split text into chunks by tokens",
+  "category": "transform",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_textSplitterTokenSplitter.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-langchain.textSplitterTokenSplitter"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

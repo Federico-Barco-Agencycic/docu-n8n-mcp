@@ -1,0 +1,174 @@
+{
+  "node_type": "nodes-base.Brandfetch",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Brandfetch",
+  "description": "Consume Brandfetch API",
+  "category": "output",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Brandfetch node documentation\ndescription: Learn how to use the Brandfetch node in n8n. Follow technical documentation to integrate Brandfetch node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Brandfetch node\n\nUse the Brandfetch node to automate work in Brandfetch, and integrate Brandfetch with other applications. n8n has built-in support for a wide range of Brandfetch features, including returning a company’s information.\n\nOn this page, you'll find a list of operations the Brandfetch node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Brandfetch credentials](/integrations/builtin/credentials/brandfetch.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Return a company's colors\n* Return a company's data\n* Return a company's fonts\n* Return a company's industry\n* Return a company's logo & icon\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'brandfetch') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "logo",
+      "options": [
+        {
+          "name": "Color",
+          "value": "color",
+          "description": "Return a company's colors",
+          "action": "Return a company's colors"
+        },
+        {
+          "name": "Company",
+          "value": "company",
+          "description": "Return a company's data",
+          "action": "Return a company's data"
+        },
+        {
+          "name": "Font",
+          "value": "font",
+          "description": "Return a company's fonts",
+          "action": "Return a company's fonts"
+        },
+        {
+          "name": "Industry",
+          "value": "industry",
+          "description": "Return a company's industry",
+          "action": "Return a company's industry"
+        },
+        {
+          "name": "Logo",
+          "value": "logo",
+          "description": "Return a company's logo & icon",
+          "action": "Return a company's logo & icon"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Domain",
+      "name": "domain",
+      "type": "string",
+      "default": "",
+      "description": "The domain name of the company",
+      "required": true
+    },
+    {
+      "displayName": "Download",
+      "name": "download",
+      "type": "boolean",
+      "default": false,
+      "description": "Name of the binary property to which to write the data of the read file",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "logo"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Image Type",
+      "name": "imageTypes",
+      "type": "multiOptions",
+      "default": [
+        "logo",
+        "icon"
+      ],
+      "options": [
+        {
+          "name": "Icon",
+          "value": "icon"
+        },
+        {
+          "name": "Logo",
+          "value": "logo"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "logo"
+          ],
+          "download": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Image Format",
+      "name": "imageFormats",
+      "type": "multiOptions",
+      "default": [
+        "png"
+      ],
+      "description": "The image format in which the logo should be returned as",
+      "options": [
+        {
+          "name": "PNG",
+          "value": "png"
+        },
+        {
+          "name": "SVG",
+          "value": "svg"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "logo"
+          ],
+          "download": [
+            true
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "color",
+      "name": "Color",
+      "description": "Return a company's colors"
+    },
+    {
+      "operation": "company",
+      "name": "Company",
+      "description": "Return a company's data"
+    },
+    {
+      "operation": "font",
+      "name": "Font",
+      "description": "Return a company's fonts"
+    },
+    {
+      "operation": "industry",
+      "name": "Industry",
+      "description": "Return a company's industry"
+    },
+    {
+      "operation": "logo",
+      "name": "Logo",
+      "description": "Return a company's logo & icon"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "brandfetchApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,98 @@
+{
+  "node_type": "nodes-base.theHive",
+  "display_name": "TheHive",
+  "description": "Consume TheHive API",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": true,
+      "default": "alert"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation Name or ID",
+      "type": "options",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "default": "create"
+    },
+    {
+      "name": "id",
+      "displayName": "Alert ID",
+      "type": "string",
+      "description": "Title of the alert",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "caseId",
+      "displayName": "Case ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "title",
+      "displayName": "Title",
+      "type": "string",
+      "description": "Title of the alert",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "description",
+      "displayName": "Description",
+      "type": "string",
+      "description": "Description of the alert",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "severity",
+      "displayName": "Severity",
+      "type": "options",
+      "description": "Severity of the alert. Default=Medium.",
+      "required": true,
+      "default": 2
+    },
+    {
+      "name": "date",
+      "displayName": "Date",
+      "type": "dateTime",
+      "description": "Date and time when the alert was raised default=now",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "tags",
+      "displayName": "Tags",
+      "type": "string",
+      "description": "Case Tags",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "tlp",
+      "displayName": "TLP",
+      "type": "options",
+      "description": "Traffict Light Protocol (TLP). Default=Amber.",
+      "required": true,
+      "default": 2
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_theHive.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.theHive"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

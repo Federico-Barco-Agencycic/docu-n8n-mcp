@@ -1,0 +1,144 @@
+{
+  "node_type": "nodes-base.salesforceTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Salesforce Trigger",
+  "description": "Fetches data from Salesforce and starts the workflow on specified polling intervals.",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Salesforce Trigger node documentation\ndescription: Learn how to use the Salesforce Trigger node in n8n. Follow technical documentation to integrate Salesforce Trigger node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Salesforce Trigger node\n\nUse the Salesforce Trigger node to respond to events in [Salesforce](https://login.salesforce.com/){:target=_blank .external-link} and integrate Salesforce with other applications. n8n has built-in support for a wide range of Salesforce events.\n\nOn this page, you'll find a list of events the Salesforce Trigger node can respond to, and links to more resources.\n\n///  note  | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/salesforce.md).\n///\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Salesforce trigger integrations](https://n8n.io/integrations/salesforce-trigger/){:target=_blank .external-link} page.\n///\n\n## Events\n\n* On Account Created\n* On Account Updated\n* On Attachment Created\n* On Attachment Updated\n* On Case Created\n* On Case Updated\n* On Contact Created\n* On Contact Updated\n* On Custom Object Created\n* On Custom Object Updated\n* On Lead Created\n* On Lead Updated\n* On Opportunity Created\n* On Opportunity Updated\n* On Task Created\n* On Task Updated\n* On User Created\n* On User Updated\n\n## Related resources\n\nn8n provides an app node for Salesforce. You can find the node docs [here](/integrations/builtin/app-nodes/n8n-nodes-base.salesforce.md).\n\nView [example workflows and related content](https://n8n.io/integrations/salesforce-trigger/){:target=_blank .external-link} on n8n's website.\n",
+  "properties_schema": [
+    {
+      "displayName": "Trigger On",
+      "name": "triggerOn",
+      "type": "options",
+      "default": "",
+      "description": "Which Salesforce event should trigger the node",
+      "options": [
+        {
+          "name": "Account Created",
+          "value": "accountCreated",
+          "description": "When a new account is created"
+        },
+        {
+          "name": "Account Updated",
+          "value": "accountUpdated",
+          "description": "When an existing account is modified"
+        },
+        {
+          "name": "Attachment Created",
+          "value": "attachmentCreated",
+          "description": "When a file is uploaded and attached to an object"
+        },
+        {
+          "name": "Attachment Updated",
+          "value": "attachmentUpdated",
+          "description": "When an existing file is modified"
+        },
+        {
+          "name": "Case Created",
+          "value": "caseCreated",
+          "description": "When a new case is created"
+        },
+        {
+          "name": "Case Updated",
+          "value": "caseUpdated",
+          "description": "When an existing case is modified"
+        },
+        {
+          "name": "Contact Created",
+          "value": "contactCreated",
+          "description": "When a new contact is created"
+        },
+        {
+          "name": "Contact Updated",
+          "value": "contactUpdated",
+          "description": "When an existing contact is modified"
+        },
+        {
+          "name": "Custom Object Created",
+          "value": "customObjectCreated",
+          "description": "When a new object of a given type is created"
+        },
+        {
+          "name": "Custom Object Updated",
+          "value": "customObjectUpdated",
+          "description": "When an object of a given type is modified"
+        },
+        {
+          "name": "Lead Created",
+          "value": "leadCreated",
+          "description": "When a new lead is created"
+        },
+        {
+          "name": "Lead Updated",
+          "value": "leadUpdated",
+          "description": "When an existing lead is modified"
+        },
+        {
+          "name": "Opportunity Created",
+          "value": "opportunityCreated",
+          "description": "When a new opportunity is created"
+        },
+        {
+          "name": "Opportunity Updated",
+          "value": "opportunityUpdated",
+          "description": "When an existing opportunity is created"
+        },
+        {
+          "name": "Task Created",
+          "value": "taskCreated",
+          "description": "When a new task is created"
+        },
+        {
+          "name": "Task Updated",
+          "value": "taskUpdated",
+          "description": "When an existing task is modified"
+        },
+        {
+          "name": "User Created",
+          "value": "userCreated",
+          "description": "When a new user is created"
+        },
+        {
+          "name": "User Updated",
+          "value": "userUpdated",
+          "description": "When an existing user is modified"
+        }
+      ]
+    },
+    {
+      "displayName": "Custom Object Name or ID",
+      "name": "customObject",
+      "type": "options",
+      "default": "",
+      "description": "Name of the custom object. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "triggerOn": [
+            "customObjectUpdated",
+            "customObjectCreated"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getCustomObjects"
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "salesforceOAuth2Api",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,2298 @@
+{
+  "node_type": "nodes-base.magento2",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Magento 2",
+  "description": "Consume Magento API",
+  "category": "input",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Magento 2 node documentation\ndescription: Learn how to use the Magento 2 node in n8n. Follow technical documentation to integrate Magento 2 node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Magento 2 node\n\nUse the Magento 2 node to automate work in Magento 2, and integrate Magento 2 with other applications. n8n has built-in support for a wide range of Magento 2 features, including creating, updating, deleting, and getting customers, invoices, orders, and projects. \n\nOn this page, you'll find a list of operations the Magento 2 node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Magento 2 credentials](/integrations/builtin/credentials/magento2.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Customer\n    * Create a new customer\n    * Delete a customer\n    * Get a customer\n    * Get all customers\n    * Update a customer\n* Invoice\n    * Create an invoice\n* Order\n    * Cancel an order\n    * Get an order\n    * Get all orders\n    * Ship an order\n* Product\n    * Create a product\n    * Delete a product\n    * Get a product\n    * Get all products\n    * Update a product\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'magento-2') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "customer",
+      "options": [
+        {
+          "name": "Customer",
+          "value": "customer"
+        },
+        {
+          "name": "Invoice",
+          "value": "invoice"
+        },
+        {
+          "name": "Order",
+          "value": "order"
+        },
+        {
+          "name": "Product",
+          "value": "product"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a new customer",
+          "action": "Create a customer"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a customer",
+          "action": "Delete a customer"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a customer",
+          "action": "Get a customer"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many customers",
+          "action": "Get many customers"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a customer",
+          "action": "Update a customer"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "Email address of the user to create",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "First Name",
+      "name": "firstname",
+      "type": "string",
+      "default": "",
+      "description": "First name of the user to create",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Last Name",
+      "name": "lastname",
+      "type": "string",
+      "default": "",
+      "description": "Last name of the user to create",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Addresses",
+          "name": "addresses",
+          "placeholder": "Add Address",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "displayName": "Address",
+              "name": "address",
+              "values": [
+                {
+                  "displayName": "Street",
+                  "name": "street",
+                  "type": "string",
+                  "required": true,
+                  "default": ""
+                },
+                {
+                  "displayName": "City",
+                  "name": "city",
+                  "type": "string",
+                  "required": true,
+                  "default": ""
+                },
+                {
+                  "displayName": "Region",
+                  "name": "region",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Postal Code",
+                  "name": "postcode",
+                  "type": "string",
+                  "required": true,
+                  "default": ""
+                },
+                {
+                  "displayName": "Country Name or ID",
+                  "name": "country_id",
+                  "type": "options",
+                  "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+                  "typeOptions": {
+                    "loadOptionsMethod": "getCountries"
+                  },
+                  "required": true,
+                  "default": ""
+                },
+                {
+                  "displayName": "Company",
+                  "name": "company",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Fax",
+                  "name": "fax",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "First Name",
+                  "name": "firstname",
+                  "type": "string",
+                  "required": true,
+                  "default": ""
+                },
+                {
+                  "displayName": "Last Name",
+                  "name": "lastname",
+                  "type": "string",
+                  "required": true,
+                  "default": ""
+                },
+                {
+                  "displayName": "Middle Name",
+                  "name": "middlename",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Prefix",
+                  "name": "prefix",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Suffix",
+                  "name": "suffix",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Telephone",
+                  "name": "telephone",
+                  "type": "string",
+                  "required": true,
+                  "default": ""
+                },
+                {
+                  "displayName": "Default Billing",
+                  "name": "default_billing",
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether this address is default billing address"
+                },
+                {
+                  "displayName": "Default Shipping",
+                  "name": "default_shipping",
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether this address is default shipping address"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Amazon ID",
+          "name": "amazon_id",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Confirmation",
+          "name": "confirmation",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Custom Attributes",
+          "name": "customAttributes",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "placeholder": "Add Custom Attribute",
+          "options": [
+            {
+              "displayName": "Custom Attribute",
+              "name": "customAttribute",
+              "values": [
+                {
+                  "displayName": "Attribute Code Name or ID",
+                  "name": "attribute_code",
+                  "type": "options",
+                  "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+                  "typeOptions": {
+                    "loadOptionsMethod": "getCustomAttributes"
+                  },
+                  "default": ""
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Date of Birth",
+          "name": "dob",
+          "type": "dateTime",
+          "default": ""
+        },
+        {
+          "displayName": "Default Billing Address ID",
+          "name": "default_billing",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Default Shipping Address ID",
+          "name": "default_shipping",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Gender",
+          "name": "gender",
+          "type": "options",
+          "options": [
+            {
+              "name": "Male",
+              "value": 1
+            },
+            {
+              "name": "Female",
+              "value": 2
+            },
+            {
+              "name": "Not Specified",
+              "value": 3
+            }
+          ],
+          "default": ""
+        },
+        {
+          "displayName": "Group Name or ID",
+          "name": "group_id",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsMethod": "getGroups"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Is Subscribed",
+          "name": "is_subscribed",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Middle Name",
+          "name": "middlename",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Password",
+          "name": "password",
+          "type": "string",
+          "typeOptions": {
+            "password": true
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Prefix",
+          "name": "prefix",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Store Name or ID",
+          "name": "store_id",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsMethod": "getStores"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Suffix",
+          "name": "suffix",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Vertex Customer Code",
+          "name": "vertex_customer_code",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Vertex Customer Country",
+          "name": "vertex_customer_country",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Website Name or ID",
+          "name": "website_id",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "displayOptions": {
+            "show": {
+              "/operation": [
+                "create"
+              ]
+            }
+          },
+          "typeOptions": {
+            "loadOptionsMethod": "getWebsites"
+          },
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Customer ID",
+      "name": "customerId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the customer to update",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "First Name",
+      "name": "firstName",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Last Name",
+      "name": "lastName",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Website Name or ID",
+      "name": "website_id",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getWebsites"
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Addresses",
+          "name": "addresses",
+          "placeholder": "Add Address",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "displayName": "Address",
+              "name": "address",
+              "values": [
+                {
+                  "displayName": "Street",
+                  "name": "street",
+                  "type": "string",
+                  "required": true,
+                  "default": ""
+                },
+                {
+                  "displayName": "City",
+                  "name": "city",
+                  "type": "string",
+                  "required": true,
+                  "default": ""
+                },
+                {
+                  "displayName": "Region",
+                  "name": "region",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Postal Code",
+                  "name": "postcode",
+                  "type": "string",
+                  "required": true,
+                  "default": ""
+                },
+                {
+                  "displayName": "Country Name or ID",
+                  "name": "country_id",
+                  "type": "options",
+                  "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+                  "typeOptions": {
+                    "loadOptionsMethod": "getCountries"
+                  },
+                  "required": true,
+                  "default": ""
+                },
+                {
+                  "displayName": "Company",
+                  "name": "company",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Fax",
+                  "name": "fax",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "First Name",
+                  "name": "firstname",
+                  "type": "string",
+                  "required": true,
+                  "default": ""
+                },
+                {
+                  "displayName": "Last Name",
+                  "name": "lastname",
+                  "type": "string",
+                  "required": true,
+                  "default": ""
+                },
+                {
+                  "displayName": "Middle Name",
+                  "name": "middlename",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Prefix",
+                  "name": "prefix",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Suffix",
+                  "name": "suffix",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Telephone",
+                  "name": "telephone",
+                  "type": "string",
+                  "required": true,
+                  "default": ""
+                },
+                {
+                  "displayName": "Default Billing",
+                  "name": "default_billing",
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether this address is default billing address"
+                },
+                {
+                  "displayName": "Default Shipping",
+                  "name": "default_shipping",
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether this address is default shipping address"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Amazon ID",
+          "name": "amazon_id",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Confirmation",
+          "name": "confirmation",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Custom Attributes",
+          "name": "customAttributes",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "placeholder": "Add Custom Attribute",
+          "options": [
+            {
+              "displayName": "Custom Attribute",
+              "name": "customAttribute",
+              "values": [
+                {
+                  "displayName": "Attribute Code Name or ID",
+                  "name": "attribute_code",
+                  "type": "options",
+                  "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+                  "typeOptions": {
+                    "loadOptionsMethod": "getCustomAttributes"
+                  },
+                  "default": ""
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Date of Birth",
+          "name": "dob",
+          "type": "dateTime",
+          "default": ""
+        },
+        {
+          "displayName": "Default Billing Address ID",
+          "name": "default_billing",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Default Shipping Address ID",
+          "name": "default_shipping",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Gender",
+          "name": "gender",
+          "type": "options",
+          "options": [
+            {
+              "name": "Male",
+              "value": 1
+            },
+            {
+              "name": "Female",
+              "value": 2
+            },
+            {
+              "name": "Not Specified",
+              "value": 3
+            }
+          ],
+          "default": ""
+        },
+        {
+          "displayName": "Group Name or ID",
+          "name": "group_id",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsMethod": "getGroups"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Is Subscribed",
+          "name": "is_subscribed",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Middle Name",
+          "name": "middlename",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Password",
+          "name": "password",
+          "type": "string",
+          "typeOptions": {
+            "password": true
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Prefix",
+          "name": "prefix",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Store Name or ID",
+          "name": "store_id",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsMethod": "getStores"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Suffix",
+          "name": "suffix",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Vertex Customer Code",
+          "name": "vertex_customer_code",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Vertex Customer Country",
+          "name": "vertex_customer_country",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Website Name or ID",
+          "name": "website_id",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "displayOptions": {
+            "show": {
+              "/operation": [
+                "create"
+              ]
+            }
+          },
+          "typeOptions": {
+            "loadOptionsMethod": "getWebsites"
+          },
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Customer ID",
+      "name": "customerId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "delete",
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 5,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 10
+      }
+    },
+    {
+      "displayName": "Filter",
+      "name": "filterType",
+      "type": "options",
+      "default": "none",
+      "options": [
+        {
+          "name": "None",
+          "value": "none"
+        },
+        {
+          "name": "Build Manually",
+          "value": "manual"
+        },
+        {
+          "name": "JSON",
+          "value": "json"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Must Match",
+      "name": "matchType",
+      "type": "options",
+      "default": "anyFilter",
+      "options": [
+        {
+          "name": "Any filter",
+          "value": "anyFilter"
+        },
+        {
+          "name": "All Filters",
+          "value": "allFilters"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "manual"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Conditions",
+          "name": "conditions",
+          "values": [
+            {
+              "displayName": "Field",
+              "name": "field",
+              "type": "options",
+              "typeOptions": {
+                "loadOptionsMethod": "getSystemAttributes"
+              },
+              "default": ""
+            },
+            {
+              "displayName": "Condition Type",
+              "name": "condition_type",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Equals",
+                  "value": "eq"
+                },
+                {
+                  "name": "Greater than",
+                  "value": "gt"
+                },
+                {
+                  "name": "Greater than or equal",
+                  "value": "gteq"
+                },
+                {
+                  "name": "In",
+                  "value": "in",
+                  "description": "The value can contain a comma-separated list of values"
+                },
+                {
+                  "name": "Less Than",
+                  "value": "lt"
+                },
+                {
+                  "name": "Less Than or Equal",
+                  "value": "lte"
+                },
+                {
+                  "name": "Like",
+                  "value": "like",
+                  "description": "The value can contain the SQL wildcard characters when like is specified"
+                },
+                {
+                  "name": "More or Equal",
+                  "value": "moreq"
+                },
+                {
+                  "name": "Not Equal",
+                  "value": "neq"
+                },
+                {
+                  "name": "Not In",
+                  "value": "nin",
+                  "description": "The value can contain a comma-separated list of values"
+                },
+                {
+                  "name": "Not Null",
+                  "value": "notnull"
+                },
+                {
+                  "name": "Null",
+                  "value": "null"
+                }
+              ],
+              "default": "eq"
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "displayOptions": {
+                "hide": {
+                  "condition_type": [
+                    "null",
+                    "notnull"
+                  ]
+                }
+              },
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "manual"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "See <a href=\"https://devdocs.magento.com/guides/v2.4/rest/performing-searches.html\" target=\"_blank\">Magento guide</a> to creating filters",
+      "name": "jsonNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "json"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Filters (JSON)",
+      "name": "filterJson",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "json"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Sort",
+          "name": "sort",
+          "type": "fixedCollection",
+          "placeholder": "Add Sort",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": [],
+          "options": [
+            {
+              "displayName": "Sort",
+              "name": "sort",
+              "values": [
+                {
+                  "displayName": "Direction",
+                  "name": "direction",
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "Ascending",
+                      "value": "ASC"
+                    },
+                    {
+                      "name": "Descending",
+                      "value": "DESC"
+                    }
+                  ],
+                  "default": "ASC",
+                  "description": "The sorting direction"
+                },
+                {
+                  "displayName": "Field",
+                  "name": "field",
+                  "type": "options",
+                  "typeOptions": {
+                    "loadOptionsMethod": "getSystemAttributes"
+                  },
+                  "default": "",
+                  "description": "The sorting field"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create an invoice",
+          "action": "Create an invoice"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "invoice"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Order ID",
+      "name": "orderId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "invoice"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "cancel",
+      "options": [
+        {
+          "name": "Cancel",
+          "value": "cancel",
+          "description": "Cancel an order",
+          "action": "Cancel an order"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get an order",
+          "action": "Get an order"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many orders",
+          "action": "Get many orders"
+        },
+        {
+          "name": "Ship",
+          "value": "ship",
+          "description": "Ship an order",
+          "action": "Ship an order"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "order"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Order ID",
+      "name": "orderId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "order"
+          ],
+          "operation": [
+            "cancel",
+            "get",
+            "ship"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "order"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 5,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "order"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 10
+      }
+    },
+    {
+      "displayName": "Filter",
+      "name": "filterType",
+      "type": "options",
+      "default": "none",
+      "options": [
+        {
+          "name": "None",
+          "value": "none"
+        },
+        {
+          "name": "Build Manually",
+          "value": "manual"
+        },
+        {
+          "name": "JSON",
+          "value": "json"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "order"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Must Match",
+      "name": "matchType",
+      "type": "options",
+      "default": "anyFilter",
+      "options": [
+        {
+          "name": "Any filter",
+          "value": "anyFilter"
+        },
+        {
+          "name": "All Filters",
+          "value": "allFilters"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "order"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "manual"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Conditions",
+          "name": "conditions",
+          "values": [
+            {
+              "displayName": "Field",
+              "name": "field",
+              "type": "options",
+              "typeOptions": {
+                "loadOptionsMethod": "getOrderAttributes"
+              },
+              "default": ""
+            },
+            {
+              "displayName": "Condition Type",
+              "name": "condition_type",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Equals",
+                  "value": "eq"
+                },
+                {
+                  "name": "Greater than",
+                  "value": "gt"
+                },
+                {
+                  "name": "Greater than or equal",
+                  "value": "gteq"
+                },
+                {
+                  "name": "In",
+                  "value": "in",
+                  "description": "The value can contain a comma-separated list of values"
+                },
+                {
+                  "name": "Less Than",
+                  "value": "lt"
+                },
+                {
+                  "name": "Less Than or Equal",
+                  "value": "lte"
+                },
+                {
+                  "name": "Like",
+                  "value": "like",
+                  "description": "The value can contain the SQL wildcard characters when like is specified"
+                },
+                {
+                  "name": "More or Equal",
+                  "value": "moreq"
+                },
+                {
+                  "name": "Not Equal",
+                  "value": "neq"
+                },
+                {
+                  "name": "Not In",
+                  "value": "nin",
+                  "description": "The value can contain a comma-separated list of values"
+                },
+                {
+                  "name": "Not Null",
+                  "value": "notnull"
+                },
+                {
+                  "name": "Null",
+                  "value": "null"
+                }
+              ],
+              "default": "eq"
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "displayOptions": {
+                "hide": {
+                  "condition_type": [
+                    "null",
+                    "notnull"
+                  ]
+                }
+              },
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "order"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "manual"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "See <a href=\"https://devdocs.magento.com/guides/v2.4/rest/performing-searches.html\" target=\"_blank\">Magento guide</a> to creating filters",
+      "name": "jsonNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "order"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "json"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Filters (JSON)",
+      "name": "filterJson",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "order"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "json"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Sort",
+          "name": "sort",
+          "type": "fixedCollection",
+          "placeholder": "Add Sort",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": [],
+          "options": [
+            {
+              "displayName": "Sort",
+              "name": "sort",
+              "values": [
+                {
+                  "displayName": "Direction",
+                  "name": "direction",
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "Ascending",
+                      "value": "ASC"
+                    },
+                    {
+                      "name": "Descending",
+                      "value": "DESC"
+                    }
+                  ],
+                  "default": "ASC",
+                  "description": "The sorting direction"
+                },
+                {
+                  "displayName": "Field",
+                  "name": "field",
+                  "type": "options",
+                  "typeOptions": {
+                    "loadOptionsMethod": "getOrderAttributes"
+                  },
+                  "default": "",
+                  "description": "The sorting field"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "order"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a product",
+          "action": "Create a product"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a product",
+          "action": "Delete a product"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a product",
+          "action": "Get a product"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many products",
+          "action": "Get many products"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a product",
+          "action": "Update a product"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "SKU",
+      "name": "sku",
+      "type": "string",
+      "default": "",
+      "description": "Stock-keeping unit of the product",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ],
+          "operation": [
+            "create",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Name",
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Attribute Set Name or ID",
+      "name": "attributeSetId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getAttributeSets"
+      }
+    },
+    {
+      "displayName": "Price",
+      "name": "price",
+      "type": "number",
+      "default": 0,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Attribute Set Name or ID",
+          "name": "attribute_set_id",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "displayOptions": {
+            "show": {
+              "/operation": [
+                "update"
+              ]
+            }
+          },
+          "typeOptions": {
+            "loadOptionsMethod": "getAttributeSets"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Name",
+          "name": "name",
+          "type": "string",
+          "displayOptions": {
+            "show": {
+              "/operation": [
+                "update"
+              ]
+            }
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Price",
+          "name": "price",
+          "type": "number",
+          "displayOptions": {
+            "show": {
+              "/operation": [
+                "update"
+              ]
+            }
+          },
+          "default": 0
+        },
+        {
+          "displayName": "Status",
+          "name": "status",
+          "type": "options",
+          "options": [
+            {
+              "name": "Enabled",
+              "value": 1
+            },
+            {
+              "name": "Disabled",
+              "value": 2
+            }
+          ],
+          "default": 1
+        },
+        {
+          "displayName": "Type Name or ID",
+          "name": "type_id",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsMethod": "getProductTypes"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Visibility",
+          "name": "visibility",
+          "type": "options",
+          "options": [
+            {
+              "name": "Not Visible",
+              "value": 1
+            },
+            {
+              "name": "Catalog",
+              "value": 2
+            },
+            {
+              "name": "Search",
+              "value": 3
+            },
+            {
+              "name": "Catalog & Search",
+              "value": 4
+            }
+          ],
+          "default": 4
+        },
+        {
+          "displayName": "Weight (LBS)",
+          "name": "weight",
+          "type": "number",
+          "default": 0
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Attribute Set Name or ID",
+          "name": "attribute_set_id",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "displayOptions": {
+            "show": {
+              "/operation": [
+                "update"
+              ]
+            }
+          },
+          "typeOptions": {
+            "loadOptionsMethod": "getAttributeSets"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Name",
+          "name": "name",
+          "type": "string",
+          "displayOptions": {
+            "show": {
+              "/operation": [
+                "update"
+              ]
+            }
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Price",
+          "name": "price",
+          "type": "number",
+          "displayOptions": {
+            "show": {
+              "/operation": [
+                "update"
+              ]
+            }
+          },
+          "default": 0
+        },
+        {
+          "displayName": "Status",
+          "name": "status",
+          "type": "options",
+          "options": [
+            {
+              "name": "Enabled",
+              "value": 1
+            },
+            {
+              "name": "Disabled",
+              "value": 2
+            }
+          ],
+          "default": 1
+        },
+        {
+          "displayName": "Type Name or ID",
+          "name": "type_id",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsMethod": "getProductTypes"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Visibility",
+          "name": "visibility",
+          "type": "options",
+          "options": [
+            {
+              "name": "Not Visible",
+              "value": 1
+            },
+            {
+              "name": "Catalog",
+              "value": 2
+            },
+            {
+              "name": "Search",
+              "value": 3
+            },
+            {
+              "name": "Catalog & Search",
+              "value": 4
+            }
+          ],
+          "default": 4
+        },
+        {
+          "displayName": "Weight (LBS)",
+          "name": "weight",
+          "type": "number",
+          "default": 0
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "SKU",
+      "name": "sku",
+      "type": "string",
+      "default": "",
+      "description": "Stock-keeping unit of the product",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ],
+          "operation": [
+            "delete",
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 5,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 10
+      }
+    },
+    {
+      "displayName": "Filter",
+      "name": "filterType",
+      "type": "options",
+      "default": "none",
+      "options": [
+        {
+          "name": "None",
+          "value": "none"
+        },
+        {
+          "name": "Build Manually",
+          "value": "manual"
+        },
+        {
+          "name": "JSON",
+          "value": "json"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Must Match",
+      "name": "matchType",
+      "type": "options",
+      "default": "anyFilter",
+      "options": [
+        {
+          "name": "Any filter",
+          "value": "anyFilter"
+        },
+        {
+          "name": "All Filters",
+          "value": "allFilters"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "manual"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Conditions",
+          "name": "conditions",
+          "values": [
+            {
+              "displayName": "Field",
+              "name": "field",
+              "type": "options",
+              "typeOptions": {
+                "loadOptionsMethod": "getFilterableProductAttributes"
+              },
+              "default": ""
+            },
+            {
+              "displayName": "Condition Type",
+              "name": "condition_type",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Equals",
+                  "value": "eq"
+                },
+                {
+                  "name": "Greater than",
+                  "value": "gt"
+                },
+                {
+                  "name": "Greater than or equal",
+                  "value": "gteq"
+                },
+                {
+                  "name": "In",
+                  "value": "in",
+                  "description": "The value can contain a comma-separated list of values"
+                },
+                {
+                  "name": "Less Than",
+                  "value": "lt"
+                },
+                {
+                  "name": "Less Than or Equal",
+                  "value": "lte"
+                },
+                {
+                  "name": "Like",
+                  "value": "like",
+                  "description": "The value can contain the SQL wildcard characters when like is specified"
+                },
+                {
+                  "name": "More or Equal",
+                  "value": "moreq"
+                },
+                {
+                  "name": "Not Equal",
+                  "value": "neq"
+                },
+                {
+                  "name": "Not In",
+                  "value": "nin",
+                  "description": "The value can contain a comma-separated list of values"
+                },
+                {
+                  "name": "Not Null",
+                  "value": "notnull"
+                },
+                {
+                  "name": "Null",
+                  "value": "null"
+                }
+              ],
+              "default": "eq"
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "displayOptions": {
+                "hide": {
+                  "condition_type": [
+                    "null",
+                    "notnull"
+                  ]
+                }
+              },
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "manual"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "See <a href=\"https://devdocs.magento.com/guides/v2.4/rest/performing-searches.html\" target=\"_blank\">Magento guide</a> to creating filters",
+      "name": "jsonNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "json"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Filters (JSON)",
+      "name": "filterJson",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "json"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Sort",
+          "name": "sort",
+          "type": "fixedCollection",
+          "placeholder": "Add Sort",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": [],
+          "options": [
+            {
+              "displayName": "Sort",
+              "name": "sort",
+              "values": [
+                {
+                  "displayName": "Direction",
+                  "name": "direction",
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "Ascending",
+                      "value": "ASC"
+                    },
+                    {
+                      "name": "Descending",
+                      "value": "DESC"
+                    }
+                  ],
+                  "default": "ASC",
+                  "description": "The sorting direction"
+                },
+                {
+                  "displayName": "Field",
+                  "name": "field",
+                  "type": "options",
+                  "typeOptions": {
+                    "loadOptionsMethod": "getSortableProductAttributes"
+                  },
+                  "default": "",
+                  "description": "The sorting field"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "product"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a new customer"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a customer"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a customer"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many customers"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update a customer"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "magento2Api",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

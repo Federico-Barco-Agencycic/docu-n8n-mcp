@@ -1,0 +1,63 @@
+{
+  "node_type": "nodes-base.googleCloudNaturalLanguage",
+  "display_name": "Google Cloud Natural Language",
+  "description": "Consume Google Cloud Natural Language API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "document"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "analyzeSentiment"
+    },
+    {
+      "name": "source",
+      "displayName": "Source",
+      "type": "options",
+      "description": "The source of the document: a string containing the content or a Google Cloud Storage URI",
+      "required": true,
+      "default": "content"
+    },
+    {
+      "name": "content",
+      "displayName": "Content",
+      "type": "string",
+      "description": "The content of the input in string format. Cloud audit logging exempt since it is based on user data.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "gcsContentUri",
+      "displayName": "Google Cloud Storage URI",
+      "type": "string",
+      "description": "The Google Cloud Storage URI where the file content is located. This URI must be of the form: <code>gs://bucket_name/object_name</code>. For more details, see <a href=\"https://cloud.google.com/storage/docs/reference-uris.\">reference</a>.",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "analyzeSentiment",
+      "name": "Analyze Sentiment"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleCloudNaturalLanguage.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.googleCloudNaturalLanguage"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

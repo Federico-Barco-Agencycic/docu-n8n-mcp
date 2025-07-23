@@ -1,0 +1,118 @@
+{
+  "node_type": "nodes-base.venafiTlsProtectCloud",
+  "display_name": "Venafi TLS Protect Cloud",
+  "description": "Consume Venafi TLS Protect Cloud API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "certificateRequest"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "delete"
+    },
+    {
+      "name": "certificateId",
+      "displayName": "Certificate ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "certificateLabel",
+      "displayName": "Certificate Label",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "privateKeyPassphrase",
+      "displayName": "Private Key Passphrase",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "keystorePassphrase",
+      "displayName": "Keystore Passphrase",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "binaryProperty",
+      "displayName": "Input Data Field Name",
+      "type": "string",
+      "description": "The name of the input field containing the binary file data to be uploaded",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "certificateId",
+      "displayName": "Certificate ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "commonName",
+      "displayName": "Common Name",
+      "type": "string",
+      "description": "The Common Name field for the certificate Subject (CN)",
+      "required": true,
+      "default": "n8n.io"
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a certificate"
+    },
+    {
+      "operation": "download",
+      "name": "Download",
+      "description": "Download a certificate"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Retrieve a certificate"
+    },
+    {
+      "operation": "getMany",
+      "name": "Get Many",
+      "description": "Retrieve many certificates"
+    },
+    {
+      "operation": "renew",
+      "name": "Renew",
+      "description": "Renew a certificate"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_venafiTlsProtectCloud.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.venafiTlsProtectCloud"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

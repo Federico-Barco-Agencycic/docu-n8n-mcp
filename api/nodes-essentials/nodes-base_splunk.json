@@ -1,0 +1,117 @@
+{
+  "node_type": "nodes-base.splunk",
+  "display_name": "Splunk",
+  "description": "Consume the Splunk Enterprise API",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "2",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "search"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "getReport"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "getAll"
+    },
+    {
+      "name": "searchJobId",
+      "displayName": "Search Job",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "reportId",
+      "displayName": "Report",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "reportId",
+      "displayName": "Report",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "search",
+      "displayName": "Query",
+      "type": "string",
+      "description": "Search language string to execute, in Splunk's <a href=\"https://docs.splunk.com/Documentation/Splunk/latest/SearchReference/WhatsInThisManual\">Search Processing Language</a>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "searchJobId",
+      "displayName": "Search Job",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "searchJobId",
+      "displayName": "Search Job",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "getReport",
+      "name": "Get Fired Alerts",
+      "description": "Retrieve a fired alerts report"
+    },
+    {
+      "operation": "getMetrics",
+      "name": "Get Metrics",
+      "description": "Retrieve metrics"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_splunk.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.splunk"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

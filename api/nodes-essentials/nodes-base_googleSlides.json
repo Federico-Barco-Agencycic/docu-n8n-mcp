@@ -1,0 +1,93 @@
+{
+  "node_type": "nodes-base.googleSlides",
+  "display_name": "Google Slides",
+  "description": "Consume the Google Slides API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "2",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "presentation"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "get"
+    },
+    {
+      "name": "title",
+      "displayName": "Title",
+      "type": "string",
+      "description": "Title of the presentation to create",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "presentationId",
+      "displayName": "Presentation ID",
+      "type": "string",
+      "description": "ID of the presentation to retrieve. Found in the presentation URL: <code>https://docs.google.com/presentation/d/PRESENTATION_ID/edit</code>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "pageObjectId",
+      "displayName": "Page Object ID",
+      "type": "string",
+      "description": "ID of the page object to retrieve",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "binaryProperty",
+      "displayName": "Put Output File in Field",
+      "type": "string",
+      "required": true,
+      "default": "data"
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a presentation"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a presentation"
+    },
+    {
+      "operation": "getSlides",
+      "name": "Get Slides",
+      "description": "Get presentation slides"
+    },
+    {
+      "operation": "replaceText",
+      "name": "Replace Text",
+      "description": "Replace text in a presentation"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleSlides.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.googleSlides"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

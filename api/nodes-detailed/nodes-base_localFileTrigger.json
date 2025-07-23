@@ -1,0 +1,206 @@
+{
+  "node_type": "nodes-base.localFileTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Local File Trigger",
+  "description": "Triggers a workflow on file system changes",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Local File Trigger node documentation\ndescription: Learn how to use the Local File Trigger node in n8n. Follow technical documentation to integrate Local File Trigger node into your workflows.\ncontentType: [integration, reference]\npriority: high\n---\n\n# Local File Trigger node\n\nThe Local File Trigger node starts a workflow when it detects changes on the file system. These changes involve a file or folder getting added, changed, or deleted.\n\n/// note | Self-hosted n8n only\nThis node isn't available on n8n Cloud.\n///\n\n## Node parameters\n\nYou can choose what event to watch for using the **Trigger On** parameter.\n\n## Changes to a Specific File\n\nThe node triggers when the specified file changes.\n\nEnter the path for the file to watch in **File to Watch**.\n\n## Changes Involving a Specific Folder\n\nThe node triggers when a change occurs in the selected folder.\n\nConfigure these parameters:\n\n- **Folder to Watch**: Enter the path of the folder to watch.\n- **Watch for**: Select the type of change to watch for.\n\n\n## Node options\n\nUse the node **Options** to include or exclude files and folders.\n\n- **Include Linked Files/Folders**: also watch for changes to linked files or folders.\n- **Ignore**: files or paths to ignore. n8n tests the whole path, not just the filename. Supports the [Anymatch](https://github.com/micromatch/anymatch){:target=_blank .external-link} syntax.\n- **Max Folder Depth**: how deep into the folder structure to watch for changes.\n\n### Examples for Ignore\n\nIgnore a single file:\n\n```sh\n**/<fileName>.<suffix>\n# For example, **/myfile.txt\n```\n\nIgnore a sub-directory of a directory you're watching:\n\n```sh\n**/<directoryName>/**\n# For example, **/myDirectory/**\n```\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'local-file-trigger') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Trigger On",
+      "name": "triggerOn",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "Changes to a Specific File",
+          "value": "file"
+        },
+        {
+          "name": "Changes Involving a Specific Folder",
+          "value": "folder"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "File to Watch",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "triggerOn": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Folder to Watch",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "triggerOn": [
+            "folder"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Watch for",
+      "name": "events",
+      "type": "multiOptions",
+      "default": [],
+      "description": "The events to listen to",
+      "options": [
+        {
+          "name": "File Added",
+          "value": "add",
+          "description": "Triggers whenever a new file was added"
+        },
+        {
+          "name": "File Changed",
+          "value": "change",
+          "description": "Triggers whenever a file was changed"
+        },
+        {
+          "name": "File Deleted",
+          "value": "unlink",
+          "description": "Triggers whenever a file was deleted"
+        },
+        {
+          "name": "Folder Added",
+          "value": "addDir",
+          "description": "Triggers whenever a new folder was added"
+        },
+        {
+          "name": "Folder Deleted",
+          "value": "unlinkDir",
+          "description": "Triggers whenever a folder was deleted"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "triggerOn": [
+            "folder"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Await Write Finish",
+          "name": "awaitWriteFinish",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to wait until files finished writing to avoid partially read"
+        },
+        {
+          "displayName": "Include Linked Files/Folders",
+          "name": "followSymlinks",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether linked files/folders will also be watched (this includes symlinks, aliases on MacOS and shortcuts on Windows). Otherwise only the links themselves will be monitored)."
+        },
+        {
+          "displayName": "Ignore",
+          "name": "ignored",
+          "type": "string",
+          "default": "",
+          "placeholder": "**/*.txt or ignore-me/subfolder",
+          "description": "Files or paths to ignore. The whole path is tested, not just the filename. Supports <a href=\"https://github.com/micromatch/anymatch\">Anymatch</a>- syntax. Regex patterns may not work on macOS. To ignore files based on substring matching, use the 'Ignore Mode' option with 'Contain'."
+        },
+        {
+          "displayName": "Ignore Existing Files/Folders",
+          "name": "ignoreInitial",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to ignore existing files/folders to not trigger an event"
+        },
+        {
+          "displayName": "Max Folder Depth",
+          "name": "depth",
+          "type": "options",
+          "options": [
+            {
+              "name": "1 Levels Down",
+              "value": 1
+            },
+            {
+              "name": "2 Levels Down",
+              "value": 2
+            },
+            {
+              "name": "3 Levels Down",
+              "value": 3
+            },
+            {
+              "name": "4 Levels Down",
+              "value": 4
+            },
+            {
+              "name": "5 Levels Down",
+              "value": 5
+            },
+            {
+              "name": "Top Folder Only",
+              "value": 0
+            },
+            {
+              "name": "Unlimited",
+              "value": -1
+            }
+          ],
+          "default": -1,
+          "description": "How deep into the folder structure to watch for changes"
+        },
+        {
+          "displayName": "Use Polling",
+          "name": "usePolling",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to use polling for watching. Typically necessary to successfully watch files over a network."
+        },
+        {
+          "displayName": "Ignore Mode",
+          "name": "ignoreMode",
+          "type": "options",
+          "options": [
+            {
+              "name": "Match",
+              "value": "match",
+              "description": "Ignore files using regex patterns (e.g., **/*.txt), Not supported on macOS"
+            },
+            {
+              "name": "Contain",
+              "value": "contain",
+              "description": "Ignore files if their path contains the specified value"
+            }
+          ],
+          "default": "match",
+          "description": "Whether to ignore files using regex matching (Anymatch patterns) or by checking if the path contains a specified value"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,241 @@
+{
+  "node_type": "nodes-base.code",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Code",
+  "description": "Run custom JavaScript or Python code",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "2",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: LangChain Code node documentation\ndescription: Learn how to use the LangChain Code node in n8n. Follow technical documentation to integrate LangChain Code node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# LangChain Code node\n\nUse the LangChain Code node to import LangChain. This means if there is functionality you need that n8n hasn't created a node for, you can still use it. By configuring the LangChain Code node connectors you can use it as a normal node, root node or sub-node.\n\nOn this page, you'll find the node parameters, guidance on configuring the node, and links to more resources.\n\n/// note | Not available on Cloud\nThis node is only available on self-hosted n8n.\n///\n\n## Node parameters\n\n### Add Code\n\nAdd your custom code. Choose either **Execute** or **Supply Data** mode. You can only use one mode.\n\nUnlike the [Code node](/integrations/builtin/core-nodes/n8n-nodes-base.code/index.md), the LangChain Code node doesn't support Python.\n\n* **Execute**: use the LangChain Code node like n8n's own Code node. This takes input data from the workflow, processes it, and returns it as the node output. This mode requires a main input and output. You must create these connections in **Inputs** and **Outputs**.\n* **Supply Data**: use the LangChain Code node as a sub-node, sending data to a root node. This uses an output other than main.\n\nBy default, you can't load built-in or external modules in this node. Self-hosted users can [enable built-in and external modules](/hosting/configuration/configuration-methods.md).\n\n### Inputs\n\nChoose the input types. \n\nThe main input is the normal connector found in all n8n workflows. If you have a main input and output set in the node, **Execute** code is required.\n\n### Outputs\n\nChoose the output types. \n\nThe main output is the normal connector found in all n8n workflows. If you have a main input and output set in the node, **Execute** code is required.\n\n## Node inputs and outputs configuration\n\nBy configuring the LangChain Code node connectors (inputs and outputs) you can use it as an app node, root node or sub-node.\n\n![Screenshot of a workflow with four LangChain nodes, configured as different node types](/_images/integrations/builtin/cluster-nodes/langchaincode/create-node-types.png)\n\n| Node type | Inputs | Outputs | Code mode |\n| --------- | ------ | ------- | --------- |\n| App node. Similar to the [Code node](/integrations/builtin/core-nodes/n8n-nodes-base.code/index.md). | Main | Main | Execute |\n| Root node | Main; at least one other type | Main | Execute |\n| Sub-node | - | A type other than main. Must match the input type you want to connect to. | Supply Data |\n| Sub-node with sub-nodes | A type other than main |A type other than main. Must match the input type you want to connect to. | Supply Data |\n\n## Built-in methods\n\nn8n provides these methods to make it easier to perform common tasks in the LangChain Code node.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/langchaincode/builtin-methods.md\"\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'langchain-code') ]]\n\n## Related resources\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Mode",
+      "name": "mode",
+      "type": "options",
+      "default": "runOnceForAllItems",
+      "options": [
+        {
+          "name": "Run Once for All Items",
+          "value": "runOnceForAllItems",
+          "description": "Run this code only once, no matter how many input items there are"
+        },
+        {
+          "name": "Run Once for Each Item",
+          "value": "runOnceForEachItem",
+          "description": "Run this code as many times as there are input items"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Language",
+      "name": "language",
+      "type": "options",
+      "default": "javaScript",
+      "options": [
+        {
+          "name": "JavaScript",
+          "value": "javaScript"
+        },
+        {
+          "name": "Python (Beta)",
+          "value": "python"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "@version": [
+            2
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Language",
+      "name": "language",
+      "type": "hidden",
+      "default": "javaScript",
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "JavaScript",
+      "name": "jsCode",
+      "type": "string",
+      "default": "",
+      "description": "JavaScript code to execute.<br><br>Tip: You can use luxon vars like <code>$today</code> for dates and <code>$jmespath</code> for querying JSON structures. <a href=\"https://docs.n8n.io/nodes/n8n-nodes-base.function\">Learn more</a>.",
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1
+          ],
+          "mode": [
+            "runOnceForAllItems"
+          ]
+        }
+      },
+      "typeOptions": {
+        "editor": "codeNodeEditor",
+        "editorLanguage": "javaScript"
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "JavaScript",
+      "name": "jsCode",
+      "type": "string",
+      "default": "",
+      "description": "JavaScript code to execute.<br><br>Tip: You can use luxon vars like <code>$today</code> for dates and <code>$jmespath</code> for querying JSON structures. <a href=\"https://docs.n8n.io/nodes/n8n-nodes-base.function\">Learn more</a>.",
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1
+          ],
+          "mode": [
+            "runOnceForEachItem"
+          ]
+        }
+      },
+      "typeOptions": {
+        "editor": "codeNodeEditor",
+        "editorLanguage": "javaScript"
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "JavaScript",
+      "name": "jsCode",
+      "type": "string",
+      "default": "",
+      "description": "JavaScript code to execute.<br><br>Tip: You can use luxon vars like <code>$today</code> for dates and <code>$jmespath</code> for querying JSON structures. <a href=\"https://docs.n8n.io/nodes/n8n-nodes-base.function\">Learn more</a>.",
+      "displayOptions": {
+        "show": {
+          "@version": [
+            2
+          ],
+          "language": [
+            "javaScript"
+          ],
+          "mode": [
+            "runOnceForAllItems"
+          ]
+        }
+      },
+      "typeOptions": {
+        "editor": "codeNodeEditor",
+        "editorLanguage": "javaScript"
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "JavaScript",
+      "name": "jsCode",
+      "type": "string",
+      "default": "",
+      "description": "JavaScript code to execute.<br><br>Tip: You can use luxon vars like <code>$today</code> for dates and <code>$jmespath</code> for querying JSON structures. <a href=\"https://docs.n8n.io/nodes/n8n-nodes-base.function\">Learn more</a>.",
+      "displayOptions": {
+        "show": {
+          "@version": [
+            2
+          ],
+          "language": [
+            "javaScript"
+          ],
+          "mode": [
+            "runOnceForEachItem"
+          ]
+        }
+      },
+      "typeOptions": {
+        "editor": "codeNodeEditor",
+        "editorLanguage": "javaScript"
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Type <code>$</code> for a list of <a target=\"_blank\" href=\"https://docs.n8n.io/code-examples/methods-variables-reference/\">special vars/methods</a>. Debug by using <code>console.log()</code> statements and viewing their output in the browser console.",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "language": [
+            "javaScript"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Python",
+      "name": "pythonCode",
+      "type": "string",
+      "default": "",
+      "description": "Python code to execute.<br><br>Tip: You can use built-in methods and variables like <code>_today</code> for dates and <code>_jmespath</code> for querying JSON structures. <a href=\"https://docs.n8n.io/code/builtin/\">Learn more</a>.",
+      "displayOptions": {
+        "show": {
+          "language": [
+            "python"
+          ],
+          "mode": [
+            "runOnceForAllItems"
+          ]
+        }
+      },
+      "typeOptions": {
+        "editor": "codeNodeEditor",
+        "editorLanguage": "python"
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Python",
+      "name": "pythonCode",
+      "type": "string",
+      "default": "",
+      "description": "Python code to execute.<br><br>Tip: You can use built-in methods and variables like <code>_today</code> for dates and <code>_jmespath</code> for querying JSON structures. <a href=\"https://docs.n8n.io/code/builtin/\">Learn more</a>.",
+      "displayOptions": {
+        "show": {
+          "language": [
+            "python"
+          ],
+          "mode": [
+            "runOnceForEachItem"
+          ]
+        }
+      },
+      "typeOptions": {
+        "editor": "codeNodeEditor",
+        "editorLanguage": "python"
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Debug by using <code>print()</code> statements and viewing their output in the browser console.",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "language": [
+            "python"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

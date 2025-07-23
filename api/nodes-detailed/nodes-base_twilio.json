@@ -1,0 +1,216 @@
+{
+  "node_type": "nodes-base.twilio",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Twilio",
+  "description": "Send SMS and WhatsApp messages or make phone calls",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Twilio node documentation\ndescription: Learn how to use the Twilio node in n8n. Follow technical documentation to integrate Twilio node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Twilio node\n\nUse the Twilio node to automate work in Twilio, and integrate Twilio with other applications. n8n supports sending MMS/SMS and WhatsApp messages with Twilio. \n\nOn this page, you'll find a list of operations the Twilio node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Twilio credentials](/integrations/builtin/credentials/twilio.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n* SMS\n    * Send SMS/MMS/WhatsApp message\n* Call\n    * Make a phone call using text-to-speech to say a message\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'twilio') ]]\n\n## Related resources\n\nRefer to [Twilio's documentation](https://www.twilio.com/docs/usage/api){:target=_blank .external-link} for more information about the service.\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "sms",
+      "options": [
+        {
+          "name": "Call",
+          "value": "call"
+        },
+        {
+          "name": "SMS",
+          "value": "sms"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "send",
+      "options": [
+        {
+          "name": "Send",
+          "value": "send",
+          "description": "Send SMS/MMS/WhatsApp message",
+          "action": "Send an SMS/MMS/WhatsApp message"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "sms"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "make",
+      "options": [
+        {
+          "name": "Make",
+          "value": "make",
+          "action": "Make a call"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "call"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "From",
+      "name": "from",
+      "type": "string",
+      "default": "",
+      "description": "The number from which to send the message",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "send",
+            "make"
+          ],
+          "resource": [
+            "sms",
+            "call"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "To",
+      "name": "to",
+      "type": "string",
+      "default": "",
+      "description": "The number to which to send the message",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "send",
+            "make"
+          ],
+          "resource": [
+            "sms",
+            "call"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "To Whatsapp",
+      "name": "toWhatsapp",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the message should be sent to WhatsApp",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "send"
+          ],
+          "resource": [
+            "sms"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Message",
+      "name": "message",
+      "type": "string",
+      "default": "",
+      "description": "The message to send",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "send"
+          ],
+          "resource": [
+            "sms"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Use TwiML",
+      "name": "twiml",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to use the <a href=\"https://www.twilio.com/docs/voice/twiml\">Twilio Markup Language</a> in the message",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "make"
+          ],
+          "resource": [
+            "call"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Message",
+      "name": "message",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "make"
+          ],
+          "resource": [
+            "call"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Status Callback",
+          "name": "statusCallback",
+          "type": "string",
+          "default": "",
+          "description": "Status Callbacks allow you to receive events related to the REST resources managed by Twilio: Rooms, Recordings and Compositions"
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "operation": "send",
+      "name": "Send",
+      "description": "Send SMS/MMS/WhatsApp message"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "twilioApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

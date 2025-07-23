@@ -1,0 +1,65 @@
+{
+  "node_type": "nodes-base.activeCampaignTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "ActiveCampaign Trigger",
+  "description": "Handle ActiveCampaign events via webhooks",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 1,
+  "is_webhook": 1,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: ActiveCampaign Trigger node documentation\ndescription: Learn how to use the ActiveCampaign Trigger node in n8n. Follow technical documentation to integrate ActiveCampaign Trigger node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# ActiveCampaign Trigger node\n\n[ActiveCampaign](https://www.activecampaign.com/){:target=_blank .external-link} is a cloud software platform for small-to-mid-sized business. The company offers software for customer experience automation, which combines the email marketing, marketing automation, sales automation, and CRM categories.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/activecampaign.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [ActiveCampaign Trigger integrations](https://n8n.io/integrations/activecampaign-trigger/){:target=_blank .external-link} page.\n///\n",
+  "properties_schema": [
+    {
+      "displayName": "Event Names or IDs",
+      "name": "events",
+      "type": "multiOptions",
+      "default": [],
+      "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "options": [],
+      "typeOptions": {
+        "loadOptionsMethod": "getEvents"
+      }
+    },
+    {
+      "displayName": "Source",
+      "name": "sources",
+      "type": "multiOptions",
+      "default": [],
+      "options": [
+        {
+          "name": "Public",
+          "value": "public",
+          "description": "Run the hooks when a contact triggers the action"
+        },
+        {
+          "name": "Admin",
+          "value": "admin",
+          "description": "Run the hooks when an admin user triggers the action"
+        },
+        {
+          "name": "Api",
+          "value": "api",
+          "description": "Run the hooks when an API call triggers the action"
+        },
+        {
+          "name": "System",
+          "value": "system",
+          "description": "Run the hooks when automated systems triggers the action"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "activeCampaignApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

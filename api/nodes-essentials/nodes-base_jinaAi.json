@@ -1,0 +1,75 @@
+{
+  "node_type": "nodes-base.jinaAi",
+  "display_name": "Jina AI",
+  "description": "Interact with Jina AI API",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "reader"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "read"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "deepResearch"
+    },
+    {
+      "name": "url",
+      "displayName": "URL",
+      "type": "string",
+      "description": "The URL to fetch content from",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "searchQuery",
+      "displayName": "Search Query",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "researchQuery",
+      "displayName": "Research Query",
+      "type": "string",
+      "description": "The topic or question for the AI to research",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "read",
+      "name": "Read",
+      "description": "Fetches content from a URL and converts it to clean, LLM-friendly formats"
+    },
+    {
+      "operation": "search",
+      "name": "Search",
+      "description": "Performs a web search via Jina AI and returns top results as clean, LLM-friendly formats"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_jinaAi.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.jinaAi"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

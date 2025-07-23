@@ -1,0 +1,84 @@
+{
+  "node_type": "nodes-langchain.vectorStoreSupabaseLoad",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "Supabase: Load",
+  "description": "Load data from Supabase Vector Store index",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "Table Name",
+      "name": "tableName",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "required": true
+    },
+    {
+      "displayName": "Query Name",
+      "name": "queryName",
+      "type": "string",
+      "default": "match_documents",
+      "description": "Name of the query to use for matching documents",
+      "required": true
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Metadata Filter",
+          "name": "metadata",
+          "type": "fixedCollection",
+          "description": "Metadata to filter the document by",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "placeholder": "Add filter field",
+          "options": [
+            {
+              "name": "metadataValues",
+              "displayName": "Fields to Set",
+              "values": [
+                {
+                  "displayName": "Name",
+                  "name": "name",
+                  "type": "string",
+                  "default": "",
+                  "required": true
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "supabaseApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

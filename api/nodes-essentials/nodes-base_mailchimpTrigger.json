@@ -1,0 +1,44 @@
+{
+  "node_type": "nodes-base.mailchimpTrigger",
+  "display_name": "Mailchimp Trigger",
+  "description": "Handle Mailchimp events via webhooks",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": true,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "list",
+      "displayName": "List Name or ID",
+      "type": "options",
+      "description": "The list that is gonna fire the event. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "events",
+      "displayName": "Events",
+      "type": "multiOptions",
+      "description": "The events that can trigger the webhook and whether they are enabled",
+      "required": true,
+      "default": []
+    },
+    {
+      "name": "sources",
+      "displayName": "Sources",
+      "type": "multiOptions",
+      "description": "The possible sources of any events that can trigger the webhook and whether they are enabled",
+      "required": true,
+      "default": []
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailchimpTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.mailchimpTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

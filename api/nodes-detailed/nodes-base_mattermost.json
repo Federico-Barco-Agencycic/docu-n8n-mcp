@@ -1,0 +1,1783 @@
+{
+  "node_type": "nodes-base.mattermost",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Mattermost",
+  "description": "Sends data to Mattermost",
+  "category": "output",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Mattermost node documentation\ndescription: Learn how to use the Mattermost node in n8n. Follow technical documentation to integrate Mattermost node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Mattermost node\n\nUse the Mattermost node to automate work in Mattermost, and integrate Mattermost with other applications. n8n has built-in support for a wide range of Mattermost features, including creating, deleting, and getting channels, and users, as well as posting messages, and adding reactions.\n\nOn this page, you'll find a list of operations the Mattermost node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Mattermost credentials](/integrations/builtin/credentials/mattermost.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n* Channel\n    * Add a user to a channel\n    * Create a new channel\n    * Soft delete a channel\n    * Get a page of members for a channel\n    * Restores a soft deleted channel\n    * Search for a channel\n    * Get statistics for a channel\n* Message\n    * Soft delete a post, by marking the post as deleted in the database\n    * Post a message into a channel\n    * Post an ephemeral message into a channel\n* Reaction\n    * Add a reaction to a post.\n    * Remove a reaction from a post\n    * Get all the reactions to one or more posts\n* User\n    * Create a new user\n    * Deactivates the user and revokes all its sessions by archiving its user object.\n    * Retrieve all users\n    * Get a user by email\n    * Get a user by ID\n    * Invite user to team\n\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'mattermost') ]]\n\n## Related resources\n\nRefer to [Mattermost's documentation](https://api.mattermost.com/){:target=_blank .external-link} for more information about the service.\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n## Channel ID field error\n\nIf you're not the System Administrator, you might get an error: **there was a problem loading the parameter options from server: \"Mattermost error response: You do not have the appropriate permissions.** next to the **Channel ID** field.\n\nAsk your system administrator to grant you the `post:channel` permission.\n\n## Find the channel ID\n\nTo find the channel ID in Mattermost:\n\n1. Select the channel from the left sidebar.\n2. Select the channel name at the top.\n3. Select **View Info**.\n\n\n\n\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "message",
+      "options": [
+        {
+          "name": "Channel",
+          "value": "channel"
+        },
+        {
+          "name": "Message",
+          "value": "message"
+        },
+        {
+          "name": "Reaction",
+          "value": "reaction"
+        },
+        {
+          "name": "User",
+          "value": "user"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Add User",
+          "value": "addUser",
+          "description": "Add a user to a channel",
+          "action": "Add a user to a channel"
+        },
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a new channel",
+          "action": "Create a channel"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Soft delete a channel",
+          "action": "Delete a channel"
+        },
+        {
+          "name": "Member",
+          "value": "members",
+          "description": "Get a page of members for a channel",
+          "action": "Get a page of members for a channel"
+        },
+        {
+          "name": "Restore",
+          "value": "restore",
+          "description": "Restores a soft deleted channel",
+          "action": "Restore a soft-deleted channel"
+        },
+        {
+          "name": "Search",
+          "value": "search",
+          "description": "Search for a channel",
+          "action": "Search for a channel"
+        },
+        {
+          "name": "Statistics",
+          "value": "statistics",
+          "description": "Get statistics for a channel",
+          "action": "Get statistics for a channel"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "channel"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Team Name or ID",
+      "name": "teamId",
+      "type": "options",
+      "default": "",
+      "description": "The Mattermost Team. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "channel"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getTeams"
+      }
+    },
+    {
+      "displayName": "Display Name",
+      "name": "displayName",
+      "type": "string",
+      "default": "",
+      "description": "The non-unique UI name for the channel",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "channel"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Name",
+      "name": "channel",
+      "type": "string",
+      "default": "",
+      "description": "The unique handle for the channel, will be present in the channel URL",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "channel"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Type",
+      "name": "type",
+      "type": "options",
+      "default": "public",
+      "description": "The type of channel to create",
+      "options": [
+        {
+          "name": "Private",
+          "value": "private"
+        },
+        {
+          "name": "Public",
+          "value": "public"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "channel"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Channel Name or ID",
+      "name": "channelId",
+      "type": "options",
+      "default": "",
+      "description": "The ID of the channel to soft delete. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "delete"
+          ],
+          "resource": [
+            "channel"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getChannels"
+      }
+    },
+    {
+      "displayName": "Team Name or ID",
+      "name": "teamId",
+      "type": "options",
+      "default": "",
+      "description": "The Mattermost Team. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "members"
+          ],
+          "resource": [
+            "channel"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getTeams"
+      }
+    },
+    {
+      "displayName": "Channel Name or ID",
+      "name": "channelId",
+      "type": "options",
+      "default": "",
+      "description": "The Mattermost Team. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "members"
+          ],
+          "resource": [
+            "channel"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getChannelsInTeam",
+        "loadOptionsDependsOn": [
+          "teamId"
+        ]
+      }
+    },
+    {
+      "displayName": "Resolve Data",
+      "name": "resolveData",
+      "type": "boolean",
+      "default": true,
+      "description": "By default the response only contain the ID of the user. If this option gets activated, it will resolve the user automatically.",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "channel"
+          ],
+          "operation": [
+            "members"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "members"
+          ],
+          "resource": [
+            "channel"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "members"
+          ],
+          "resource": [
+            "channel"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Channel ID",
+      "name": "channelId",
+      "type": "string",
+      "default": "",
+      "description": "The ID of the channel to restore",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "restore"
+          ],
+          "resource": [
+            "channel"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Channel Name or ID",
+      "name": "channelId",
+      "type": "options",
+      "default": "",
+      "description": "The ID of the channel to invite user to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "addUser"
+          ],
+          "resource": [
+            "channel"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getChannels"
+      }
+    },
+    {
+      "displayName": "User Name or ID",
+      "name": "userId",
+      "type": "options",
+      "default": "",
+      "description": "The ID of the user to invite into channel. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "addUser"
+          ],
+          "resource": [
+            "channel"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getUsers"
+      }
+    },
+    {
+      "displayName": "Channel Name or ID",
+      "name": "channelId",
+      "type": "options",
+      "default": "",
+      "description": "The ID of the channel to get the statistics from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "statistics"
+          ],
+          "resource": [
+            "channel"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getChannels"
+      }
+    },
+    {
+      "displayName": "Team Name or ID",
+      "name": "teamId",
+      "type": "options",
+      "default": "",
+      "description": "The Mattermost Team. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "search"
+          ],
+          "resource": [
+            "channel"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getTeams"
+      }
+    },
+    {
+      "displayName": "Search Term",
+      "name": "term",
+      "type": "string",
+      "default": "",
+      "description": "The search term for Channels in a Team",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "search"
+          ],
+          "resource": [
+            "channel"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "search"
+          ],
+          "resource": [
+            "channel"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "search"
+          ],
+          "resource": [
+            "channel"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "post",
+      "options": [
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Soft delete a post, by marking the post as deleted in the database",
+          "action": "Delete a message"
+        },
+        {
+          "name": "Post",
+          "value": "post",
+          "description": "Post a message into a channel",
+          "action": "Post a message"
+        },
+        {
+          "name": "Post Ephemeral",
+          "value": "postEphemeral",
+          "description": "Post an ephemeral message into a channel",
+          "action": "Post an ephemeral message"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "message"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Post ID",
+      "name": "postId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the post to delete",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "message"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Channel Name or ID",
+      "name": "channelId",
+      "type": "options",
+      "default": "",
+      "description": "The ID of the channel to post to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "post"
+          ],
+          "resource": [
+            "message"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getChannels"
+      }
+    },
+    {
+      "displayName": "Message",
+      "name": "message",
+      "type": "string",
+      "default": "",
+      "description": "The text to send",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "post"
+          ],
+          "resource": [
+            "message"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Attachments",
+      "name": "attachments",
+      "type": "collection",
+      "default": {},
+      "description": "The attachment to add",
+      "options": [
+        {
+          "displayName": "Actions",
+          "name": "actions",
+          "placeholder": "Add Actions",
+          "description": "Actions to add to message. More information can be found <a href=\"https://docs.mattermost.com/developer/interactive-messages.html\" target=\"_blank\">here</a>.",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "displayName": "Item",
+              "name": "item",
+              "values": [
+                {
+                  "displayName": "Type",
+                  "name": "type",
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "Button",
+                      "value": "button"
+                    },
+                    {
+                      "name": "Select",
+                      "value": "select"
+                    }
+                  ],
+                  "default": "button",
+                  "description": "The type of the action"
+                },
+                {
+                  "displayName": "Data Source",
+                  "name": "data_source",
+                  "type": "options",
+                  "displayOptions": {
+                    "show": {
+                      "type": [
+                        "select"
+                      ]
+                    }
+                  },
+                  "options": [
+                    {
+                      "name": "Channels",
+                      "value": "channels"
+                    },
+                    {
+                      "name": "Custom",
+                      "value": "custom"
+                    },
+                    {
+                      "name": "Users",
+                      "value": "users"
+                    }
+                  ],
+                  "default": "custom",
+                  "description": "The type of the action"
+                },
+                {
+                  "displayName": "Options",
+                  "name": "options",
+                  "placeholder": "Add option",
+                  "description": "Adds a new option to select field",
+                  "type": "fixedCollection",
+                  "typeOptions": {
+                    "multipleValues": true
+                  },
+                  "displayOptions": {
+                    "show": {
+                      "data_source": [
+                        "custom"
+                      ],
+                      "type": [
+                        "select"
+                      ]
+                    }
+                  },
+                  "default": {},
+                  "options": [
+                    {
+                      "name": "option",
+                      "displayName": "Option",
+                      "default": {},
+                      "values": [
+                        {
+                          "displayName": "Option Text",
+                          "name": "text",
+                          "type": "string",
+                          "default": "",
+                          "description": "Text of the option"
+                        },
+                        {
+                          "displayName": "Option Value",
+                          "name": "value",
+                          "type": "string",
+                          "default": "",
+                          "description": "Value of the option"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "displayName": "Name",
+                  "name": "name",
+                  "type": "string",
+                  "default": "",
+                  "description": "Name of the Action"
+                },
+                {
+                  "displayName": "Integration",
+                  "name": "integration",
+                  "placeholder": "Add Integration",
+                  "description": "Integration to add to message",
+                  "type": "fixedCollection",
+                  "typeOptions": {
+                    "multipleValues": false
+                  },
+                  "default": {},
+                  "options": [
+                    {
+                      "displayName": "Item",
+                      "name": "item",
+                      "default": {},
+                      "values": [
+                        {
+                          "displayName": "URL",
+                          "name": "url",
+                          "type": "string",
+                          "default": "",
+                          "description": "URL of the Integration"
+                        },
+                        {
+                          "displayName": "Context",
+                          "name": "context",
+                          "placeholder": "Add Context to Integration",
+                          "description": "Adds a Context values set",
+                          "type": "fixedCollection",
+                          "typeOptions": {
+                            "multipleValues": true
+                          },
+                          "default": {},
+                          "options": [
+                            {
+                              "name": "property",
+                              "displayName": "Property",
+                              "default": {},
+                              "values": [
+                                {
+                                  "displayName": "Property Name",
+                                  "name": "name",
+                                  "type": "string",
+                                  "default": "",
+                                  "description": "Name of the property to set"
+                                },
+                                {
+                                  "displayName": "Property Value",
+                                  "name": "value",
+                                  "type": "string",
+                                  "default": "",
+                                  "description": "Value of the property to set"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Author Icon",
+          "name": "author_icon",
+          "type": "string",
+          "default": "",
+          "description": "Icon which should appear for the user"
+        },
+        {
+          "displayName": "Author Link",
+          "name": "author_link",
+          "type": "string",
+          "default": "",
+          "description": "Link for the author"
+        },
+        {
+          "displayName": "Author Name",
+          "name": "author_name",
+          "type": "string",
+          "default": "",
+          "description": "Name that should appear"
+        },
+        {
+          "displayName": "Color",
+          "name": "color",
+          "type": "color",
+          "default": "#ff0000",
+          "description": "Color of the line left of text"
+        },
+        {
+          "displayName": "Fallback Text",
+          "name": "fallback",
+          "type": "string",
+          "default": "",
+          "description": "Required plain-text summary of the attachment"
+        },
+        {
+          "displayName": "Fields",
+          "name": "fields",
+          "placeholder": "Add Fields",
+          "description": "Fields to add to message",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "name": "item",
+              "displayName": "Item",
+              "values": [
+                {
+                  "displayName": "Title",
+                  "name": "title",
+                  "type": "string",
+                  "default": "",
+                  "description": "Title of the item"
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": "",
+                  "description": "Value of the item"
+                },
+                {
+                  "displayName": "Short",
+                  "name": "short",
+                  "type": "boolean",
+                  "default": true,
+                  "description": "Whether items can be displayed next to each other"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Footer",
+          "name": "footer",
+          "type": "string",
+          "default": "",
+          "description": "Text of footer to add"
+        },
+        {
+          "displayName": "Footer Icon",
+          "name": "footer_icon",
+          "type": "string",
+          "default": "",
+          "description": "Icon which should appear next to footer"
+        },
+        {
+          "displayName": "Image URL",
+          "name": "image_url",
+          "type": "string",
+          "default": "",
+          "description": "URL of image"
+        },
+        {
+          "displayName": "Pretext",
+          "name": "pretext",
+          "type": "string",
+          "default": "",
+          "description": "Text which appears before the message block"
+        },
+        {
+          "displayName": "Text",
+          "name": "text",
+          "type": "string",
+          "default": "",
+          "description": "Text to send"
+        },
+        {
+          "displayName": "Thumbnail URL",
+          "name": "thumb_url",
+          "type": "string",
+          "default": "",
+          "description": "URL of thumbnail"
+        },
+        {
+          "displayName": "Title",
+          "name": "title",
+          "type": "string",
+          "default": "",
+          "description": "Title of the message"
+        },
+        {
+          "displayName": "Title Link",
+          "name": "title_link",
+          "type": "string",
+          "default": "",
+          "description": "Link of the title"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "post"
+          ],
+          "resource": [
+            "message"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true,
+        "multipleValueButtonText": "Add attachment"
+      }
+    },
+    {
+      "displayName": "Other Options",
+      "name": "otherOptions",
+      "type": "collection",
+      "default": {},
+      "description": "Other options to set",
+      "options": [
+        {
+          "displayName": "Make Comment",
+          "name": "root_id",
+          "type": "string",
+          "default": "",
+          "description": "The post ID to comment on"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "post"
+          ],
+          "resource": [
+            "message"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "User Name or ID",
+      "name": "userId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the user to send the ephemeral message to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "postEphemeral"
+          ],
+          "resource": [
+            "message"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getUsers"
+      }
+    },
+    {
+      "displayName": "Channel Name or ID",
+      "name": "channelId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the channel to send the ephemeral message in. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "postEphemeral"
+          ],
+          "resource": [
+            "message"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getChannels"
+      }
+    },
+    {
+      "displayName": "Message",
+      "name": "message",
+      "type": "string",
+      "default": "",
+      "description": "Text to send in the ephemeral message",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "postEphemeral"
+          ],
+          "resource": [
+            "message"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Add a reaction to a post",
+          "action": "Create a reaction"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Remove a reaction from a post",
+          "action": "Delete a reaction"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many reactions to one or more posts",
+          "action": "Get many reactions"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "reaction"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "User Name or ID",
+      "name": "userId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the user sending the reaction. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "reaction"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getUsers"
+      }
+    },
+    {
+      "displayName": "Post ID",
+      "name": "postId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the post to react to. Obtainable from the post link: <code>https://mattermost.internal.n8n.io/[server]/pl/[postId]</code>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "reaction"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Emoji Name",
+      "name": "emojiName",
+      "type": "string",
+      "default": "",
+      "description": "Emoji to use for this reaction",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "reaction"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "User Name or ID",
+      "name": "userId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the user whose reaction to delete. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "reaction"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getUsers"
+      }
+    },
+    {
+      "displayName": "Post ID",
+      "name": "postId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the post whose reaction to delete. Obtainable from the post link: <code>https://mattermost.internal.n8n.io/[server]/pl/[postId]</code>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "reaction"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Emoji Name",
+      "name": "emojiName",
+      "type": "string",
+      "default": "",
+      "description": "Name of the emoji to delete",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "reaction"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Post ID",
+      "name": "postId",
+      "type": "string",
+      "default": "",
+      "description": "One or more (comma-separated) posts to retrieve reactions from",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "reaction"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "reaction"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "reaction"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a new user",
+          "action": "Create a user"
+        },
+        {
+          "name": "Deactive",
+          "value": "deactive",
+          "description": "Deactivates the user and revokes all its sessions by archiving its user object",
+          "action": "Deactivate a user"
+        },
+        {
+          "name": "Get By Email",
+          "value": "getByEmail",
+          "description": "Get a user by email",
+          "action": "Get a user by email"
+        },
+        {
+          "name": "Get By ID",
+          "value": "getById",
+          "description": "Get a user by ID",
+          "action": "Get a user by ID"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Retrieve many users",
+          "action": "Get many users"
+        },
+        {
+          "name": "Invite",
+          "value": "invite",
+          "description": "Invite user to team",
+          "action": "Invite a user"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Username",
+      "name": "username",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Auth Service",
+      "name": "authService",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "Email",
+          "value": "email"
+        },
+        {
+          "name": "Gitlab",
+          "value": "gitlab"
+        },
+        {
+          "name": "Google",
+          "value": "google"
+        },
+        {
+          "name": "LDAP",
+          "value": "ldap"
+        },
+        {
+          "name": "Office365",
+          "value": "office365"
+        },
+        {
+          "name": "SAML",
+          "value": "saml"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Auth Data",
+      "name": "authData",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "create"
+          ]
+        },
+        "hide": {
+          "authService": [
+            "email"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "create"
+          ],
+          "authService": [
+            "email"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Password",
+      "name": "password",
+      "type": "string",
+      "default": "",
+      "description": "The password used for email authentication",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "create"
+          ],
+          "authService": [
+            "email"
+          ]
+        }
+      },
+      "typeOptions": {
+        "password": true
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "First Name",
+          "name": "first_name",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Last Name",
+          "name": "last_name",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Locale",
+          "name": "locale",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Nickname",
+          "name": "nickname",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Notification Settings",
+          "name": "notificationUi",
+          "type": "fixedCollection",
+          "placeholder": "Add Notification Setting",
+          "default": {},
+          "typeOptions": {
+            "multipleValues": false
+          },
+          "options": [
+            {
+              "displayName": "Notify",
+              "name": "notificationValues",
+              "values": [
+                {
+                  "displayName": "Channel",
+                  "name": "channel",
+                  "type": "boolean",
+                  "default": true,
+                  "description": "Whether to enable channel-wide notifications (@channel, @all, etc.), \"false\" to disable. Defaults to \"true\"."
+                },
+                {
+                  "displayName": "Desktop",
+                  "name": "desktop",
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "All",
+                      "value": "all",
+                      "description": "Notifications for all activity"
+                    },
+                    {
+                      "name": "Mention",
+                      "value": "mention",
+                      "description": "Mentions and direct messages only"
+                    },
+                    {
+                      "name": "None",
+                      "value": "none",
+                      "description": "Mentions and direct messages only"
+                    }
+                  ],
+                  "default": "all"
+                },
+                {
+                  "displayName": "Desktop Sound",
+                  "name": "desktop_sound",
+                  "type": "boolean",
+                  "default": true,
+                  "description": "Whether to enable sound on desktop notifications, \"false\" to disable. Defaults to \"true\"."
+                },
+                {
+                  "displayName": "Email",
+                  "name": "email",
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether to enable email notifications, \"false\" to disable. Defaults to \"false\"."
+                },
+                {
+                  "displayName": "First Name",
+                  "name": "first_name",
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether to enable mentions for first name. Defaults to \"true\" if a first name is set, \"false\" otherwise."
+                },
+                {
+                  "displayName": "Mention Keys",
+                  "name": "mention_keys",
+                  "type": "string",
+                  "default": "",
+                  "description": "A comma-separated list of words to count as mentions. Defaults to username and @username."
+                },
+                {
+                  "displayName": "Push",
+                  "name": "push",
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "All",
+                      "value": "all",
+                      "description": "Notifications for all activity"
+                    },
+                    {
+                      "name": "Mention",
+                      "value": "mention",
+                      "description": "Mentions and direct messages only"
+                    },
+                    {
+                      "name": "None",
+                      "value": "none",
+                      "description": "Mentions and direct messages only"
+                    }
+                  ],
+                  "default": "mention"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "user"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "User ID",
+      "name": "userId",
+      "type": "string",
+      "default": "",
+      "description": "User GUID",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "deactive"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "In Channel",
+          "name": "inChannel",
+          "type": "string",
+          "default": "",
+          "description": "The ID of the channel to get users for"
+        },
+        {
+          "displayName": "In Team",
+          "name": "inTeam",
+          "type": "string",
+          "default": "",
+          "description": "The ID of the team to get users for"
+        },
+        {
+          "displayName": "Not In Team",
+          "name": "notInTeam",
+          "type": "string",
+          "default": "",
+          "description": "The ID of the team to exclude users for"
+        },
+        {
+          "displayName": "Not In Channel",
+          "name": "notInChannel",
+          "type": "string",
+          "default": "",
+          "description": "The ID of the channel to exclude users for"
+        },
+        {
+          "displayName": "Sort",
+          "name": "sort",
+          "type": "options",
+          "options": [
+            {
+              "name": "Created At",
+              "value": "createdAt"
+            },
+            {
+              "name": "Last Activity At",
+              "value": "lastActivityAt"
+            },
+            {
+              "name": "Status",
+              "value": "status"
+            },
+            {
+              "name": "Username",
+              "value": "username"
+            }
+          ],
+          "default": "username",
+          "description": "The ID of the channel to exclude users for"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "User's email",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getByEmail"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "User IDs",
+      "name": "userIds",
+      "type": "string",
+      "default": "",
+      "description": "User's ID",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getById"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Since",
+          "name": "since",
+          "type": "dateTime",
+          "default": "",
+          "description": "Only return users that have been modified since the given Unix timestamp (in milliseconds)"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getById"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Team Name or ID",
+      "name": "teamId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "invite"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getTeams"
+      }
+    },
+    {
+      "displayName": "Emails",
+      "name": "emails",
+      "type": "string",
+      "default": "",
+      "description": "User's email. Multiple emails can be set separated by comma.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "invite"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "addUser",
+      "name": "Add User",
+      "description": "Add a user to a channel"
+    },
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a new channel"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Soft delete a channel"
+    },
+    {
+      "operation": "members",
+      "name": "Member",
+      "description": "Get a page of members for a channel"
+    },
+    {
+      "operation": "restore",
+      "name": "Restore",
+      "description": "Restores a soft deleted channel"
+    },
+    {
+      "operation": "search",
+      "name": "Search",
+      "description": "Search for a channel"
+    },
+    {
+      "operation": "statistics",
+      "name": "Statistics",
+      "description": "Get statistics for a channel"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "mattermostApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

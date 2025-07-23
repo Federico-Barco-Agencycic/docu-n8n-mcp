@@ -1,0 +1,131 @@
+{
+  "node_type": "nodes-base.openThesaurus",
+  "package_name": "n8n-nodes-base",
+  "display_name": "OpenThesaurus",
+  "description": "Get synonmns for German words using the OpenThesaurus API",
+  "category": "output",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: OpenThesaurus node documentation\ndescription: Learn how to use the OpenThesaurus node in n8n. Follow technical documentation to integrate OpenThesaurus node into your workflows.\ncontentType: [integration, reference]\n---\n\n# OpenThesaurus node\n\nUse the OpenThesaurus node to automate work in OpenThesaurus, and integrate OpenThesaurus with other applications. n8n supports synonym look-up for German words. \n\nOn this page, you'll find a list of operations the OpenThesaurus node supports and links to more resources.\n\n/// note | Credentials\nOpenThesaurus node doesn't require authentication. \n///\n\n## Operations\n\n* Get synonyms for a German word in German\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'openthesaurus') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getSynonyms",
+      "options": [
+        {
+          "name": "Get Synonyms",
+          "value": "getSynonyms",
+          "description": "Get synonyms for a German word in German",
+          "action": "Get synonyms"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Text",
+      "name": "text",
+      "type": "string",
+      "default": "",
+      "description": "The word to get synonyms for",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getSynonyms"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Baseform",
+          "name": "baseform",
+          "type": "boolean",
+          "default": false,
+          "description": "Specifies the basic form for the search term if it is not already a basic form"
+        },
+        {
+          "displayName": "Similar",
+          "name": "similar",
+          "type": "boolean",
+          "default": false,
+          "description": "This also returns up to five similarly written words for each answer. This is useful to be able to make a suggestion to the user in the event of a possible typing error."
+        },
+        {
+          "displayName": "Starts With",
+          "name": "startswith",
+          "type": "boolean",
+          "default": false,
+          "description": "Like substring = true, but only finds words that begin with the specified search term"
+        },
+        {
+          "displayName": "Substring",
+          "name": "substring",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether up to ten words are returned for each answer that only contain the search term as a partial word"
+        },
+        {
+          "displayName": "Substring From Results",
+          "name": "substringFromResults",
+          "type": "number",
+          "default": 0,
+          "description": "Specifies from which entry the partial word hits are to be returned. Only works together with substring = true."
+        },
+        {
+          "displayName": "Substring Max Results",
+          "name": "substringMaxResults",
+          "type": "number",
+          "typeOptions": {
+            "maxValue": 250
+          },
+          "default": 10,
+          "description": "Specifies how many partial word hits should be returned in total. Only works together with substring = true."
+        },
+        {
+          "displayName": "Subsynsets",
+          "name": "subsynsets",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether each synonym group has its (optional) sub-terms supplied"
+        },
+        {
+          "displayName": "Supersynsets",
+          "name": "supersynsets",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether each synonym group is supplied with its (optional) generic terms"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getSynonyms"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "getSynonyms",
+      "name": "Get Synonyms",
+      "description": "Get synonyms for a German word in German"
+    }
+  ],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

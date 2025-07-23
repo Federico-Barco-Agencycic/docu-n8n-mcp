@@ -1,0 +1,36 @@
+{
+  "node_type": "nodes-base.asanaTrigger",
+  "display_name": "Asana Trigger",
+  "description": "Starts the workflow when Asana events occur.",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "string",
+      "description": "The resource ID to subscribe to. The resource can be a task or project.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "workspace",
+      "displayName": "Workspace Name or ID",
+      "type": "options",
+      "description": "The workspace ID the resource is registered under. This is only required if you want to allow overriding existing webhooks. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": false,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_asanaTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.asanaTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

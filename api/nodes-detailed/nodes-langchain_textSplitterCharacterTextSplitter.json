@@ -1,0 +1,48 @@
+{
+  "node_type": "nodes-langchain.textSplitterCharacterTextSplitter",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "Character Text Splitter",
+  "description": "Split text into chunks by characters",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Character Text Splitter node documentation\ndescription: Learn how to use the Character Text Splitter node in n8n. Follow technical documentation to integrate Character Text Splitter node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Character Text Splitter node\n\nUse the Character Text Splitter node to split document data based on characters.\n\nOn this page, you'll find the node parameters for the Character Text Splitter node, and links to more resources.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\n## Node parameters\n\n* **Separator**: Select the separator used to split the document into separate items.\n* **Chunk Size**: Enter the number of characters in each chunk.\n* **Chunk Overlap**: Enter how much overlap to have between chunks.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'character-text-splitter') ]]\n\n## Related resources\n\nRefer to [LangChain's text splitter documentation](https://js.langchain.com/docs/concepts/text_splitters){:target=_blank .external-link} and [LangChain's API documentation for character text splitting](https://v03.api.js.langchain.com/classes/langchain.text_splitter.CharacterTextSplitter.html){:target=_blank .external-link} for more information about the service.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "This node must be connected to a document loader. <a data-action='openSelectiveNodeCreator' data-action-parameter-connectiontype='ai_document'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "Separator",
+      "name": "separator",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "displayName": "Chunk Size",
+      "name": "chunkSize",
+      "type": "number",
+      "default": 1000
+    },
+    {
+      "displayName": "Chunk Overlap",
+      "name": "chunkOverlap",
+      "type": "number",
+      "default": 0
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,41 @@
+{
+  "node_type": "nodes-base.stickyNote",
+  "display_name": "Sticky Note",
+  "description": "Make your workflow easier to understand",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "height",
+      "displayName": "Height",
+      "type": "number",
+      "required": true,
+      "default": 160
+    },
+    {
+      "name": "width",
+      "displayName": "Width",
+      "type": "number",
+      "required": true,
+      "default": 240
+    },
+    {
+      "name": "color",
+      "displayName": "Color",
+      "type": "number",
+      "required": true,
+      "default": 1
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_stickyNote.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.stickyNote"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

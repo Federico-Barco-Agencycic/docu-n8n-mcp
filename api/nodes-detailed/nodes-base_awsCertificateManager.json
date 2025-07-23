@@ -1,0 +1,407 @@
+{
+  "node_type": "nodes-base.awsCertificateManager",
+  "package_name": "n8n-nodes-base",
+  "display_name": "AWS Certificate Manager",
+  "description": "Sends data to AWS Certificate Manager",
+  "category": "output",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: AWS Certificate Manager node documentation\ndescription: Learn how to use the AWS Certificate Manager node in n8n. Follow technical documentation to integrate AAWS Certificage Manager node into your workflows.\ncontentType: [integration, reference]\n---\n\n# AWS Certificate Manager node\n\nUse the AWS Certificate Manager node to automate work in AWS Certificate Manager, and integrate AWS Certificate Manager with other applications. n8n has built-in support for a wide range of AWS Certificate Manager features, including creating, deleting, getting, and renewing SSL certificates.\n\nOn this page, you'll find a list of operations the AWS Certificate Manager node supports and links to more resources.\n\n/// note | Credentials\nRefer to [AWS Certificate Manager credentials](/integrations/builtin/credentials/aws.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Certificate\n\t* Delete\n\t* Get\n\t* Get Many\n\t* Get Metadata\n\t* Renew\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'aws-certificate-manager') ]]\n\n## Related resources\n\nRefer to [AWS Certificate Manager's documentation](https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html){:target=_blank .external-link} for more information on this service.\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "certificate",
+      "options": [
+        {
+          "name": "Certificate",
+          "value": "certificate"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "renew",
+      "options": [
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a certificate",
+          "action": "Delete a certificate"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a certificate",
+          "action": "Get a certificate"
+        },
+        {
+          "name": "Get Many",
+          "value": "getMany",
+          "description": "Get many certificates",
+          "action": "Get many certificates"
+        },
+        {
+          "name": "Get Metadata",
+          "value": "getMetadata",
+          "description": "Get certificate metadata",
+          "action": "Get certificate metadata"
+        },
+        {
+          "name": "Renew",
+          "value": "renew",
+          "description": "Renew a certificate",
+          "action": "Renew a certificate"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "certificate"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Certificate ARN",
+      "name": "certificateArn",
+      "type": "string",
+      "default": "",
+      "description": "String that contains the ARN of the ACM certificate to be renewed. This must be of the form: arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "certificate"
+          ],
+          "operation": [
+            "renew",
+            "get",
+            "delete",
+            "getMetadata"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Bucket Name",
+      "name": "bucketName",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "certificate"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Certificate Key",
+      "name": "certificateKey",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "certificate"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getMany"
+          ],
+          "resource": [
+            "certificate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getMany"
+          ],
+          "resource": [
+            "certificate"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 500
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Certificate Statuses",
+          "name": "certificateStatuses",
+          "type": "multiOptions",
+          "options": [
+            {
+              "name": "Expired",
+              "value": "EXPIRED"
+            },
+            {
+              "name": "Failed",
+              "value": "FAILED"
+            },
+            {
+              "name": "Inactive",
+              "value": "INACTIVE"
+            },
+            {
+              "name": "Issued",
+              "value": "ISSUED"
+            },
+            {
+              "name": "Pending Validation",
+              "value": "PENDING_VALIDATION"
+            },
+            {
+              "name": "Revoked",
+              "value": "REVOKED"
+            },
+            {
+              "name": "Validation Timed Out",
+              "value": "VALIDATION_TIMED_OUT"
+            }
+          ],
+          "default": [],
+          "description": "Filter the certificate list by status value"
+        },
+        {
+          "displayName": "Extended Key Usage",
+          "name": "extendedKeyUsage",
+          "type": "multiOptions",
+          "options": [
+            {
+              "name": "Any",
+              "value": "ANY"
+            },
+            {
+              "name": "Code Signing",
+              "value": "CODE_SIGNING"
+            },
+            {
+              "name": "Custom",
+              "value": "CUSTOM"
+            },
+            {
+              "name": "Email Protection",
+              "value": "EMAIL_PROTECTION"
+            },
+            {
+              "name": "IPSEC End System",
+              "value": "IPSEC_END_SYSTEM"
+            },
+            {
+              "name": "IPSEC Tunnel",
+              "value": "IPSEC_TUNNEL"
+            },
+            {
+              "name": "IPSEC User",
+              "value": "IPSEC_USER"
+            },
+            {
+              "name": "None",
+              "value": "NONE"
+            },
+            {
+              "name": "OCSP Signing",
+              "value": "OCSP_SIGNING"
+            },
+            {
+              "name": "Time Stamping",
+              "value": "TIME_STAMPING"
+            },
+            {
+              "name": "TLS Web Client Authentication",
+              "value": "TLS_WEB_CLIENT_AUTHENTICATION"
+            },
+            {
+              "name": "TLS Web Server Authentication",
+              "value": "TLS_WEB_SERVER_AUTHENTICATION"
+            }
+          ],
+          "default": [],
+          "description": "Specify one or more ExtendedKeyUsage extension values"
+        },
+        {
+          "displayName": "Key Types",
+          "name": "keyTypes",
+          "type": "multiOptions",
+          "options": [
+            {
+              "name": "EC Prime256v1",
+              "value": "EC_prime256v1"
+            },
+            {
+              "name": "EC Secp384r1",
+              "value": "EC_secp384r1"
+            },
+            {
+              "name": "EC Secp521r1",
+              "value": "EC_secp521r1"
+            },
+            {
+              "name": "RSA 1024",
+              "value": "RSA_1024"
+            },
+            {
+              "name": "RSA 2048",
+              "value": "RSA_2048"
+            },
+            {
+              "name": "RSA 4096",
+              "value": "RSA_4096"
+            }
+          ],
+          "default": [
+            "RSA_2048"
+          ],
+          "description": "Specify one or more algorithms that can be used to generate key pairs"
+        },
+        {
+          "displayName": "Key Usage",
+          "name": "keyUsage",
+          "type": "multiOptions",
+          "options": [
+            {
+              "name": "Any",
+              "value": "ANY"
+            },
+            {
+              "name": "Certificate Signing",
+              "value": "CERTIFICATE_SIGNING"
+            },
+            {
+              "name": "CRL Signing",
+              "value": "CRL_SIGNING"
+            },
+            {
+              "name": "Custom",
+              "value": "CUSTOM"
+            },
+            {
+              "name": "Data Encipherment",
+              "value": "DATA_ENCIPHERMENT"
+            },
+            {
+              "name": "Decipher Only",
+              "value": "DECIPHER_ONLY"
+            },
+            {
+              "name": "Digital Signature",
+              "value": "DIGITAL_SIGNATURE"
+            },
+            {
+              "name": "Encipher Only",
+              "value": "ENCIPHER_ONLY"
+            },
+            {
+              "name": "Key Agreement",
+              "value": "KEY_AGREEMENT"
+            },
+            {
+              "name": "Key Encipherment",
+              "value": "KEY_ENCIPHERMENT"
+            },
+            {
+              "name": "Non Repudiation",
+              "value": "NON_REPUDIATION"
+            }
+          ],
+          "default": [],
+          "description": "Specify one or more KeyUsage extension values"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "certificate"
+          ],
+          "operation": [
+            "getMany"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a certificate"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a certificate"
+    },
+    {
+      "operation": "getMany",
+      "name": "Get Many",
+      "description": "Get many certificates"
+    },
+    {
+      "operation": "getMetadata",
+      "name": "Get Metadata",
+      "description": "Get certificate metadata"
+    },
+    {
+      "operation": "renew",
+      "name": "Renew",
+      "description": "Renew a certificate"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "aws",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,921 @@
+{
+  "node_type": "nodes-base.n8n",
+  "package_name": "n8n-nodes-base",
+  "display_name": "n8n",
+  "description": "Handle events and perform actions on your n8n instance",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: n8n\ndescription: Documentation for the n8n node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# n8n\n\nA node to integrate with n8n itself. This node allows you to consume the [n8n API](/api/index.md) in your workflows.\n\nRefer to the [n8n REST API documentation](/api/index.md) for more information on using the n8n API. Refer to [API endpoint reference](/api/api-reference.md) for working with the API endpoints directly.\n\n/// note | Credentials\nYou can find authentication information for this node in the [API authentication](/api/authentication.md) documentation.\n///\n\n/// warning | SSL\nThis node doesn't support SSL. If your server requires an SSL connection, use the [HTTP Request node](/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/index.md) to call the [n8n API](/api/index.md).\nThe HTTP Request node has options to [provide the SSL certificate](/integrations/builtin/credentials/httprequest.md#provide-an-ssl-certificate).\n///\n\n## Operations\n\n* Audit\n\t* [**Generate** a security audit](#generate-audit)\n* Credential\n\t* [**Create** a credential](#create-credential)\n\t* [**Delete** a credential](#delete-credential)\n\t* [**Get Schema**](#get-credential-schema): Use this operation to get credential data schema for type\n* Execution\n\t* [**Get** an execution](#get-execution)\n\t* [**Get Many** executions](#get-many-executions)\n\t* [**Delete** an execution](#delete-execution)\n* Workflow\n\t* [**Activate** a workflow](#activate-deactivate-delete-and-get-workflow)\n\t* [**Create** a workflow](#create-workflow)\n\t* [**Deactivate** a workflow](#activate-deactivate-delete-and-get-workflow)\n\t* [**Delete** a workflow](#activate-deactivate-delete-and-get-workflow)\n\t* [**Get** a workflow](#activate-deactivate-delete-and-get-workflow)\n\t* [**Get Many** workflows](#get-many-workflows)\n\t* [**Update** a workflow](#update-workflow)\n\n## Generate audit\n\nThis operation has no parameters. Configure it with these options:\n\n* **Categories**: Select the risk categories you want the audit to include. Options include:\n\t* **Credentials**\n\t* **Database**\n\t* **Filesystem**\n\t* **Instance**\n\t* **Nodes**\n* **Days Abandoned Workflow**: Use this option to set the number of days without execution after which a workflow should be considered abandoned. Enter a number of days. The default is `90`.\n\n## Create credential\n\nConfigure this operation with these parameters:\n\n* **Name**: Enter the name of the credential you'd like to create.\n* **Credential Type**: Enter the credential's type. The available types depend on nodes installed on the n8n instance. Some built-in types include `githubApi`, `notionApi`, and `slackApi`.\n* **Data**: Enter a valid JSON object with the required properties for this **Credential Type**. To see the expected format, use the **Get Schema** operation.\n\n## Delete credential\n\nConfigure this operation with this parameter:\n\n* **Credential ID**: Enter the ID of the credential you want to delete.\n\n## Get credential schema\n\nConfigure this operation with this parameter:\n\n* **Credential Type**: Enter the credential's type. The available types depend on nodes installed on the n8n instance. Some built-in types include `githubApi`, `notionApi`, and `slackApi`.\n\n## Get execution\n\nConfigure this operation with this parameter:\n\n* **Execution ID**: Enter the ID of the execution you want to retrieve.\n\n### Get execution option\n\nYou can further configure this operation with this **Option**:\n\n* **Include Execution Details**: Use this control to set whether to include the detailed execution data (turned on) or not (turned off).\n\n## Get many executions\n\nConfigure this operation with these parameters:\n\n* **Return All**: Set whether to return all results (turned on) or whether to limit the results to the entered **Limit** (turned on).\n* **Limit**: Set the number of results to return if the **Return All** control is turned off.\n\n### Get many executions filters\n\nYou can further configure this operation with these **Filters**:\n\n* **Workflow**: Filter the executions by workflow. Options include:\n\t* **From list**: Select a workflow to use as a filter.\n\t* **By URL**: Enter a workflow URL to use as a filter.\n\t* **By ID**: Enter a workflow ID to use as a filter.\n* **Status**: Filter the executions by status. Options include:\n\t* **Error**\n\t* **Success**\n\t* **Waiting**\n\n### Get many execution options\n\nYou can further configure this operation with this **Option**:\n\n* **Include Execution Details**: Use this control to set whether to include the detailed execution data (turned on) or not (turned off).\n\n## Delete execution\n\nConfigure this operation with this parameter:\n\n* **Execution ID**: Enter the ID of the execution you want to delete.\n\n## Activate, deactivate, delete, and get workflow\n\nThe **Activate**, **Deactivate**, **Delete**, and **Get** workflow operations all include the same parameter for you to select the **Workflow** you want to perform the operation on. Options include:\n\n* **From list**: Select the workflow from the list.\n* **By URL**: Enter the URL of the workflow.\n* **By ID**: Enter the ID of the workflow.\n\n## Create workflow\n\nConfigure this operation with this parameter:\n\n* **Workflow Object**: Enter a valid JSON object with the new workflow's details. The object requires these fields:\n\t* `name`\n\t* `nodes`\n\t* `connections`\n\t* `settings`\n\nRefer to the [n8n API | Create a workflow documentation](/api/api-reference.md/#tag/Workflow/paths/~1workflows/post) for more information.\n\n## Get many workflows\n\nConfigure this operation with these parameters:\n\n* **Return All**: Set whether to return all results (turned on) or whether to limit the results to the entered **Limit** (turned on).\n* **Limit**: Set the number of results to return if the **Return All** control is turned off.\n\n### Get many workflows filters\n\nYou can further configure this operation with these **Filters**:\n\n* **Return Only Active Workflows**: Select whether to return only active workflows (turned on) or active and inactive workflows (turned off).\n* **Tags**: Enter a comma-separated list of tags the returned workflows must have.\n\n## Update workflow\n\nConfigure this operation with these parameters:\n\n* **Workflow**: Select the workflow you want to update. Options include:\n\t* **From list**: Select the workflow from the list.\n\t* **By URL**: Enter the URL of the workflow.\n\t* **By ID**: Enter the ID of the workflow.\n* **Workflow Object**: Enter a valid JSON object to update the workflow with. The object requires these fields:\n\t* `name`\n\t* `nodes`\n\t* `connections`\n\t* `settings`\n\nRefer to the [n8n API | Update a workflow documentation](https://docs.n8n.io/api/api-reference/#tag/Workflow/paths/~1workflows~1%7Bid%7D/put) for more information.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'n8n') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "workflow",
+      "options": [
+        {
+          "name": "Audit",
+          "value": "audit"
+        },
+        {
+          "name": "Credential",
+          "value": "credential"
+        },
+        {
+          "name": "Execution",
+          "value": "execution"
+        },
+        {
+          "name": "Workflow",
+          "value": "workflow"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Generate",
+          "value": "generate",
+          "action": "Generate a security audit",
+          "description": "Generate a security audit for this n8n instance",
+          "routing": {
+            "request": {
+              "method": "POST",
+              "url": "/audit"
+            }
+          }
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "audit"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Additional Options",
+      "name": "additionalOptions",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Categories",
+          "name": "categories",
+          "description": "Risk categories to include in the audit",
+          "type": "multiOptions",
+          "default": [],
+          "options": [
+            {
+              "name": "Credentials",
+              "value": "credentials"
+            },
+            {
+              "name": "Database",
+              "value": "database"
+            },
+            {
+              "name": "Filesystem",
+              "value": "filesystem"
+            },
+            {
+              "name": "Instance",
+              "value": "instance"
+            },
+            {
+              "name": "Nodes",
+              "value": "nodes"
+            }
+          ]
+        },
+        {
+          "displayName": "Days Abandoned Workflow",
+          "name": "daysAbandonedWorkflow",
+          "description": "Days for a workflow to be considered abandoned if not executed",
+          "type": "number",
+          "default": 90
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "audit"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "action": "Create a credential",
+          "routing": {
+            "request": {
+              "method": "POST",
+              "url": "/credentials"
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "action": "Delete a credential",
+          "routing": {
+            "request": {
+              "method": "DELETE",
+              "url": "=/credentials/{{ $parameter.credentialId }}"
+            }
+          }
+        },
+        {
+          "name": "Get Schema",
+          "value": "getSchema",
+          "action": "Get credential data schema for type",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "=/credentials/schema/{{ $parameter.credentialTypeName }}"
+            }
+          }
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "credential"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Name",
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "description": "Name of the new credential",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "credential"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Credential Type",
+      "name": "credentialTypeName",
+      "type": "string",
+      "default": "",
+      "description": "The available types depend on nodes installed on the n8n instance. Some built-in types include e.g. 'githubApi', 'notionApi', and 'slackApi'.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "credential"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Data",
+      "name": "data",
+      "type": "json",
+      "default": "",
+      "description": "A valid JSON object with properties required for this Credential Type. To see the expected format, you can use 'Get Schema' operation.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "credential"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "alwaysOpenEditWindow": true
+      }
+    },
+    {
+      "displayName": "Credential ID",
+      "name": "credentialId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "credential"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Credential Type",
+      "name": "credentialTypeName",
+      "type": "string",
+      "default": "",
+      "description": "The available types depend on nodes installed on the n8n instance. Some built-in types include e.g. 'githubApi', 'notionApi', and 'slackApi'.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "credential"
+          ],
+          "operation": [
+            "getSchema"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "action": "Get an execution",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "=/executions/{{ $parameter.executionId }}"
+            }
+          }
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "action": "Get many executions",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "/executions"
+            },
+            "send": {
+              "paginate": true
+            },
+            "operations": {}
+          }
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "action": "Delete an execution",
+          "routing": {
+            "request": {
+              "method": "DELETE",
+              "url": "=/executions/{{ $parameter.executionId }}"
+            }
+          }
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "execution"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Execution ID",
+      "name": "executionId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "execution"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "execution"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "execution"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 250
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Workflow",
+          "name": "workflowId",
+          "type": "resourceLocator",
+          "default": {
+            "mode": "list",
+            "value": ""
+          },
+          "description": "Workflow to filter the executions by",
+          "modes": [
+            {
+              "displayName": "From List",
+              "name": "list",
+              "type": "list",
+              "placeholder": "Select a Workflow...",
+              "initType": "workflow",
+              "typeOptions": {
+                "searchListMethod": "searchWorkflows",
+                "searchFilterRequired": false,
+                "searchable": true
+              }
+            },
+            {
+              "displayName": "By URL",
+              "name": "url",
+              "type": "string",
+              "placeholder": "https://myinstance.app.n8n.cloud/workflow/1",
+              "validation": [
+                {
+                  "type": "regex",
+                  "properties": {
+                    "regex": ".*/workflow/([0-9a-zA-Z]{1,})",
+                    "errorMessage": "Not a valid Workflow URL"
+                  }
+                }
+              ],
+              "extractValue": {
+                "type": "regex",
+                "regex": ".*/workflow/([0-9a-zA-Z]{1,})"
+              }
+            },
+            {
+              "displayName": "ID",
+              "name": "id",
+              "type": "string",
+              "validation": [
+                {
+                  "type": "regex",
+                  "properties": {
+                    "regex": "[0-9a-zA-Z]{1,}",
+                    "errorMessage": "Not a valid Workflow ID"
+                  }
+                }
+              ],
+              "placeholder": "1"
+            }
+          ],
+          "routing": {
+            "send": {
+              "type": "query",
+              "property": "workflowId",
+              "value": "={{ $value || undefined }}"
+            }
+          }
+        },
+        {
+          "displayName": "Status",
+          "name": "status",
+          "type": "options",
+          "options": [
+            {
+              "name": "Error",
+              "value": "error"
+            },
+            {
+              "name": "Success",
+              "value": "success"
+            },
+            {
+              "name": "Waiting",
+              "value": "waiting"
+            }
+          ],
+          "default": "success",
+          "routing": {
+            "send": {
+              "type": "query",
+              "property": "status",
+              "value": "={{ $value }}"
+            }
+          },
+          "description": "Status to filter the executions by"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "execution"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Include Execution Details",
+          "name": "activeWorkflows",
+          "type": "boolean",
+          "default": false,
+          "routing": {
+            "send": {
+              "type": "query",
+              "property": "includeData",
+              "value": "={{ $value }}"
+            }
+          },
+          "description": "Whether to include the detailed execution data"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "execution"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Execution ID",
+      "name": "executionId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "execution"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Include Execution Details",
+          "name": "activeWorkflows",
+          "type": "boolean",
+          "default": false,
+          "routing": {
+            "send": {
+              "type": "query",
+              "property": "includeData",
+              "value": "={{ $value }}"
+            }
+          },
+          "description": "Whether to include the detailed execution data"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "execution"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Activate",
+          "value": "activate",
+          "action": "Activate a workflow"
+        },
+        {
+          "name": "Create",
+          "value": "create",
+          "action": "Create a workflow",
+          "routing": {
+            "request": {
+              "method": "POST",
+              "url": "/workflows"
+            }
+          }
+        },
+        {
+          "name": "Deactivate",
+          "value": "deactivate",
+          "action": "Deactivate a workflow"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "action": "Delete a workflow"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "action": "Get a workflow"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "action": "Get many workflows",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "/workflows"
+            },
+            "send": {
+              "paginate": true
+            },
+            "operations": {}
+          }
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "action": "Update a workflow"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Workflow",
+      "name": "workflowId",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "description": "Workflow to filter the executions by",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ],
+          "operation": [
+            "activate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Workflow Object",
+      "name": "workflowObject",
+      "type": "json",
+      "default": "{ \"name\": \"My workflow\", \"nodes\": [], \"connections\": {}, \"settings\": {} }",
+      "description": "A valid JSON object with required fields: 'name', 'nodes', 'connections' and 'settings'. More information can be found in the <a href=\"https://docs.n8n.io/api/api-reference/#tag/Workflow/paths/~1workflows/post\">documentation</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "alwaysOpenEditWindow": true
+      }
+    },
+    {
+      "displayName": "Workflow",
+      "name": "workflowId",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "description": "Workflow to filter the executions by",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ],
+          "operation": [
+            "deactivate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Workflow",
+      "name": "workflowId",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "description": "Workflow to filter the executions by",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 250
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Return Only Active Workflows",
+          "name": "activeWorkflows",
+          "type": "boolean",
+          "default": true,
+          "routing": {
+            "request": {
+              "qs": {
+                "active": "={{ $value }}"
+              }
+            }
+          }
+        },
+        {
+          "displayName": "Tags",
+          "name": "tags",
+          "type": "string",
+          "default": "",
+          "routing": {
+            "send": {
+              "type": "query",
+              "property": "tags",
+              "value": "={{ $value !== \"\" ? $value : undefined }}"
+            }
+          },
+          "description": "Include only workflows with these tags",
+          "hint": "Comma separated list of tags (empty value is ignored)"
+        },
+        {
+          "displayName": "Name",
+          "name": "name",
+          "type": "string",
+          "default": "",
+          "routing": {
+            "request": {
+              "qs": {
+                "name": "={{ $value }}"
+              }
+            }
+          }
+        },
+        {
+          "displayName": "Project ID",
+          "name": "projectId",
+          "type": "string",
+          "default": "",
+          "routing": {
+            "request": {
+              "qs": {
+                "projectId": "={{ $value }}"
+              }
+            }
+          }
+        },
+        {
+          "displayName": "Exclude Pinned Data",
+          "name": "excludePinnedData",
+          "description": "Whether to exclude pinned data from the response",
+          "type": "boolean",
+          "default": false,
+          "routing": {
+            "request": {
+              "qs": {
+                "excludePinnedData": "={{ $value }}"
+              }
+            }
+          }
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Workflow",
+      "name": "workflowId",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "description": "Workflow to filter the executions by",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Workflow",
+      "name": "workflowId",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "description": "Workflow to filter the executions by",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Workflow Object",
+      "name": "workflowObject",
+      "type": "json",
+      "default": "",
+      "description": "A valid JSON object with required fields: 'name', 'nodes', 'connections' and 'settings'. More information can be found in the <a href=\"https://docs.n8n.io/api/api-reference/#tag/Workflow/paths/~1workflows~1%7Bid%7D/put\">documentation</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      },
+      "typeOptions": {
+        "alwaysOpenEditWindow": true
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "generate",
+      "name": "Generate",
+      "description": "Generate a security audit for this n8n instance"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "n8nApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

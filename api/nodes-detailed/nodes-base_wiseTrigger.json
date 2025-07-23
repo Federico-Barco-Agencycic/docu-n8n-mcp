@@ -1,0 +1,66 @@
+{
+  "node_type": "nodes-base.wiseTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Wise Trigger",
+  "description": "Handle Wise events via webhooks",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 1,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Wise Trigger node documentation\ndescription: Learn how to use the Wise Trigger node in n8n. Follow technical documentation to integrate Wise Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Wise Trigger node\n\n[Wise](https://wise.com) allows you to transfer money abroad with low-cost money transfers, receive money with international account details, and track transactions on your phone.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/wise.md).\n///\n\n/// note | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Wise Trigger integrations](https://n8n.io/integrations/wise-trigger/){:target=_blank .external-link} page.\n///\n\n## Events\n\n- Triggered every time a balance account is credited\n- Triggered every time a balance account is credited or debited\n- Triggered every time a transfer's list of active cases is updated\n- Triggered every time a transfer's status is updated \n\n",
+  "properties_schema": [
+    {
+      "displayName": "Profile Name or ID",
+      "name": "profileId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "typeOptions": {
+        "loadOptionsMethod": "getProfiles"
+      }
+    },
+    {
+      "displayName": "Event",
+      "name": "event",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "Balance Credit",
+          "value": "balanceCredit",
+          "description": "Triggered every time a balance account is credited"
+        },
+        {
+          "name": "Balance Update",
+          "value": "balanceUpdate",
+          "description": "Triggered every time a balance account is credited or debited"
+        },
+        {
+          "name": "Transfer Active Case",
+          "value": "transferActiveCases",
+          "description": "Triggered every time a transfer's list of active cases is updated"
+        },
+        {
+          "name": "Transfer State Changed",
+          "value": "tranferStateChange",
+          "description": "Triggered every time a transfer's status is updated"
+        }
+      ],
+      "required": true
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "wiseApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

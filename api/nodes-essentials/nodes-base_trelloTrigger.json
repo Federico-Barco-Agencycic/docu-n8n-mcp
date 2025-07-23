@@ -1,0 +1,28 @@
+{
+  "node_type": "nodes-base.trelloTrigger",
+  "display_name": "Trello Trigger",
+  "description": "Starts the workflow when Trello events occur",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "id",
+      "displayName": "Model ID",
+      "type": "string",
+      "description": "ID of the model of which to subscribe to events",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_trelloTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.trelloTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

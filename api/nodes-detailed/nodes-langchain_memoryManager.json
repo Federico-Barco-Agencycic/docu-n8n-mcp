@@ -1,0 +1,212 @@
+{
+  "node_type": "nodes-langchain.memoryManager",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "Chat Memory Manager",
+  "description": "Manage chat messages memory and use it in the workflow",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "1.1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Chat Memory Manager node documentation\ndescription: Learn how to use the Chat Memory Manager node in n8n. Follow technical documentation to integrate Chat Memory Manager node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Chat Memory Manager node\n\nThe Chat Memory Manager node manages chat message [memories](/glossary.md#ai-memory) within your workflows. Use this node to load, insert, and delete chat messages in an in-memory [vector store](/glossary.md#ai-vector-store).\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-sub-nodes/chat-memory-manager-purpose.md\"\n\nOn this page, you'll find a list of operations that the Chat Memory Manager node supports, along with links to more resources.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\n## Node parameters\n\n* **Operation Mode**: Choose between **Get Many Messages**, **Insert Messages**, and **Delete Messages** operations.\n* **Insert Mode**: Available in **Insert Messages** mode. Choose from:\n    * **Insert Messages**: Insert messages alongside existing messages.\n    * **Override All Messages**: Replace current memory.\n* **Delete Mode**: available in **Delete Messages** mode. Choose from:\n    * **Last N**: Delete the last N messages.\n    * **All Messages**: Delete messages from memory.\n* **Chat Messages**: available in **Insert Messages** mode. Define the chat messages to insert into the memory, including:\n\t* **Type Name or ID**: Set the message type. Select one of:\n\t\t* **AI**: Use this for messages from the AI.\n\t\t* **System**: Add a message containing instructions for the AI.\n\t\t* **User**: Use this for messages from the user. This message type is sometimes called the 'human' message in other AI tools and guides.\n\t* **Message**: Enter the message contents.\n\t* **Hide Message in Chat**: Select whether n8n should display the message to the user in the chat UI (turned off) or not (turned on).\n* **Messages Count**: Available in **Delete Messages** mode when you select **Last N**. Enter the number of latest messages to delete.\n* **Simplify Output**: Available in **Get Many Messages** mode. Turn on to simplify the output to include only the sender (AI, user, or system) and the text.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'chat-memory-manager') ]]\n\n## Related resources\n\nRefer to [LangChain's Memory documentation](https://langchain-ai.github.io/langgraphjs/concepts/memory/){:target=_blank .external-link} for more information about the service.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation Mode",
+      "name": "mode",
+      "type": "options",
+      "default": "load",
+      "options": [
+        {
+          "name": "Get Many Messages",
+          "description": "Retrieve chat messages from connected memory",
+          "value": "load"
+        },
+        {
+          "name": "Insert Messages",
+          "description": "Insert chat messages into connected memory",
+          "value": "insert"
+        },
+        {
+          "name": "Delete Messages",
+          "description": "Delete chat messages from connected memory",
+          "value": "delete"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Insert Mode",
+      "name": "insertMode",
+      "type": "options",
+      "default": "insert",
+      "description": "Choose how new messages are inserted into the memory",
+      "options": [
+        {
+          "name": "Insert Messages",
+          "value": "insert",
+          "description": "Add messages alongside existing ones"
+        },
+        {
+          "name": "Override All Messages",
+          "value": "override",
+          "description": "Replace the current memory with new messages"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "insert"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Delete Mode",
+      "name": "deleteMode",
+      "type": "options",
+      "default": "lastN",
+      "description": "How messages are deleted from memory",
+      "options": [
+        {
+          "name": "Last N",
+          "value": "lastN",
+          "description": "Delete the last N messages"
+        },
+        {
+          "name": "All Messages",
+          "value": "all",
+          "description": "Clear all messages from memory"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "delete"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Chat Messages",
+      "name": "messages",
+      "type": "fixedCollection",
+      "default": {},
+      "description": "Chat messages to insert into memory",
+      "options": [
+        {
+          "name": "messageValues",
+          "displayName": "Message",
+          "values": [
+            {
+              "displayName": "Type Name or ID",
+              "name": "type",
+              "type": "options",
+              "options": [
+                {
+                  "name": "AI",
+                  "value": "ai"
+                },
+                {
+                  "name": "System",
+                  "value": "system"
+                },
+                {
+                  "name": "User",
+                  "value": "user"
+                }
+              ],
+              "default": "system"
+            },
+            {
+              "displayName": "Message",
+              "name": "message",
+              "type": "string",
+              "required": true,
+              "default": ""
+            },
+            {
+              "displayName": "Hide Message in Chat",
+              "name": "hideFromUI",
+              "type": "boolean",
+              "required": true,
+              "default": false,
+              "description": "Whether to hide the message from the chat UI"
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "insert"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Messages Count",
+      "name": "lastMessagesCount",
+      "type": "number",
+      "default": 2,
+      "description": "The amount of last messages to delete",
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "delete"
+          ],
+          "deleteMode": [
+            "lastN"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Simplify Output",
+      "name": "simplifyOutput",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to simplify the output to only include the sender and the text",
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "load"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Group Messages",
+          "name": "groupMessages",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to group messages into a single item or return each message as a separate item"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "load"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

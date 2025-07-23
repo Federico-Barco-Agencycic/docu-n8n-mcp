@@ -1,0 +1,19 @@
+{
+  "node_type": "nodes-langchain.lmChatXAiGrok",
+  "display_name": "xAI Grok Chat Model",
+  "description": "For advanced usage with an AI chain",
+  "category": "transform",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_lmChatXAiGrok.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-langchain.lmChatXAiGrok"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

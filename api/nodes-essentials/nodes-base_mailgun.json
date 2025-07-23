@@ -1,0 +1,36 @@
+{
+  "node_type": "nodes-base.mailgun",
+  "display_name": "Mailgun",
+  "description": "Sends an email via Mailgun",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "fromEmail",
+      "displayName": "From Email",
+      "type": "string",
+      "description": "Email address of the sender optional with name",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "toEmail",
+      "displayName": "To Email",
+      "type": "string",
+      "description": "Email address of the recipient. Multiple ones can be separated by comma.",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailgun.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.mailgun"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

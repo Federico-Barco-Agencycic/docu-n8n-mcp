@@ -1,0 +1,95 @@
+{
+  "node_type": "nodes-base.mySql",
+  "display_name": "MySQL",
+  "description": "Get, add and update data in MySQL",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "2.4",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "hidden",
+      "required": false,
+      "default": "database"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "insert"
+    },
+    {
+      "name": "table",
+      "displayName": "Table",
+      "type": "resourceLocator",
+      "description": "The table you want to work on",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "query",
+      "displayName": "Query",
+      "type": "string",
+      "description": "The SQL query to execute. You can use n8n expressions and $1, $2, $3, etc to refer to the 'Query Parameters' set in options below.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "columnToMatchOn",
+      "displayName": "Column to Match On",
+      "type": "options",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\" target=\"_blank\">expression</a>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "columnToMatchOn",
+      "displayName": "Column to Match On",
+      "type": "options",
+      "description": "The column to compare when finding the rows to update. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\" target=\"_blank\">expression</a>.",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "deleteTable",
+      "name": "Delete",
+      "description": "Delete an entire table or rows in a table"
+    },
+    {
+      "operation": "executeQuery",
+      "name": "Execute SQL",
+      "description": "Execute an SQL query"
+    },
+    {
+      "operation": "insert",
+      "name": "Insert",
+      "description": "Insert rows in a table"
+    },
+    {
+      "operation": "upsert",
+      "name": "Insert or Update",
+      "description": "Insert or update rows in a table"
+    },
+    {
+      "operation": "select",
+      "name": "Select",
+      "description": "Select rows from a table"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mySql.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.mySql"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

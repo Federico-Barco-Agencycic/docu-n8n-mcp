@@ -1,0 +1,68 @@
+{
+  "node_type": "nodes-base.e2eTest",
+  "display_name": "E2E Test",
+  "description": "Dummy node used for e2e testing",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "remoteOptions"
+    },
+    {
+      "name": "remoteOptions",
+      "displayName": "Remote Options Name or ID",
+      "type": "options",
+      "description": "Remote options to load. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": []
+    },
+    {
+      "name": "rlc",
+      "displayName": "Resource Locator",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "resourceMapper",
+      "displayName": "Resource Mapping Component",
+      "type": "resourceMapper",
+      "required": true,
+      "default": {
+        "mappingMode": "defineBelow",
+        "value": null
+      }
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "remoteOptions",
+      "name": "Remote Options"
+    },
+    {
+      "operation": "resourceLocator",
+      "name": "Resource Locator"
+    },
+    {
+      "operation": "resourceMapper",
+      "name": "Resource Mapping Component"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_e2eTest.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.e2eTest"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

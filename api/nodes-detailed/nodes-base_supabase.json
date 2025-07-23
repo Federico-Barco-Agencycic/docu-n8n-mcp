@@ -1,0 +1,1031 @@
+{
+  "node_type": "nodes-base.supabase",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Supabase",
+  "description": "Add, get, delete and update data in a table",
+  "category": "input",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Supabase node documentation\ndescription: Learn how to use the Supabase node in n8n. Follow technical documentation to integrate Supabase node into your workflows.\ncontentType: [integration, reference]\npriority: high\n---\n\n# Supabase node\n\nUse the Supabase node to automate work in Supabase, and integrate Supabase with other applications. n8n has built-in support for a wide range of Supabase features, including creating, deleting, and getting rows. \n\nOn this page, you'll find a list of operations the Supabase node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Supabase credentials](/integrations/builtin/credentials/supabase.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n* Row\n    * Create a new row\n    * Delete a row\n    * Get a row\n    * Get all rows\n    * Update a row\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'supabase') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n## Common issues\n\nFor common errors or issues and suggested resolution steps, refer to [Common issues](/integrations/builtin/app-nodes/n8n-nodes-base.supabase/common-issues.md).\n",
+  "properties_schema": [
+    {
+      "displayName": "Use Custom Schema",
+      "name": "useCustomSchema",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to use a database schema different from the default \"public\" schema (requires schema exposure in the <a href=\"https://supabase.com/docs/guides/api/using-custom-schemas?queryGroups=language&language=curl#exposing-custom-schemas\">Supabase API</a>)",
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Schema",
+      "name": "schema",
+      "type": "string",
+      "default": "public",
+      "description": "Name of database schema to use for table",
+      "displayOptions": {
+        "show": {
+          "useCustomSchema": [
+            true
+          ]
+        }
+      },
+      "noDataExpression": false
+    },
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "row",
+      "options": [
+        {
+          "name": "Row",
+          "value": "row"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a new row",
+          "action": "Create a row"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a row",
+          "action": "Delete a row"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a row",
+          "action": "Get a row"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many rows",
+          "action": "Get many rows"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a row",
+          "action": "Update a row"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Table Name or ID",
+      "name": "tableId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "create",
+            "delete",
+            "get",
+            "getAll",
+            "update"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "useCustomSchema",
+          "schema"
+        ],
+        "loadOptionsMethod": "getTables"
+      }
+    },
+    {
+      "displayName": "Select Type",
+      "name": "filterType",
+      "type": "options",
+      "default": "manual",
+      "options": [
+        {
+          "name": "Build Manually",
+          "value": "manual"
+        },
+        {
+          "name": "String",
+          "value": "string"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Must Match",
+      "name": "matchType",
+      "type": "options",
+      "default": "anyFilter",
+      "options": [
+        {
+          "name": "Any Select Condition",
+          "value": "anyFilter"
+        },
+        {
+          "name": "All Select Conditions",
+          "value": "allFilters"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "update"
+          ],
+          "filterType": [
+            "manual"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Select Conditions",
+      "name": "filters",
+      "type": "fixedCollection",
+      "default": {},
+      "description": "Filter to decide which rows get updated",
+      "options": [
+        {
+          "displayName": "Conditions",
+          "name": "conditions",
+          "values": [
+            {
+              "displayName": "Field Name or ID",
+              "name": "keyName",
+              "type": "options",
+              "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+              "typeOptions": {
+                "loadOptionsDependsOn": [
+                  "tableId"
+                ],
+                "loadOptionsMethod": "getTableColumns"
+              },
+              "default": ""
+            },
+            {
+              "displayName": "Condition",
+              "name": "condition",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Equals",
+                  "value": "eq"
+                },
+                {
+                  "name": "Full-Text",
+                  "value": "fullText"
+                },
+                {
+                  "name": "Greater Than",
+                  "value": "gt"
+                },
+                {
+                  "name": "Greater Than or Equal",
+                  "value": "gte"
+                },
+                {
+                  "name": "ILIKE operator",
+                  "value": "ilike",
+                  "description": "Use * in place of %"
+                },
+                {
+                  "name": "Is",
+                  "value": "is",
+                  "description": "Checking for exact equality (null,true,false,unknown)"
+                },
+                {
+                  "name": "Less Than",
+                  "value": "lt"
+                },
+                {
+                  "name": "Less Than or Equal",
+                  "value": "lte"
+                },
+                {
+                  "name": "LIKE operator",
+                  "value": "like",
+                  "description": "Use * in place of %"
+                },
+                {
+                  "name": "Not Equals",
+                  "value": "neq"
+                }
+              ],
+              "default": ""
+            },
+            {
+              "displayName": "Search Function",
+              "name": "searchFunction",
+              "type": "options",
+              "displayOptions": {
+                "show": {
+                  "condition": [
+                    "fullText"
+                  ]
+                }
+              },
+              "options": [
+                {
+                  "name": "to_tsquery",
+                  "value": "fts"
+                },
+                {
+                  "name": "plainto_tsquery",
+                  "value": "plfts"
+                },
+                {
+                  "name": "phraseto_tsquery",
+                  "value": "phfts"
+                },
+                {
+                  "name": "websearch_to_tsquery",
+                  "value": "wfts"
+                }
+              ],
+              "default": ""
+            },
+            {
+              "displayName": "Field Value",
+              "name": "keyValue",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "update"
+          ],
+          "filterType": [
+            "manual"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "See <a href=\"https://postgrest.org/en/stable/references/api/tables_views.html#horizontal-filtering\" target=\"_blank\">PostgREST guide</a> to creating filters",
+      "name": "jsonNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "update"
+          ],
+          "filterType": [
+            "string"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Filters (String)",
+      "name": "filterString",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "update"
+          ],
+          "filterType": [
+            "string"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Data to Send",
+      "name": "dataToSend",
+      "type": "options",
+      "default": "defineBelow",
+      "options": [
+        {
+          "name": "Auto-Map Input Data to Columns",
+          "value": "autoMapInputData",
+          "description": "Use when node input properties match destination column names"
+        },
+        {
+          "name": "Define Below for Each Column",
+          "value": "defineBelow",
+          "description": "Set the value for each destination column"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "create",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Inputs to Ignore",
+      "name": "inputsToIgnore",
+      "type": "string",
+      "default": "",
+      "description": "List of input properties to avoid sending, separated by commas. Leave empty to send all properties.",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "create",
+            "update"
+          ],
+          "dataToSend": [
+            "autoMapInputData"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Fields to Send",
+      "name": "fieldsUi",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Field",
+          "name": "fieldValues",
+          "values": [
+            {
+              "displayName": "Field Name or ID",
+              "name": "fieldId",
+              "type": "options",
+              "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+              "typeOptions": {
+                "loadOptionsDependsOn": [
+                  "tableId"
+                ],
+                "loadOptionsMethod": "getTableColumns"
+              },
+              "default": ""
+            },
+            {
+              "displayName": "Field Value",
+              "name": "fieldValue",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "create",
+            "update"
+          ],
+          "dataToSend": [
+            "defineBelow"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValueButtonText": "Add Field to Send",
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Select Type",
+      "name": "filterType",
+      "type": "options",
+      "default": "manual",
+      "options": [
+        {
+          "name": "Build Manually",
+          "value": "manual"
+        },
+        {
+          "name": "String",
+          "value": "string"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Must Match",
+      "name": "matchType",
+      "type": "options",
+      "default": "anyFilter",
+      "options": [
+        {
+          "name": "Any Select Condition",
+          "value": "anyFilter"
+        },
+        {
+          "name": "All Select Conditions",
+          "value": "allFilters"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "delete"
+          ],
+          "filterType": [
+            "manual"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Select Conditions",
+      "name": "filters",
+      "type": "fixedCollection",
+      "default": {},
+      "description": "Filter to decide which rows get deleted",
+      "options": [
+        {
+          "displayName": "Conditions",
+          "name": "conditions",
+          "values": [
+            {
+              "displayName": "Field Name or ID",
+              "name": "keyName",
+              "type": "options",
+              "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+              "typeOptions": {
+                "loadOptionsDependsOn": [
+                  "tableId"
+                ],
+                "loadOptionsMethod": "getTableColumns"
+              },
+              "default": ""
+            },
+            {
+              "displayName": "Condition",
+              "name": "condition",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Equals",
+                  "value": "eq"
+                },
+                {
+                  "name": "Full-Text",
+                  "value": "fullText"
+                },
+                {
+                  "name": "Greater Than",
+                  "value": "gt"
+                },
+                {
+                  "name": "Greater Than or Equal",
+                  "value": "gte"
+                },
+                {
+                  "name": "ILIKE operator",
+                  "value": "ilike",
+                  "description": "Use * in place of %"
+                },
+                {
+                  "name": "Is",
+                  "value": "is",
+                  "description": "Checking for exact equality (null,true,false,unknown)"
+                },
+                {
+                  "name": "Less Than",
+                  "value": "lt"
+                },
+                {
+                  "name": "Less Than or Equal",
+                  "value": "lte"
+                },
+                {
+                  "name": "LIKE operator",
+                  "value": "like",
+                  "description": "Use * in place of %"
+                },
+                {
+                  "name": "Not Equals",
+                  "value": "neq"
+                }
+              ],
+              "default": ""
+            },
+            {
+              "displayName": "Search Function",
+              "name": "searchFunction",
+              "type": "options",
+              "displayOptions": {
+                "show": {
+                  "condition": [
+                    "fullText"
+                  ]
+                }
+              },
+              "options": [
+                {
+                  "name": "to_tsquery",
+                  "value": "fts"
+                },
+                {
+                  "name": "plainto_tsquery",
+                  "value": "plfts"
+                },
+                {
+                  "name": "phraseto_tsquery",
+                  "value": "phfts"
+                },
+                {
+                  "name": "websearch_to_tsquery",
+                  "value": "wfts"
+                }
+              ],
+              "default": ""
+            },
+            {
+              "displayName": "Field Value",
+              "name": "keyValue",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "delete"
+          ],
+          "filterType": [
+            "manual"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "See <a href=\"https://postgrest.org/en/stable/references/api/tables_views.html#horizontal-filtering\" target=\"_blank\">PostgREST guide</a> to creating filters",
+      "name": "jsonNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "delete"
+          ],
+          "filterType": [
+            "string"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Filters (String)",
+      "name": "filterString",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "delete"
+          ],
+          "filterType": [
+            "string"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Select Conditions",
+      "name": "filters",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Conditions",
+          "name": "conditions",
+          "values": [
+            {
+              "displayName": "Name or ID",
+              "name": "keyName",
+              "type": "options",
+              "typeOptions": {
+                "loadOptionsDependsOn": [
+                  "tableId"
+                ],
+                "loadOptionsMethod": "getTableColumns"
+              },
+              "default": "",
+              "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>"
+            },
+            {
+              "displayName": "Value",
+              "name": "keyValue",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1
+      }
+    },
+    {
+      "displayName": "Filter",
+      "name": "filterType",
+      "type": "options",
+      "default": "manual",
+      "options": [
+        {
+          "name": "None",
+          "value": "none"
+        },
+        {
+          "name": "Build Manually",
+          "value": "manual"
+        },
+        {
+          "name": "String",
+          "value": "string"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Must Match",
+      "name": "matchType",
+      "type": "options",
+      "default": "anyFilter",
+      "options": [
+        {
+          "name": "Any Filter",
+          "value": "anyFilter"
+        },
+        {
+          "name": "All Filters",
+          "value": "allFilters"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "manual"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "fixedCollection",
+      "default": {},
+      "description": "Filter to decide which rows get retrieved",
+      "options": [
+        {
+          "displayName": "Conditions",
+          "name": "conditions",
+          "values": [
+            {
+              "displayName": "Field Name or ID",
+              "name": "keyName",
+              "type": "options",
+              "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+              "typeOptions": {
+                "loadOptionsDependsOn": [
+                  "tableId"
+                ],
+                "loadOptionsMethod": "getTableColumns"
+              },
+              "default": ""
+            },
+            {
+              "displayName": "Condition",
+              "name": "condition",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Equals",
+                  "value": "eq"
+                },
+                {
+                  "name": "Full-Text",
+                  "value": "fullText"
+                },
+                {
+                  "name": "Greater Than",
+                  "value": "gt"
+                },
+                {
+                  "name": "Greater Than or Equal",
+                  "value": "gte"
+                },
+                {
+                  "name": "ILIKE operator",
+                  "value": "ilike",
+                  "description": "Use * in place of %"
+                },
+                {
+                  "name": "Is",
+                  "value": "is",
+                  "description": "Checking for exact equality (null,true,false,unknown)"
+                },
+                {
+                  "name": "Less Than",
+                  "value": "lt"
+                },
+                {
+                  "name": "Less Than or Equal",
+                  "value": "lte"
+                },
+                {
+                  "name": "LIKE operator",
+                  "value": "like",
+                  "description": "Use * in place of %"
+                },
+                {
+                  "name": "Not Equals",
+                  "value": "neq"
+                }
+              ],
+              "default": ""
+            },
+            {
+              "displayName": "Search Function",
+              "name": "searchFunction",
+              "type": "options",
+              "displayOptions": {
+                "show": {
+                  "condition": [
+                    "fullText"
+                  ]
+                }
+              },
+              "options": [
+                {
+                  "name": "to_tsquery",
+                  "value": "fts"
+                },
+                {
+                  "name": "plainto_tsquery",
+                  "value": "plfts"
+                },
+                {
+                  "name": "phraseto_tsquery",
+                  "value": "phfts"
+                },
+                {
+                  "name": "websearch_to_tsquery",
+                  "value": "wfts"
+                }
+              ],
+              "default": ""
+            },
+            {
+              "displayName": "Field Value",
+              "name": "keyValue",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "manual"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "See <a href=\"https://postgrest.org/en/stable/references/api/tables_views.html#horizontal-filtering\" target=\"_blank\">PostgREST guide</a> to creating filters",
+      "name": "jsonNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "string"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Filters (String)",
+      "name": "filterString",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "row"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "filterType": [
+            "string"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a new row"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a row"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a row"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many rows"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update a row"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "supabaseApi",
+      "required": true,
+      "testedBy": "supabaseApiCredentialTest"
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

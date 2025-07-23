@@ -1,0 +1,110 @@
+{
+  "node_type": "nodes-base.linearTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Linear Trigger",
+  "description": "Starts the workflow when Linear events occur",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 1,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Linear Trigger node documentation\ndescription: Learn how to use the Linear Trigger node in n8n. Follow technical documentation to integrate Linear Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Linear Trigger node\n\n[Linear](https://linear.app/){:target=_blank .external-link} is a SaaS issue tracking tool.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/linear.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Linear Trigger integrations](https://n8n.io/integrations/linear-trigger/){:target=_blank .external-link} page.\n///\n\n## Events\n\n- Comment Reaction\n- Cycle\n- Issue\n- Issue Comment\n- Issue Label\n- Project\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "apiToken",
+      "options": [
+        {
+          "name": "API Token",
+          "value": "apiToken"
+        },
+        {
+          "name": "OAuth2",
+          "value": "oAuth2"
+        }
+      ]
+    },
+    {
+      "displayName": "Make sure your credential has the \"Admin\" scope to create webhooks.",
+      "name": "notice",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Team Name or ID",
+      "name": "teamId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "typeOptions": {
+        "loadOptionsMethod": "getTeams"
+      }
+    },
+    {
+      "displayName": "Listen to Resources",
+      "name": "resources",
+      "type": "multiOptions",
+      "default": [],
+      "options": [
+        {
+          "name": "Comment Reaction",
+          "value": "reaction"
+        },
+        {
+          "name": "Cycle",
+          "value": "cycle"
+        },
+        {
+          "name": "Issue",
+          "value": "issue"
+        },
+        {
+          "name": "Issue Comment",
+          "value": "comment"
+        },
+        {
+          "name": "Issue Label",
+          "value": "issueLabel"
+        },
+        {
+          "name": "Project",
+          "value": "project"
+        }
+      ],
+      "required": true
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "linearApi",
+      "required": true,
+      "testedBy": "linearApiTest",
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "apiToken"
+          ]
+        }
+      }
+    },
+    {
+      "name": "linearOAuth2Api",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

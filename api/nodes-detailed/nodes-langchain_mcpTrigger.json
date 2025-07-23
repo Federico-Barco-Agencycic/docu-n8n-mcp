@@ -1,0 +1,73 @@
+{
+  "node_type": "nodes-langchain.mcpTrigger",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "MCP Server Trigger",
+  "description": "Expose n8n tools as an MCP Server endpoint",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 1,
+  "is_versioned": 1,
+  "version": "2",
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "none",
+      "description": "The way to authenticate",
+      "options": [
+        {
+          "name": "None",
+          "value": "none"
+        },
+        {
+          "name": "Bearer Auth",
+          "value": "bearerAuth"
+        },
+        {
+          "name": "Header Auth",
+          "value": "headerAuth"
+        }
+      ]
+    },
+    {
+      "displayName": "Path",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "The base path for this MCP server",
+      "required": true
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "httpBearerAuth",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "bearerAuth"
+          ]
+        }
+      }
+    },
+    {
+      "name": "httpHeaderAuth",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "headerAuth"
+          ]
+        }
+      }
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

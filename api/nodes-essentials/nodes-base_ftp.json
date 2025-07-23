@@ -1,0 +1,121 @@
+{
+  "node_type": "nodes-base.ftp",
+  "display_name": "FTP",
+  "description": "Transfer files via FTP or SFTP",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "download"
+    },
+    {
+      "name": "path",
+      "displayName": "Path",
+      "type": "string",
+      "description": "The file path of the file to delete. Has to contain the full path.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "path",
+      "displayName": "Path",
+      "type": "string",
+      "description": "The file path of the file to download. Has to contain the full path.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "binaryPropertyName",
+      "displayName": "Put Output File in Field",
+      "type": "string",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "oldPath",
+      "displayName": "Old Path",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "newPath",
+      "displayName": "New Path",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "path",
+      "displayName": "Path",
+      "type": "string",
+      "description": "The file path of the file to upload. Has to contain the full path.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "binaryPropertyName",
+      "displayName": "Input Binary Field",
+      "type": "string",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "path",
+      "displayName": "Path",
+      "type": "string",
+      "description": "Path of directory to list contents of",
+      "required": true,
+      "default": "/"
+    },
+    {
+      "name": "recursive",
+      "displayName": "Recursive",
+      "type": "boolean",
+      "description": "Whether to return object representing all directories / objects recursively found within SFTP server",
+      "required": true,
+      "default": false
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a file/folder"
+    },
+    {
+      "operation": "download",
+      "name": "Download",
+      "description": "Download a file"
+    },
+    {
+      "operation": "list",
+      "name": "List",
+      "description": "List folder content"
+    },
+    {
+      "operation": "rename",
+      "name": "Rename",
+      "description": "Rename/move oldPath to newPath"
+    },
+    {
+      "operation": "upload",
+      "name": "Upload",
+      "description": "Upload a file"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_ftp.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.ftp"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

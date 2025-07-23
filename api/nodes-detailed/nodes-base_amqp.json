@@ -1,0 +1,84 @@
+{
+  "node_type": "nodes-base.amqp",
+  "package_name": "n8n-nodes-base",
+  "display_name": "AMQP Sender",
+  "description": "Sends a raw-message via AMQP 1.0, executed once per item",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: AMQP Sender node documentation\ndescription: Learn how to use the AMQP Sender node in n8n. Follow technical documentation to integrate AMQP Sender node into your workflows.\ncontentType: [integration, reference]\n---\n\n# AMQP Sender node\n\nUse the AMQP Sender node to automate work in AMQP Sender, and integrate AMQP Sender with other applications. n8n has built-in support for a wide range of AMQP Sender features, including sending messages.\n\nOn this page, you'll find a list of operations the AMQP Sender node supports and links to more resources.\n\n/// note | Credentials\nRefer to [AMQP Sender credentials](/integrations/builtin/credentials/amqp.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n- Send message\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'amqp-sender') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Queue / Topic",
+      "name": "sink",
+      "type": "string",
+      "default": "",
+      "description": "Name of the queue of topic to publish to"
+    },
+    {
+      "displayName": "Headers",
+      "name": "headerParametersJson",
+      "type": "json",
+      "default": "",
+      "description": "Header parameters as JSON (flat object). Sent as application_properties in amqp-message meta info."
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Container ID",
+          "name": "containerId",
+          "type": "string",
+          "default": "",
+          "description": "Will be used to pass to the RHEA Backend as container_id"
+        },
+        {
+          "displayName": "Data as Object",
+          "name": "dataAsObject",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to send the data as an object"
+        },
+        {
+          "displayName": "Reconnect",
+          "name": "reconnect",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to automatically reconnect if disconnected"
+        },
+        {
+          "displayName": "Reconnect Limit",
+          "name": "reconnectLimit",
+          "type": "number",
+          "default": 50,
+          "description": "Maximum number of reconnect attempts"
+        },
+        {
+          "displayName": "Send Property",
+          "name": "sendOnlyProperty",
+          "type": "string",
+          "default": "",
+          "description": "The only property to send. If empty the whole item will be sent."
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "amqp",
+      "required": true,
+      "testedBy": "amqpConnectionTest"
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

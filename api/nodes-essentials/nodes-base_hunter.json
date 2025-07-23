@@ -1,0 +1,84 @@
+{
+  "node_type": "nodes-base.hunter",
+  "display_name": "Hunter",
+  "description": "Consume Hunter API",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "description": "Operation to consume",
+      "required": false,
+      "default": "domainSearch"
+    },
+    {
+      "name": "domain",
+      "displayName": "Domain",
+      "type": "string",
+      "description": "Domain name from which you want to find the email addresses. For example, \"stripe.com\".",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "domain",
+      "displayName": "Domain",
+      "type": "string",
+      "description": "Domain name from which you want to find the email addresses. For example, \"stripe.com\".",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "firstname",
+      "displayName": "First Name",
+      "type": "string",
+      "description": "The person's first name. It doesn't need to be in lowercase.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "lastname",
+      "displayName": "Last Name",
+      "type": "string",
+      "description": "The person's last name. It doesn't need to be in lowercase.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "email",
+      "displayName": "Email",
+      "type": "string",
+      "description": "The email address you want to verify",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "domainSearch",
+      "name": "Domain Search",
+      "description": "Get every email address found on the internet using a given domain name, with sources"
+    },
+    {
+      "operation": "emailFinder",
+      "name": "Email Finder",
+      "description": "Generate or retrieve the most likely email address from a domain name, a first name and a last name"
+    },
+    {
+      "operation": "emailVerifier",
+      "name": "Email Verifier",
+      "description": "Verify the deliverability of an email address"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_hunter.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.hunter"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

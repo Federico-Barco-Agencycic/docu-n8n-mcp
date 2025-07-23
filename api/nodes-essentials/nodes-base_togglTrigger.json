@@ -1,0 +1,27 @@
+{
+  "node_type": "nodes-base.togglTrigger",
+  "display_name": "Toggl Trigger",
+  "description": "Starts the workflow when Toggl events occur",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "event",
+      "displayName": "Event",
+      "type": "options",
+      "required": true,
+      "default": "newTimeEntry"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_togglTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.togglTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

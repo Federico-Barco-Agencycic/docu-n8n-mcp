@@ -1,0 +1,117 @@
+{
+  "node_type": "nodes-base.shopify",
+  "display_name": "Shopify",
+  "description": "Consume Shopify API",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "order"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "orderId",
+      "displayName": "Order ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "orderId",
+      "displayName": "Order ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "orderId",
+      "displayName": "Order ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "title",
+      "displayName": "Title",
+      "type": "string",
+      "description": "The name of the product",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "productId",
+      "displayName": "Product ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "productId",
+      "displayName": "Product ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "productId",
+      "displayName": "Product ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create an order"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete an order"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get an order"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many orders"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update an order"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_shopify.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.shopify"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

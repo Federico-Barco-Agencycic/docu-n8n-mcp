@@ -1,0 +1,36 @@
+{
+  "node_type": "nodes-base.respondToWebhook",
+  "display_name": "Respond to Webhook",
+  "description": "Returns data for Webhook",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1.4",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "redirectURL",
+      "displayName": "Redirect URL",
+      "type": "string",
+      "description": "The URL to redirect to",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "inputFieldName",
+      "displayName": "Input Field Name",
+      "type": "string",
+      "description": "The name of the node input field with the binary data",
+      "required": true,
+      "default": "data"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_respondToWebhook.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.respondToWebhook"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

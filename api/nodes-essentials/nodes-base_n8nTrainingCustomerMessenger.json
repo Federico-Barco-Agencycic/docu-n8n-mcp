@@ -1,0 +1,34 @@
+{
+  "node_type": "nodes-base.n8nTrainingCustomerMessenger",
+  "display_name": "Customer Messenger (n8n training)",
+  "description": "Dummy node used for n8n training",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "customerId",
+      "displayName": "Customer ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "message",
+      "displayName": "Message",
+      "type": "string",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_n8nTrainingCustomerMessenger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.n8nTrainingCustomerMessenger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

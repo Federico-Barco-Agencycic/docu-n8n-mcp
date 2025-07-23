@@ -1,0 +1,970 @@
+{
+  "node_type": "nodes-base.coinGecko",
+  "package_name": "n8n-nodes-base",
+  "display_name": "CoinGecko",
+  "description": "Consume CoinGecko API",
+  "category": "output",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: CoinGecko node documentation\ndescription: Learn how to use the CoinGecko node in n8n. Follow technical documentation to integrate CoinGecko node into your workflows.\ncontentType: [integration, reference]\n---\n\n# CoinGecko node\n\nUse the CoinGecko node to automate work in CoinGecko, and integrate CoinGecko with other applications. n8n has built-in support for a wide range of CoinGecko features, including getting coins and events.\n\nOn this page, you'll find a list of operations the CoinGecko node supports and links to more resources.\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n* Coin\n    * Get a candlestick open-high-low-close chart for the selected currency\n    * Get current data for a coin\n    * Get all coins\n    * Get historical data (name, price, market, stats) at a given date for a coin\n    * Get prices and market related data for all trading pairs that match the selected currency\n    * Get historical market data include price, market cap, and 24h volume (granularity auto)\n    * Get the current price of any cryptocurrencies in any other supported currencies that you need\n    * Get coin tickers\n* Event\n    * Get all events\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'coingecko') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "coin",
+      "options": [
+        {
+          "name": "Coin",
+          "value": "coin"
+        },
+        {
+          "name": "Event",
+          "value": "event"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Candlestick",
+          "value": "candlestick",
+          "description": "Get a candlestick open-high-low-close chart for the selected currency",
+          "action": "Get a candlestick for a coin"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get current data for a coin",
+          "action": "Get a coin"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many coins",
+          "action": "Get many coins"
+        },
+        {
+          "name": "History",
+          "value": "history",
+          "description": "Get historical data (name, price, market, stats) at a given date for a coin",
+          "action": "Get history for a coin"
+        },
+        {
+          "name": "Market",
+          "value": "market",
+          "description": "Get prices and market related data for all trading pairs that match the selected currency",
+          "action": "Get market prices for a coin"
+        },
+        {
+          "name": "Market Chart",
+          "value": "marketChart",
+          "description": "Get historical market data include price, market cap, and 24h volume (granularity auto)",
+          "action": "Get market chart for a coin"
+        },
+        {
+          "name": "Price",
+          "value": "price",
+          "description": "Get the current price of any cryptocurrencies in any other supported currencies that you need",
+          "action": "Get the price for a coin"
+        },
+        {
+          "name": "Ticker",
+          "value": "ticker",
+          "description": "Get coin tickers",
+          "action": "Get the ticker for a coin"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "coin"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Search By",
+      "name": "searchBy",
+      "type": "options",
+      "default": "coinId",
+      "description": "Search by coin ID or contract address",
+      "options": [
+        {
+          "name": "Coin ID",
+          "value": "coinId"
+        },
+        {
+          "name": "Contract Address",
+          "value": "contractAddress"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get",
+            "marketChart",
+            "price"
+          ],
+          "resource": [
+            "coin"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Coin Name or ID",
+      "name": "coinId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "coin"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getCoins"
+      }
+    },
+    {
+      "displayName": "Base Currency Name or ID",
+      "name": "baseCurrency",
+      "type": "options",
+      "default": "",
+      "description": "The first currency in the pair. For BTC:ETH this is BTC. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "candlestick"
+          ],
+          "resource": [
+            "coin"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getCoins"
+      }
+    },
+    {
+      "displayName": "Base Currency Name or ID",
+      "name": "baseCurrency",
+      "type": "options",
+      "default": "",
+      "description": "The first currency in the pair. For BTC:ETH this is BTC. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "market"
+          ],
+          "resource": [
+            "coin"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getCurrencies"
+      }
+    },
+    {
+      "displayName": "Coin Name or ID",
+      "name": "coinId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "ticker",
+            "history"
+          ],
+          "resource": [
+            "coin"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getCoins"
+      }
+    },
+    {
+      "displayName": "Base Currency Names or IDs",
+      "name": "baseCurrencies",
+      "type": "multiOptions",
+      "default": [],
+      "description": "The first currency in the pair. For BTC:ETH this is BTC. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "price"
+          ],
+          "resource": [
+            "coin"
+          ],
+          "searchBy": [
+            "coinId"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getCoins"
+      }
+    },
+    {
+      "displayName": "Platform ID",
+      "name": "platformId",
+      "type": "options",
+      "default": "ethereum",
+      "description": "The ID of the platform issuing tokens",
+      "options": [
+        {
+          "name": "Ethereum",
+          "value": "ethereum"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get",
+            "marketChart",
+            "price"
+          ],
+          "resource": [
+            "coin"
+          ],
+          "searchBy": [
+            "contractAddress"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Contract Address",
+      "name": "contractAddress",
+      "type": "string",
+      "default": "",
+      "description": "Token's contract address",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get",
+            "marketChart"
+          ],
+          "resource": [
+            "coin"
+          ],
+          "searchBy": [
+            "contractAddress"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Contract Addresses",
+      "name": "contractAddresses",
+      "type": "string",
+      "default": "",
+      "description": "The contract address of tokens, comma-separated",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "price"
+          ],
+          "resource": [
+            "coin"
+          ],
+          "searchBy": [
+            "contractAddress"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Base Currency Name or ID",
+      "name": "baseCurrency",
+      "type": "options",
+      "default": "",
+      "description": "The first currency in the pair. For BTC:ETH this is BTC. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "marketChart"
+          ],
+          "resource": [
+            "coin"
+          ],
+          "searchBy": [
+            "coinId"
+          ]
+        },
+        "hide": {
+          "searchBy": [
+            "contractAddress"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getCoins"
+      }
+    },
+    {
+      "displayName": "Quote Currency Name or ID",
+      "name": "quoteCurrency",
+      "type": "options",
+      "default": "",
+      "description": "The second currency in the pair. For BTC:ETH this is ETH. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "candlestick",
+            "marketChart"
+          ],
+          "resource": [
+            "coin"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getCurrencies"
+      }
+    },
+    {
+      "displayName": "Quote Currency Names or IDs",
+      "name": "quoteCurrencies",
+      "type": "multiOptions",
+      "default": [],
+      "description": "The second currency in the pair. For BTC:ETH this is ETH. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "price"
+          ],
+          "resource": [
+            "coin"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getCurrencies"
+      }
+    },
+    {
+      "displayName": "Range (Days)",
+      "name": "days",
+      "type": "options",
+      "default": "",
+      "description": "Return data for this many days in the past from now",
+      "options": [
+        {
+          "name": "1",
+          "value": "1"
+        },
+        {
+          "name": "7",
+          "value": "7"
+        },
+        {
+          "name": "14",
+          "value": "14"
+        },
+        {
+          "name": "30",
+          "value": "30"
+        },
+        {
+          "name": "90",
+          "value": "90"
+        },
+        {
+          "name": "180",
+          "value": "180"
+        },
+        {
+          "name": "365",
+          "value": "365"
+        },
+        {
+          "name": "Max",
+          "value": "max"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "marketChart",
+            "candlestick"
+          ],
+          "resource": [
+            "coin"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Date",
+      "name": "date",
+      "type": "dateTime",
+      "default": "",
+      "description": "The date of data snapshot",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "history"
+          ],
+          "resource": [
+            "coin"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll",
+            "market",
+            "ticker"
+          ],
+          "resource": [
+            "coin"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll",
+            "market",
+            "ticker"
+          ],
+          "resource": [
+            "coin"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 500
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Coin IDs",
+          "name": "ids",
+          "type": "string",
+          "placeholder": "bitcoin",
+          "default": "",
+          "description": "Filter results by comma-separated list of coin ID"
+        },
+        {
+          "displayName": "Category",
+          "name": "category",
+          "type": "options",
+          "options": [
+            {
+              "name": "Decentralized Finance Defi",
+              "value": "decentralized_finance_defi"
+            }
+          ],
+          "default": "decentralized_finance_defi",
+          "description": "Filter by coin category"
+        },
+        {
+          "displayName": "Order",
+          "name": "order",
+          "type": "options",
+          "options": [
+            {
+              "name": "Gecko Asc",
+              "value": "gecko_asc"
+            },
+            {
+              "name": "Gecko Desc",
+              "value": "gecko_desc"
+            },
+            {
+              "name": "ID Asc",
+              "value": "id_asc"
+            },
+            {
+              "name": "ID Desc",
+              "value": "id_desc"
+            },
+            {
+              "name": "Market Cap Asc",
+              "value": "market_cap_asc"
+            },
+            {
+              "name": "Market Cap Desc",
+              "value": "market_cap_desc"
+            },
+            {
+              "name": "Volume Asc",
+              "value": "volume_asc"
+            },
+            {
+              "name": "Volume Desc",
+              "value": "volume_desc"
+            }
+          ],
+          "default": "",
+          "description": "Sort results by field"
+        },
+        {
+          "displayName": "Sparkline",
+          "name": "sparkline",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include sparkline 7 days data"
+        },
+        {
+          "displayName": "Price Change Percentage",
+          "name": "price_change_percentage",
+          "type": "multiOptions",
+          "options": [
+            {
+              "name": "1h",
+              "value": "1h"
+            },
+            {
+              "name": "24h",
+              "value": "24h"
+            },
+            {
+              "name": "7d",
+              "value": "7d"
+            },
+            {
+              "name": "14d",
+              "value": "14d"
+            },
+            {
+              "name": "30d",
+              "value": "30d"
+            },
+            {
+              "name": "200d",
+              "value": "200d"
+            },
+            {
+              "name": "1y",
+              "value": "1y"
+            }
+          ],
+          "default": [],
+          "description": "Include price change percentage for specified times"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "coin"
+          ],
+          "operation": [
+            "market"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Include 24hr Change",
+          "name": "include_24hr_change",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Include 24hr Vol",
+          "name": "include_24hr_vol",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Include Last Updated At",
+          "name": "include_last_updated_at",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Include Market Cap",
+          "name": "include_market_cap",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "coin"
+          ],
+          "operation": [
+            "price"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Exchange Names or IDs",
+          "name": "exchange_ids",
+          "type": "multiOptions",
+          "typeOptions": {
+            "loadOptionsMethod": "getExchanges"
+          },
+          "default": [],
+          "description": "Filter results by exchange IDs. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Include Exchange Logo",
+          "name": "include_exchange_logo",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Order",
+          "name": "order",
+          "type": "options",
+          "options": [
+            {
+              "name": "Trust Score Desc",
+              "value": "trust_score_desc"
+            },
+            {
+              "name": "Trust Score Asc",
+              "value": "trust_score_asc"
+            },
+            {
+              "name": "Volume Desc",
+              "value": "volume_desc"
+            }
+          ],
+          "default": "trust_score_desc",
+          "description": "Sorts results by the selected rule"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "coin"
+          ],
+          "operation": [
+            "ticker"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Localization",
+          "name": "localization",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to exclude localized languages in response"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "coin"
+          ],
+          "operation": [
+            "history"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Community Data",
+          "name": "community_data",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include community data"
+        },
+        {
+          "displayName": "Developer Data",
+          "name": "developer_data",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include developer data"
+        },
+        {
+          "displayName": "Localization",
+          "name": "localization",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include all localized languages in response"
+        },
+        {
+          "displayName": "Market Data",
+          "name": "market_data",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include market data"
+        },
+        {
+          "displayName": "Sparkline",
+          "name": "sparkline",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include sparkline 7 days data (eg. true, false)."
+        },
+        {
+          "displayName": "Tickers",
+          "name": "tickers",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include tickers data"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "coin"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many events",
+          "action": "Get many events"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "event"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "event"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 500
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Country Code",
+          "name": "country_code",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsMethod": "getEventCountryCodes"
+          },
+          "default": "",
+          "description": "Country code of event. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "From Date",
+          "name": "from_date",
+          "type": "dateTime",
+          "default": "",
+          "description": "Lists events after this date"
+        },
+        {
+          "displayName": "To Date",
+          "name": "to_date",
+          "type": "dateTime",
+          "default": "",
+          "description": "Lists events before this date"
+        },
+        {
+          "displayName": "Type Name or ID",
+          "name": "type",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsMethod": "getEventTypes"
+          },
+          "default": "",
+          "description": "Type of event. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Upcoming Events Only",
+          "name": "upcoming_events_only",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to list only upcoming events"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "event"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "candlestick",
+      "name": "Candlestick",
+      "description": "Get a candlestick open-high-low-close chart for the selected currency"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get current data for a coin"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many coins"
+    },
+    {
+      "operation": "history",
+      "name": "History",
+      "description": "Get historical data (name, price, market, stats) at a given date for a coin"
+    },
+    {
+      "operation": "market",
+      "name": "Market",
+      "description": "Get prices and market related data for all trading pairs that match the selected currency"
+    },
+    {
+      "operation": "marketChart",
+      "name": "Market Chart",
+      "description": "Get historical market data include price, market cap, and 24h volume (granularity auto)"
+    },
+    {
+      "operation": "price",
+      "name": "Price",
+      "description": "Get the current price of any cryptocurrencies in any other supported currencies that you need"
+    },
+    {
+      "operation": "ticker",
+      "name": "Ticker",
+      "description": "Get coin tickers"
+    }
+  ],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,28 @@
+{
+  "node_type": "nodes-base.merge",
+  "display_name": "Merge",
+  "description": "Merges data of multiple streams once data from both is available",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "3.2",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "query",
+      "displayName": "Query",
+      "type": "string",
+      "description": "Input data available as tables with corresponding number, e.g. input1, input2",
+      "required": true,
+      "default": "SELECT * FROM input1 LEFT JOIN input2 ON input1.name = input2.id"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_merge.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.merge"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

@@ -1,0 +1,52 @@
+{
+  "node_type": "nodes-base.quickChart",
+  "display_name": "QuickChart",
+  "description": "Create a chart via QuickChart",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "labelsUi",
+      "displayName": "Labels",
+      "type": "fixedCollection",
+      "description": "Labels to use in the chart",
+      "required": true,
+      "default": {}
+    },
+    {
+      "name": "labelsArray",
+      "displayName": "Labels Array",
+      "type": "string",
+      "description": "The array of labels to be used in the chart",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "data",
+      "displayName": "Data",
+      "type": "json",
+      "description": "Data to use for the dataset, documentation and examples <a href=\"https://quickchart.io/documentation/chart-types/\" target=\"_blank\">here</a>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "output",
+      "displayName": "Put Output In Field",
+      "type": "string",
+      "description": "The binary data will be displayed in the Output panel on the right, under the Binary tab",
+      "required": true,
+      "default": "data"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_quickChart.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.quickChart"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

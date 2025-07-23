@@ -1,0 +1,28 @@
+{
+  "node_type": "nodes-langchain.embeddingsOllama",
+  "display_name": "Embeddings Ollama",
+  "description": "Use Ollama Embeddings",
+  "category": "transform",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "model",
+      "displayName": "Model",
+      "type": "options",
+      "description": "The model which will generate the completion. To download models, visit <a href=\"https://ollama.ai/library\">Ollama Models Library</a>.",
+      "required": true,
+      "default": "llama3.2"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_embeddingsOllama.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-langchain.embeddingsOllama"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

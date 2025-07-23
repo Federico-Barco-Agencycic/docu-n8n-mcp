@@ -1,0 +1,48 @@
+{
+  "node_type": "nodes-base.googleSheetsTrigger",
+  "display_name": "Google Sheets Trigger",
+  "description": "Starts the workflow when Google Sheets events occur",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "documentId",
+      "displayName": "Document",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "sheetName",
+      "displayName": "Sheet",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "event",
+      "displayName": "Trigger On",
+      "type": "options",
+      "description": "It will be triggered also by newly created columns (if the 'Columns to Watch' option is not set)",
+      "required": true,
+      "default": "anyUpdate"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleSheetsTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.googleSheetsTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

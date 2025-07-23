@@ -1,0 +1,27 @@
+{
+  "node_type": "nodes-base.whatsAppTrigger",
+  "display_name": "WhatsApp Trigger",
+  "description": "Handle WhatsApp events via webhooks",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "updates",
+      "displayName": "Trigger On",
+      "type": "multiOptions",
+      "required": true,
+      "default": []
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_whatsAppTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.whatsAppTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

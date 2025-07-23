@@ -1,0 +1,114 @@
+{
+  "node_type": "nodes-base.twitter",
+  "display_name": "X (Formerly Twitter)",
+  "description": "Consume the X API",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "2",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "tweet"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "user",
+      "displayName": "User",
+      "type": "resourceLocator",
+      "description": "The user you want to send the message to",
+      "required": true,
+      "default": {
+        "mode": "username",
+        "value": ""
+      }
+    },
+    {
+      "name": "text",
+      "displayName": "Text",
+      "type": "string",
+      "description": "The text of the direct message. URL encoding is required. Max length of 10,000 characters.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "add"
+    },
+    {
+      "name": "list",
+      "displayName": "List",
+      "type": "resourceLocator",
+      "description": "The list you want to add the user to",
+      "required": true,
+      "default": {
+        "mode": "id",
+        "value": ""
+      }
+    },
+    {
+      "name": "user",
+      "displayName": "User",
+      "type": "resourceLocator",
+      "description": "The user you want to add to the list",
+      "required": true,
+      "default": {
+        "mode": "username",
+        "value": ""
+      }
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "text",
+      "displayName": "Text",
+      "type": "string",
+      "description": "The text of the status update. URLs must be encoded. Links wrapped with the t.co shortener will affect character count",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "tweetDeleteId",
+      "displayName": "Tweet",
+      "type": "resourceLocator",
+      "description": "The tweet to delete",
+      "required": true,
+      "default": {
+        "mode": "id",
+        "value": ""
+      }
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Send a direct message to a user"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_twitter.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.twitter"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

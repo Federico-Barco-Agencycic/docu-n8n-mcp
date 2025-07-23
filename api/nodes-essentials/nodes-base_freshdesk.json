@@ -1,0 +1,118 @@
+{
+  "node_type": "nodes-base.freshdesk",
+  "display_name": "Freshdesk",
+  "description": "Consume Freshdesk API",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": true,
+      "default": "ticket"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": true,
+      "default": "create"
+    },
+    {
+      "name": "requester",
+      "displayName": "Requester Identification",
+      "type": "options",
+      "required": true,
+      "default": "requesterId"
+    },
+    {
+      "name": "requesterIdentificationValue",
+      "displayName": "Value",
+      "type": "string",
+      "description": "Value of the identification selected",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "status",
+      "displayName": "Status",
+      "type": "options",
+      "required": true,
+      "default": "pending"
+    },
+    {
+      "name": "priority",
+      "displayName": "Priority",
+      "type": "options",
+      "required": true,
+      "default": "low"
+    },
+    {
+      "name": "source",
+      "displayName": "Source",
+      "type": "options",
+      "description": "The channel through which the ticket was created",
+      "required": true,
+      "default": "portal"
+    },
+    {
+      "name": "ticketId",
+      "displayName": "Ticket ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "ticketId",
+      "displayName": "Ticket ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "ticketId",
+      "displayName": "Ticket ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a new ticket"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a ticket"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a ticket"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many tickets"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update a ticket"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_freshdesk.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.freshdesk"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

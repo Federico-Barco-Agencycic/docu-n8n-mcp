@@ -1,0 +1,136 @@
+{
+  "node_type": "nodes-base.affinityTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Affinity Trigger",
+  "description": "Handle Affinity events via webhooks",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 1,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Affinity Trigger node documentation\ndescription: Learn how to use the Affinity Trigger node in n8n. Follow technical documentation to integrate Affinity Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Affinity Trigger node\n\n[Affinity](https://www.affinity.co/){:target=_blank .external-link} is a powerful relationship intelligence platform enabling teams to leverage their network to close the next big deal.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/affinity.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Affinity Trigger integrations](https://n8n.io/integrations/affinity-trigger/){:target=_blank .external-link} page.\n///\n",
+  "properties_schema": [
+    {
+      "displayName": "Events",
+      "name": "events",
+      "type": "multiOptions",
+      "default": [],
+      "description": "Webhook events that will be enabled for that endpoint",
+      "options": [
+        {
+          "name": "field_value.created",
+          "value": "field_value.created"
+        },
+        {
+          "name": "field_value.deleted",
+          "value": "field_value.deleted"
+        },
+        {
+          "name": "field_value.updated",
+          "value": "field_value.updated"
+        },
+        {
+          "name": "field.created",
+          "value": "field.created"
+        },
+        {
+          "name": "field.deleted",
+          "value": "field.deleted"
+        },
+        {
+          "name": "field.updated",
+          "value": "field.updated"
+        },
+        {
+          "name": "file.created",
+          "value": "file.created"
+        },
+        {
+          "name": "file.deleted",
+          "value": "file.deleted"
+        },
+        {
+          "name": "list_entry.created",
+          "value": "list_entry.created"
+        },
+        {
+          "name": "list_entry.deleted",
+          "value": "list_entry.deleted"
+        },
+        {
+          "name": "list.created",
+          "value": "list.created"
+        },
+        {
+          "name": "list.deleted",
+          "value": "list.deleted"
+        },
+        {
+          "name": "list.updated",
+          "value": "list.updated"
+        },
+        {
+          "name": "note.created",
+          "value": "note.created"
+        },
+        {
+          "name": "note.deleted",
+          "value": "note.deleted"
+        },
+        {
+          "name": "note.updated",
+          "value": "note.updated"
+        },
+        {
+          "name": "opportunity.created",
+          "value": "opportunity.created"
+        },
+        {
+          "name": "opportunity.deleted",
+          "value": "opportunity.deleted"
+        },
+        {
+          "name": "opportunity.updated",
+          "value": "opportunity.updated"
+        },
+        {
+          "name": "organization.created",
+          "value": "organization.created"
+        },
+        {
+          "name": "organization.deleted",
+          "value": "organization.deleted"
+        },
+        {
+          "name": "organization.updated",
+          "value": "organization.updated"
+        },
+        {
+          "name": "person.created",
+          "value": "person.created"
+        },
+        {
+          "name": "person.deleted",
+          "value": "person.deleted"
+        },
+        {
+          "name": "person.updated",
+          "value": "person.updated"
+        }
+      ],
+      "required": true
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "affinityApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

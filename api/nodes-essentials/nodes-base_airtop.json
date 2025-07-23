@@ -1,0 +1,113 @@
+{
+  "node_type": "nodes-base.airtop",
+  "display_name": "Airtop",
+  "description": "Scrape and control any site with Airtop",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "session"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "sessionId",
+      "displayName": "Session ID",
+      "type": "string",
+      "description": "The ID of the <a href=\"https://docs.airtop.ai/guides/how-to/creating-a-session\" target=\"_blank\">Session</a> to use",
+      "required": true,
+      "default": "={{ $json[\"sessionId\"] }}"
+    },
+    {
+      "name": "profileName",
+      "displayName": "Profile Name",
+      "type": "string",
+      "description": "The name of the <a href=\"https://docs.airtop.ai/guides/how-to/saving-a-profile\" target=\"_blank\">Profile</a> to save",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "sessionId",
+      "displayName": "Session ID",
+      "type": "string",
+      "description": "The ID of the <a href=\"https://docs.airtop.ai/guides/how-to/creating-a-session\" target=\"_blank\">Session</a> to use",
+      "required": true,
+      "default": "={{ $json[\"sessionId\"] }}"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "sessionId",
+      "displayName": "Session ID",
+      "type": "string",
+      "description": "The ID of the <a href=\"https://docs.airtop.ai/guides/how-to/creating-a-session\" target=\"_blank\">Session</a> to use",
+      "required": true,
+      "default": "={{ $json[\"sessionId\"] }}"
+    },
+    {
+      "name": "windowId",
+      "displayName": "Window ID",
+      "type": "string",
+      "description": "The ID of the <a href=\"https://docs.airtop.ai/guides/how-to/creating-a-session#windows\" target=\"_blank\">Window</a> to use",
+      "required": true,
+      "default": "={{ $json[\"windowId\"] }}"
+    },
+    {
+      "name": "url",
+      "displayName": "URL",
+      "type": "string",
+      "description": "Initial URL to load in the window. Defaults to https://www.google.com.",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "url",
+      "displayName": "URL",
+      "type": "string",
+      "description": "URL to load in the window",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create Session",
+      "description": "Create an Airtop browser session"
+    },
+    {
+      "operation": "save",
+      "name": "Save Profile on Termination",
+      "description": "Save in a profile changes made in your browsing session such as cookies and local storage"
+    },
+    {
+      "operation": "terminate",
+      "name": "Terminate Session",
+      "description": "Terminate a session"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_airtop.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.airtop"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

@@ -1,0 +1,93 @@
+{
+  "node_type": "nodes-base.mqtt",
+  "package_name": "n8n-nodes-base",
+  "display_name": "MQTT",
+  "description": "Push messages to MQTT",
+  "category": "input",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: MQTT node documentation\ndescription: Learn how to use the MQTT node in n8n. Follow technical documentation to integrate MQTT node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# MQTT node\n\nUse the MQTT node to automate work in MQTT, and integrate MQTT with other applications. n8n supports transporting messages with MQTT.\n\nOn this page, you'll find a list of operations the MQTT node supports and links to more resources.\n\n/// note | Credentials\nRefer to [MQTT credentials](/integrations/builtin/credentials/mqtt.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\nUse the MQTT node to send a message. You can set the message topic, and choose whether to send the node input data as part of the message.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'mqtt') ]]\n\n## Related resources\n\nn8n provides a trigger node for MQTT. You can find the trigger node docs [here](/integrations/builtin/trigger-nodes/n8n-nodes-base.mqtttrigger.md).\n\nRefer to [MQTT's documentation](https://mqtt.org/getting-started/){:target=_blank .external-link} for more information about the service.\n",
+  "properties_schema": [
+    {
+      "displayName": "Topic",
+      "name": "topic",
+      "type": "string",
+      "default": "",
+      "description": "The topic to publish to",
+      "required": true
+    },
+    {
+      "displayName": "Send Input Data",
+      "name": "sendInputData",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to send the data the node receives as JSON"
+    },
+    {
+      "displayName": "Message",
+      "name": "message",
+      "type": "string",
+      "default": "",
+      "description": "The message to publish",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "sendInputData": [
+            false
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "QoS",
+          "name": "qos",
+          "type": "options",
+          "options": [
+            {
+              "name": "Received at Most Once",
+              "value": 0
+            },
+            {
+              "name": "Received at Least Once",
+              "value": 1
+            },
+            {
+              "name": "Exactly Once",
+              "value": 2
+            }
+          ],
+          "default": 0,
+          "description": "QoS subscription level"
+        },
+        {
+          "displayName": "Retain",
+          "name": "retain",
+          "type": "boolean",
+          "default": false,
+          "description": "Normally if a publisher publishes a message to a topic, and no one is subscribed to that topic the message is simply discarded by the broker. However the publisher can tell the broker to keep the last message on that topic by setting the retain flag to true."
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "mqtt",
+      "required": true,
+      "testedBy": "mqttConnectionTest"
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

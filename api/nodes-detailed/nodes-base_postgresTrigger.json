@@ -1,0 +1,191 @@
+{
+  "node_type": "nodes-base.postgresTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Postgres Trigger",
+  "description": "Listens to Postgres messages",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Postgres Trigger node documentation\ndescription: Learn how to use the Postgres Trigger node in n8n. Follow technical documentation to integrate Postgres Trigger node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Postgres Trigger node\n\nUse the Postgres Trigger node to respond to events in [Postgres](https://www.postgresql.org/){:target=_blank .external-link} and integrate Postgres with other applications. n8n has built-in support responding to insert, update, and delete events.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/postgres.md).\n///\n\n/// note | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Postgres Trigger integrations](https://n8n.io/integrations/postgres-trigger/){:target=_blank .external-link} page.\n///\n\n## Events\n\nYou can configure how the node listens for events.\n\n* Select **Listen and Create Trigger Rule**, then choose the events to listen for:\n\t* Insert\n\t* Update\n\t* Delete\n* Select **Listen to Channel**, then enter a channel name that the node should monitor.\n\n## Related resources\n\nn8n provides an app node for Postgres. You can find the node docs [here](/integrations/builtin/app-nodes/n8n-nodes-base.postgres/index.md).\n\nView [example workflows and related content](https://n8n.io/integrations/postgres-trigger/){:target=_blank .external-link} on n8n's website.\n",
+  "properties_schema": [
+    {
+      "displayName": "Listen For",
+      "name": "triggerMode",
+      "type": "options",
+      "default": "createTrigger",
+      "options": [
+        {
+          "name": "Table Row Change Events",
+          "value": "createTrigger",
+          "description": "Insert, update or delete"
+        },
+        {
+          "name": "Advanced",
+          "value": "listenTrigger",
+          "description": "Listen to existing Postgres channel"
+        }
+      ]
+    },
+    {
+      "displayName": "Schema Name",
+      "name": "schema",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": "public"
+      },
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "triggerMode": [
+            "createTrigger"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Table Name",
+      "name": "tableName",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "triggerMode": [
+            "createTrigger"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Channel Name",
+      "name": "channelName",
+      "type": "string",
+      "default": "",
+      "description": "Name of the channel to listen to",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "triggerMode": [
+            "listenTrigger"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Event to listen for",
+      "name": "firesOn",
+      "type": "options",
+      "default": "INSERT",
+      "options": [
+        {
+          "name": "Insert",
+          "value": "INSERT"
+        },
+        {
+          "name": "Update",
+          "value": "UPDATE"
+        },
+        {
+          "name": "Delete",
+          "value": "DELETE"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "triggerMode": [
+            "createTrigger"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Channel Name",
+          "name": "channelName",
+          "type": "string",
+          "placeholder": "e.g. n8n_channel",
+          "description": "Name of the channel to listen to",
+          "default": ""
+        },
+        {
+          "displayName": "Function Name",
+          "name": "functionName",
+          "type": "string",
+          "description": "Name of the function to create",
+          "placeholder": "e.g. n8n_trigger_function()",
+          "default": ""
+        },
+        {
+          "displayName": "Replace if Exists",
+          "name": "replaceIfExists",
+          "type": "boolean",
+          "description": "Whether to replace an existing function and trigger with the same name",
+          "default": false
+        },
+        {
+          "displayName": "Trigger Name",
+          "name": "triggerName",
+          "type": "string",
+          "description": "Name of the trigger to create",
+          "placeholder": "e.g. n8n_trigger",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "triggerMode": [
+            "createTrigger"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Connection Timeout",
+          "name": "connectionTimeout",
+          "type": "number",
+          "default": 30,
+          "description": "Number of seconds reserved for connecting to the database"
+        },
+        {
+          "displayName": "Delay Closing Idle Connection",
+          "name": "delayClosingIdleConnection",
+          "type": "number",
+          "default": 0,
+          "description": "Number of seconds to wait before idle connection would be eligible for closing",
+          "typeOptions": {
+            "minValue": 0
+          }
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "postgres",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

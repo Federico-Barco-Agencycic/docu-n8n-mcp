@@ -1,0 +1,28 @@
+{
+  "node_type": "nodes-base.loneScaleTrigger",
+  "display_name": "LoneScale Trigger",
+  "description": "Trigger LoneScale Workflow",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "workflow",
+      "displayName": "Workflow Name",
+      "type": "options",
+      "description": "Select one workflow. Choose from the list",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_loneScaleTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.loneScaleTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

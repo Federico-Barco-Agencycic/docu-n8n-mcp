@@ -1,0 +1,1288 @@
+{
+  "node_type": "nodes-base.googleDocs",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Google Docs",
+  "description": "Consume Google Docs API.",
+  "category": "input",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "2",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Google Docs node documentation\ndescription: Learn how to use the Google Docs node in n8n. Follow technical documentation to integrate Google Docs node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Google Docs node\n\nUse the Google Docs node to automate work in Google Docs, and integrate Google Docs with other applications. n8n has built-in support for a wide range of Google Docs features, including creating, updating, and getting documents. \n\nOn this page, you'll find a list of operations the Google Docs node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Google Docs credentials](/integrations/builtin/credentials/google/index.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations \n\n* Document\n    * Create\n    * Get\n    * Update\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'google-docs') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "serviceAccount",
+      "options": [
+        {
+          "name": "Service Account",
+          "value": "serviceAccount"
+        },
+        {
+          "name": "OAuth2",
+          "value": "oAuth2"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "oAuth2",
+      "options": [
+        {
+          "name": "OAuth2 (recommended)",
+          "value": "oAuth2"
+        },
+        {
+          "name": "Service Account",
+          "value": "serviceAccount"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "@version": [
+            2
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "document",
+      "options": [
+        {
+          "name": "Document",
+          "value": "document"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "action": "Create a document"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "action": "Get a document"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "action": "Update a document"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "document"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Drive Name or ID",
+      "name": "driveId",
+      "type": "options",
+      "default": "myDrive",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "document"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDrives"
+      }
+    },
+    {
+      "displayName": "Folder Name or ID",
+      "name": "folderId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "document"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "driveId"
+        ],
+        "loadOptionsMethod": "getFolders"
+      }
+    },
+    {
+      "displayName": "Title",
+      "name": "title",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "document"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Doc ID or URL",
+      "name": "documentURL",
+      "type": "string",
+      "default": "",
+      "description": "The ID in the document URL (or just paste the whole URL)",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "document"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Simplify",
+      "name": "simple",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return a simplified version of the response instead of the raw data",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "document"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Doc ID or URL",
+      "name": "documentURL",
+      "type": "string",
+      "default": "",
+      "description": "The ID in the document URL (or just paste the whole URL)",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "document"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Simplify",
+      "name": "simple",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return a simplified version of the response instead of the raw data",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "document"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Actions",
+      "name": "actionsUi",
+      "type": "fixedCollection",
+      "default": {
+        "actionFields": [
+          {
+            "object": "text",
+            "action": "insert",
+            "locationChoice": "endOfSegmentLocation",
+            "index": 0,
+            "text": ""
+          }
+        ]
+      },
+      "description": "Actions applied to update the document",
+      "options": [
+        {
+          "name": "actionFields",
+          "displayName": "Action Fields",
+          "values": [
+            {
+              "displayName": "Object",
+              "name": "object",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Footer",
+                  "value": "footer"
+                },
+                {
+                  "name": "Header",
+                  "value": "header"
+                },
+                {
+                  "name": "Named Range",
+                  "value": "namedRange"
+                },
+                {
+                  "name": "Page Break",
+                  "value": "pageBreak"
+                },
+                {
+                  "name": "Paragraph Bullets",
+                  "value": "paragraphBullets"
+                },
+                {
+                  "name": "Positioned Object",
+                  "value": "positionedObject"
+                },
+                {
+                  "name": "Table",
+                  "value": "table"
+                },
+                {
+                  "name": "Table Column",
+                  "value": "tableColumn"
+                },
+                {
+                  "name": "Table Row",
+                  "value": "tableRow"
+                },
+                {
+                  "name": "Text",
+                  "value": "text"
+                }
+              ],
+              "description": "The update object",
+              "default": "text"
+            },
+            {
+              "displayName": "Action",
+              "name": "action",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Find and Replace Text",
+                  "value": "replaceAll"
+                },
+                {
+                  "name": "Insert",
+                  "value": "insert"
+                }
+              ],
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "text"
+                  ]
+                }
+              },
+              "description": "The update action",
+              "default": ""
+            },
+            {
+              "displayName": "Action",
+              "name": "action",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Create",
+                  "value": "create"
+                },
+                {
+                  "name": "Delete",
+                  "value": "delete"
+                }
+              ],
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "footer",
+                    "header",
+                    "namedRange",
+                    "paragraphBullets"
+                  ]
+                }
+              },
+              "description": "The update action",
+              "default": ""
+            },
+            {
+              "displayName": "Action",
+              "name": "action",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Delete",
+                  "value": "delete"
+                },
+                {
+                  "name": "Insert",
+                  "value": "insert"
+                }
+              ],
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "tableColumn",
+                    "tableRow"
+                  ]
+                }
+              },
+              "description": "The update action",
+              "default": ""
+            },
+            {
+              "displayName": "Action",
+              "name": "action",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Insert",
+                  "value": "insert"
+                }
+              ],
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "pageBreak",
+                    "table"
+                  ]
+                }
+              },
+              "description": "The update action",
+              "default": ""
+            },
+            {
+              "displayName": "Action",
+              "name": "action",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Delete",
+                  "value": "delete"
+                }
+              ],
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "positionedObject"
+                  ]
+                }
+              },
+              "description": "The update action",
+              "default": ""
+            },
+            {
+              "displayName": "Insert Segment",
+              "name": "insertSegment",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Header",
+                  "value": "header"
+                },
+                {
+                  "name": "Body",
+                  "value": "body"
+                },
+                {
+                  "name": "Footer",
+                  "value": "footer"
+                }
+              ],
+              "description": "The location where to create the object",
+              "default": "body",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "footer",
+                    "header",
+                    "paragraphBullets",
+                    "namedRange"
+                  ],
+                  "action": [
+                    "create"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Segment ID",
+              "name": "segmentId",
+              "type": "string",
+              "description": "The ID of the header, footer or footnote. The <code>Document → Get</code> operation lists all segment IDs (make sure you disable the <code>simple</code> toggle).",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "footer",
+                    "header",
+                    "paragraphBullets",
+                    "namedRange"
+                  ],
+                  "action": [
+                    "create"
+                  ]
+                },
+                "hide": {
+                  "insertSegment": [
+                    "body"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Index",
+              "name": "index",
+              "type": "number",
+              "description": "The zero-based index, relative to the beginning of the specified segment",
+              "default": 0,
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "footer",
+                    "header"
+                  ],
+                  "action": [
+                    "create"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Name",
+              "name": "name",
+              "type": "string",
+              "description": "The name of the Named Range. Names do not need to be unique.",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "namedRange"
+                  ],
+                  "action": [
+                    "create"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Start Index",
+              "name": "startIndex",
+              "type": "number",
+              "description": "The zero-based start index of this range",
+              "default": 0,
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "namedRange"
+                  ],
+                  "action": [
+                    "create"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "End Index",
+              "name": "endIndex",
+              "type": "number",
+              "description": "The zero-based end index of this range",
+              "default": 0,
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "namedRange"
+                  ],
+                  "action": [
+                    "create"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Style",
+              "name": "bulletPreset",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Bullet List",
+                  "value": "BULLET_DISC_CIRCLE_SQUARE",
+                  "description": "A bulleted list with a <code>DISC</code>, <code>CIRCLE</code> and <code>SQUARE</code> bullet glyph for the first 3 list nesting levels"
+                },
+                {
+                  "name": "Checkbox List",
+                  "value": "BULLET_CHECKBOX",
+                  "description": "A bulleted list with CHECKBOX bullet glyphs for all list nesting levels"
+                },
+                {
+                  "name": "Numbered List",
+                  "value": "NUMBERED_DECIMAL_NESTED",
+                  "description": "A numbered list with <code>DECIMAL</code> numeric glyphs separated by periods, where each nesting level uses the previous nesting level's glyph as a prefix. For example: 1., 1.1., 2., 2.2 ."
+                }
+              ],
+              "description": "The Preset pattern of bullet glyphs for list",
+              "default": "BULLET_DISC_CIRCLE_SQUARE",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "paragraphBullets"
+                  ],
+                  "action": [
+                    "create"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Footer ID",
+              "name": "footerId",
+              "type": "string",
+              "description": "The ID of the footer to delete. To retrieve it, use the <code>get document</code> where you can find under <code>footers</code> attribute.",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "footer"
+                  ],
+                  "action": [
+                    "delete"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Header ID",
+              "name": "headerId",
+              "type": "string",
+              "description": "The ID of the header to delete. To retrieve it, use the <code>get document</code> where you can find under <code>headers</code> attribute.",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "header"
+                  ],
+                  "action": [
+                    "delete"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Specify Range By",
+              "name": "namedRangeReference",
+              "type": "options",
+              "options": [
+                {
+                  "name": "ID",
+                  "value": "namedRangeId"
+                },
+                {
+                  "name": "Name",
+                  "value": "name"
+                }
+              ],
+              "description": "The value determines which range or ranges to delete",
+              "default": "namedRangeId",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "namedRange"
+                  ],
+                  "action": [
+                    "delete"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "ID",
+              "name": "value",
+              "type": "string",
+              "description": "The ID of the range",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "namedRange"
+                  ],
+                  "action": [
+                    "delete"
+                  ],
+                  "namedRangeReference": [
+                    "namedRangeId"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Name",
+              "name": "value",
+              "type": "string",
+              "description": "The name of the range",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "namedRange"
+                  ],
+                  "action": [
+                    "delete"
+                  ],
+                  "namedRangeReference": [
+                    "name"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Object ID",
+              "name": "objectId",
+              "type": "string",
+              "description": "The ID of the positioned object to delete (An object that is tied to a paragraph and positioned relative to its beginning), See the Google <a href=\"https://developers.google.com/docs/api/reference/rest/v1/PositionedObject\">documentation</a>",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "positionedObject"
+                  ],
+                  "action": [
+                    "delete"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Insert Segment",
+              "name": "insertSegment",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Header",
+                  "value": "header"
+                },
+                {
+                  "name": "Body",
+                  "value": "body"
+                },
+                {
+                  "name": "Footer",
+                  "value": "footer"
+                }
+              ],
+              "description": "The location where to create the object",
+              "default": "body",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "pageBreak",
+                    "table",
+                    "tableColumn",
+                    "tableRow",
+                    "text"
+                  ],
+                  "action": [
+                    "insert"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Segment ID",
+              "name": "segmentId",
+              "type": "string",
+              "description": "The ID of the header, footer or footnote. The <code>Document → Get</code> operation lists all segment IDs (make sure you disable the <code>simple</code> toggle).",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "pageBreak",
+                    "table",
+                    "tableColumn",
+                    "tableRow",
+                    "text"
+                  ],
+                  "action": [
+                    "insert"
+                  ]
+                },
+                "hide": {
+                  "insertSegment": [
+                    "body"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Insert Location",
+              "name": "locationChoice",
+              "type": "options",
+              "options": [
+                {
+                  "name": "At End of Specific Position",
+                  "value": "endOfSegmentLocation",
+                  "description": "Inserts the text at the end of a header, footer, footnote, or document body"
+                },
+                {
+                  "name": "At Index",
+                  "value": "location"
+                }
+              ],
+              "description": "The location where the text will be inserted",
+              "default": "endOfSegmentLocation",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "pageBreak"
+                  ],
+                  "action": [
+                    "insert"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Index",
+              "name": "index",
+              "type": "number",
+              "description": "The zero-based index, relative to the beginning of the specified segment",
+              "displayOptions": {
+                "show": {
+                  "locationChoice": [
+                    "location"
+                  ],
+                  "object": [
+                    "pageBreak"
+                  ],
+                  "action": [
+                    "insert"
+                  ]
+                }
+              },
+              "typeOptions": {
+                "minValue": 1
+              },
+              "default": 1
+            },
+            {
+              "displayName": "Insert Location",
+              "name": "locationChoice",
+              "type": "options",
+              "options": [
+                {
+                  "name": "At End of Specific Position",
+                  "value": "endOfSegmentLocation",
+                  "description": "Inserts the text at the end of a header, footer, footnote, or document body"
+                },
+                {
+                  "name": "At Index",
+                  "value": "location"
+                }
+              ],
+              "description": "The location where the text will be inserted",
+              "default": "endOfSegmentLocation",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "table"
+                  ],
+                  "action": [
+                    "insert"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Index",
+              "name": "index",
+              "type": "number",
+              "description": "The zero-based index, relative to the beginning of the specified segment (use index + 1 to refer to a table)",
+              "displayOptions": {
+                "show": {
+                  "locationChoice": [
+                    "location"
+                  ],
+                  "object": [
+                    "table"
+                  ],
+                  "action": [
+                    "insert"
+                  ]
+                }
+              },
+              "default": 1,
+              "typeOptions": {
+                "minValue": 1
+              }
+            },
+            {
+              "displayName": "Rows",
+              "name": "rows",
+              "type": "number",
+              "description": "The number of rows in the table",
+              "default": 0,
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "table"
+                  ],
+                  "action": [
+                    "insert"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Columns",
+              "name": "columns",
+              "type": "number",
+              "description": "The number of columns in the table",
+              "default": 0,
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "table"
+                  ],
+                  "action": [
+                    "insert"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Insert Location",
+              "name": "locationChoice",
+              "type": "options",
+              "options": [
+                {
+                  "name": "At End of Specific Position",
+                  "value": "endOfSegmentLocation",
+                  "description": "Inserts the text at the end of a header, footer, footnote, or document body"
+                },
+                {
+                  "name": "At Index",
+                  "value": "location"
+                }
+              ],
+              "description": "The location where the text will be inserted",
+              "default": "endOfSegmentLocation",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "text"
+                  ],
+                  "action": [
+                    "insert"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Index",
+              "name": "index",
+              "type": "number",
+              "typeOptions": {
+                "minValue": 1
+              },
+              "description": "The zero-based index, relative to the beginning of the specified segment",
+              "displayOptions": {
+                "show": {
+                  "locationChoice": [
+                    "location"
+                  ],
+                  "object": [
+                    "text"
+                  ],
+                  "action": [
+                    "insert"
+                  ]
+                }
+              },
+              "default": 1
+            },
+            {
+              "displayName": "Text",
+              "name": "text",
+              "type": "string",
+              "description": "The text to insert in the document",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "text"
+                  ],
+                  "action": [
+                    "insert"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Old Text",
+              "name": "text",
+              "type": "string",
+              "description": "The text to search for in the document",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "text"
+                  ],
+                  "action": [
+                    "replaceAll"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "New Text",
+              "name": "replaceText",
+              "type": "string",
+              "description": "The text that will replace the matched text",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "text"
+                  ],
+                  "action": [
+                    "replaceAll"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Match Case",
+              "name": "matchCase",
+              "type": "boolean",
+              "description": "Whether the search should respect case sensitivity",
+              "default": false,
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "text"
+                  ],
+                  "action": [
+                    "replaceAll"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Insert Segment",
+              "name": "insertSegment",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Header",
+                  "value": "header"
+                },
+                {
+                  "name": "Body",
+                  "value": "body"
+                },
+                {
+                  "name": "Footer",
+                  "value": "footer"
+                }
+              ],
+              "description": "The location where to create the object",
+              "default": "body",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "paragraphBullets",
+                    "tableColumn",
+                    "tableRow"
+                  ],
+                  "action": [
+                    "delete"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Segment ID",
+              "name": "segmentId",
+              "type": "string",
+              "description": "The ID of the header, footer or footnote. The <code>Document → Get</code> operation lists all segment IDs (make sure you disable the <code>simple</code> toggle).",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "paragraphBullets",
+                    "tableColumn",
+                    "tableRow"
+                  ],
+                  "action": [
+                    "delete"
+                  ]
+                },
+                "hide": {
+                  "insertSegment": [
+                    "body"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Start Index",
+              "name": "startIndex",
+              "type": "number",
+              "description": "The zero-based start index of this range",
+              "default": 0,
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "paragraphBullets"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "End Index",
+              "name": "endIndex",
+              "type": "number",
+              "description": "The zero-based end index of this range",
+              "default": 0,
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "paragraphBullets"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Insert Position",
+              "name": "insertPosition",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Before Content at Index",
+                  "value": false
+                },
+                {
+                  "name": "After Content at Index",
+                  "value": true
+                }
+              ],
+              "default": true,
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "tableColumn",
+                    "tableRow"
+                  ],
+                  "action": [
+                    "insert"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Index",
+              "name": "index",
+              "type": "number",
+              "description": "The zero-based index, relative to the beginning of the specified segment (use index + 1 to refer to a table)",
+              "default": 1,
+              "typeOptions": {
+                "minValue": 1
+              },
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "tableColumn",
+                    "tableRow"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Row Index",
+              "name": "rowIndex",
+              "type": "number",
+              "description": "The zero-based row index",
+              "default": 0,
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "tableColumn",
+                    "tableRow"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Column Index",
+              "name": "columnIndex",
+              "type": "number",
+              "description": "The zero-based column index",
+              "default": 0,
+              "displayOptions": {
+                "show": {
+                  "object": [
+                    "tableColumn",
+                    "tableRow"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "document"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Write Control Object",
+          "name": "writeControlObject",
+          "values": [
+            {
+              "displayName": "Revision Mode",
+              "name": "control",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Target",
+                  "value": "targetRevisionId",
+                  "description": "Apply changes to the latest revision. Otherwise changes will not be processed."
+                },
+                {
+                  "name": "Required",
+                  "value": "requiredRevisionId",
+                  "description": "Apply changes to the provided revision while incorporating other collaborators' changes. This mode is used for the recent revision, Otherwise changes will not be processed."
+                }
+              ],
+              "default": "requiredRevisionId",
+              "description": "Determines how the changes are applied to the revision"
+            },
+            {
+              "displayName": "Revision ID",
+              "name": "value",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "document"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create"
+    },
+    {
+      "operation": "get",
+      "name": "Get"
+    },
+    {
+      "operation": "update",
+      "name": "Update"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "googleApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "serviceAccount"
+          ]
+        }
+      }
+    },
+    {
+      "name": "googleDocsOAuth2Api",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

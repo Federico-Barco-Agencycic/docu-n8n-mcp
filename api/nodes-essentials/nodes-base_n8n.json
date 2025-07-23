@@ -1,0 +1,100 @@
+{
+  "node_type": "nodes-base.n8n",
+  "display_name": "n8n",
+  "description": "Handle events and perform actions on your n8n instance",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "workflow"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "get"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "name",
+      "displayName": "Name",
+      "type": "string",
+      "description": "Name of the new credential",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "credentialTypeName",
+      "displayName": "Credential Type",
+      "type": "string",
+      "description": "The available types depend on nodes installed on the n8n instance. Some built-in types include e.g. 'githubApi', 'notionApi', and 'slackApi'.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "data",
+      "displayName": "Data",
+      "type": "json",
+      "description": "A valid JSON object with properties required for this Credential Type. To see the expected format, you can use 'Get Schema' operation.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "credentialId",
+      "displayName": "Credential ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "credentialTypeName",
+      "displayName": "Credential Type",
+      "type": "string",
+      "description": "The available types depend on nodes installed on the n8n instance. Some built-in types include e.g. 'githubApi', 'notionApi', and 'slackApi'.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "getAll"
+    },
+    {
+      "name": "executionId",
+      "displayName": "Execution ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "generate",
+      "name": "Generate",
+      "description": "Generate a security audit for this n8n instance"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_n8n.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.n8n"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

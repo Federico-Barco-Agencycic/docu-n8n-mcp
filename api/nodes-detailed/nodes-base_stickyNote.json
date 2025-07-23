@@ -1,0 +1,48 @@
+{
+  "node_type": "nodes-base.stickyNote",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Sticky Note",
+  "description": "Make your workflow easier to understand",
+  "category": "input",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "Content",
+      "name": "content",
+      "type": "string",
+      "default": "## I'm a note \n**Double click** to edit me. [Guide](https://docs.n8n.io/workflows/sticky-notes/)"
+    },
+    {
+      "displayName": "Height",
+      "name": "height",
+      "type": "number",
+      "default": 160,
+      "required": true
+    },
+    {
+      "displayName": "Width",
+      "name": "width",
+      "type": "number",
+      "default": 240,
+      "required": true
+    },
+    {
+      "displayName": "Color",
+      "name": "color",
+      "type": "number",
+      "default": 1,
+      "required": true
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

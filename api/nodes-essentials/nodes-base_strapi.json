@@ -1,0 +1,124 @@
+{
+  "node_type": "nodes-base.strapi",
+  "display_name": "Strapi",
+  "description": "Consume Strapi API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "entry"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "get"
+    },
+    {
+      "name": "contentType",
+      "displayName": "Content Type",
+      "type": "string",
+      "description": "Name of the content type",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "contentType",
+      "displayName": "Content Type",
+      "type": "string",
+      "description": "Name of the content type",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "entryId",
+      "displayName": "Entry ID",
+      "type": "string",
+      "description": "The ID of the entry to delete",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "contentType",
+      "displayName": "Content Type",
+      "type": "string",
+      "description": "Name of the content type",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "entryId",
+      "displayName": "Entry ID",
+      "type": "string",
+      "description": "The ID of the entry to get",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "contentType",
+      "displayName": "Content Type",
+      "type": "string",
+      "description": "Name of the content type",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "contentType",
+      "displayName": "Content Type",
+      "type": "string",
+      "description": "Name of the content type",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "updateKey",
+      "displayName": "Update Key",
+      "type": "string",
+      "description": "Name of the property which decides which rows in the database should be updated. Normally that would be \"id\".",
+      "required": true,
+      "default": "id"
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create an entry"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete an entry"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get an entry"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many entries"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update an entry"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_strapi.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.strapi"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

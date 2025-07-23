@@ -1,0 +1,74 @@
+{
+  "node_type": "nodes-base.yourls",
+  "display_name": "Yourls",
+  "description": "Consume Yourls API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "url"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "shorten"
+    },
+    {
+      "name": "url",
+      "displayName": "URL",
+      "type": "string",
+      "description": "The URL to shorten",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "shortUrl",
+      "displayName": "Short URL",
+      "type": "string",
+      "description": "The short URL to expand",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "shortUrl",
+      "displayName": "Short URL",
+      "type": "string",
+      "description": "The short URL for which to get stats",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "expand",
+      "name": "Expand",
+      "description": "Expand a URL"
+    },
+    {
+      "operation": "shorten",
+      "name": "Shorten",
+      "description": "Shorten a URL"
+    },
+    {
+      "operation": "stats",
+      "name": "Stats",
+      "description": "Get stats about one short URL"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_yourls.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.yourls"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

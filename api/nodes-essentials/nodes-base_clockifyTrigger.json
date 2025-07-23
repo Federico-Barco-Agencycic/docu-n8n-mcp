@@ -1,0 +1,35 @@
+{
+  "node_type": "nodes-base.clockifyTrigger",
+  "display_name": "Clockify Trigger",
+  "description": "Listens to Clockify events",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "workspaceId",
+      "displayName": "Workspace Name or ID",
+      "type": "options",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "watchField",
+      "displayName": "Trigger",
+      "type": "options",
+      "required": true,
+      "default": 0
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_clockifyTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.clockifyTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

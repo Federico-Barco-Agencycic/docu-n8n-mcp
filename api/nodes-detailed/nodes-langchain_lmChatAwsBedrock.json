@@ -1,0 +1,104 @@
+{
+  "node_type": "nodes-langchain.lmChatAwsBedrock",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "AWS Bedrock Chat Model",
+  "description": "Language Model AWS Bedrock",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: AWS Bedrock Chat Model node documentation\ndescription: Learn how to use the AWS Bedrock Chat Model node in n8n. Follow technical documentation to integrate AWS Bedrock Chat Model node into your workflows.\ncontentType: [integration, reference]\n---\n\n# AWS Bedrock Chat Model node\n\nThe AWS Bedrock Chat Model node allows you use LLM models utilising AWS Bedrock platform.\n\nOn this page, you'll find the node parameters for the AWS Bedrock Chat Model node, and links to more resources.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/aws.md).\n///\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\t\n## Node parameters\n\n* **Model**: Select the model that generates the completion.\n\nLearn more about available models in the [Amazon Bedrock model documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html){:target=_blank .external-link}.\n\n## Node options\n\n* **Maximum Number of Tokens**: Enter the maximum number of tokens used, which sets the completion length.\n* **Sampling Temperature**: Use this option to control the randomness of the sampling process. A higher temperature creates more diverse sampling, but increases the risk of hallucinations.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'aws-bedrock-chat-model') ]]\n\n## Related resources\n\nRefer to [LangChains's AWS Bedrock Chat Model documentation](https://js.langchain.com/docs/integrations/chat/bedrock/){:target=_blank .external-link} for more information about the service.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "This node must be connected to an AI chain. <a data-action='openSelectiveNodeCreator' data-action-parameter-creatorview='AI'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "Model",
+      "name": "model",
+      "type": "options",
+      "default": "",
+      "description": "The model which will generate the completion. <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/foundation-models.html\">Learn more</a>.",
+      "typeOptions": {
+        "loadOptions": {
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "/foundation-models?&byOutputModality=TEXT&byInferenceType=ON_DEMAND"
+            },
+            "output": {
+              "postReceive": [
+                {
+                  "type": "rootProperty",
+                  "properties": {
+                    "property": "modelSummaries"
+                  }
+                },
+                {
+                  "type": "setKeyValue",
+                  "properties": {
+                    "name": "={{$responseItem.modelName}}",
+                    "description": "={{$responseItem.modelArn}}",
+                    "value": "={{$responseItem.modelId}}"
+                  }
+                },
+                {
+                  "type": "sort",
+                  "properties": {
+                    "key": "name"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "description": "Additional options to add",
+      "options": [
+        {
+          "displayName": "Maximum Number of Tokens",
+          "name": "maxTokensToSample",
+          "default": 2000,
+          "description": "The maximum number of tokens to generate in the completion",
+          "type": "number"
+        },
+        {
+          "displayName": "Sampling Temperature",
+          "name": "temperature",
+          "default": 0.7,
+          "typeOptions": {
+            "maxValue": 1,
+            "minValue": 0,
+            "numberPrecision": 1
+          },
+          "description": "Controls randomness: Lowering results in less random completions. As the temperature approaches zero, the model will become deterministic and repetitive.",
+          "type": "number"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "aws",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

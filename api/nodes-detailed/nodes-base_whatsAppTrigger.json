@@ -1,0 +1,124 @@
+{
+  "node_type": "nodes-base.whatsAppTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "WhatsApp Trigger",
+  "description": "Handle WhatsApp events via webhooks",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 1,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: WhatsApp Trigger node documentation\ndescription: Learn how to use the WhatsApp Trigger node in n8n. Follow technical documentation to integrate WhatsApp Trigger node into your workflows.\ncontentType: [integration, reference]\npriority: high\n---\n\n# WhatsApp Trigger node\n\nUse the WhatsApp Trigger node to respond to events in WhatsApp and integrate WhatsApp with other applications. n8n has built-in support for a wide range of WhatsApp events, including account, message, and phone number events.\n\nOn this page, you'll find a list of events the WhatsApp Trigger node can respond to, and links to more resources.\n\n///  note  | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/whatsapp.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [WhatsApp integrations](https://n8n.io/integrations/whatsapp-trigger/){:target=_blank .external-link} page.\n///\n\n## Events\n\n* Account Review Update\n* Account Update\n* Business Capability Update\n* Message Template Quality Update\n* Message Template Status Update\n* Messages\n* Phone Number Name Update\n* Phone Number Quality Update\n* Security\n* Template Category Update\n\n## Related resources\n\nn8n provides an app node for WhatsApp. You can find the node docs [here](/integrations/builtin/app-nodes/n8n-nodes-base.whatsapp/index.md).\n\nView [example workflows and related content](https://n8n.io/integrations/whatsapp-trigger/){:target=_blank .external-link} on n8n's website.\n\nRefer to [WhatsApp's documentation](https://developers.facebook.com/docs/whatsapp/cloud-api){:target=_blank .external-link} for details about their API.\n\n## Common issues\n\nHere are some common errors and issues with the WhatsApp Trigger node and steps to resolve or troubleshoot them.\n\n### Workflow only works in testing or production\n\nWhatsApp only allows you to register a single webhook per app. This means that every time you switch from using the testing URL to the production URL (and vice versa), WhatsApp overwrites the registered webhook URL. \n\nYou may have trouble with this if you try to test a workflow that's also active in production. WhatsApp will only send events to one of the two webhook URLs, so the other will never receive event notifications.\n\nTo work around this, you can disable your workflow when testing:\n\n/// warning | Halts production traffic\nThis workaround temporarily disables your production workflow for testing. Your workflow will no longer receive production traffic while it's deactivated.\n///\n\n1. Go to your workflow page.\n2. Toggle the **Active** switch in the top panel to disable the workflow temporarily.\n3. Test your workflow using the test webhook URL.\n4. When you finish testing, toggle the **Inactive** toggle to enable the workflow again. The production webhook URL should resume working.\n",
+  "properties_schema": [
+    {
+      "displayName": "Due to Facebook API limitations, you can use just one WhatsApp trigger for each Facebook App",
+      "name": "whatsAppNotice",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Trigger On",
+      "name": "updates",
+      "type": "multiOptions",
+      "default": [],
+      "options": [
+        {
+          "name": "Account Review Update",
+          "value": "account_review_update"
+        },
+        {
+          "name": "Account Update",
+          "value": "account_update"
+        },
+        {
+          "name": "Business Capability Update",
+          "value": "business_capability_update"
+        },
+        {
+          "name": "Message Template Quality Update",
+          "value": "message_template_quality_update"
+        },
+        {
+          "name": "Message Template Status Update",
+          "value": "message_template_status_update"
+        },
+        {
+          "name": "Messages",
+          "value": "messages"
+        },
+        {
+          "name": "Phone Number Name Update",
+          "value": "phone_number_name_update"
+        },
+        {
+          "name": "Phone Number Quality Update",
+          "value": "phone_number_quality_update"
+        },
+        {
+          "name": "Security",
+          "value": "security"
+        },
+        {
+          "name": "Template Category Update",
+          "value": "template_category_update"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Receive Message Status Updates",
+          "name": "messageStatusUpdates",
+          "type": "multiOptions",
+          "default": [
+            "all"
+          ],
+          "description": "WhatsApp sends notifications to the Trigger when the status of a message changes (for example from Sent to Delivered and from Delivered to Read). To avoid multiple executions for one WhatsApp message, you can set the Trigger to execute only on selected message status updates.",
+          "options": [
+            {
+              "name": "All",
+              "value": "all"
+            },
+            {
+              "name": "Deleted",
+              "value": "deleted"
+            },
+            {
+              "name": "Delivered",
+              "value": "delivered"
+            },
+            {
+              "name": "Failed",
+              "value": "failed"
+            },
+            {
+              "name": "Read",
+              "value": "read"
+            },
+            {
+              "name": "Sent",
+              "value": "sent"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "whatsAppTriggerApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,36 @@
+{
+  "node_type": "nodes-base.mqtt",
+  "display_name": "MQTT",
+  "description": "Push messages to MQTT",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "topic",
+      "displayName": "Topic",
+      "type": "string",
+      "description": "The topic to publish to",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "message",
+      "displayName": "Message",
+      "type": "string",
+      "description": "The message to publish",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mqtt.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.mqtt"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

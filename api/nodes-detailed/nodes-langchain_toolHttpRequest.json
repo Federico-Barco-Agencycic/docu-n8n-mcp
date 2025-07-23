@@ -1,0 +1,787 @@
+{
+  "node_type": "nodes-langchain.toolHttpRequest",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "HTTP Request Tool",
+  "description": "Makes an HTTP request and returns the response data",
+  "category": "output",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "1.1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: HTTP Request Tool node documentation\ndescription: Learn how to use the HTTP Request Tool node in n8n. Follow technical documentation to integrate HTTP Request Tool node into your workflows.\nsearch:\n  exclude: true\ncontentType: [integration, reference]\n---\n\n# HTTP Request Tool node\n\n/// warning | Legacy tool version\nNew instances of the HTTP Request tool node that you add to workflows use the standard [HTTP Request](/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/index.md) node as a tool. This page is describes the legacy, standalone HTTP Request tool node.\n\nYou can identify which tool version is in your workflow by checking if the node has an **Add option** property when you open the node on the canvas. If that button is present, you're using the new version, not the one described on this page.\n///\n\nThe HTTP Request tool works just like the [HTTP Request](/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/index.md) node, but it's designed to be used with an [AI agent](/glossary.md#ai-agent) as a tool to collect information from a website or API.\n\nOn this page, you'll find a list of operations the HTTP Request node supports and links to more resources.\n\n/// note | Credentials\nRefer to [HTTP Request credentials](/integrations/builtin/credentials/httprequest.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'http-request-tool') ]]\n\n## Related resources\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/tools-link.md\"\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "This node must be connected to an AI agent. <a data-action='openSelectiveNodeCreator' data-action-parameter-creatorview='AI'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "Description",
+      "name": "toolDescription",
+      "type": "string",
+      "default": "",
+      "description": "Explain to LLM what this tool does, better description would allow LLM to produce expected result",
+      "typeOptions": {
+        "rows": 3
+      }
+    },
+    {
+      "displayName": "Method",
+      "name": "method",
+      "type": "options",
+      "default": "GET",
+      "options": [
+        {
+          "name": "DELETE",
+          "value": "DELETE"
+        },
+        {
+          "name": "GET",
+          "value": "GET"
+        },
+        {
+          "name": "PATCH",
+          "value": "PATCH"
+        },
+        {
+          "name": "POST",
+          "value": "POST"
+        },
+        {
+          "name": "PUT",
+          "value": "PUT"
+        }
+      ]
+    },
+    {
+      "displayName": "Tip: You can use a {placeholder} for any part of the request to be filled by the model. Provide more context about them in the placeholders section",
+      "name": "placeholderNotice",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "URL",
+      "name": "url",
+      "type": "string",
+      "default": "",
+      "required": true
+    },
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "none",
+      "description": "Select the type of authentication to use if needed, authentication would be done by n8n and your credentials will not be shared with the LLM",
+      "options": [
+        {
+          "name": "None",
+          "value": "none"
+        },
+        {
+          "name": "Predefined Credential Type",
+          "value": "predefinedCredentialType",
+          "description": "We've already implemented auth for many services so that you don't have to set it up manually"
+        },
+        {
+          "name": "Generic Credential Type",
+          "value": "genericCredentialType",
+          "description": "Fully customizable. Choose between basic, header, OAuth2, etc."
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Credential Type",
+      "name": "nodeCredentialType",
+      "type": "credentialsSelect",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "predefinedCredentialType"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Make sure you have specified the scope(s) for the Service Account in the credential",
+      "name": "googleApiWarning",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "nodeCredentialType": [
+            "googleApi"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Generic Auth Type",
+      "name": "genericAuthType",
+      "type": "credentialsSelect",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "genericCredentialType"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Send Query Parameters",
+      "name": "sendQuery",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the request has query params or not",
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Specify Query Parameters",
+      "name": "specifyQuery",
+      "type": "options",
+      "default": "keypair",
+      "options": [
+        {
+          "name": "Using Fields Below",
+          "value": "keypair"
+        },
+        {
+          "name": "Using JSON Below",
+          "value": "json"
+        },
+        {
+          "name": "Let Model Specify Entire Body",
+          "value": "model"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "sendQuery": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Query Parameters",
+      "name": "parametersQuery",
+      "type": "fixedCollection",
+      "default": {
+        "values": [
+          {
+            "name": ""
+          }
+        ]
+      },
+      "options": [
+        {
+          "name": "values",
+          "displayName": "Values",
+          "values": [
+            {
+              "displayName": "Name",
+              "name": "name",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Value Provided",
+              "name": "valueProvider",
+              "type": "options",
+              "options": [
+                {
+                  "name": "By Model (and is required)",
+                  "value": "modelRequired"
+                },
+                {
+                  "name": "By Model (but is optional)",
+                  "value": "modelOptional"
+                },
+                {
+                  "name": "Using Field Below",
+                  "value": "fieldValue"
+                }
+              ],
+              "default": "modelRequired"
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": "",
+              "hint": "Use a {placeholder} for any data to be filled in by the model",
+              "displayOptions": {
+                "show": {
+                  "valueProvider": [
+                    "fieldValue"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "sendQuery": [
+            true
+          ],
+          "specifyQuery": [
+            "keypair"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "JSON",
+      "name": "jsonQuery",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "sendQuery": [
+            true
+          ],
+          "specifyQuery": [
+            "json"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 5
+      }
+    },
+    {
+      "displayName": "Send Headers",
+      "name": "sendHeaders",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the request has headers or not",
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Specify Headers",
+      "name": "specifyHeaders",
+      "type": "options",
+      "default": "keypair",
+      "options": [
+        {
+          "name": "Using Fields Below",
+          "value": "keypair"
+        },
+        {
+          "name": "Using JSON Below",
+          "value": "json"
+        },
+        {
+          "name": "Let Model Specify Entire Body",
+          "value": "model"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "sendHeaders": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Header Parameters",
+      "name": "parametersHeaders",
+      "type": "fixedCollection",
+      "default": {
+        "values": [
+          {
+            "name": ""
+          }
+        ]
+      },
+      "options": [
+        {
+          "name": "values",
+          "displayName": "Values",
+          "values": [
+            {
+              "displayName": "Name",
+              "name": "name",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Value Provided",
+              "name": "valueProvider",
+              "type": "options",
+              "options": [
+                {
+                  "name": "By Model (and is required)",
+                  "value": "modelRequired"
+                },
+                {
+                  "name": "By Model (but is optional)",
+                  "value": "modelOptional"
+                },
+                {
+                  "name": "Using Field Below",
+                  "value": "fieldValue"
+                }
+              ],
+              "default": "modelRequired"
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": "",
+              "hint": "Use a {placeholder} for any data to be filled in by the model",
+              "displayOptions": {
+                "show": {
+                  "valueProvider": [
+                    "fieldValue"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "sendHeaders": [
+            true
+          ],
+          "specifyHeaders": [
+            "keypair"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "JSON",
+      "name": "jsonHeaders",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "sendHeaders": [
+            true
+          ],
+          "specifyHeaders": [
+            "json"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 5
+      }
+    },
+    {
+      "displayName": "Send Body",
+      "name": "sendBody",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the request has body or not",
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Specify Body",
+      "name": "specifyBody",
+      "type": "options",
+      "default": "keypair",
+      "options": [
+        {
+          "name": "Using Fields Below",
+          "value": "keypair"
+        },
+        {
+          "name": "Using JSON Below",
+          "value": "json"
+        },
+        {
+          "name": "Let Model Specify Entire Body",
+          "value": "model"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "sendBody": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Body Parameters",
+      "name": "parametersBody",
+      "type": "fixedCollection",
+      "default": {
+        "values": [
+          {
+            "name": ""
+          }
+        ]
+      },
+      "options": [
+        {
+          "name": "values",
+          "displayName": "Values",
+          "values": [
+            {
+              "displayName": "Name",
+              "name": "name",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Value Provided",
+              "name": "valueProvider",
+              "type": "options",
+              "options": [
+                {
+                  "name": "By Model (and is required)",
+                  "value": "modelRequired"
+                },
+                {
+                  "name": "By Model (but is optional)",
+                  "value": "modelOptional"
+                },
+                {
+                  "name": "Using Field Below",
+                  "value": "fieldValue"
+                }
+              ],
+              "default": "modelRequired"
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": "",
+              "hint": "Use a {placeholder} for any data to be filled in by the model",
+              "displayOptions": {
+                "show": {
+                  "valueProvider": [
+                    "fieldValue"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "sendBody": [
+            true
+          ],
+          "specifyBody": [
+            "keypair"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "JSON",
+      "name": "jsonBody",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "sendBody": [
+            true
+          ],
+          "specifyBody": [
+            "json"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 5
+      }
+    },
+    {
+      "displayName": "Placeholder Definitions",
+      "name": "placeholderDefinitions",
+      "type": "fixedCollection",
+      "default": [],
+      "options": [
+        {
+          "name": "values",
+          "displayName": "Values",
+          "values": [
+            {
+              "displayName": "Placeholder Name",
+              "name": "name",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Description",
+              "name": "description",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Type",
+              "name": "type",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Not Specified (Default)",
+                  "value": "not specified"
+                },
+                {
+                  "name": "String",
+                  "value": "string"
+                },
+                {
+                  "name": "Number",
+                  "value": "number"
+                },
+                {
+                  "name": "Boolean",
+                  "value": "boolean"
+                },
+                {
+                  "name": "JSON",
+                  "value": "json"
+                }
+              ],
+              "default": "not specified"
+            }
+          ]
+        }
+      ],
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Optimize Response",
+      "name": "optimizeResponse",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the optimize the tool response to reduce amount of data passed to the LLM that could lead to better result and reduce cost",
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Expected Response Type",
+      "name": "responseType",
+      "type": "options",
+      "default": "json",
+      "options": [
+        {
+          "name": "JSON",
+          "value": "json"
+        },
+        {
+          "name": "HTML",
+          "value": "html"
+        },
+        {
+          "name": "Text",
+          "value": "text"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "optimizeResponse": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Field Containing Data",
+      "name": "dataField",
+      "type": "string",
+      "default": "",
+      "description": "Specify the name of the field in the response containing the data",
+      "displayOptions": {
+        "show": {
+          "optimizeResponse": [
+            true
+          ],
+          "responseType": [
+            "json"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Include Fields",
+      "name": "fieldsToInclude",
+      "type": "options",
+      "default": "all",
+      "description": "What fields response object should include",
+      "options": [
+        {
+          "name": "All",
+          "value": "all",
+          "description": "Include all fields"
+        },
+        {
+          "name": "Selected",
+          "value": "selected",
+          "description": "Include only fields specified below"
+        },
+        {
+          "name": "Except",
+          "value": "except",
+          "description": "Exclude fields specified below"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "optimizeResponse": [
+            true
+          ],
+          "responseType": [
+            "json"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Fields",
+      "name": "fields",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of the field names. Supports dot notation. You can drag the selected fields from the input panel.",
+      "displayOptions": {
+        "show": {
+          "optimizeResponse": [
+            true
+          ],
+          "responseType": [
+            "json"
+          ]
+        },
+        "hide": {
+          "fieldsToInclude": [
+            "all"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Selector (CSS)",
+      "name": "cssSelector",
+      "type": "string",
+      "default": "body",
+      "description": "Select specific element(e.g. body) or multiple elements(e.g. div) of chosen type in the response HTML.",
+      "displayOptions": {
+        "show": {
+          "optimizeResponse": [
+            true
+          ],
+          "responseType": [
+            "html"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return Only Content",
+      "name": "onlyContent",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return only content of html elements, stripping html tags and attributes",
+      "displayOptions": {
+        "show": {
+          "optimizeResponse": [
+            true
+          ],
+          "responseType": [
+            "html"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Elements To Omit",
+      "name": "elementsToOmit",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of selectors that would be excluded when extracting content",
+      "displayOptions": {
+        "show": {
+          "optimizeResponse": [
+            true
+          ],
+          "responseType": [
+            "html"
+          ],
+          "onlyContent": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Truncate Response",
+      "name": "truncateResponse",
+      "type": "boolean",
+      "default": false,
+      "displayOptions": {
+        "show": {
+          "optimizeResponse": [
+            true
+          ],
+          "responseType": [
+            "text",
+            "html"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Max Response Characters",
+      "name": "maxLength",
+      "type": "number",
+      "default": 1000,
+      "displayOptions": {
+        "show": {
+          "optimizeResponse": [
+            true
+          ],
+          "responseType": [
+            "text",
+            "html"
+          ],
+          "truncateResponse": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

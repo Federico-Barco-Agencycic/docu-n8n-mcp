@@ -1,0 +1,162 @@
+{
+  "node_type": "nodes-langchain.agent",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "AI Agent",
+  "description": "Generates an action plan and executes it. Can use external tools.",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "2",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: AI Agent node documentation\ndescription: Learn how to use the AI Agent node in n8n. Follow technical documentation to integrate AI Agent node into your workflows.\ncontentType: [integration, reference]\npriority: critical\n---\n\n# AI Agent node\n\nAn [AI agent](/glossary.md#ai-agent) is an autonomous system that receives data, makes rational decisions, and acts within its environment to achieve specific goals. The AI agent's environment is everything the agent can access that isn't the agent itself. This agent uses external [tools](/glossary.md#ai-tool) and APIs to perform actions and retrieve information. It can understand the capabilities of different tools and determine which tool to use depending on the task. \n\n/// note | Connect a tool\nYou must connect at least one tool [sub-node](/integrations/builtin/cluster-nodes/sub-nodes/index.md) to an AI Agent node.\n///\n\n/// note | Agent type\nPrior to version 1.82.0, the AI Agent had a setting for working as different agent types. This has now been removed and all AI Agent nodes work as a `Tools Agent` which was the recommended and most frequently used setting. If you're working with older versions of the AI Agent in workflows or templates, as long as they were set to 'Tools Agent', they should continue to behave as intended with the updated node.\n///\n\n\n## Templates and examples\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'agent') ]]\n\n## Related resources\n\nRefer to [LangChain's documentation on agents](https://js.langchain.com/docs/concepts/agents/){:target=_blank .external-link} for more information about the service.\n\nNew to AI Agents? Read the [n8n blog introduction to AI agents](https://blog.n8n.io/ai-agents/){:target=_blank .external-link}.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n\n## Common issues\n\nFor common errors or issues and suggested resolution steps, refer to [Common Issues](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/common-issues.md).\n\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Tip: Get a feel for agents with our quick <a href=\"https://docs.n8n.io/advanced-ai/intro-tutorial/\" target=\"_blank\">tutorial</a> or see an <a href=\"/workflows/templates/1954\" target=\"_blank\">example</a> of how this node works",
+      "name": "aiAgentStarterCallout",
+      "type": "callout",
+      "default": ""
+    },
+    {
+      "displayName": "Source for Prompt (User Message)",
+      "name": "promptType",
+      "type": "options",
+      "default": "auto",
+      "options": [
+        {
+          "name": "Connected Chat Trigger Node",
+          "value": "auto",
+          "description": "Looks for an input field called 'chatInput' that is coming from a directly connected Chat Trigger"
+        },
+        {
+          "name": "Define below",
+          "value": "define",
+          "description": "Use an expression to reference data in previous nodes or enter static text"
+        }
+      ]
+    },
+    {
+      "displayName": "Prompt (User Message)",
+      "name": "text",
+      "type": "string",
+      "default": "={{ $json.chatInput }}",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "promptType": [
+            "auto"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 2
+      }
+    },
+    {
+      "displayName": "Prompt (User Message)",
+      "name": "text",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "promptType": [
+            "define"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 2
+      }
+    },
+    {
+      "displayName": "Require Specific Output Format",
+      "name": "hasOutputParser",
+      "type": "boolean",
+      "default": false,
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Connect an <a data-action='openSelectiveNodeCreator' data-action-parameter-connectiontype='ai_outputParser'>output parser</a> on the canvas to specify the output format you require",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "hasOutputParser": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "System Message",
+          "name": "systemMessage",
+          "type": "string",
+          "default": "You are a helpful assistant",
+          "description": "The message that will be sent to the agent before the conversation starts",
+          "typeOptions": {
+            "rows": 6
+          }
+        },
+        {
+          "displayName": "Max Iterations",
+          "name": "maxIterations",
+          "type": "number",
+          "default": 10,
+          "description": "The maximum number of iterations the agent will run before stopping"
+        },
+        {
+          "displayName": "Return Intermediate Steps",
+          "name": "returnIntermediateSteps",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether or not the output should include intermediate steps the agent took"
+        },
+        {
+          "displayName": "Automatically Passthrough Binary Images",
+          "name": "passthroughBinaryImages",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether or not binary images should be automatically passed through to the agent as image type messages"
+        },
+        {
+          "displayName": "Batch Processing",
+          "name": "batching",
+          "type": "collection",
+          "placeholder": "Add Batch Processing Option",
+          "description": "Batch processing options for rate limiting",
+          "default": {},
+          "options": [
+            {
+              "displayName": "Batch Size",
+              "name": "batchSize",
+              "default": 1,
+              "type": "number",
+              "description": "How many items to process in parallel. This is useful for rate limiting, but might impact the log output ordering."
+            },
+            {
+              "displayName": "Delay Between Batches",
+              "name": "delayBetweenBatches",
+              "default": 0,
+              "type": "number",
+              "description": "Delay in milliseconds between batches. This is useful for rate limiting."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

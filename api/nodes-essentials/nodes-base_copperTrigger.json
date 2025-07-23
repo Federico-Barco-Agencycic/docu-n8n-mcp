@@ -1,0 +1,36 @@
+{
+  "node_type": "nodes-base.copperTrigger",
+  "display_name": "Copper Trigger",
+  "description": "Handle Copper events via webhooks",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "description": "The resource which will fire the event",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "event",
+      "displayName": "Event",
+      "type": "options",
+      "description": "The event to listen to",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_copperTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.copperTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

@@ -1,0 +1,120 @@
+{
+  "node_type": "nodes-base.gitlab",
+  "display_name": "GitLab",
+  "description": "Retrieve data from GitLab API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "issue"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "getIssues"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "getRepositories"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "owner",
+      "displayName": "Project Owner",
+      "type": "string",
+      "description": "User, group or namespace of the project",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "repository",
+      "displayName": "Project Name",
+      "type": "string",
+      "description": "The name of the project",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "title",
+      "displayName": "Title",
+      "type": "string",
+      "description": "The title of the issue",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "issueNumber",
+      "displayName": "Issue Number",
+      "type": "number",
+      "description": "The number of the issue on which to create the comment on",
+      "required": true,
+      "default": 0
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a new issue"
+    },
+    {
+      "operation": "createComment",
+      "name": "Create Comment",
+      "description": "Create a new comment on an issue"
+    },
+    {
+      "operation": "edit",
+      "name": "Edit",
+      "description": "Edit an issue"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get the data of a single issue"
+    },
+    {
+      "operation": "lock",
+      "name": "Lock",
+      "description": "Lock an issue"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_gitlab.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.gitlab"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

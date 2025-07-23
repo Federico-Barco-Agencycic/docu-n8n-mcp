@@ -1,0 +1,51 @@
+{
+  "node_type": "nodes-base.dropcontact",
+  "display_name": "Dropcontact",
+  "description": "Find B2B emails and enrich contacts",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": true,
+      "default": "contact"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": true,
+      "default": "enrich"
+    },
+    {
+      "name": "requestId",
+      "displayName": "Request ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "enrich",
+      "name": "Enrich",
+      "description": "Find B2B emails and enrich your contact from his name and his website"
+    },
+    {
+      "operation": "fetchRequest",
+      "name": "Fetch Request"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_dropcontact.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.dropcontact"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

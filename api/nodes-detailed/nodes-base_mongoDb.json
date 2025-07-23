@@ -1,0 +1,326 @@
+{
+  "node_type": "nodes-base.mongoDb",
+  "package_name": "n8n-nodes-base",
+  "display_name": "MongoDB",
+  "description": "Find, insert and update documents in MongoDB",
+  "category": "input",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "1.2",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: MongoDB node documentation\ndescription: Learn how to use the MongoDB node in n8n. Follow technical documentation to integrate MongoDB node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# MongoDB node\n\nUse the MongoDB node to automate work in MongoDB, and integrate MongoDB with other applications. n8n has built-in support for a wide range of MongoDB features, including aggregating, updating, finding, deleting, and getting documents. \n\nOn this page, you'll find a list of operations the MongoDB node supports and links to more resources.\n\n/// note | Credentials\nRefer to [MongoDB credentials](/integrations/builtin/credentials/mongodb.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n* Aggregate documents\n* Delete documents\n* Find documents\n* Find and replace documents\n* Find and update documents\n* Insert documents\n* Update documents\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'mongodb') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "find",
+      "options": [
+        {
+          "name": "Aggregate",
+          "value": "aggregate",
+          "description": "Aggregate documents",
+          "action": "Aggregate documents"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete documents",
+          "action": "Delete documents"
+        },
+        {
+          "name": "Find",
+          "value": "find",
+          "description": "Find documents",
+          "action": "Find documents"
+        },
+        {
+          "name": "Find And Replace",
+          "value": "findOneAndReplace",
+          "description": "Find and replace documents",
+          "action": "Find and replace documents"
+        },
+        {
+          "name": "Find And Update",
+          "value": "findOneAndUpdate",
+          "description": "Find and update documents",
+          "action": "Find and update documents"
+        },
+        {
+          "name": "Insert",
+          "value": "insert",
+          "description": "Insert documents",
+          "action": "Insert documents"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update documents",
+          "action": "Update documents"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Collection",
+      "name": "collection",
+      "type": "string",
+      "default": "",
+      "description": "MongoDB Collection",
+      "required": true
+    },
+    {
+      "displayName": "Query",
+      "name": "query",
+      "type": "json",
+      "default": "",
+      "description": "MongoDB aggregation pipeline query in JSON format",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "aggregate"
+          ]
+        }
+      },
+      "typeOptions": {
+        "alwaysOpenEditWindow": true
+      }
+    },
+    {
+      "displayName": "Delete Query (JSON Format)",
+      "name": "query",
+      "type": "json",
+      "default": "{}",
+      "description": "MongoDB Delete query",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "delete"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 5
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "description": "Add query options",
+      "options": [
+        {
+          "displayName": "Limit",
+          "name": "limit",
+          "type": "number",
+          "typeOptions": {
+            "minValue": 1
+          },
+          "default": 0,
+          "description": "Use limit to specify the maximum number of documents or 0 for unlimited documents"
+        },
+        {
+          "displayName": "Skip",
+          "name": "skip",
+          "type": "number",
+          "default": 0,
+          "description": "The number of documents to skip in the results set"
+        },
+        {
+          "displayName": "Sort (JSON Format)",
+          "name": "sort",
+          "type": "json",
+          "typeOptions": {
+            "rows": 2
+          },
+          "default": "{}",
+          "placeholder": "{ \"field\": -1 }",
+          "description": "A JSON that defines the sort order of the result set"
+        },
+        {
+          "displayName": "Projection (JSON Format)",
+          "name": "projection",
+          "type": "json",
+          "typeOptions": {
+            "rows": 4
+          },
+          "default": "{}",
+          "placeholder": "{ \"_id\": 0, \"field\": 1 }",
+          "description": "A JSON that defines a selection of fields to retrieve or exclude from the result set"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "find"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Query (JSON Format)",
+      "name": "query",
+      "type": "json",
+      "default": "{}",
+      "description": "MongoDB Find query",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "find"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 5
+      }
+    },
+    {
+      "displayName": "Fields",
+      "name": "fields",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of the fields to be included into the new document",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "insert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Key",
+      "name": "updateKey",
+      "type": "string",
+      "default": "id",
+      "description": "Name of the property which decides which rows in the database should be updated. Normally that would be \"id\".",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update",
+            "findOneAndReplace",
+            "findOneAndUpdate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Fields",
+      "name": "fields",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of the fields to be included into the new document",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update",
+            "findOneAndReplace",
+            "findOneAndUpdate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Upsert",
+      "name": "upsert",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to perform an insert if no documents match the update key",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update",
+            "findOneAndReplace",
+            "findOneAndUpdate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Date Fields",
+          "name": "dateFields",
+          "type": "string",
+          "default": "",
+          "description": "Comma-separated list of fields that will be parsed as Mongo Date type"
+        },
+        {
+          "displayName": "Use Dot Notation",
+          "name": "useDotNotation",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to use dot notation to access date fields"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update",
+            "insert",
+            "findOneAndReplace",
+            "findOneAndUpdate"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "aggregate",
+      "name": "Aggregate",
+      "description": "Aggregate documents"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete documents"
+    },
+    {
+      "operation": "find",
+      "name": "Find",
+      "description": "Find documents"
+    },
+    {
+      "operation": "findOneAndReplace",
+      "name": "Find And Replace",
+      "description": "Find and replace documents"
+    },
+    {
+      "operation": "findOneAndUpdate",
+      "name": "Find And Update",
+      "description": "Find and update documents"
+    },
+    {
+      "operation": "insert",
+      "name": "Insert",
+      "description": "Insert documents"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update documents"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "mongoDb",
+      "required": true,
+      "testedBy": "mongoDbCredentialTest"
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

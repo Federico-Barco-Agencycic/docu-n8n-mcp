@@ -2,7 +2,24 @@
 
 📚 **Static JSON API for n8n Node Documentation and Metadata**
 
-A publicly accessible, static JSON API that provides comprehensive information about all n8n nodes, including their schemas, operations, and AI capabilities. Perfect for developers, AI agents, and automation tools that need to query n8n node information programmatically.
+A publicly accessible, static JSON API that provides comprehensive information about all n8n nodes, including their schemas, operations, and AI capabilities. **Now includes all 17 documentation and exploration tools from n8n-MCP!**
+
+Perfect for developers, AI agents, and automation tools that need to query n8n node information programmatically.
+
+## 🚀 **NEW: Documentation Tools API**
+
+This API now replicates all **17 documentation and exploration tools** from the n8n-MCP project:
+
+- 📊 **Database Statistics** - Complete ecosystem overview
+- 🔍 **Smart Search** - Find nodes by keywords with optimized search index
+- 📋 **Filtered Lists** - Nodes by category, package, AI capabilities
+- 🔧 **Node Information** - Complete schemas, essentials, and documentation
+- 🛠️ **Task Configurations** - Pre-configured setups for common tasks
+- 🤖 **AI Tools** - 263+ nodes usable as AI agent tools
+- 🏷️ **Property Mapping** - Search and dependency information
+- 📚 **Templates** - Workflow examples and patterns
+
+👉 **[View Complete Documentation Tools API Guide](./DOCUMENTATION_TOOLS_API.md)**
 
 ## 🌐 Live API
 
@@ -11,6 +28,20 @@ A publicly accessible, static JSON API that provides comprehensive information a
 The API is hosted on GitHub Pages and updated automatically when new n8n nodes are released.
 
 ## 📋 Available Endpoints
+
+### 🎯 **Documentation Tools (NEW)**
+Replicas all 17 documentation and exploration tools from n8n-MCP:
+
+- **Database Stats**: [`/api/database-statistics.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/database-statistics.json) - Ecosystem overview
+- **Search Index**: [`/api/search-index.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/search-index.json) - Optimized node search
+- **Node Lists**: [`/api/list-nodes/`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/list-nodes/) - Filtered by category/package/AI
+- **Node Details**: [`/api/nodes-detailed/`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/) - Complete node schemas
+- **Node Essentials**: [`/api/nodes-essentials/`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/) - Key properties only
+- **Task Configs**: [`/api/tasks-config.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/tasks-config.json) - Pre-configured setups
+- **AI Tools**: [`/api/ai-tools-detailed.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/ai-tools-detailed.json) - AI agent capabilities
+- **Properties Index**: [`/api/properties-index.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json) - Property search
+- **Dependencies**: [`/api/property-dependencies.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/property-dependencies.json) - Property visibility rules
+- **Templates**: [`/api/templates-index.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/templates-index.json) - Workflow patterns
 
 ### 🎯 Main Collections
 - **All Nodes**: [`/api/nodes.json`](https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes.json) - Complete list of all 526+ nodes

@@ -1,0 +1,119 @@
+{
+  "node_type": "nodes-base.crypto",
+  "display_name": "Crypto",
+  "description": "Provide cryptographic utilities",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "type",
+      "displayName": "Type",
+      "type": "options",
+      "description": "The hash type to use",
+      "required": true,
+      "default": "MD5"
+    },
+    {
+      "name": "binaryData",
+      "displayName": "Binary File",
+      "type": "boolean",
+      "description": "Whether the data to hashed should be taken from binary field",
+      "required": true,
+      "default": false
+    },
+    {
+      "name": "binaryPropertyName",
+      "displayName": "Binary Property Name",
+      "type": "string",
+      "description": "Name of the binary property which contains the input data",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "value",
+      "displayName": "Value",
+      "type": "string",
+      "description": "The value that should be hashed",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "dataPropertyName",
+      "displayName": "Property Name",
+      "type": "string",
+      "description": "Name of the property to which to write the hash",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "encoding",
+      "displayName": "Encoding",
+      "type": "options",
+      "required": true,
+      "default": "hex"
+    },
+    {
+      "name": "type",
+      "displayName": "Type",
+      "type": "options",
+      "description": "The hash type to use",
+      "required": true,
+      "default": "MD5"
+    },
+    {
+      "name": "value",
+      "displayName": "Value",
+      "type": "string",
+      "description": "The value of which the hmac should be created",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "dataPropertyName",
+      "displayName": "Property Name",
+      "type": "string",
+      "description": "Name of the property to which to write the hmac",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "secret",
+      "displayName": "Secret",
+      "type": "string",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "generate",
+      "name": "Generate",
+      "description": "Generate random string"
+    },
+    {
+      "operation": "hash",
+      "name": "Hash",
+      "description": "Hash a text or file in a specified format"
+    },
+    {
+      "operation": "hmac",
+      "name": "Hmac",
+      "description": "Hmac a text or file in a specified format"
+    },
+    {
+      "operation": "sign",
+      "name": "Sign",
+      "description": "Sign a string using a private key"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_crypto.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.crypto"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

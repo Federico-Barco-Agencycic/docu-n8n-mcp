@@ -1,0 +1,101 @@
+{
+  "node_type": "nodes-base.quickbase",
+  "display_name": "Quick Base",
+  "description": "Integrate with the Quick Base RESTful API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "record"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "getAll"
+    },
+    {
+      "name": "tableId",
+      "displayName": "Table ID",
+      "type": "string",
+      "description": "The table identifier",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "download"
+    },
+    {
+      "name": "tableId",
+      "displayName": "Table ID",
+      "type": "string",
+      "description": "The table identifier",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "recordId",
+      "displayName": "Record ID",
+      "type": "string",
+      "description": "The unique identifier of the record",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "fieldId",
+      "displayName": "Field ID",
+      "type": "string",
+      "description": "The unique identifier of the field",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "versionNumber",
+      "displayName": "Version Number",
+      "type": "number",
+      "description": "The file attachment version number",
+      "required": true,
+      "default": 1
+    },
+    {
+      "name": "binaryPropertyName",
+      "displayName": "Input Binary Field",
+      "type": "string",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many fields"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_quickbase.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.quickbase"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

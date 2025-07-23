@@ -1,0 +1,109 @@
+{
+  "node_type": "nodes-base.googleCalendar",
+  "display_name": "Google Calendar",
+  "description": "Consume Google Calendar API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1.3",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "event"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "availability"
+    },
+    {
+      "name": "calendar",
+      "displayName": "Calendar",
+      "type": "resourceLocator",
+      "description": "Google Calendar to operate on",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "timeMin",
+      "displayName": "Start Time",
+      "type": "dateTime",
+      "description": "Start of the interval",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "timeMax",
+      "displayName": "End Time",
+      "type": "dateTime",
+      "description": "End of the interval",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "timeMin",
+      "displayName": "Start Time",
+      "type": "dateTime",
+      "description": "Start of the interval, use <a href=\"https://docs.n8n.io/code/cookbook/luxon/\" target=\"_blank\">expression</a> to set a date, or switch to fixed mode to choose date from widget",
+      "required": true,
+      "default": "={{ $now }}"
+    },
+    {
+      "name": "timeMax",
+      "displayName": "End Time",
+      "type": "dateTime",
+      "description": "End of the interval, use <a href=\"https://docs.n8n.io/code/cookbook/luxon/\" target=\"_blank\">expression</a> to set a date, or switch to fixed mode to choose date from widget",
+      "required": true,
+      "default": "={{ $now.plus(1, 'hour') }}"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "calendar",
+      "displayName": "Calendar",
+      "type": "resourceLocator",
+      "description": "Google Calendar to operate on",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "start",
+      "displayName": "Start",
+      "type": "dateTime",
+      "description": "Start time of the event",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "availability",
+      "name": "Availability",
+      "description": "If a time-slot is available in a calendar"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleCalendar.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.googleCalendar"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

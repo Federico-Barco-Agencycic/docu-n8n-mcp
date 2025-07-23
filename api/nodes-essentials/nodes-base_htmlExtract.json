@@ -1,0 +1,35 @@
+{
+  "node_type": "nodes-base.htmlExtract",
+  "display_name": "HTML Extract",
+  "description": "Extracts data from HTML",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "dataPropertyName",
+      "displayName": "Input Binary Field",
+      "type": "string",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "dataPropertyName",
+      "displayName": "JSON Property",
+      "type": "string",
+      "description": "Name of the JSON property in which the HTML to extract the data from can be found. The property can either contain a string or an array of strings.",
+      "required": true,
+      "default": "data"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_htmlExtract.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.htmlExtract"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

@@ -1,0 +1,48 @@
+{
+  "node_type": "nodes-base.taigaTrigger",
+  "display_name": "Taiga Trigger",
+  "description": "Handle Taiga events via webhook",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": true,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "projectId",
+      "displayName": "Project Name or ID",
+      "type": "options",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "resources",
+      "displayName": "Resources",
+      "type": "multiOptions",
+      "description": "Resources to listen to",
+      "required": true,
+      "default": [
+        "all"
+      ]
+    },
+    {
+      "name": "operations",
+      "displayName": "Operations",
+      "type": "multiOptions",
+      "description": "Operations to listen to",
+      "required": true,
+      "default": [
+        "all"
+      ]
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_taigaTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.taigaTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

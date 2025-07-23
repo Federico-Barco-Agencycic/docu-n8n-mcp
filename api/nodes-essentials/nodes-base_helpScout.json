@@ -1,0 +1,115 @@
+{
+  "node_type": "nodes-base.helpScout",
+  "display_name": "Help Scout",
+  "description": "Consume Help Scout API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "conversation"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "mailboxId",
+      "displayName": "Mailbox Name or ID",
+      "type": "options",
+      "description": "ID of a mailbox where the conversation is being created. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "status",
+      "displayName": "Status",
+      "type": "options",
+      "description": "Conversation status",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "subject",
+      "displayName": "Subject",
+      "type": "string",
+      "description": "Conversation’s subject",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "type",
+      "displayName": "Type",
+      "type": "options",
+      "description": "Conversation type",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "conversationId",
+      "displayName": "Conversation ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "conversationId",
+      "displayName": "Conversation ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "customerId",
+      "displayName": "Customer ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a new conversation"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a conversation"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a conversation"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many conversations"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_helpScout.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.helpScout"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

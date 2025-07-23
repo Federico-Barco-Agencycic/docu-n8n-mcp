@@ -1,0 +1,95 @@
+{
+  "node_type": "nodes-langchain.documentGithubLoader",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "GitHub Document Loader",
+  "description": "Use GitHub data as input to this chain",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "1.1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: GitHub Document Loader node documentation\ndescription: Learn how to use the GitHub Document Loader node in n8n. Follow technical documentation to integrate GitHub Document Loader node into your workflows.\ncontentType: [integration, reference]\n---\n\n# GitHub Document Loader node\n\nUse the GitHub Document Loader node to load data from a GitHub repository for [vector stores](/glossary.md#ai-vector-store) or summarization.\n\nOn this page, you'll find the node parameters for the GitHub Document Loader node, and links to more resources.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/github.md). This node doesn't support OAuth for authentication.\n///\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\n## Node parameters\n\n* **Text Splitting**: Choose from:\n\t* **Simple**: Uses the [Recursive Character Text Splitter](/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.textsplitterrecursivecharactertextsplitter.md) with a chunk size of 1000 and an overlap of 200.\n    * **Custom**: Allows you to connect a text splitter of your choice.\n* **Repository Link**: Enter the URL of your GitHub repository.\n* **Branch**: Enter the branch name to use.\n\n## Node options\n\n* **Recursive**: Select whether to include sub-folders and files (turned on) or not (turned off).\n* **Ignore Paths**: Enter directories to ignore.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'github-document-loader') ]]\n\n## Related resources\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-doc-loaders-link.md\"\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "This node must be connected to a vector store. <a data-action='openSelectiveNodeCreator' data-action-parameter-connectiontype='ai_vectorStore'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "Repository Link",
+      "name": "repository",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "displayName": "Branch",
+      "name": "branch",
+      "type": "string",
+      "default": "main"
+    },
+    {
+      "displayName": "Text Splitting",
+      "name": "textSplittingMode",
+      "type": "options",
+      "default": "simple",
+      "options": [
+        {
+          "name": "Simple",
+          "value": "simple",
+          "description": "Splits every 1000 characters with a 200 character overlap"
+        },
+        {
+          "name": "Custom",
+          "value": "custom",
+          "description": "Connect a custom text-splitting sub-node"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1.1
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Options",
+      "name": "additionalOptions",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Recursive",
+          "name": "recursive",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Ignore Paths",
+          "name": "ignorePaths",
+          "type": "string",
+          "description": "Comma-separated list of paths to ignore, e.g. \"docs, src/tests",
+          "default": ""
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "githubApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

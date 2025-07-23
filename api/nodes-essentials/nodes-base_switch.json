@@ -1,0 +1,28 @@
+{
+  "node_type": "nodes-base.switch",
+  "display_name": "Switch",
+  "description": "Route items depending on defined expression or rules",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "3.2",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "looseTypeValidation",
+      "displayName": "Convert types where required",
+      "type": "boolean",
+      "description": "If the type of an expression doesn't match the type of the comparison, n8n will try to cast the expression to the required type. E.g. for booleans <code>\"false\"</code> or <code>0</code> will be cast to <code>false</code>",
+      "required": false,
+      "default": false
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_switch.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.switch"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

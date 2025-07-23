@@ -1,0 +1,203 @@
+{
+  "node_type": "nodes-base.sendInBlueTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Brevo Trigger",
+  "description": "Starts the workflow when Brevo events occur",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 1,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "type",
+      "type": "options",
+      "default": "transactional",
+      "options": [
+        {
+          "name": "Inbound",
+          "value": "inbound"
+        },
+        {
+          "name": "Marketing",
+          "value": "marketing"
+        },
+        {
+          "name": "Transactional",
+          "value": "transactional"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "Trigger On",
+      "name": "events",
+      "type": "multiOptions",
+      "default": [],
+      "options": [
+        {
+          "name": "Email Blocked",
+          "value": "blocked",
+          "description": "Triggers when transactional email is blocked"
+        },
+        {
+          "name": "Email Clicked",
+          "value": "click",
+          "description": "Triggers when transactional email is clicked"
+        },
+        {
+          "name": "Email Deferred",
+          "value": "deferred",
+          "description": "Triggers when transactional email is deferred"
+        },
+        {
+          "name": "Email Delivered",
+          "value": "delivered",
+          "description": "Triggers when transactional email is delivered"
+        },
+        {
+          "name": "Email Hard Bounce",
+          "value": "hardBounce",
+          "description": "Triggers when transactional email is hard bounced"
+        },
+        {
+          "name": "Email Invalid",
+          "value": "invalid",
+          "description": "Triggers when transactional email is invalid"
+        },
+        {
+          "name": "Email Marked Spam",
+          "value": "spam",
+          "description": "Triggers when transactional email is set to spam"
+        },
+        {
+          "name": "Email Opened",
+          "value": "opened",
+          "description": "Triggers when transactional email is opened"
+        },
+        {
+          "name": "Email Sent",
+          "value": "request",
+          "description": "Triggers when transactional email is sent"
+        },
+        {
+          "name": "Email Soft-Bounce",
+          "value": "softBounce",
+          "description": "Triggers when transactional email is soft bounced"
+        },
+        {
+          "name": "Email Unique Open",
+          "value": "uniqueOpened",
+          "description": "Triggers when transactional email is unique opened"
+        },
+        {
+          "name": "Email Unsubscribed",
+          "value": "unsubscribed",
+          "description": "Triggers when transactional email is unsubscribed"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "type": [
+            "transactional"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Trigger On",
+      "name": "events",
+      "type": "multiOptions",
+      "default": [],
+      "options": [
+        {
+          "name": "Marketing Email Clicked",
+          "value": "click",
+          "description": "Triggers when marketing email is clicked"
+        },
+        {
+          "name": "Marketing Email Delivered",
+          "value": "delivered",
+          "description": "Triggers when marketing email is delivered"
+        },
+        {
+          "name": "Marketing Email Hard Bounce",
+          "value": "hardBounce",
+          "description": "Triggers when marketing email is hard bounced"
+        },
+        {
+          "name": "Marketing Email List Addition",
+          "value": "listAddition",
+          "description": "Triggers when marketing email is clicked"
+        },
+        {
+          "name": "Marketing Email Opened",
+          "value": "opened",
+          "description": "Triggers when marketing email is opened"
+        },
+        {
+          "name": "Marketing Email Soft Bounce",
+          "value": "softBounce",
+          "description": "Triggers when marketing email is soft bounced"
+        },
+        {
+          "name": "Marketing Email Spam",
+          "value": "spam",
+          "description": "Triggers when marketing email is spam"
+        },
+        {
+          "name": "Marketing Email Unsubscribed",
+          "value": "unsubscribed",
+          "description": "Triggers when marketing email is unsubscribed"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "type": [
+            "marketing"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Trigger On",
+      "name": "events",
+      "type": "multiOptions",
+      "default": [],
+      "options": [
+        {
+          "name": "Inbound Email Processed",
+          "value": "inboundEmailProcessed",
+          "description": "Triggers when inbound email is processed"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "type": [
+            "inbound"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "sendInBlueApi",
+      "required": true,
+      "displayOptions": {
+        "show": {}
+      }
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

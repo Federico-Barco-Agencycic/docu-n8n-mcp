@@ -1,0 +1,224 @@
+{
+  "node_type": "nodes-base.clickUpTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "ClickUp Trigger",
+  "description": "Handle ClickUp events via webhooks (Beta)",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 1,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: ClickUp Trigger node documentation\ndescription: Learn how to use the ClickUp Trigger node in n8n. Follow technical documentation to integrate ClickUp Trigger node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# ClickUp Trigger node\n\n[ClickUp](https://clickup.com/){:target=_blank .external-link} is a cloud-based collaboration and project management tool suitable for businesses of all sizes and industries. Features include communication and collaboration tools, task assignments and statuses, alerts and a task toolbar.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/clickup.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [ClickUp Trigger integrations](https://n8n.io/integrations/clickup-trigger/){:target=_blank .external-link} page.\n///\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "accessToken",
+      "options": [
+        {
+          "name": "Access Token",
+          "value": "accessToken"
+        },
+        {
+          "name": "OAuth2",
+          "value": "oAuth2"
+        }
+      ]
+    },
+    {
+      "displayName": "Team Name or ID",
+      "name": "team",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "typeOptions": {
+        "loadOptionsMethod": "getTeams"
+      }
+    },
+    {
+      "displayName": "Events",
+      "name": "events",
+      "type": "multiOptions",
+      "default": [],
+      "options": [
+        {
+          "name": "*",
+          "value": "*"
+        },
+        {
+          "name": "folder.created",
+          "value": "folderCreated"
+        },
+        {
+          "name": "folder.deleted",
+          "value": "folderDeleted"
+        },
+        {
+          "name": "folder.updated",
+          "value": "folderUpdated"
+        },
+        {
+          "name": "goal.created",
+          "value": "goalCreated"
+        },
+        {
+          "name": "goal.deleted",
+          "value": "goalDeleted"
+        },
+        {
+          "name": "goal.updated",
+          "value": "goalUpdated"
+        },
+        {
+          "name": "keyResult.created",
+          "value": "keyResultCreated"
+        },
+        {
+          "name": "keyResult.deleted",
+          "value": "keyResultDelete"
+        },
+        {
+          "name": "keyResult.updated",
+          "value": "keyResultUpdated"
+        },
+        {
+          "name": "list.created",
+          "value": "listCreated"
+        },
+        {
+          "name": "list.deleted",
+          "value": "listDeleted"
+        },
+        {
+          "name": "list.updated",
+          "value": "listUpdated"
+        },
+        {
+          "name": "space.created",
+          "value": "spaceCreated"
+        },
+        {
+          "name": "space.deleted",
+          "value": "spaceDeleted"
+        },
+        {
+          "name": "space.updated",
+          "value": "spaceUpdated"
+        },
+        {
+          "name": "task.assignee.updated",
+          "value": "taskAssigneeUpdated"
+        },
+        {
+          "name": "task.comment.posted",
+          "value": "taskCommentPosted"
+        },
+        {
+          "name": "task.comment.updated",
+          "value": "taskCommentUpdated"
+        },
+        {
+          "name": "task.created",
+          "value": "taskCreated"
+        },
+        {
+          "name": "task.deleted",
+          "value": "taskDeleted"
+        },
+        {
+          "name": "task.dueDate.updated",
+          "value": "taskDueDateUpdated"
+        },
+        {
+          "name": "task.moved",
+          "value": "taskMoved"
+        },
+        {
+          "name": "task.status.updated",
+          "value": "taskStatusUpdated"
+        },
+        {
+          "name": "task.tag.updated",
+          "value": "taskTagUpdated"
+        },
+        {
+          "name": "task.timeEstimate.updated",
+          "value": "taskTimeEstimateUpdated"
+        },
+        {
+          "name": "task.timeTracked.updated",
+          "value": "taskTimeTrackedUpdated"
+        },
+        {
+          "name": "task.updated",
+          "value": "taskUpdated"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Folder ID",
+          "name": "folderId",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "List ID",
+          "name": "listId",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Space ID",
+          "name": "spaceId",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Task ID",
+          "name": "taskId",
+          "type": "string",
+          "default": ""
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "clickUpApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "accessToken"
+          ]
+        }
+      }
+    },
+    {
+      "name": "clickUpOAuth2Api",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

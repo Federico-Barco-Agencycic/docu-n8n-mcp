@@ -1,0 +1,38 @@
+{
+  "node_type": "nodes-langchain.manualChatTrigger",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "Manual Chat Trigger",
+  "description": "Runs the flow on new manual chat message",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "1.1",
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "This node is where a manual chat workflow execution starts. To make one, go back to the canvas and click ‘Chat’",
+      "name": "notice",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Chat and execute workflow",
+      "name": "openChat",
+      "type": "button",
+      "default": "",
+      "typeOptions": {
+        "buttonConfig": {
+          "action": "openChat"
+        }
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

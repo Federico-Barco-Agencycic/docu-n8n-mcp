@@ -1,0 +1,158 @@
+{
+  "node_type": "nodes-base.koBoToolboxTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "KoBoToolbox Trigger",
+  "description": "Process KoBoToolbox submissions",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 1,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: KoboToolbox Trigger node documentation\ndescription: Learn how to use the KoboToolbox Trigger node in n8n. Follow technical documentation to integrate KoboToolbox Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# KoboToolbox Trigger node\n\n[KoboToolbox](https://www.kobotoolbox.org/){:target=_blank .external-link} is a field survey and data collection tool to design interactive forms to be completed offline from mobile devices. It's available both as a free cloud solution or as a self-hosted version.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/kobotoolbox.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [KoboToolbox Trigger integrations](https://n8n.io/integrations/kobotoolbox-trigger/){:target=_blank .external-link} page.\n///\n\nThis node starts a workflow upon new submissions of a specified form. The trigger node handles the creation/deletion of the hook, so you don't need to do any setup in KoboToolbox.\n\nIt works the same way as the Get Submission operation in the [KoboToolbox](/integrations/builtin/app-nodes/n8n-nodes-base.kobotoolbox.md) node, including supporting the same reformatting options.\n",
+  "properties_schema": [
+    {
+      "displayName": "Form Name or ID",
+      "name": "formId",
+      "type": "options",
+      "default": "",
+      "description": "Form ID (e.g. aSAvYreNzVEkrWg5Gdcvg). Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "typeOptions": {
+        "loadOptionsMethod": "loadForms"
+      }
+    },
+    {
+      "displayName": "Trigger On",
+      "name": "triggerOn",
+      "type": "options",
+      "default": "formSubmission",
+      "options": [
+        {
+          "name": "On Form Submission",
+          "value": "formSubmission"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "Options",
+      "name": "formatOptions",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Download Attachments",
+          "name": "download",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to download submitted attachments"
+        },
+        {
+          "displayName": "Attachments Naming Scheme",
+          "name": "binaryNamingScheme",
+          "type": "options",
+          "default": "sequence",
+          "displayOptions": {
+            "show": {
+              "download": [
+                true
+              ]
+            }
+          },
+          "options": [
+            {
+              "name": "Sequence (e.g. attachment_N)",
+              "value": "sequence"
+            },
+            {
+              "name": "Use Original Form Question ID",
+              "value": "question"
+            }
+          ]
+        },
+        {
+          "displayName": "Attachments Prefix",
+          "name": "dataPropertyAttachmentsPrefixName",
+          "type": "string",
+          "displayOptions": {
+            "show": {
+              "download": [
+                true
+              ],
+              "binaryNamingScheme": [
+                "sequence"
+              ]
+            }
+          },
+          "default": "attachment_",
+          "description": "Prefix for name of the binary property to which to write the attachments. An index starting with 0 will be added. So if name is \"attachment_\" the first attachment is saved to \"attachment_0\""
+        },
+        {
+          "displayName": "File Size",
+          "name": "version",
+          "type": "options",
+          "displayOptions": {
+            "show": {
+              "download": [
+                true
+              ]
+            }
+          },
+          "default": "download_url",
+          "description": "Attachment size to retrieve, if multiple versions are available",
+          "options": [
+            {
+              "name": "Original",
+              "value": "download_url"
+            },
+            {
+              "name": "Small",
+              "value": "download_small_url"
+            },
+            {
+              "name": "Medium",
+              "value": "download_medium_url"
+            },
+            {
+              "name": "Large",
+              "value": "download_large_url"
+            }
+          ]
+        },
+        {
+          "displayName": "Multiselect Mask",
+          "name": "selectMask",
+          "type": "string",
+          "default": "select_*",
+          "description": "Comma-separated list of wildcard-style selectors for fields that should be treated as multiselect fields, i.e. parsed as arrays."
+        },
+        {
+          "displayName": "Number Mask",
+          "name": "numberMask",
+          "type": "string",
+          "default": "n_*, f_*",
+          "description": "Comma-separated list of wildcard-style selectors for fields that should be treated as numbers"
+        },
+        {
+          "displayName": "Reformat",
+          "name": "reformat",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to apply some reformatting to the submission data, such as parsing GeoJSON coordinates"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "koBoToolboxApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

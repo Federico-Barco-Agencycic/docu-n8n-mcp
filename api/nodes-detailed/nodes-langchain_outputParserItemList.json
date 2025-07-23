@@ -1,0 +1,52 @@
+{
+  "node_type": "nodes-langchain.outputParserItemList",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "Item List Output Parser",
+  "description": "Return the results as separate items",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Item List Output Parser node documentation\ndescription: Learn how to use the Item List Output Parser node in n8n. Follow technical documentation to integrate Item List Output Parser node into your workflows.\ncontentType: [integration, reference]\npriority: high\n---\n\n# Item List Output Parser node\n\nUse the Item List Output Parser node to return a list of items with a specific length and separator.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\n## Node options\n\n* **Number of Items**: Enter the maximum items to return. Set to `-1` for unlimited items.\n* **Separator**: Select the separator used to split the results into separate items. Defaults to a new line.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'item-list-output-parser') ]]\n\n## Related resources\n\nRefer to [LangChain's output parser documentation](https://js.langchain.com/docs/concepts/output_parsers){:target=_blank .external-link} for more information about the service.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "This node must be connected to an AI chain. <a data-action='openSelectiveNodeCreator' data-action-parameter-creatorview='AI'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Number Of Items",
+          "name": "numberOfItems",
+          "type": "number",
+          "default": -1,
+          "description": "Defines how many items should be returned maximally. If set to -1, there is no limit."
+        },
+        {
+          "displayName": "Separator",
+          "name": "separator",
+          "type": "string",
+          "default": "\\n",
+          "description": "Defines the separator that should be used to split the results into separate items. Defaults to a new line but can be changed depending on the data that should be returned."
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,83 @@
+{
+  "node_type": "nodes-langchain.toolSearXng",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "SearXNG",
+  "description": "Search in SearXNG",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: SearXNG Tool node documentation\ndescription: Learn how to use the SearXNG Tool node in n8n. Follow technical documentation to integrate SearXNG Tool node into your workflows.\ncontentType: [integration, reference]\n---\n\n# SearXNG Tool node\n\nThe SearXNG Tool node allows you to integrate search capabilities into your workflows using SearXNG. SearXNG aggregates results from multiple search engines without tracking you.\n\nOn this page, you'll find the node options for the SearXNG Tool node, and links to more resources.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/searxng.md).\n///\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\n## Node Options\n\n* **Number of Results**: The number of results to retrieve. The default is 10.\n* **Page Number**: The page number of the search results to retrieve. The default is 1.\n* **Language**: A two-letter [language code](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) to filter search results by language. For example: `en` for English, `fr` for French. The default is `en`.\n* **Safe Search**: Enables or disables filtering explicit content in the search results. Can be None, Moderate, or Strict. The default is None.\n\n## Running a SearXNG instance\n\nThis node requires running the SearXNG service on the same network as your n8n instance. Ensure your n8n instance has network access to the SearXNG service.\n\nThis node requires results in JSON format, which isn't enabled in the default SearXNG configuration. To enable JSON output, add `json` to the `search.formats` section of your SearXNG instance's `settings.yml` file:\n\n```yaml\nsearch:\n  # options available for formats: [html, csv, json, rss]\n  formats:\n    - html\n    - json\n```\n\nIf the `formats` section isn't there, add it. The exact location of the `settings.yml` file depends on how you installed SearXNG. You can find more by visiting the [SearXNG configuration documentation](https://docs.searxng.org/admin/installation-searxng.html#configuration).\n\nThe quality and availability of search results depend on the configuration and health of the SearXNG instance you use. \n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'searxng') ]]\n\n## Related resources\n\nRefer to [SearXNG's documentation](https://docs.searxng.org/) for more information about the service. You can also view [LangChain's documentation on their SearXNG integration](https://python.langchain.com/docs/integrations/tools/searx_search/).\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "This node must be connected to an AI agent. <a data-action='openSelectiveNodeCreator' data-action-parameter-creatorview='AI'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Number of Results",
+          "name": "numResults",
+          "type": "number",
+          "default": 10
+        },
+        {
+          "displayName": "Search Page Number",
+          "name": "pageNumber",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "displayName": "Language",
+          "name": "language",
+          "type": "string",
+          "default": "en",
+          "description": "Defines the language to use. It's a two-letter language code. (e.g., `en` for English, `es` for Spanish, or `fr` for French). Head to <a href=\"https://docs.searxng.org/user/search-syntax.html#select-language\">SearXNG search syntax page</a> for more info."
+        },
+        {
+          "displayName": "Safe Search",
+          "name": "safesearch",
+          "type": "options",
+          "options": [
+            {
+              "name": "None",
+              "value": 0
+            },
+            {
+              "name": "Moderate",
+              "value": 1
+            },
+            {
+              "name": "Strict",
+              "value": 2
+            }
+          ],
+          "default": 0,
+          "description": "Filter search results of engines which support safe search"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "searXngApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

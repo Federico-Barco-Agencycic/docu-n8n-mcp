@@ -1,0 +1,36 @@
+{
+  "node_type": "nodes-base.formTrigger",
+  "display_name": "n8n Form Trigger",
+  "description": "Generate webforms in n8n and pass their responses to the workflow",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "2.2",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "path",
+      "displayName": "Form Path",
+      "type": "string",
+      "description": "The final segment of the form's URL, both for test and production",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "formTitle",
+      "displayName": "Form Title",
+      "type": "string",
+      "description": "Shown at the top of the form",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_formTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.formTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

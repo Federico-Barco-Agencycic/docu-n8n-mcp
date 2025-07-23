@@ -1,0 +1,44 @@
+{
+  "node_type": "nodes-base.eventbriteTrigger",
+  "display_name": "Eventbrite Trigger",
+  "description": "Handle Eventbrite events via webhooks",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "organization",
+      "displayName": "Organization Name or ID",
+      "type": "options",
+      "description": "The Eventbrite Organization to work on. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "event",
+      "displayName": "Event Name or ID",
+      "type": "options",
+      "description": "Limit the triggers to this event. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "actions",
+      "displayName": "Actions",
+      "type": "multiOptions",
+      "description": "One or more action to subscribe to",
+      "required": true,
+      "default": []
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_eventbriteTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.eventbriteTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

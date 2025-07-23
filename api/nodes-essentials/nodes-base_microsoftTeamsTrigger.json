@@ -1,0 +1,53 @@
+{
+  "node_type": "nodes-base.microsoftTeamsTrigger",
+  "display_name": "Microsoft Teams Trigger",
+  "description": "Triggers workflows in n8n based on events from Microsoft Teams, such as new messages or team updates, using specified configurations.",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "teamId",
+      "displayName": "Team",
+      "type": "resourceLocator",
+      "description": "Select a team from the list, enter an ID or a URL",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "channelId",
+      "displayName": "Channel",
+      "type": "resourceLocator",
+      "description": "Select a channel from the list, enter an ID or a URL",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "chatId",
+      "displayName": "Chat",
+      "type": "resourceLocator",
+      "description": "Select a chat from the list, enter an ID or a URL",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_microsoftTeamsTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.microsoftTeamsTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

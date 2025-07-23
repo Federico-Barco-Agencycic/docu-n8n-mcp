@@ -6,9 +6,13 @@
   "scripts": {
     "build": "node scripts/build-static-api.js",
     "export": "node scripts/export-database.js",
+    "build-tools": "node scripts/build-documentation-tools.js",
+    "build-pages": "node scripts/build-github-pages.js",
+    "optimize": "node scripts/optimize-for-github-pages.js",
     "validate": "node scripts/validate-json.js",
     "serve": "python -m http.server 8080",
-    "deploy": "npm run export && npm run build && npm run validate",
+    "deploy": "npm run optimize && npm run validate",
+    "deploy-full": "npm run export && npm run build && npm run build-tools && npm run build-pages && npm run validate",
     "clean": "rimraf api/*",
     "dev": "npm run clean && npm run deploy && npm run serve"
   },

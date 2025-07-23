@@ -1,0 +1,40 @@
+{
+  "node_type": "nodes-base.awsTextract",
+  "display_name": "AWS Textract",
+  "description": "Sends data to Amazon Textract",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "analyzeExpense"
+    },
+    {
+      "name": "binaryPropertyName",
+      "displayName": "Input Data Field Name",
+      "type": "string",
+      "description": "The name of the input field containing the binary file data to be uploaded. Supported file types: PNG, JPEG.",
+      "required": true,
+      "default": "data"
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "analyzeExpense",
+      "name": "Analyze Receipt or Invoice"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_awsTextract.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.awsTextract"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

@@ -1,0 +1,19 @@
+{
+  "node_type": "nodes-base.executeWorkflowTrigger",
+  "display_name": "Execute Workflow Trigger",
+  "description": "Helpers for calling other n8n workflows. Used for designing modular, microservice-like workflows.",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1.1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_executeWorkflowTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.executeWorkflowTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

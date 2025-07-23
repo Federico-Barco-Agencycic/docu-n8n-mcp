@@ -1,0 +1,78 @@
+{
+  "node_type": "nodes-base.openWeatherMap",
+  "display_name": "OpenWeatherMap",
+  "description": "Gets current and future weather information",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "currentWeather"
+    },
+    {
+      "name": "cityName",
+      "displayName": "City",
+      "type": "string",
+      "description": "The name of the city to return the weather of",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "cityId",
+      "displayName": "City ID",
+      "type": "number",
+      "description": "The ID of city to return the weather of. List can be downloaded here: http://bulk.openweathermap.org/sample/.",
+      "required": true,
+      "default": 160001123
+    },
+    {
+      "name": "latitude",
+      "displayName": "Latitude",
+      "type": "string",
+      "description": "The latitude of the location to return the weather of",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "longitude",
+      "displayName": "Longitude",
+      "type": "string",
+      "description": "The longitude of the location to return the weather of",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "zipCode",
+      "displayName": "Zip Code",
+      "type": "string",
+      "description": "The ID of city to return the weather of. List can be downloaded here: http://bulk.openweathermap.org/sample/.",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "currentWeather",
+      "name": "Current Weather",
+      "description": "Returns the current weather data"
+    },
+    {
+      "operation": "5DayForecast",
+      "name": "5 Day Forecast",
+      "description": "Returns the weather data for the next 5 days"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_openWeatherMap.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.openWeatherMap"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

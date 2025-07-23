@@ -1,0 +1,81 @@
+{
+  "node_type": "nodes-base.executeWorkflow",
+  "display_name": "Execute Sub-workflow",
+  "description": "Execute another workflow",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1.2",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "hidden",
+      "required": false,
+      "default": "call_workflow"
+    },
+    {
+      "name": "workflowId",
+      "displayName": "Workflow ID",
+      "type": "string",
+      "description": "Note on using an expression here: if this node is set to run once with all items, they will all be sent to the <em>same</em> workflow. That workflow's ID will be calculated by evaluating the expression for the <strong>first input item</strong>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "workflowId",
+      "displayName": "Workflow",
+      "type": "workflowSelector",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "workflowPath",
+      "displayName": "Workflow Path",
+      "type": "string",
+      "description": "The path to local JSON workflow file to execute",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "workflowJson",
+      "displayName": "Workflow JSON",
+      "type": "json",
+      "description": "The workflow JSON code to execute",
+      "required": true,
+      "default": "\n\n\n"
+    },
+    {
+      "name": "workflowUrl",
+      "displayName": "Workflow URL",
+      "type": "string",
+      "description": "The URL from which to load the workflow from",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "workflowInputs",
+      "displayName": "Workflow Inputs",
+      "type": "resourceMapper",
+      "required": true,
+      "default": {
+        "mappingMode": "defineBelow",
+        "value": null
+      }
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "call_workflow",
+      "name": "Execute a Sub-Workflow"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_executeWorkflow.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.executeWorkflow"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

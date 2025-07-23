@@ -1,0 +1,35 @@
+{
+  "node_type": "nodes-base.figmaTrigger",
+  "display_name": "Figma Trigger (Beta)",
+  "description": "Starts the workflow when Figma events occur",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "teamId",
+      "displayName": "Team ID",
+      "type": "string",
+      "description": "Trigger will monitor this Figma Team for changes. Team ID can be found in the URL of a Figma Team page when viewed in a web browser: figma.com/files/team/{TEAM-ID}/.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "triggerOn",
+      "displayName": "Trigger On",
+      "type": "options",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_figmaTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.figmaTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

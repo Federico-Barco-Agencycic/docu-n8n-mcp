@@ -1,0 +1,101 @@
+{
+  "node_type": "nodes-base.simulate",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Simulate",
+  "description": "Simulate a node",
+  "category": "organization",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "Icon to Display on Canvas",
+      "name": "icon",
+      "type": "options",
+      "default": "n8n-nodes-base.noOp",
+      "description": "Select a type of node to show corresponding icon",
+      "typeOptions": {
+        "loadOptionsMethod": "getNodeTypes"
+      }
+    },
+    {
+      "displayName": "Subtitle",
+      "name": "subtitle",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "displayName": "Output",
+      "name": "output",
+      "type": "options",
+      "default": "all",
+      "options": [
+        {
+          "name": "Returns all input items",
+          "value": "all"
+        },
+        {
+          "name": "Specify how many of input items to return",
+          "value": "specify"
+        },
+        {
+          "name": "Specify output as JSON",
+          "value": "custom"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Number of Items",
+      "name": "numberOfItems",
+      "type": "number",
+      "default": 1,
+      "description": "Number input of items to return, if greater then input length all items will be returned",
+      "displayOptions": {
+        "show": {
+          "output": [
+            "specify"
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1
+      }
+    },
+    {
+      "displayName": "JSON",
+      "name": "jsonOutput",
+      "type": "json",
+      "default": "[\n  {\n  \"my_field_1\": \"value\",\n  \"my_field_2\": 1\n  }\n]",
+      "displayOptions": {
+        "show": {
+          "output": [
+            "custom"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 5
+      }
+    },
+    {
+      "displayName": "Execution Duration (MS)",
+      "name": "executionDuration",
+      "type": "number",
+      "default": 150,
+      "description": "Execution duration in milliseconds",
+      "typeOptions": {
+        "minValue": 0
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

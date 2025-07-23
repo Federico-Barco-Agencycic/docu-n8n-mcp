@@ -1,0 +1,38 @@
+{
+  "node_type": "nodes-langchain.vectorStoreSupabaseLoad",
+  "display_name": "Supabase: Load",
+  "description": "Load data from Supabase Vector Store index",
+  "category": "transform",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "tableName",
+      "displayName": "Table Name",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "queryName",
+      "displayName": "Query Name",
+      "type": "string",
+      "description": "Name of the query to use for matching documents",
+      "required": true,
+      "default": "match_documents"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_vectorStoreSupabaseLoad.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-langchain.vectorStoreSupabaseLoad"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

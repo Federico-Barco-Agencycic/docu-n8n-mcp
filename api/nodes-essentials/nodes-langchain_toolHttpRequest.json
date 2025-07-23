@@ -1,0 +1,48 @@
+{
+  "node_type": "nodes-langchain.toolHttpRequest",
+  "display_name": "HTTP Request Tool",
+  "description": "Makes an HTTP request and returns the response data",
+  "category": "output",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1.1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "method",
+      "displayName": "Method",
+      "type": "options",
+      "required": false,
+      "default": "GET"
+    },
+    {
+      "name": "url",
+      "displayName": "URL",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "nodeCredentialType",
+      "displayName": "Credential Type",
+      "type": "credentialsSelect",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "genericAuthType",
+      "displayName": "Generic Auth Type",
+      "type": "credentialsSelect",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_toolHttpRequest.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-langchain.toolHttpRequest"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

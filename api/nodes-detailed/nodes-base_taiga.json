@@ -1,0 +1,2320 @@
+{
+  "node_type": "nodes-base.taiga",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Taiga",
+  "description": "Consume Taiga API",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Taiga node documentation\ndescription: Learn how to use the Taiga node in n8n. Follow technical documentation to integrate Taiga node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Taiga node\n\nUse the Taiga node to automate work in Taiga, and integrate Taiga with other applications. n8n has built-in support for a wide range of Taiga features, including creating, updating, deleting, and getting issues. \n\nOn this page, you'll find a list of operations the Taiga node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Taiga credentials](/integrations/builtin/credentials/taiga.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n- **Issue**\n    - Create an issue\n    - Delete an issue\n    - Get an issue\n    - Get all issues\n    - Update an issue\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'taiga') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "issue",
+      "options": [
+        {
+          "name": "Epic",
+          "value": "epic"
+        },
+        {
+          "name": "Issue",
+          "value": "issue"
+        },
+        {
+          "name": "Task",
+          "value": "task"
+        },
+        {
+          "name": "User Story",
+          "value": "userStory"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create an epic",
+          "action": "Create an epic"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete an epic",
+          "action": "Delete an epic"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get an epic",
+          "action": "Get an epic"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many epics",
+          "action": "Get many epics"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update an epic",
+          "action": "Update an epic"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "epic"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Project Name or ID",
+      "name": "projectId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the project to which the epic belongs. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "epic"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getProjects"
+      }
+    },
+    {
+      "displayName": "Subject",
+      "name": "subject",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "epic"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Assigned To Name or ID",
+          "name": "assigned_to",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUsers"
+          },
+          "default": "",
+          "description": "ID of the user to assign the epic to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Blocked Note",
+          "name": "blocked_note",
+          "type": "string",
+          "default": "",
+          "description": "Reason why the epic is blocked. Requires \"Is Blocked\" toggle to be enabled."
+        },
+        {
+          "displayName": "Color",
+          "name": "color",
+          "type": "color",
+          "default": "0000FF",
+          "description": "Color code in hexadecimal notation"
+        },
+        {
+          "displayName": "Description",
+          "name": "description",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Is Blocked",
+          "name": "is_blocked",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the issue is blocked"
+        },
+        {
+          "displayName": "Tag Names or IDs",
+          "name": "tags",
+          "type": "multiOptions",
+          "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTags"
+          },
+          "default": []
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "epic"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Epic ID",
+      "name": "epicId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the epic to delete",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "epic"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Epic ID",
+      "name": "epicId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the epic to retrieve",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "epic"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Project Name or ID",
+      "name": "projectId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the project to which the epic belongs. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "epic"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getProjects"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "epic"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "epic"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Assignee Name or ID",
+          "name": "assigned_to",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUsers"
+          },
+          "default": "",
+          "description": "ID of the user whom the epic is assigned to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Is Closed",
+          "name": "statusIsClosed",
+          "description": "Whether the epic is closed",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "epic"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Project Name or ID",
+      "name": "projectId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the project to set the epic to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "epic"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getProjects"
+      }
+    },
+    {
+      "displayName": "Epic ID",
+      "name": "epicId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the epic to update",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "epic"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Assigned To Name or ID",
+          "name": "assigned_to",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUsers"
+          },
+          "default": "",
+          "description": "ID of the user to whom the epic is assigned. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Blocked Note",
+          "name": "blocked_note",
+          "type": "string",
+          "default": "",
+          "description": "Reason why the epic is blocked. Requires \"Is Blocked\" toggle to be enabled."
+        },
+        {
+          "displayName": "Color",
+          "name": "color",
+          "type": "color",
+          "default": "0000FF",
+          "description": "Color code in hexadecimal notation"
+        },
+        {
+          "displayName": "Description",
+          "name": "description",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Is Blocked",
+          "name": "is_blocked",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the epic is blocked"
+        },
+        {
+          "displayName": "Subject",
+          "name": "subject",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Tag Names or IDs",
+          "name": "tags",
+          "type": "multiOptions",
+          "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTags"
+          },
+          "default": []
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "epic"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create an issue",
+          "action": "Create an issue"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete an issue",
+          "action": "Delete an issue"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get an issue",
+          "action": "Get an issue"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many issues",
+          "action": "Get many issues"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update an issue",
+          "action": "Update an issue"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "issue"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Project Name or ID",
+      "name": "projectId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the project to which the issue belongs. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "issue"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getProjects"
+      }
+    },
+    {
+      "displayName": "Subject",
+      "name": "subject",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "issue"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Assignee Name or ID",
+          "name": "assigned_to",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUsers"
+          },
+          "default": "",
+          "description": "ID of the user to whom the issue is assigned. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Blocked Note",
+          "name": "blocked_note",
+          "type": "string",
+          "default": "",
+          "description": "Reason why the issue is blocked. Requires \"Is Blocked\" toggle to be enabled."
+        },
+        {
+          "displayName": "Description",
+          "name": "description",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Is Blocked",
+          "name": "is_blocked",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the issue is blocked"
+        },
+        {
+          "displayName": "Milestone (Sprint) Name or ID",
+          "name": "milestone",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getMilestones"
+          },
+          "default": "",
+          "description": "ID of the milestone of the issue. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Priority Name or ID",
+          "name": "priority",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getPriorities"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Severity Name or ID",
+          "name": "severity",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getSeverities"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Status Name or ID",
+          "name": "status",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getIssueStatuses"
+          },
+          "default": "",
+          "description": "ID of the status of the issue. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Tag Names or IDs",
+          "name": "tags",
+          "type": "multiOptions",
+          "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTags"
+          },
+          "default": []
+        },
+        {
+          "displayName": "Type Name or ID",
+          "name": "type",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTypes"
+          },
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "issue"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Issue ID",
+      "name": "issueId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the issue to delete",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "issue"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Issue ID",
+      "name": "issueId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the issue to retrieve",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "issue"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Project Name or ID",
+      "name": "projectId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the project to which the issue belongs. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "issue"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getProjects"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "issue"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "issue"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Assignee Name or ID",
+          "name": "assigned_to",
+          "description": "ID of the user to assign the issue to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUsers"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Order By",
+          "name": "orderBy",
+          "description": "Field to order the issues by",
+          "type": "options",
+          "options": [
+            {
+              "name": "Assigned To",
+              "value": "assigned_to"
+            },
+            {
+              "name": "Created Date",
+              "value": "created_date"
+            },
+            {
+              "name": "Modified Date",
+              "value": "modified_date"
+            },
+            {
+              "name": "Owner",
+              "value": "owner"
+            },
+            {
+              "name": "Priority",
+              "value": "priority"
+            },
+            {
+              "name": "Severity",
+              "value": "severity"
+            },
+            {
+              "name": "Status",
+              "value": "status"
+            },
+            {
+              "name": "Subject",
+              "value": "subject"
+            },
+            {
+              "name": "Type",
+              "value": "type"
+            }
+          ],
+          "default": "assigned_to"
+        },
+        {
+          "displayName": "Owner Name or ID",
+          "name": "owner",
+          "description": "ID of the owner of the issue. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUsers"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Priority Name or ID",
+          "name": "priority",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getPriorities"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Role Name or ID",
+          "name": "role",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getRoles"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Severity Name or ID",
+          "name": "severity",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getSeverities"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Status Name or ID",
+          "name": "status",
+          "description": "ID of the status of the issue. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getIssueStatuses"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Tag Names or IDs",
+          "name": "tags",
+          "type": "multiOptions",
+          "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTags"
+          },
+          "default": []
+        },
+        {
+          "displayName": "Type Name or ID",
+          "name": "type",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTypes"
+          },
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "issue"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Project Name or ID",
+      "name": "projectId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the project to set the issue to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "issue"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getProjects"
+      }
+    },
+    {
+      "displayName": "Issue ID",
+      "name": "issueId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the issue to update",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "issue"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Assignee Name or ID",
+          "name": "assigned_to",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUsers"
+          },
+          "default": "",
+          "description": "ID of the user whom the issue is assigned to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Blocked Note",
+          "name": "blocked_note",
+          "type": "string",
+          "default": "",
+          "description": "Reason why the issue is blocked. Requires \"Is Blocked\" toggle to be enabled."
+        },
+        {
+          "displayName": "Description",
+          "name": "description",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Is Blocked",
+          "name": "is_blocked",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the issue is blocked"
+        },
+        {
+          "displayName": "Milestone (Sprint) Name or ID",
+          "name": "milestone",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getMilestones"
+          },
+          "default": "",
+          "description": "ID of the milestone of the issue. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Priority Name or ID",
+          "name": "priority",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getPriorities"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Severity Name or ID",
+          "name": "severity",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getSeverities"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Status Name or ID",
+          "name": "status",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getIssueStatuses"
+          },
+          "default": "",
+          "description": "ID of the status of the issue. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Subject",
+          "name": "subject",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Tag Names or IDs",
+          "name": "tags",
+          "type": "multiOptions",
+          "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTags"
+          },
+          "default": []
+        },
+        {
+          "displayName": "Type Name or ID",
+          "name": "type",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTypes"
+          },
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "issue"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a task",
+          "action": "Create a task"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a task",
+          "action": "Delete a task"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a task",
+          "action": "Get a task"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many tasks",
+          "action": "Get many tasks"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a task",
+          "action": "Update a task"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Project Name or ID",
+      "name": "projectId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the project to which the task belongs. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getProjects"
+      }
+    },
+    {
+      "displayName": "Subject",
+      "name": "subject",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Assignee Name or ID",
+          "name": "assigned_to",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUsers"
+          },
+          "default": "",
+          "description": "ID of the user to whom the task is assigned. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Blocked Note",
+          "name": "blocked_note",
+          "type": "string",
+          "default": "",
+          "description": "Reason why the task is blocked. Requires \"Is Blocked\" toggle to be enabled."
+        },
+        {
+          "displayName": "Description",
+          "name": "description",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Is Blocked",
+          "name": "is_blocked",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the task is blocked"
+        },
+        {
+          "displayName": "Milestone (Sprint) Name or ID",
+          "name": "milestone",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getMilestones"
+          },
+          "default": "",
+          "description": "ID of the milestone of the task. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Status Name or ID",
+          "name": "status",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTaskStatuses"
+          },
+          "default": "",
+          "description": "ID of the status of the task. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Tag Names or IDs",
+          "name": "tags",
+          "type": "multiOptions",
+          "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTags"
+          },
+          "default": []
+        },
+        {
+          "displayName": "Taskboard Order",
+          "name": "taskboard_order",
+          "type": "number",
+          "default": 1,
+          "description": "Order of the task in the taskboard",
+          "typeOptions": {
+            "minValue": 1
+          }
+        },
+        {
+          "displayName": "User Story Name or ID",
+          "name": "user_story",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUserStories"
+          },
+          "default": "",
+          "description": "ID of the user story of the task. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "User Story Order",
+          "name": "us_order",
+          "type": "number",
+          "default": 1,
+          "description": "Order of the task in the user story",
+          "typeOptions": {
+            "minValue": 1
+          }
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Task ID",
+      "name": "taskId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the task to delete",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Task ID",
+      "name": "taskId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the task to retrieve",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Project Name or ID",
+      "name": "projectId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the project to which the task belongs. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getProjects"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Assignee Name or ID",
+          "name": "assigned_to",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUsers"
+          },
+          "default": "",
+          "description": "ID of the user whom the task is assigned to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Is Closed",
+          "name": "statusIsClosed",
+          "description": "Whether the task is closed",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Milestone (Sprint) Name or ID",
+          "name": "milestone",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getMilestones"
+          },
+          "default": "",
+          "description": "ID of the milestone of the task. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Owner Name or ID",
+          "name": "owner",
+          "description": "ID of the owner of the task. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUsers"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Role Name or ID",
+          "name": "role",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getRoles"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Status Name or ID",
+          "name": "status",
+          "description": "ID of the status of the task. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTaskStatuses"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Tag Names or IDs",
+          "name": "tags",
+          "type": "multiOptions",
+          "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTags"
+          },
+          "default": []
+        },
+        {
+          "displayName": "User Story Name or ID",
+          "name": "userStory",
+          "description": "ID of the user story to which the task belongs. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUserStories"
+          },
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Project Name or ID",
+      "name": "projectId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the project to set the task to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getProjects"
+      }
+    },
+    {
+      "displayName": "Task ID",
+      "name": "taskId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the task to update",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Assignee Name or ID",
+          "name": "assigned_to",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTypes"
+          },
+          "default": "",
+          "description": "ID of the user to assign the task to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Blocked Note",
+          "name": "blocked_note",
+          "type": "string",
+          "default": "",
+          "description": "Reason why the task is blocked. Requires \"Is Blocked\" toggle to be enabled."
+        },
+        {
+          "displayName": "Description",
+          "name": "description",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Is Blocked",
+          "name": "is_blocked",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the task is blocked"
+        },
+        {
+          "displayName": "Milestone (Sprint) Name or ID",
+          "name": "milestone",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getMilestones"
+          },
+          "default": "",
+          "description": "ID of the milestone of the task. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Status Name or ID",
+          "name": "status",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTaskStatuses"
+          },
+          "default": "",
+          "description": "ID of the status of the task. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Subject",
+          "name": "subject",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "User Story Name or ID",
+          "name": "user_story",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUserStories"
+          },
+          "default": "",
+          "description": "ID of the user story of the task. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "User Story Order",
+          "name": "us_order",
+          "type": "number",
+          "default": 1,
+          "typeOptions": {
+            "minValue": 1
+          },
+          "description": "Order of the task in the user story"
+        },
+        {
+          "displayName": "Tag Names or IDs",
+          "name": "tags",
+          "type": "multiOptions",
+          "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTags"
+          },
+          "default": []
+        },
+        {
+          "displayName": "Taskboard Order",
+          "name": "taskboard_order",
+          "type": "number",
+          "default": 1,
+          "typeOptions": {
+            "minValue": 1
+          },
+          "description": "Order of the task in the taskboard"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a user story",
+          "action": "Create a user story"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a user story",
+          "action": "Delete a user story"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a user story",
+          "action": "Get a user story"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many user stories",
+          "action": "Get many user stories"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a user story",
+          "action": "Update a user story"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "userStory"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Project Name or ID",
+      "name": "projectId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the project to which the user story belongs. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "userStory"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getProjects"
+      }
+    },
+    {
+      "displayName": "Subject",
+      "name": "subject",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "userStory"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Assignee Name or ID",
+          "name": "assigned_to",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUsers"
+          },
+          "default": "",
+          "description": "ID of the user to whom the user story is assigned. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Backlog Order",
+          "name": "backlog_order",
+          "type": "number",
+          "default": 1,
+          "typeOptions": {
+            "minValue": 1
+          },
+          "description": "Order of the user story in the backlog"
+        },
+        {
+          "displayName": "Blocked Note",
+          "name": "blocked_note",
+          "type": "string",
+          "default": "",
+          "description": "Reason why the user story is blocked. Requires \"Is Blocked\" toggle to be enabled."
+        },
+        {
+          "displayName": "Description",
+          "name": "description",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Is Blocked",
+          "name": "is_blocked",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the user story is blocked"
+        },
+        {
+          "displayName": "Kanban Order",
+          "name": "kanban_order",
+          "type": "number",
+          "default": 1,
+          "typeOptions": {
+            "minValue": 1
+          },
+          "description": "Order of the user story in the kanban"
+        },
+        {
+          "displayName": "Milestone (Sprint) Name or ID",
+          "name": "milestone",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getMilestones"
+          },
+          "default": "",
+          "description": "ID of the milestone of the user story. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Sprint Order",
+          "name": "sprint_order",
+          "type": "number",
+          "default": 1,
+          "typeOptions": {
+            "minValue": 1
+          },
+          "description": "Order of the user story in the milestone"
+        },
+        {
+          "displayName": "Status Name or ID",
+          "name": "status",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUserStoryStatuses"
+          },
+          "default": "",
+          "description": "ID of the status of the user story. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Tag Names or IDs",
+          "name": "tags",
+          "type": "multiOptions",
+          "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTags"
+          },
+          "default": []
+        },
+        {
+          "displayName": "Type Name or ID",
+          "name": "type",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTypes"
+          },
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "userStory"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "User Story ID",
+      "name": "userStoryId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the user story to delete",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "userStory"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "User Story ID",
+      "name": "userStoryId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the user story to retrieve",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "userStory"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Project Name or ID",
+      "name": "projectId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the project to which the user story belongs. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "userStory"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getProjects"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "userStory"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "userStory"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Assignee Name or ID",
+          "name": "assigned_to",
+          "description": "ID of the user whom the user story is assigned to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUsers"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Epic Name or ID",
+          "name": "epic",
+          "description": "ID of the epic to which the user story belongs. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getEpics"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Is Closed",
+          "name": "statusIsClosed",
+          "description": "Whether the user story is closed",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Is Archived",
+          "name": "statusIsArchived",
+          "description": "Whether the user story has been archived",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Milestone (Sprint) Name or ID",
+          "name": "milestone",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getMilestones"
+          },
+          "default": "",
+          "description": "ID of the milestone of the user story. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Role Name or ID",
+          "name": "role",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getRoles"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Status Name or ID",
+          "name": "status",
+          "description": "ID of the status of the user story. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUserStoryStatuses"
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Tag Names or IDs",
+          "name": "tags",
+          "type": "multiOptions",
+          "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTags"
+          },
+          "default": []
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "userStory"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Project Name or ID",
+      "name": "projectId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the project to set the user story to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "userStory"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getProjects"
+      }
+    },
+    {
+      "displayName": "User Story ID",
+      "name": "userStoryId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the user story to update",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "userStory"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Assignee Name or ID",
+          "name": "assigned_to",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUsers"
+          },
+          "default": "",
+          "description": "ID of the user to assign the the user story to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Backlog Order",
+          "name": "backlog_order",
+          "type": "number",
+          "default": 1,
+          "typeOptions": {
+            "minValue": 1
+          },
+          "description": "Order of the user story in the backlog"
+        },
+        {
+          "displayName": "Blocked Note",
+          "name": "blocked_note",
+          "type": "string",
+          "default": "",
+          "description": "Reason why the user story is blocked. Requires \"Is Blocked\" toggle to be enabled."
+        },
+        {
+          "displayName": "Description",
+          "name": "description",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Is Blocked",
+          "name": "is_blocked",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the user story is blocked"
+        },
+        {
+          "displayName": "Kanban Order",
+          "name": "kanban_order",
+          "type": "number",
+          "default": 1,
+          "typeOptions": {
+            "minValue": 1
+          },
+          "description": "Order of the user story in the kanban"
+        },
+        {
+          "displayName": "Milestone (Sprint) Name or ID",
+          "name": "milestone",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getMilestones"
+          },
+          "default": "",
+          "description": "ID of the milestone of the user story. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Subject",
+          "name": "subject",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Sprint Order",
+          "name": "sprint_order",
+          "type": "number",
+          "default": 1,
+          "typeOptions": {
+            "minValue": 1
+          },
+          "description": "Order of the user story in the milestone"
+        },
+        {
+          "displayName": "Status Name or ID",
+          "name": "status",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getUserStoryStatuses"
+          },
+          "default": "",
+          "description": "ID of the status of the user story. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Tag Names or IDs",
+          "name": "tags",
+          "type": "multiOptions",
+          "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTags"
+          },
+          "default": []
+        },
+        {
+          "displayName": "Type Name or ID",
+          "name": "type",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "projectId"
+            ],
+            "loadOptionsMethod": "getTypes"
+          },
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "userStory"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create an epic"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete an epic"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get an epic"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many epics"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update an epic"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "taigaApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

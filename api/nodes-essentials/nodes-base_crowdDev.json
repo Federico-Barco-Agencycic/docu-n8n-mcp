@@ -1,0 +1,103 @@
+{
+  "node_type": "nodes-base.crowdDev",
+  "display_name": "crowd.dev",
+  "description": "crowd.dev is an open-source suite of community and data tools built to unlock community-led growth for your organization.",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "activity"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "createWithMember"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "find"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "find"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "find"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "find"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "list"
+    },
+    {
+      "name": "username",
+      "displayName": "Username",
+      "type": "fixedCollection",
+      "required": true,
+      "default": {}
+    },
+    {
+      "name": "member",
+      "displayName": "Member",
+      "type": "string",
+      "description": "The ID of the member that performed the activity",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "type",
+      "displayName": "Type",
+      "type": "string",
+      "description": "Type of activity",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "createWithMember",
+      "name": "Create or Update with a Member",
+      "description": "Create or update an activity with a member"
+    },
+    {
+      "operation": "createForMember",
+      "name": "Create",
+      "description": "Create an activity for a member"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_crowdDev.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.crowdDev"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

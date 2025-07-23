@@ -1,0 +1,123 @@
+{
+  "node_type": "nodes-base.monicaCrm",
+  "display_name": "Monica CRM",
+  "description": "Consume the Monica CRM API",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "contact"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "activityTypeId",
+      "displayName": "Activity Type Name or ID",
+      "type": "options",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "contacts",
+      "displayName": "Contacts",
+      "type": "string",
+      "description": "Comma-separated list of IDs of the contacts to associate the activity with",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "happenedAt",
+      "displayName": "Happened At",
+      "type": "dateTime",
+      "description": "Date when the activity happened",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "summary",
+      "displayName": "Summary",
+      "type": "string",
+      "description": "Brief description of the activity - max 255 characters",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "activityId",
+      "displayName": "Activity ID",
+      "type": "string",
+      "description": "ID of the activity to delete",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "activityId",
+      "displayName": "Activity ID",
+      "type": "string",
+      "description": "ID of the activity to retrieve",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "activityId",
+      "displayName": "Activity ID",
+      "type": "string",
+      "description": "ID of the activity to update",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create an activity"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete an activity"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Retrieve an activity"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Retrieve many activities"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update an activity"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_monicaCrm.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.monicaCrm"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

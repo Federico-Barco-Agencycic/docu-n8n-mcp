@@ -1,0 +1,1004 @@
+{
+  "node_type": "nodes-base.sendGrid",
+  "package_name": "n8n-nodes-base",
+  "display_name": "SendGrid",
+  "description": "Consume SendGrid API",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: SendGrid node documentation\ndescription: Learn how to use the SendGrid node in n8n. Follow technical documentation to integrate SendGrid node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# SendGrid node\n\nUse the SendGrid node to automate work in SendGrid, and integrate SendGrid with other applications. n8n has built-in support for a wide range of SendGrid features, including creating, updating, deleting, and getting contacts, and lists, as well as sending emails. \n\nOn this page, you'll find a list of operations the SendGrid node supports and links to more resources.\n\n/// note | Credentials\nRefer to [SendGrid credentials](/integrations/builtin/credentials/sendgrid.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n* Contact\n    * Create/update a contact\n    * Delete a contact\n    * Get a contact by ID\n    * Get all contacts\n* List\n    * Create a list\n    * Delete a list\n    * Get a list\n    * Get all lists\n    * Update a list\n* Mail\n    * Send an email.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'sendgrid') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "list",
+      "options": [
+        {
+          "name": "Contact",
+          "value": "contact"
+        },
+        {
+          "name": "List",
+          "value": "list"
+        },
+        {
+          "name": "Mail",
+          "value": "mail"
+        }
+      ],
+      "required": true,
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a list",
+          "action": "Create a list"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a list",
+          "action": "Delete a list"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a list",
+          "action": "Get a list"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many lists",
+          "action": "Get many lists"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a list",
+          "action": "Update a list"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "list"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "list"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "list"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 1000
+      }
+    },
+    {
+      "displayName": "Name",
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "description": "Name of the list",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "List ID",
+      "name": "listId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the list",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "delete"
+          ],
+          "resource": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Delete Contacts",
+      "name": "deleteContacts",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to delete all contacts on the list",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "delete"
+          ],
+          "resource": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "List ID",
+      "name": "listId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the list",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Contact Sample",
+      "name": "contactSample",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return the contact sample",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "List ID",
+      "name": "listId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the list",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Name",
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "description": "Name of the list",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "upsert",
+      "options": [
+        {
+          "name": "Create or Update",
+          "value": "upsert",
+          "description": "Create a new contact, or update the current one if it already exists (upsert)",
+          "action": "Create or update a contact"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a contact",
+          "action": "Delete a contact"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a contact by ID",
+          "action": "Get a contact"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many contacts",
+          "action": "Get many contacts"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "contact"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "contact"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "contact"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 1000
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Query",
+          "name": "query",
+          "type": "string",
+          "default": "",
+          "description": "The query field accepts valid <a href=\"https://sendgrid.com/docs/for-developers/sending-email/segmentation-query-language/\">SGQL</a> for searching for a contact"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "contact"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "Primary email for the contact",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "upsert"
+          ],
+          "resource": [
+            "contact"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Address",
+          "name": "addressUi",
+          "placeholder": "Address",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": false
+          },
+          "default": {},
+          "options": [
+            {
+              "name": "addressValues",
+              "displayName": "Address",
+              "values": [
+                {
+                  "displayName": "Address Line 1",
+                  "name": "address1",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Address Line 2",
+                  "name": "address2",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Alternate Emails",
+          "name": "alternateEmails",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "City",
+          "name": "city",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Country",
+          "name": "country",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "First Name",
+          "name": "firstName",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Last Name",
+          "name": "lastName",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Postal Code",
+          "name": "postalCode",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "State/Province/Region",
+          "name": "stateProvinceRegion",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "List IDs",
+          "name": "listIdsUi",
+          "placeholder": "List IDs",
+          "description": "Adds a custom field to set also values which have not been predefined",
+          "type": "fixedCollection",
+          "default": {},
+          "options": [
+            {
+              "name": "listIdValues",
+              "displayName": "List IDs",
+              "values": [
+                {
+                  "displayName": "List Names or IDs",
+                  "name": "listIds",
+                  "type": "multiOptions",
+                  "typeOptions": {
+                    "loadOptionsMethod": "getListIds"
+                  },
+                  "default": [],
+                  "description": "ID of the field to set. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Custom Fields",
+          "name": "customFieldsUi",
+          "placeholder": "Add Custom Fields",
+          "description": "Adds custom fields",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "name": "customFieldValues",
+              "displayName": "Field",
+              "values": [
+                {
+                  "displayName": "Field Name or ID",
+                  "name": "fieldId",
+                  "type": "options",
+                  "typeOptions": {
+                    "loadOptionsMethod": "getCustomFields"
+                  },
+                  "default": "",
+                  "description": "ID of the field. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+                },
+                {
+                  "displayName": "Field Value",
+                  "name": "fieldValue",
+                  "type": "string",
+                  "default": "",
+                  "description": "Value for the field"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "contact"
+          ],
+          "operation": [
+            "upsert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Contact IDs",
+      "name": "ids",
+      "type": "string",
+      "default": "",
+      "description": "ID of the contact. Multiple can be added separated by comma.",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "contact"
+          ],
+          "operation": [
+            "delete"
+          ],
+          "deleteAll": [
+            false
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Delete All",
+      "name": "deleteAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether all contacts will be deleted",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "contact"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "By",
+      "name": "by",
+      "type": "options",
+      "default": "id",
+      "description": "Search the user by ID or email",
+      "options": [
+        {
+          "name": "ID",
+          "value": "id"
+        },
+        {
+          "name": "Email",
+          "value": "email"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "contact"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Contact ID",
+      "name": "contactId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the contact",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "contact"
+          ],
+          "by": [
+            "id"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "Email of the contact",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "contact"
+          ],
+          "by": [
+            "email"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "send",
+      "options": [
+        {
+          "name": "Send",
+          "value": "send",
+          "description": "Send an email",
+          "action": "Send an email"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "mail"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Sender Email",
+      "name": "fromEmail",
+      "type": "string",
+      "default": "",
+      "description": "Email address of the sender of the email",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "mail"
+          ],
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Sender Name",
+      "name": "fromName",
+      "type": "string",
+      "default": "",
+      "description": "Name of the sender of the email",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "mail"
+          ],
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Recipient Email",
+      "name": "toEmail",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of recipient email addresses",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "mail"
+          ],
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Subject",
+      "name": "subject",
+      "type": "string",
+      "default": "",
+      "description": "Subject of the email to send",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "mail"
+          ],
+          "operation": [
+            "send"
+          ],
+          "dynamicTemplate": [
+            false
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Dynamic Template",
+      "name": "dynamicTemplate",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this email will contain a dynamic template",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "mail"
+          ],
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "MIME Type",
+      "name": "contentType",
+      "type": "options",
+      "default": "text/plain",
+      "description": "MIME type of the email to send",
+      "options": [
+        {
+          "name": "Plain Text",
+          "value": "text/plain"
+        },
+        {
+          "name": "HTML",
+          "value": "text/html"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "mail"
+          ],
+          "operation": [
+            "send"
+          ],
+          "dynamicTemplate": [
+            false
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Message Body",
+      "name": "contentValue",
+      "type": "string",
+      "default": "",
+      "description": "Message body of the email to send",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "mail"
+          ],
+          "operation": [
+            "send"
+          ],
+          "dynamicTemplate": [
+            false
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Template Name or ID",
+      "name": "templateId",
+      "type": "options",
+      "default": [],
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "mail"
+          ],
+          "operation": [
+            "send"
+          ],
+          "dynamicTemplate": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getTemplateIds"
+      }
+    },
+    {
+      "displayName": "Dynamic Template Fields",
+      "name": "dynamicTemplateFields",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Fields",
+          "name": "fields",
+          "values": [
+            {
+              "displayName": "Key",
+              "name": "key",
+              "type": "string",
+              "default": "",
+              "description": "Key of the dynamic template field"
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": "",
+              "description": "Value for the field"
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "mail"
+          ],
+          "operation": [
+            "send"
+          ],
+          "dynamicTemplate": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Attachments",
+          "name": "attachments",
+          "type": "string",
+          "default": "",
+          "description": "Comma-separated list of binary properties"
+        },
+        {
+          "displayName": "BCC Email",
+          "name": "bccEmail",
+          "type": "string",
+          "default": "",
+          "description": "Comma-separated list of emails of the recipients of a blind carbon copy of the email"
+        },
+        {
+          "displayName": "Categories",
+          "name": "categories",
+          "type": "string",
+          "default": "",
+          "description": "Comma-separated list of categories. Each category name may not exceed 255 characters."
+        },
+        {
+          "displayName": "CC Email",
+          "name": "ccEmail",
+          "type": "string",
+          "default": "",
+          "description": "Comma-separated list of emails of the recipients of a carbon copy of the email"
+        },
+        {
+          "displayName": "Enable Sandbox",
+          "name": "enableSandbox",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to use to the sandbox for testing out email-sending functionality"
+        },
+        {
+          "displayName": "IP Pool Name",
+          "name": "ipPoolName",
+          "type": "string",
+          "default": "",
+          "description": "The IP Pool that you would like to send this email from"
+        },
+        {
+          "displayName": "Reply-To Email",
+          "name": "replyToEmail",
+          "type": "string",
+          "default": "",
+          "placeholder": "reply@domain.com",
+          "description": "Comma-separated list of email addresses that will appear in the reply-to field of the email"
+        },
+        {
+          "displayName": "Headers",
+          "name": "headers",
+          "placeholder": "Add Header",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "displayName": "Details",
+              "name": "details",
+              "values": [
+                {
+                  "displayName": "Key",
+                  "name": "key",
+                  "type": "string",
+                  "default": "",
+                  "description": "Key to set in the header object"
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": "",
+                  "description": "Value to set in the header object"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Send At",
+          "name": "sendAt",
+          "type": "dateTime",
+          "default": "",
+          "description": "When to deliver the email. Scheduling more than 72 hours in advance is forbidden."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "mail"
+          ],
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a list"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a list"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a list"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many lists"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update a list"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "sendGridApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

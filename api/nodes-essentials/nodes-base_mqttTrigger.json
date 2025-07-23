@@ -1,0 +1,19 @@
+{
+  "node_type": "nodes-base.mqttTrigger",
+  "display_name": "MQTT Trigger",
+  "description": "Listens to MQTT events",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mqttTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.mqttTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

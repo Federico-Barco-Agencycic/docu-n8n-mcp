@@ -1,0 +1,44 @@
+{
+  "node_type": "nodes-base.markdown",
+  "display_name": "Markdown",
+  "description": "Convert data between Markdown and HTML",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "html",
+      "displayName": "HTML",
+      "type": "string",
+      "description": "The HTML to be converted to markdown",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "markdown",
+      "displayName": "Markdown",
+      "type": "string",
+      "description": "The Markdown to be converted to html",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "destinationKey",
+      "displayName": "Destination Key",
+      "type": "string",
+      "description": "The field to put the output in. Specify nested fields using dots, e.g.\"level1.level2.newKey\".",
+      "required": true,
+      "default": "data"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_markdown.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.markdown"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

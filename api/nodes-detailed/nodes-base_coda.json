@@ -1,0 +1,1752 @@
+{
+  "node_type": "nodes-base.coda",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Coda",
+  "description": "Consume Coda API",
+  "category": "output",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "1.1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Coda node documentation\ndescription: Learn how to use the Coda node in n8n. Follow technical documentation to integrate Coda node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Coda node\n\nUse the Coda node to automate work in Coda, and integrate Coda with other applications. n8n has built-in support for a wide range of Coda features, including creating, getting, and deleting controls, formulas, tables, and views.\n\nOn this page, you'll find a list of operations the Coda node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Coda credentials](/integrations/builtin/credentials/coda.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Control\n    * Get a control\n    * Get all controls\n* Formula\n    * Get a formula\n    * Get all formulas\n* Table\n    * Create/Insert a row\n    * Delete one or multiple rows\n    * Get all columns\n    * Get all the rows\n    * Get a column\n    * Get a row\n    * Pushes a button\n* View\n    * Delete view row\n    * Get a view\n    * Get all views\n    * Get all views columns\n    * Get all views rows\n    * Update row\n    * Push view button\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'coda') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "table",
+      "options": [
+        {
+          "name": "Control",
+          "value": "control",
+          "description": "Controls provide a user-friendly way to input a value that can affect other parts of the doc"
+        },
+        {
+          "name": "Formula",
+          "value": "formula",
+          "description": "Formulas can be great for performing one-off computations"
+        },
+        {
+          "name": "Table",
+          "value": "table",
+          "description": "Access data of tables in documents"
+        },
+        {
+          "name": "View",
+          "value": "view",
+          "description": "Access data of views in documents"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "createRow",
+      "options": [
+        {
+          "name": "Create Row",
+          "value": "createRow",
+          "description": "Create/Insert a row",
+          "action": "Create a row"
+        },
+        {
+          "name": "Delete Row",
+          "value": "deleteRow",
+          "description": "Delete one or multiple rows",
+          "action": "Delete a row"
+        },
+        {
+          "name": "Get All Columns",
+          "value": "getAllColumns",
+          "description": "Get all columns in a table",
+          "action": "Get all columns"
+        },
+        {
+          "name": "Get All Rows",
+          "value": "getAllRows",
+          "description": "Get all rows in a table",
+          "action": "Get all rows"
+        },
+        {
+          "name": "Get Column",
+          "value": "getColumn",
+          "description": "Get a column",
+          "action": "Get a column"
+        },
+        {
+          "name": "Get Row",
+          "value": "getRow",
+          "description": "Get a row",
+          "action": "Get a row"
+        },
+        {
+          "name": "Push Button",
+          "value": "pushButton",
+          "description": "Pushes a button",
+          "action": "Push a button"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "createRow"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "Table Name or ID",
+      "name": "tableId",
+      "type": "options",
+      "default": "",
+      "description": "The table to create the row in. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "createRow"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "docId"
+        ],
+        "loadOptionsMethod": "getTables"
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Disable Parsing",
+          "name": "disableParsing",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the API will not attempt to parse the data in any way"
+        },
+        {
+          "displayName": "Key Columns",
+          "name": "keyColumns",
+          "type": "string",
+          "default": "",
+          "description": "Optional column IDs, URLs, or names (fragile and discouraged), specifying columns to be used as upsert keys. If more than one separate by a comma (,)."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "createRow"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getRow"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "Table Name or ID",
+      "name": "tableId",
+      "type": "options",
+      "default": "",
+      "description": "The table to get the row from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getRow"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "docId"
+        ],
+        "loadOptionsMethod": "getTables"
+      }
+    },
+    {
+      "displayName": "Row ID",
+      "name": "rowId",
+      "type": "string",
+      "default": "",
+      "description": "ID or name of the row. Names are discouraged because they're easily prone to being changed by users. If you're using a name, be sure to URI-encode it. If there are multiple rows with the same value in the identifying column, an arbitrary one will be selected",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getRow"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "RAW Data",
+          "name": "rawData",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to return the data exactly in the way it got received from the API"
+        },
+        {
+          "displayName": "Use Column Names",
+          "name": "useColumnNames",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to use column names instead of column IDs in the returned output. This is generally discouraged as it is fragile. If columns are renamed, code using original names may throw errors."
+        },
+        {
+          "displayName": "ValueFormat",
+          "name": "valueFormat",
+          "type": "options",
+          "default": "",
+          "options": [
+            {
+              "name": "Simple",
+              "value": "simple"
+            },
+            {
+              "name": "Simple With Arrays",
+              "value": "simpleWithArrays"
+            },
+            {
+              "name": "Rich",
+              "value": "rich"
+            }
+          ],
+          "description": "The format that cell values are returned as"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getRow"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getAllRows"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "Table Name or ID",
+      "name": "tableId",
+      "type": "options",
+      "default": "",
+      "description": "The table to get the rows from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getAllRows"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "docId"
+        ],
+        "loadOptionsMethod": "getTables"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getAllRows"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getAllRows"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Query",
+          "name": "query",
+          "type": "string",
+          "default": "",
+          "description": "Query used to filter returned rows, specified as &lt;column_id_or_name&gt;:&lt;value&gt;. If you'd like to use a column name instead of an ID, you must quote it (e.g., \"My Column\":123). Also note that value is a JSON value; if you'd like to use a string, you must surround it in quotes (e.g., \"groceries\")."
+        },
+        {
+          "displayName": "RAW Data",
+          "name": "rawData",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to return the data exactly in the way it got received from the API"
+        },
+        {
+          "displayName": "Sort By",
+          "name": "sortBy",
+          "type": "options",
+          "default": "",
+          "options": [
+            {
+              "name": "Created At",
+              "value": "createdAt"
+            },
+            {
+              "name": "Natural",
+              "value": "natural"
+            }
+          ],
+          "description": "Specifies the sort order of the rows returned. If left unspecified, rows are returned by creation time ascending."
+        },
+        {
+          "displayName": "Use Column Names",
+          "name": "useColumnNames",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to use column names instead of column IDs in the returned output. This is generally discouraged as it is fragile. If columns are renamed, code using original names may throw errors."
+        },
+        {
+          "displayName": "ValueFormat",
+          "name": "valueFormat",
+          "type": "options",
+          "default": "",
+          "options": [
+            {
+              "name": "Simple",
+              "value": "simple"
+            },
+            {
+              "name": "Simple With Arrays",
+              "value": "simpleWithArrays"
+            },
+            {
+              "name": "Rich",
+              "value": "rich"
+            }
+          ],
+          "description": "The format that cell values are returned as"
+        },
+        {
+          "displayName": "Visible Only",
+          "name": "visibleOnly",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to return only visible rows and columns for the table"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getAllRows"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "deleteRow"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "Table Name or ID",
+      "name": "tableId",
+      "type": "options",
+      "default": "",
+      "description": "The table to delete the row in. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "deleteRow"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "docId"
+        ],
+        "loadOptionsMethod": "getTables"
+      }
+    },
+    {
+      "displayName": "Row ID",
+      "name": "rowId",
+      "type": "string",
+      "default": "",
+      "description": "Row IDs to delete",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "deleteRow"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "pushButton"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "Table Name or ID",
+      "name": "tableId",
+      "type": "options",
+      "default": "",
+      "description": "The table to get the row from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "pushButton"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "docId"
+        ],
+        "loadOptionsMethod": "getTables"
+      }
+    },
+    {
+      "displayName": "Row ID",
+      "name": "rowId",
+      "type": "string",
+      "default": "",
+      "description": "ID or name of the row. Names are discouraged because they're easily prone to being changed by users. If you're using a name, be sure to URI-encode it. If there are multiple rows with the same value in the identifying column, an arbitrary one will be selected",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "pushButton"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Column Name or ID",
+      "name": "columnId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "pushButton"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getColumns",
+        "loadOptionsDependsOn": [
+          "docId",
+          "tableId"
+        ]
+      }
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getColumn"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "Table Name or ID",
+      "name": "tableId",
+      "type": "options",
+      "default": "",
+      "description": "The table to get the row from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getColumn"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "docId"
+        ],
+        "loadOptionsMethod": "getTables"
+      }
+    },
+    {
+      "displayName": "Column ID",
+      "name": "columnId",
+      "type": "string",
+      "default": "",
+      "description": "The table to get the row from",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getColumn"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getAllColumns"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "Table Name or ID",
+      "name": "tableId",
+      "type": "options",
+      "default": "",
+      "description": "The table to get the row from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getAllColumns"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "docId"
+        ],
+        "loadOptionsMethod": "getTables"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getAllColumns"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "table"
+          ],
+          "operation": [
+            "getAllColumns"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a formula",
+          "action": "Get a formula"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many formulas",
+          "action": "Get many formulas"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "formula"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "formula"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "Formula ID",
+      "name": "formulaId",
+      "type": "string",
+      "default": "",
+      "description": "The formula to get the row from",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "formula"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "formula"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "formula"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "formula"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a control",
+          "action": "Get a control"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many controls",
+          "action": "Get many controls"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "control"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "control"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "Control ID",
+      "name": "controlId",
+      "type": "string",
+      "default": "",
+      "description": "The control to get the row from",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "control"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "control"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "control"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "control"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Delete Row",
+          "value": "deleteViewRow",
+          "description": "Delete view row",
+          "action": "Delete a view row"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a view",
+          "action": "Get a view"
+        },
+        {
+          "name": "Get Columns",
+          "value": "getAllViewColumns",
+          "description": "Get all views columns",
+          "action": "Get all view columns"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many views",
+          "action": "Get many views"
+        },
+        {
+          "name": "Get Rows",
+          "value": "getAllViewRows",
+          "description": "Get all views rows",
+          "action": "Get a view row"
+        },
+        {
+          "name": "Push Button",
+          "value": "pushViewButton",
+          "description": "Push view button",
+          "action": "Push a view button"
+        },
+        {
+          "name": "Update Row",
+          "value": "updateViewRow",
+          "action": "Update a view row"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "View ID",
+      "name": "viewId",
+      "type": "string",
+      "default": "",
+      "description": "The view to get the row from",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "getAllViewRows"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "View Name or ID",
+      "name": "viewId",
+      "type": "options",
+      "default": "",
+      "description": "The table to get the rows from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "getAllViewRows"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "docId"
+        ],
+        "loadOptionsMethod": "getViews"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "getAllViewRows"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "getAllViewRows"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Query",
+          "name": "query",
+          "type": "string",
+          "default": "",
+          "description": "Query used to filter returned rows, specified as &lt;column_id_or_name&gt;:&lt;value&gt;. If you'd like to use a column name instead of an ID, you must quote it (e.g., \"My Column\":123). Also note that value is a JSON value; if you'd like to use a string, you must surround it in quotes (e.g., \"groceries\")."
+        },
+        {
+          "displayName": "Use Column Names",
+          "name": "useColumnNames",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to use column names instead of column IDs in the returned output. This is generally discouraged as it is fragile. If columns are renamed, code using original names may throw errors."
+        },
+        {
+          "displayName": "ValueFormat",
+          "name": "valueFormat",
+          "type": "options",
+          "default": "",
+          "options": [
+            {
+              "name": "Simple",
+              "value": "simple"
+            },
+            {
+              "name": "Simple With Arrays",
+              "value": "simpleWithArrays"
+            },
+            {
+              "name": "Rich",
+              "value": "rich"
+            }
+          ],
+          "description": "The format that cell values are returned as"
+        },
+        {
+          "displayName": "RAW Data",
+          "name": "rawData",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to return the data exactly in the way it got received from the API"
+        },
+        {
+          "displayName": "Sort By",
+          "name": "sortBy",
+          "type": "options",
+          "default": "",
+          "options": [
+            {
+              "name": "Created At",
+              "value": "createdAt"
+            },
+            {
+              "name": "Natural",
+              "value": "natural"
+            }
+          ],
+          "description": "Specifies the sort order of the rows returned. If left unspecified, rows are returned by creation time ascending."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "getAllViewRows"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "getAllViewColumns"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "View Name or ID",
+      "name": "viewId",
+      "type": "options",
+      "default": "",
+      "description": "The table to get the rows from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "getAllViewColumns"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "docId"
+        ],
+        "loadOptionsMethod": "getViews"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "getAllViewColumns"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "getAllViewColumns"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "deleteViewRow"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "View Name or ID",
+      "name": "viewId",
+      "type": "options",
+      "default": "",
+      "description": "The view to get the row from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "deleteViewRow"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getViews",
+        "loadOptionsDependsOn": [
+          "docId"
+        ]
+      }
+    },
+    {
+      "displayName": "Row Name or ID",
+      "name": "rowId",
+      "type": "options",
+      "default": "",
+      "description": "The view to get the row from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "deleteViewRow"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getViewRows",
+        "loadOptionsDependsOn": [
+          "viewId"
+        ]
+      }
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "pushViewButton"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "View Name or ID",
+      "name": "viewId",
+      "type": "options",
+      "default": "",
+      "description": "The view to get the row from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "pushViewButton"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getViews",
+        "loadOptionsDependsOn": [
+          "docId"
+        ]
+      }
+    },
+    {
+      "displayName": "Row Name or ID",
+      "name": "rowId",
+      "type": "options",
+      "default": "",
+      "description": "The view to get the row from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "pushViewButton"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getViewRows",
+        "loadOptionsDependsOn": [
+          "viewId"
+        ]
+      }
+    },
+    {
+      "displayName": "Column Name or ID",
+      "name": "columnId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "pushViewButton"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getViewColumns",
+        "loadOptionsDependsOn": [
+          "docId",
+          "viewId"
+        ]
+      }
+    },
+    {
+      "displayName": "Doc Name or ID",
+      "name": "docId",
+      "type": "options",
+      "default": "",
+      "description": "ID of the doc. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "updateViewRow"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDocs"
+      }
+    },
+    {
+      "displayName": "View Name or ID",
+      "name": "viewId",
+      "type": "options",
+      "default": "",
+      "description": "The view to get the row from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "updateViewRow"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getViews",
+        "loadOptionsDependsOn": [
+          "docId"
+        ]
+      }
+    },
+    {
+      "displayName": "Row Name or ID",
+      "name": "rowId",
+      "type": "options",
+      "default": "",
+      "description": "The view to get the row from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "updateViewRow"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getViewRows",
+        "loadOptionsDependsOn": [
+          "viewId"
+        ]
+      }
+    },
+    {
+      "displayName": "Key Name",
+      "name": "keyName",
+      "type": "string",
+      "default": "columns",
+      "description": "The view to get the row from",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "updateViewRow"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Disable Parsing",
+          "name": "disableParsing",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the API will not attempt to parse the data in any way"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "view"
+          ],
+          "operation": [
+            "updateViewRow"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "createRow",
+      "name": "Create Row",
+      "description": "Create/Insert a row"
+    },
+    {
+      "operation": "deleteRow",
+      "name": "Delete Row",
+      "description": "Delete one or multiple rows"
+    },
+    {
+      "operation": "getAllColumns",
+      "name": "Get All Columns",
+      "description": "Get all columns in a table"
+    },
+    {
+      "operation": "getAllRows",
+      "name": "Get All Rows",
+      "description": "Get all rows in a table"
+    },
+    {
+      "operation": "getColumn",
+      "name": "Get Column",
+      "description": "Get a column"
+    },
+    {
+      "operation": "getRow",
+      "name": "Get Row",
+      "description": "Get a row"
+    },
+    {
+      "operation": "pushButton",
+      "name": "Push Button",
+      "description": "Pushes a button"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "codaApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

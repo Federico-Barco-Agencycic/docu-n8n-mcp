@@ -1,0 +1,70 @@
+{
+  "node_type": "nodes-base.awsRekognition",
+  "display_name": "AWS Rekognition",
+  "description": "Sends data to AWS Rekognition",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "image"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "analyze"
+    },
+    {
+      "name": "binaryData",
+      "displayName": "Binary File",
+      "type": "boolean",
+      "description": "Whether the image to analyze should be taken from binary field",
+      "required": true,
+      "default": false
+    },
+    {
+      "name": "binaryPropertyName",
+      "displayName": "Input Binary Field",
+      "type": "string",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "bucket",
+      "displayName": "Bucket",
+      "type": "string",
+      "description": "Name of the S3 bucket",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "name",
+      "displayName": "Name",
+      "type": "string",
+      "description": "S3 object key name",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "analyze",
+      "name": "Analyze"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_awsRekognition.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.awsRekognition"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

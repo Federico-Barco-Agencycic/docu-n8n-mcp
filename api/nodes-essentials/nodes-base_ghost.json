@@ -1,0 +1,84 @@
+{
+  "node_type": "nodes-base.ghost",
+  "display_name": "Ghost",
+  "description": "Consume Ghost API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "post"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "get"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "get"
+    },
+    {
+      "name": "title",
+      "displayName": "Title",
+      "type": "string",
+      "description": "Post's title",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "postId",
+      "displayName": "Post ID",
+      "type": "string",
+      "description": "The ID of the post to delete",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "by",
+      "displayName": "By",
+      "type": "options",
+      "description": "Get the post either by slug or ID",
+      "required": true,
+      "default": "id"
+    },
+    {
+      "name": "identifier",
+      "displayName": "Identifier",
+      "type": "string",
+      "description": "The ID or slug of the post to get",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a post"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many posts"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_ghost.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.ghost"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

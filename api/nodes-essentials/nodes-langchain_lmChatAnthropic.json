@@ -1,0 +1,32 @@
+{
+  "node_type": "nodes-langchain.lmChatAnthropic",
+  "display_name": "Anthropic Chat Model",
+  "description": "Language Model Anthropic",
+  "category": "transform",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1.3",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "model",
+      "displayName": "Model",
+      "type": "resourceLocator",
+      "description": "The model. Choose from the list, or specify an ID. <a href=\"https://docs.anthropic.com/claude/docs/models-overview\">Learn more</a>.",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": "claude-sonnet-4-20250514",
+        "cachedResultName": "Claude 4 Sonnet"
+      }
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_lmChatAnthropic.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-langchain.lmChatAnthropic"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

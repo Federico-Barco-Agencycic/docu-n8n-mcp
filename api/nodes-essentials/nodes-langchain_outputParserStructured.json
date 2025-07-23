@@ -1,0 +1,28 @@
+{
+  "node_type": "nodes-langchain.outputParserStructured",
+  "display_name": "Structured Output Parser",
+  "description": "Return data in a defined JSON format",
+  "category": "transform",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1.3",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "jsonSchema",
+      "displayName": "JSON Schema",
+      "type": "json",
+      "description": "JSON Schema to structure and validate the output against",
+      "required": true,
+      "default": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"state\": {\n      \"type\": \"string\"\n    },\n    \"cities\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      }\n    }\n  }\n}"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_outputParserStructured.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-langchain.outputParserStructured"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

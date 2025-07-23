@@ -1,0 +1,838 @@
+{
+  "node_type": "nodes-base.homeAssistant",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Home Assistant",
+  "description": "Consume Home Assistant API",
+  "category": "output",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Home Assistant node documentation\ndescription: Learn how to use the Home Assistant node in n8n. Follow technical documentation to integrate Home Assistant node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Home Assistant node\n\nUse the Home Assistant node to automate work in Home Assistant, and integrate Home Assistant with other applications. n8n has built-in support for a wide range of Home Assistant features, including getting, creating, and checking camera proxies, configurations, logs, services, and templates. \n\nOn this page, you'll find a list of operations the Home Assistant node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Home Assistant credentials](/integrations/builtin/credentials/homeassistant.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n* Camera Proxy\n    * Get the camera screenshot\n* Config\n    * Get the configuration\n    * Check the configuration\n* Event\n    * Create an event\n    * Get all events\n* Log\n    * Get a log for a specific entity\n    * Get all logs\n* Service\n    * Call a service within a specific domain\n    * Get all services\n* State\n    * Create a new record, or update the current one if it already exists (upsert)\n    * Get a state for a specific entity\n    * Get all states\n* Template\n    * Create a template\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'home-assistant') ]]\n\n## Related resources\n\nRefer to [Home Assistant's documentation](https://developers.home-assistant.io/docs/api/rest/){:target=_blank .external-link} for more information about the service.\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "config",
+      "options": [
+        {
+          "name": "Camera Proxy",
+          "value": "cameraProxy"
+        },
+        {
+          "name": "Config",
+          "value": "config"
+        },
+        {
+          "name": "Event",
+          "value": "event"
+        },
+        {
+          "name": "Log",
+          "value": "log"
+        },
+        {
+          "name": "Service",
+          "value": "service"
+        },
+        {
+          "name": "State",
+          "value": "state"
+        },
+        {
+          "name": "Template",
+          "value": "template"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getScreenshot",
+      "options": [
+        {
+          "name": "Get Screenshot",
+          "value": "getScreenshot",
+          "description": "Get the camera screenshot",
+          "action": "Get a screenshot"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "cameraProxy"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Camera Entity Name or ID",
+      "name": "cameraEntityId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getScreenshot"
+          ],
+          "resource": [
+            "cameraProxy"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getCameraEntities"
+      }
+    },
+    {
+      "displayName": "Put Output File in Field",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getScreenshot"
+          ],
+          "resource": [
+            "cameraProxy"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get the configuration",
+          "action": "Get the config"
+        },
+        {
+          "name": "Check Configuration",
+          "value": "check",
+          "description": "Check the configuration",
+          "action": "Check the config"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "config"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create an event",
+          "action": "Create an event"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many events",
+          "action": "Get many events"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "event"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "event"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Event Type",
+      "name": "eventType",
+      "type": "string",
+      "default": "",
+      "description": "The Entity ID for which an event will be created",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "event"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Event Attributes",
+      "name": "eventAttributes",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Attributes",
+          "name": "attributes",
+          "values": [
+            {
+              "displayName": "Name",
+              "name": "name",
+              "type": "string",
+              "default": "",
+              "description": "Name of the attribute"
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": "",
+              "description": "Value of the attribute"
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many state changes",
+          "action": "Get many state changes"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "history"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "history"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "history"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "End Time",
+          "name": "endTime",
+          "type": "dateTime",
+          "default": "",
+          "description": "The end of the period"
+        },
+        {
+          "displayName": "Entity IDs",
+          "name": "entityIds",
+          "type": "string",
+          "default": "",
+          "description": "The entities IDs separated by comma"
+        },
+        {
+          "displayName": "Minimal Response",
+          "name": "minimalResponse",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to only return <code>last_changed</code> and state for states"
+        },
+        {
+          "displayName": "Significant Changes Only",
+          "name": "significantChangesOnly",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to only return significant state changes"
+        },
+        {
+          "displayName": "Start Time",
+          "name": "startTime",
+          "type": "dateTime",
+          "default": "",
+          "description": "The beginning of the period"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "history"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getErroLogs",
+      "options": [
+        {
+          "name": "Get Error Logs",
+          "value": "getErroLogs",
+          "description": "Get a log for a specific entity",
+          "action": "Get a log for an entity"
+        },
+        {
+          "name": "Get Logbook Entries",
+          "value": "getLogbookEntries",
+          "description": "Get all logs",
+          "action": "Get all logs for an entity"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "log"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "End Time",
+          "name": "endTime",
+          "type": "dateTime",
+          "default": "",
+          "description": "The end of the period"
+        },
+        {
+          "displayName": "Entity ID",
+          "name": "entityId",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Start Time",
+          "name": "startTime",
+          "type": "dateTime",
+          "default": "",
+          "description": "The beginning of the period"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "log"
+          ],
+          "operation": [
+            "getLogbookEntries"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Call",
+          "value": "call",
+          "description": "Call a service within a specific domain",
+          "action": "Call a service"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many services",
+          "action": "Get many services"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "service"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "service"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "service"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Domain Name or ID",
+      "name": "domain",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "service"
+          ],
+          "operation": [
+            "call"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDomains"
+      }
+    },
+    {
+      "displayName": "Service Name or ID",
+      "name": "service",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "service"
+          ],
+          "operation": [
+            "call"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "domain"
+        ],
+        "loadOptionsMethod": "getDomainServices"
+      }
+    },
+    {
+      "displayName": "Service Attributes",
+      "name": "serviceAttributes",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "name": "attributes",
+          "displayName": "Attributes",
+          "values": [
+            {
+              "displayName": "Name",
+              "name": "name",
+              "type": "string",
+              "default": "",
+              "description": "Name of the field"
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": "",
+              "description": "Value of the field"
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "service"
+          ],
+          "operation": [
+            "call"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Create or Update",
+          "value": "upsert",
+          "description": "Create a new record, or update the current one if it already exists (upsert)",
+          "action": "Create or update a state"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a state for a specific entity",
+          "action": "Get a state"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many states",
+          "action": "Get many states"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "state"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Entity Name or ID",
+      "name": "entityId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "state"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getAllEntities"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "state"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "state"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Entity Name or ID",
+      "name": "entityId",
+      "type": "options",
+      "default": "",
+      "description": "The entity ID for which a state will be created. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "upsert"
+          ],
+          "resource": [
+            "state"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getAllEntities"
+      }
+    },
+    {
+      "displayName": "State",
+      "name": "state",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "state"
+          ],
+          "operation": [
+            "upsert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "State Attributes",
+      "name": "stateAttributes",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Attributes",
+          "name": "attributes",
+          "values": [
+            {
+              "displayName": "Name",
+              "name": "name",
+              "type": "string",
+              "default": "",
+              "description": "Name of the attribute"
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": "",
+              "description": "Value of the attribute"
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "state"
+          ],
+          "operation": [
+            "upsert"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a template",
+          "action": "Create a template"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "template"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Template",
+      "name": "template",
+      "type": "string",
+      "default": "",
+      "description": "Render a Home Assistant template. <a href=\"https://www.home-assistant.io/docs/configuration/templating/\">See template docs for more information.</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "template"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "getScreenshot",
+      "name": "Get Screenshot",
+      "description": "Get the camera screenshot"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "homeAssistantApi",
+      "required": true,
+      "testedBy": "homeAssistantApiTest"
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

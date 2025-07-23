@@ -1,0 +1,73 @@
+{
+  "node_type": "nodes-base.awsTextract",
+  "package_name": "n8n-nodes-base",
+  "display_name": "AWS Textract",
+  "description": "Sends data to Amazon Textract",
+  "category": "output",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: AWS Textract node documentation\ndescription: Learn how to use the AWS Textract node in n8n. Follow technical documentation to integrate AWS Textract node into your workflows.\ncontentType: [integration, reference]\n---\n\n# AWS Textract node\n\nUse the AWS Textract node to automate work in AWS Textract, and integrate AWS Textract with other applications. n8n has built-in support for a wide range of AWS Textract features, including analyzing invoices.\n\nOn this page, you'll find a list of operations the AWS Textract node supports and links to more resources.\n\n/// note | Credentials\nRefer to [AWS Textract credentials](/integrations/builtin/credentials/aws.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n- Analyze Receipt or Invoice\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'aws-textract') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "analyzeExpense",
+      "options": [
+        {
+          "name": "Analyze Receipt or Invoice",
+          "value": "analyzeExpense"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Input Data Field Name",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "description": "The name of the input field containing the binary file data to be uploaded. Supported file types: PNG, JPEG.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "analyzeExpense"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Simplify",
+      "name": "simple",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return a simplified version of the response instead of the raw data",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "analyzeExpense"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "analyzeExpense",
+      "name": "Analyze Receipt or Invoice"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "aws",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

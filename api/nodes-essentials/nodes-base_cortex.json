@@ -1,0 +1,104 @@
+{
+  "node_type": "nodes-base.cortex",
+  "display_name": "Cortex",
+  "description": "Apply the Cortex analyzer/responder on the given entity",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "description": "Choose a resource",
+      "required": true,
+      "default": "analyzer"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "description": "Choose an operation",
+      "required": true,
+      "default": "execute"
+    },
+    {
+      "name": "analyzer",
+      "displayName": "Analyzer Type Name or ID",
+      "type": "options",
+      "description": "Choose the analyzer. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "observableType",
+      "displayName": "Observable Type Name or ID",
+      "type": "options",
+      "description": "Choose the observable type. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "observableValue",
+      "displayName": "Observable Value",
+      "type": "string",
+      "description": "Enter the observable value",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "binaryPropertyName",
+      "displayName": "Put Output File in Field",
+      "type": "string",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "description": "Choose an operation",
+      "required": true,
+      "default": "execute"
+    },
+    {
+      "name": "responder",
+      "displayName": "Responder Type Name or ID",
+      "type": "options",
+      "description": "Choose the responder. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "entityType",
+      "displayName": "Entity Type Name or ID",
+      "type": "options",
+      "description": "Choose the Data type. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "objectData",
+      "displayName": "Entity Object (JSON)",
+      "type": "string",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "execute",
+      "name": "Execute",
+      "description": "Execute Analyzer"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_cortex.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.cortex"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

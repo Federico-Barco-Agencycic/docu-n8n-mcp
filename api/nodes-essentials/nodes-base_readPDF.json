@@ -1,0 +1,35 @@
+{
+  "node_type": "nodes-base.readPDF",
+  "display_name": "Read PDF",
+  "description": "Reads a PDF and extracts its content",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "binaryPropertyName",
+      "displayName": "Input Binary Field",
+      "type": "string",
+      "description": "Name of the binary property from which to read the PDF file",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "encrypted",
+      "displayName": "Encrypted",
+      "type": "boolean",
+      "required": true,
+      "default": false
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_readPDF.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.readPDF"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

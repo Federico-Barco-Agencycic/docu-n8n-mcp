@@ -1,0 +1,293 @@
+{
+  "node_type": "nodes-base.beeminder",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Beeminder",
+  "description": "Consume Beeminder API",
+  "category": "output",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Beeminder node documentation\ndescription: Learn how to use the Beeminder node in n8n. Follow technical documentation to integrate Beeminder node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Beeminder node\n\nUse the Beeminder node to automate work in Beeminder, and integrate Beeminder with other applications. n8n has built-in support for a wide range of Beeminder features, including creating, deleting, and updating data points.\n\nOn this page, you'll find a list of operations the Beeminder node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Beeminder credentials](/integrations/builtin/credentials/beeminder.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n**data point**\n- Create data point for a goal\n- Delete a data point\n- Get all data points for a goal\n- Update a data point\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'beeminder') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "datapoint",
+      "options": [
+        {
+          "name": "Datapoint",
+          "value": "datapoint"
+        }
+      ],
+      "required": true,
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create datapoint for goal",
+          "action": "Create datapoint for goal"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a datapoint",
+          "action": "Delete a datapoint"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many datapoints for a goal",
+          "action": "Get many datapoints for a goal"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a datapoint",
+          "action": "Update a datapoint"
+        }
+      ],
+      "required": true,
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Goal Name or ID",
+      "name": "goalName",
+      "type": "options",
+      "default": "",
+      "description": "The name of the goal. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "datapoint"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getGoals"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "datapoint"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 30,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "datapoint"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 300
+      }
+    },
+    {
+      "displayName": "Value",
+      "name": "value",
+      "type": "number",
+      "default": 1,
+      "description": "Datapoint value to send",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "datapoint"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Datapoint ID",
+      "name": "datapointId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update",
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Comment",
+          "name": "comment",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Timestamp",
+          "name": "timestamp",
+          "type": "dateTime",
+          "default": "",
+          "placeholder": "",
+          "description": "Defaults to \"now\" if none is passed in, or the existing timestamp if the datapoint is being updated rather than created"
+        },
+        {
+          "displayName": "Request ID",
+          "name": "requestid",
+          "type": "string",
+          "default": "",
+          "placeholder": "",
+          "description": "String to uniquely identify a datapoint"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "datapoint"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Sort",
+          "name": "sort",
+          "type": "string",
+          "default": "id",
+          "placeholder": "",
+          "description": "Attribute to sort on"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "datapoint"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Value",
+          "name": "value",
+          "type": "number",
+          "default": 1,
+          "placeholder": "",
+          "description": "Datapoint value to send"
+        },
+        {
+          "displayName": "Comment",
+          "name": "comment",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Timestamp",
+          "name": "timestamp",
+          "type": "dateTime",
+          "default": "",
+          "placeholder": "",
+          "description": "Defaults to \"now\" if none is passed in, or the existing timestamp if the datapoint is being updated rather than created"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "datapoint"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create datapoint for goal"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a datapoint"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many datapoints for a goal"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update a datapoint"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "beeminderApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

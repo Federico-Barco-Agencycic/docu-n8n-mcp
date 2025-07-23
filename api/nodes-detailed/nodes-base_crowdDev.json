@@ -1,0 +1,1345 @@
+{
+  "node_type": "nodes-base.crowdDev",
+  "package_name": "n8n-nodes-base",
+  "display_name": "crowd.dev",
+  "description": "crowd.dev is an open-source suite of community and data tools built to unlock community-led growth for your organization.",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: crowd.dev node documentation\ndescription: Learn how to use the crowd.dev node in n8n. Follow technical documentation to integrate crowd.dev node into your workflows.\ncontentType: [integration, reference]\n---\n\n# crowd.dev node\n\nUse the crowd.dev node to automate work in crowd.dev and integrate crowd.dev with other applications. n8n has built-in support for a wide range of crowd.dev features, which includes creating, updating, and deleting members, notes, organizations, and tasks.\n\nOn this page, you'll find a list of operations the crowd.dev node supports, and links to more resources.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/crowddev.md).\n///\n\n## Operations\n\n* Activity\n\t* Create or Update with a Member\n\t* Create\n* Automation\n\t* Create\n\t* Destroy\n\t* Find\n\t* List\n\t* Update\n* Member\n\t* Create or Update\n\t* Delete\n\t* Find\n\t* Update\n* Note\n\t* Create\n\t* Delete\n\t* Find\n\t* Update\n* Organization\n\t* Create\n\t* Delete\n\t* Find\n\t* Update\n* Task\n\t* Create\n\t* Delete\n\t* Find\n\t* Update\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'crowddev') ]]\n\n## Related resources\n\nn8n provides a trigger node for crowd.dev. You can find the trigger node docs [here](/integrations/builtin/trigger-nodes/n8n-nodes-base.crowddevtrigger.md).\n\nRefer to [crowd.dev's documentation](https://docs.crowd.dev/reference/getting-started-with-crowd-dev-api){:target=_blank .external-link} for more information about the service.\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "activity",
+      "options": [
+        {
+          "name": "Activity",
+          "value": "activity"
+        },
+        {
+          "name": "Automation",
+          "value": "automation"
+        },
+        {
+          "name": "Member",
+          "value": "member"
+        },
+        {
+          "name": "Note",
+          "value": "note"
+        },
+        {
+          "name": "Organization",
+          "value": "organization"
+        },
+        {
+          "name": "Task",
+          "value": "task"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "createWithMember",
+      "options": [
+        {
+          "name": "Create or Update with a Member",
+          "value": "createWithMember",
+          "description": "Create or update an activity with a member",
+          "action": "Create or update an activity with a member",
+          "routing": {
+            "send": {
+              "preSend": [
+                null
+              ]
+            },
+            "request": {
+              "method": "POST",
+              "url": "/activity/with-member"
+            }
+          }
+        },
+        {
+          "name": "Create",
+          "value": "createForMember",
+          "description": "Create an activity for a member",
+          "action": "Create an activity for a member",
+          "routing": {
+            "send": {
+              "preSend": [
+                null
+              ]
+            },
+            "request": {
+              "method": "POST",
+              "url": "/activity"
+            }
+          }
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "activity"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "find",
+      "options": [
+        {
+          "name": "Create or Update",
+          "value": "createOrUpdate",
+          "description": "Create or update a member",
+          "action": "Create or update a member",
+          "routing": {
+            "send": {
+              "preSend": [
+                null
+              ]
+            },
+            "request": {
+              "method": "POST",
+              "url": "/member"
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a member",
+          "action": "Delete a member",
+          "routing": {
+            "request": {
+              "method": "DELETE",
+              "url": "=/member"
+            }
+          }
+        },
+        {
+          "name": "Find",
+          "value": "find",
+          "description": "Find a member",
+          "action": "Find a member",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "=/member/{{$parameter[\"id\"]}}"
+            }
+          }
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a member",
+          "action": "Update a member",
+          "routing": {
+            "send": {
+              "preSend": [
+                null
+              ]
+            },
+            "request": {
+              "method": "PUT",
+              "url": "=/member/{{$parameter[\"id\"]}}"
+            }
+          }
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "find",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a note",
+          "action": "Create a note",
+          "routing": {
+            "send": {
+              "preSend": [
+                null
+              ]
+            },
+            "request": {
+              "method": "POST",
+              "url": "/note"
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a note",
+          "action": "Delete a note",
+          "routing": {
+            "request": {
+              "method": "DELETE",
+              "url": "=/note"
+            }
+          }
+        },
+        {
+          "name": "Find",
+          "value": "find",
+          "description": "Find a note",
+          "action": "Find a note",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "=/note/{{$parameter[\"id\"]}}"
+            }
+          }
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a note",
+          "action": "Update a note",
+          "routing": {
+            "send": {
+              "preSend": [
+                null
+              ]
+            },
+            "request": {
+              "method": "PUT",
+              "url": "=/note/{{$parameter[\"id\"]}}"
+            }
+          }
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "note"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "find",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create an organization",
+          "action": "Create an organization",
+          "routing": {
+            "send": {
+              "preSend": [
+                null
+              ]
+            },
+            "request": {
+              "method": "POST",
+              "url": "/organization"
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete an organization",
+          "action": "Delete an organization",
+          "routing": {
+            "request": {
+              "method": "DELETE",
+              "url": "=/organization"
+            }
+          }
+        },
+        {
+          "name": "Find",
+          "value": "find",
+          "description": "Find an organization",
+          "action": "Find an organization",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "=/organization/{{$parameter[\"id\"]}}"
+            }
+          }
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update an organization",
+          "action": "Update an organization",
+          "routing": {
+            "send": {
+              "preSend": [
+                null
+              ]
+            },
+            "request": {
+              "method": "PUT",
+              "url": "=/organization/{{$parameter[\"id\"]}}"
+            }
+          }
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "organization"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "find",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a task",
+          "action": "Create a task",
+          "routing": {
+            "send": {
+              "preSend": [
+                null
+              ]
+            },
+            "request": {
+              "method": "POST",
+              "url": "/task"
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a task",
+          "action": "Delete a task",
+          "routing": {
+            "request": {
+              "method": "DELETE",
+              "url": "=/task"
+            }
+          }
+        },
+        {
+          "name": "Find",
+          "value": "find",
+          "description": "Find a task",
+          "action": "Find a task",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "=/task/{{$parameter[\"id\"]}}"
+            }
+          }
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a task",
+          "action": "Update a task",
+          "routing": {
+            "send": {
+              "preSend": [
+                null
+              ]
+            },
+            "request": {
+              "method": "PUT",
+              "url": "=/task/{{$parameter[\"id\"]}}"
+            }
+          }
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "list",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a new automation for the tenant",
+          "action": "Create a new automation for the tenant",
+          "routing": {
+            "send": {
+              "preSend": [
+                null
+              ]
+            },
+            "request": {
+              "method": "POST",
+              "url": "/automation"
+            }
+          }
+        },
+        {
+          "name": "Destroy",
+          "value": "destroy",
+          "description": "Destroy an existing automation for the tenant",
+          "action": "Destroy an existing automation for the tenant",
+          "routing": {
+            "request": {
+              "method": "DELETE",
+              "url": "=/automation/{{$parameter[\"id\"]}}"
+            }
+          }
+        },
+        {
+          "name": "Find",
+          "value": "find",
+          "description": "Get an existing automation data for the tenant",
+          "action": "Get an existing automation data for the tenant",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "=/automation/{{$parameter[\"id\"]}}"
+            }
+          }
+        },
+        {
+          "name": "List",
+          "value": "list",
+          "description": "Get all existing automation data for tenant",
+          "action": "Get all existing automation data for tenant",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "/automation"
+            }
+          }
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Updates an existing automation for the tenant",
+          "action": "Updates an existing automation for the tenant",
+          "routing": {
+            "send": {
+              "preSend": [
+                null
+              ]
+            },
+            "request": {
+              "method": "PUT",
+              "url": "=/automation/{{$parameter[\"id\"]}}"
+            }
+          }
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "automation"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Username",
+      "name": "username",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Item Choice",
+          "name": "itemChoice",
+          "values": [
+            {
+              "displayName": "Platform",
+              "description": "Platform name (e.g twitter, github, etc)",
+              "name": "key",
+              "type": "string",
+              "required": true,
+              "default": ""
+            },
+            {
+              "displayName": "Username",
+              "description": "Username at the specified Platform",
+              "name": "value",
+              "type": "string",
+              "required": true,
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "activity"
+          ],
+          "operation": [
+            "createWithMember"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "displayName",
+      "name": "displayName",
+      "type": "string",
+      "default": "",
+      "description": "UI friendly name of the member",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "activity"
+          ],
+          "operation": [
+            "createWithMember"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Emails",
+      "name": "emails",
+      "type": "fixedCollection",
+      "default": {},
+      "description": "Email addresses of the member",
+      "options": [
+        {
+          "displayName": "Item Choice",
+          "name": "itemChoice",
+          "values": [
+            {
+              "displayName": "Email",
+              "name": "email",
+              "type": "string",
+              "placeholder": "name@email.com",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "activity"
+          ],
+          "operation": [
+            "createWithMember"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Joined At",
+      "name": "joinedAt",
+      "type": "dateTime",
+      "default": "",
+      "description": "Date of joining the community",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "activity"
+          ],
+          "operation": [
+            "createWithMember"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Member",
+      "name": "member",
+      "type": "string",
+      "default": "",
+      "description": "The ID of the member that performed the activity",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "activity"
+          ],
+          "operation": [
+            "createForMember"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Type",
+      "name": "type",
+      "type": "string",
+      "default": "",
+      "description": "Type of activity",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "activity"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Timestamp",
+      "name": "timestamp",
+      "type": "dateTime",
+      "default": "",
+      "description": "Date and time when the activity took place",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "activity"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Platform",
+      "name": "platform",
+      "type": "string",
+      "default": "",
+      "description": "Platform on which the activity took place",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "activity"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Source ID",
+      "name": "sourceId",
+      "type": "string",
+      "default": "",
+      "description": "The ID of the activity in the platform (e.g. the ID of the message in Discord)",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "activity"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Options",
+      "name": "additionalOptions",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Title",
+          "name": "title",
+          "description": "Title of the activity",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Body",
+          "name": "body",
+          "description": "Body of the activity",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Channel",
+          "name": "channel",
+          "description": "Channel of the activity",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Source Parent ID",
+          "name": "sourceParentId",
+          "description": "The ID of the parent activity in the platform (e.g. the ID of the parent message in Discord)",
+          "type": "string",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "activity"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "The ID of the member",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "delete",
+            "find",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Platform",
+      "name": "platform",
+      "type": "string",
+      "default": "",
+      "description": "Platform for which to check member existence",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "createOrUpdate",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Username",
+      "name": "username",
+      "type": "string",
+      "default": "",
+      "description": "Username of the member in platform",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "createOrUpdate",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Options",
+      "name": "additionalOptions",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Display Name",
+          "name": "displayName",
+          "description": "UI friendly name of the member",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Emails",
+          "name": "emails",
+          "description": "Email addresses of the member",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "displayName": "Item Choice",
+              "name": "itemChoice",
+              "values": [
+                {
+                  "displayName": "Email",
+                  "name": "email",
+                  "type": "string",
+                  "placeholder": "name@email.com",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Joined At",
+          "name": "joinedAt",
+          "description": "Date of joining the community",
+          "type": "dateTime",
+          "default": ""
+        },
+        {
+          "displayName": "Organizations",
+          "name": "organizations",
+          "description": "Organizations associated with the member. Each element in the array is the name of the organization, or an organization object. If the organization does not exist, it will be created.",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "displayName": "Item Choice",
+              "name": "itemChoice",
+              "values": [
+                {
+                  "displayName": "Name",
+                  "name": "name",
+                  "description": "The name of the organization",
+                  "type": "string",
+                  "required": true,
+                  "default": ""
+                },
+                {
+                  "displayName": "Url",
+                  "name": "url",
+                  "description": "The URL of the organization",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Description",
+                  "name": "description",
+                  "description": "A short description of the organization",
+                  "type": "string",
+                  "typeOptions": {
+                    "rows": 3
+                  },
+                  "default": ""
+                },
+                {
+                  "displayName": "Logo",
+                  "name": "logo",
+                  "description": "A URL for logo of the organization",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Employees",
+                  "name": "employees",
+                  "description": "The number of employees of the organization",
+                  "type": "number",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Tags",
+          "name": "tags",
+          "description": "Tags associated with the member. Each element in the array is the ID of the tag.",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "displayName": "Item Choice",
+              "name": "itemChoice",
+              "values": [
+                {
+                  "displayName": "Tag",
+                  "name": "tag",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Tasks",
+          "name": "tasks",
+          "description": "Tasks associated with the member. Each element in the array is the ID of the task.",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "displayName": "Item Choice",
+              "name": "itemChoice",
+              "values": [
+                {
+                  "displayName": "Task",
+                  "name": "task",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Notes",
+          "name": "notes",
+          "description": "Notes associated with the member. Each element in the array is the ID of the note.",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "displayName": "Item Choice",
+              "name": "itemChoice",
+              "values": [
+                {
+                  "displayName": "Note",
+                  "name": "note",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Activities",
+          "name": "activities",
+          "description": "Activities associated with the member. Each element in the array is the ID of the activity.",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "displayName": "Item Choice",
+              "name": "itemChoice",
+              "values": [
+                {
+                  "displayName": "Activity",
+                  "name": "activity",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "createOrUpdate",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "The ID of the note",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "note"
+          ],
+          "operation": [
+            "delete",
+            "find",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Body",
+      "name": "body",
+      "type": "string",
+      "default": "",
+      "description": "The body of the note",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "note"
+          ],
+          "operation": [
+            "create",
+            "update"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 4
+      }
+    },
+    {
+      "displayName": "ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "The ID of the organization",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "organization"
+          ],
+          "operation": [
+            "delete",
+            "find",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Name",
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "description": "The name of the organization",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "organization"
+          ],
+          "operation": [
+            "create",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Options",
+      "name": "additionalOptions",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Url",
+          "name": "url",
+          "description": "The URL of the organization",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Description",
+          "name": "description",
+          "description": "A short description of the organization",
+          "type": "string",
+          "typeOptions": {
+            "rows": 3
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Logo",
+          "name": "logo",
+          "description": "A URL for logo of the organization",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Employees",
+          "name": "employees",
+          "description": "The number of employees of the organization",
+          "type": "number",
+          "default": ""
+        },
+        {
+          "displayName": "Members",
+          "name": "members",
+          "description": "Members associated with the organization. Each element in the array is the ID of the member.",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "displayName": "Item Choice",
+              "name": "itemChoice",
+              "values": [
+                {
+                  "displayName": "Member",
+                  "name": "member",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "organization"
+          ],
+          "operation": [
+            "create",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "The ID of the task",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ],
+          "operation": [
+            "delete",
+            "find",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Options",
+      "name": "additionalOptions",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Name",
+          "name": "name",
+          "description": "The name of the task",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Body",
+          "name": "body",
+          "description": "The body of the task",
+          "type": "string",
+          "typeOptions": {
+            "rows": 4
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Status",
+          "name": "status",
+          "description": "The status of the task",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Members",
+          "name": "members",
+          "description": "Members associated with the task. Each element in the array is the ID of the member.",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "displayName": "Item Choice",
+              "name": "itemChoice",
+              "values": [
+                {
+                  "displayName": "Member",
+                  "name": "member",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Activities",
+          "name": "activities",
+          "description": "Activities associated with the task. Each element in the array is the ID of the activity.",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "displayName": "Item Choice",
+              "name": "itemChoice",
+              "values": [
+                {
+                  "displayName": "Activity",
+                  "name": "activity",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Assigneess",
+          "name": "assigneess",
+          "description": "Users assigned with the task. Each element in the array is the ID of the user.",
+          "type": "string",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "task"
+          ],
+          "operation": [
+            "create",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "The ID of the automation",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "automation"
+          ],
+          "operation": [
+            "destroy",
+            "find",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Trigger",
+      "name": "trigger",
+      "type": "options",
+      "default": "new_activity",
+      "description": "What will trigger an automation",
+      "options": [
+        {
+          "name": "New Activity",
+          "value": "new_activity"
+        },
+        {
+          "name": "New Member",
+          "value": "new_member"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "automation"
+          ],
+          "operation": [
+            "create",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "URL",
+      "name": "url",
+      "type": "string",
+      "default": "",
+      "description": "URL to POST webhook data to",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "automation"
+          ],
+          "operation": [
+            "create",
+            "update"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "createWithMember",
+      "name": "Create or Update with a Member",
+      "description": "Create or update an activity with a member"
+    },
+    {
+      "operation": "createForMember",
+      "name": "Create",
+      "description": "Create an activity for a member"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "crowdDevApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

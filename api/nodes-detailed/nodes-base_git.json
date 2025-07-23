@@ -1,0 +1,465 @@
+{
+  "node_type": "nodes-base.git",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Git",
+  "description": "Control git.",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Git\ndescription: Documentation for the Git node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\n---\n\n# Git\n\n[Git](https://git-scm.com/) is a free and open-source distributed version control system designed to handle everything from small to large projects with speed and efficiency.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/git.md).\n///\n\n## Operations\n\n* [**Add**](#add) a file or folder to commit. Performs a [git add](https://git-scm.com/docs/git-add){:target=_blank .external-link}.\n* [**Add Config**](#add-config): Add configuration property. Performs a [git config](https://git-scm.com/docs/git-config){:target=_blank .external-link} set or add.\n* [**Clone**](#clone) a repository: Performs a [git clone](https://git-scm.com/docs/git-clone){:target=_blank .external-link}.\n* [**Commit**](#commit) files or folders to git. Performs a [git commit](https://git-scm.com/docs/git-commit){:target=_blank .external-link}.\n* [**Fetch**](#fetch) from remote repository. Performs a [git fetch](https://git-scm.com/docs/git-fetch){:target=_blank .external-link}.\n* [**List Config**](#list-config): Return current configuration. Performs a [git config](https://git-scm.com/docs/git-config){:target=_blank .external-link} query.\n* [**Log**](#log): Return git commit history. Performs a [git log](https://git-scm.com/docs/git-log){:target=_blank .external-link}.\n* [**Pull**](#pull) from remote repository: Performs a [git pull](https://git-scm.com/docs/git-pull){:target=_blank .external-link}.\n* [**Push**](#push) to remote repository: Performs a [git push](https://git-scm.com/docs/git-push){:target=_blank .external-link}.\n* [**Push Tags**](#push-tags) to remote repository: Performs a [git push --tags](https://git-scm.com/docs/git-push#Documentation/git-push.txt---tags){:target=_blank .external-link}.\n* Return [**Status**](#status) of current repository: Performs a [git status](https://git-scm.com/docs/git-status){:target=_blank .external-link}.\n* Create a new [**Tag**](#tag): Performs a [git tag](https://git-scm.com/docs/git-tag){:target=_blank .external-link}.\n* [**User Setup**](#user-setup): Set the user.\n\nRefer to the sections below for more details on the parameters and options for each operation.\n\n## Add\n\nConfigure this operation with these parameters:\n\n* **Repository Path**: Enter the local path of the git repository.\n* **Paths to Add**: Enter a comma-separated list of paths of files or folders to add in this field. You can use absolute paths or relative paths from the **Repository Path**.\n\n<!--Vale doesn't like \"Config\"-->\n<!-- vale off -->\n## Add Config\n\nConfigure this operation with these parameters:\n\n* **Repository Path**: Enter the local path of the git repository.\n* **Key**: Enter the name of the key to set.\n* **Value**: Enter the value of the key to set.\n\n### Add Config options\n\nThe add config operation adds the **Mode** option. Choose whether to **Set** or **Append** the setting in the local config.\n<!-- vale on -->\n\n## Clone\n\nConfigure this operation with these parameters:\n\n* **Repository Path**: Enter the local path of the git repository.\n* **Authentication**: Select **Authenticate** to pass credentials in. Select **None** to not use authentication.\n    * **Credential for Git**: If you select **Authenticate**, you must select or create credentials for the node to use. Refer to [Git credential](/integrations/builtin/credentials/git.md) for more information.\n* **New Repository Path**: Enter the local path where you'd like to locate the cloned repository.\n* **Source Repository**: Enter the URL or path of the repository you want to clone.\n\n## Commit\n\nConfigure this operation with these parameters:\n\n* **Repository Path**: Enter the local path of the git repository.\n* **Message**: Enter the commit message to use in this field.\n\n### Commit options\n\nThe commit operation adds the **Paths to Add** option. To commit all \"added\" files and folders, leave this field blank. To commit specific \"added\" files and folders, enter a comma-separated list of paths of files or folders in this field.\n\nYou can use absolute paths or relative paths from the **Repository Path**.\n\n## Fetch\n\nThis operation only prompts you to enter the local path of the git repository in the **Repository Path** parameter.\n\n<!--Vale doesn't like \"Config\"-->\n<!-- vale off -->\n## List Config\n\nThis operation only prompts you to enter the local path of the git repository in the **Repository Path** parameter.\n<!-- vale on -->\n\n## Log\n\nConfigure this operation with these parameters:\n\n* **Repository Path**: Enter the local path of the git repository.\n* **Return All**: When turned on, the node will return all results. When turned off, the node will return results up to the set **Limit**.\n* **Limit**: Only available when you turn off **Return All**. Enter the maximum number of results to return.\n\n### Log options\n\nThe log operation adds the **File** option. Enter the path of a file or folder to get the history of in this field.\n\nYou can use absolute paths or relative paths from the **Repository Path**.\n\n## Pull\n\nThis operation only prompts you to enter the local path of the git repository in the **Repository Path** parameter.\n\n## Push\n\nConfigure this operation with these parameters:\n\n* **Repository Path**: Enter the local path of the git repository.\n* **Authentication**: Select **Authenticate** to pass credentials in or **None** to not use authentication.\n    * If you select **Authenticate**, you must select or create **Credential for Git** for the node to use. Refer to [Git credential](/integrations/builtin/credentials/git.md) for more information.\n\n### Push options\n\nThe push operation adds the **Target Repository** option. Enter the URL or path of the repository to push to in this field.\n\n## Push Tags\n\nThis operation only prompts you to enter the local path of the git repository in the **Repository Path** parameter.\n\n## Status\n\nThis operation only prompts you to enter the local path of the git repository in the **Repository Path** parameter.\n\n## Tag\n\nConfigure this operation with these parameters:\n\n* **Repository Path**: Enter the local path of the git repository.\n* **Name**: Enter the name of the tag to create in this field.\n\n## User Setup\n\nThis operation only prompts you to enter the local path of the git repository in the **Repository Path** parameter.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'git') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "none",
+      "description": "The way to authenticate",
+      "options": [
+        {
+          "name": "Authenticate",
+          "value": "gitPassword"
+        },
+        {
+          "name": "None",
+          "value": "none"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "clone",
+            "push"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "log",
+      "options": [
+        {
+          "name": "Add",
+          "value": "add",
+          "description": "Add a file or folder to commit",
+          "action": "Add a file or folder to commit"
+        },
+        {
+          "name": "Add Config",
+          "value": "addConfig",
+          "description": "Add configuration property",
+          "action": "Add configuration property"
+        },
+        {
+          "name": "Clone",
+          "value": "clone",
+          "description": "Clone a repository",
+          "action": "Clone a repository"
+        },
+        {
+          "name": "Commit",
+          "value": "commit",
+          "description": "Commit files or folders to git",
+          "action": "Commit files or folders to git"
+        },
+        {
+          "name": "Fetch",
+          "value": "fetch",
+          "description": "Fetch from remote repository",
+          "action": "Fetch from remote repository"
+        },
+        {
+          "name": "List Config",
+          "value": "listConfig",
+          "description": "Return current configuration",
+          "action": "Return current configuration"
+        },
+        {
+          "name": "Log",
+          "value": "log",
+          "description": "Return git commit history",
+          "action": "Return git commit history"
+        },
+        {
+          "name": "Pull",
+          "value": "pull",
+          "description": "Pull from remote repository",
+          "action": "Pull from remote repository"
+        },
+        {
+          "name": "Push",
+          "value": "push",
+          "description": "Push to remote repository",
+          "action": "Push to remote repository"
+        },
+        {
+          "name": "Push Tags",
+          "value": "pushTags",
+          "description": "Push Tags to remote repository",
+          "action": "Push tags to remote repository"
+        },
+        {
+          "name": "Status",
+          "value": "status",
+          "description": "Return status of current repository",
+          "action": "Return status of current repository"
+        },
+        {
+          "name": "Tag",
+          "value": "tag",
+          "description": "Create a new tag",
+          "action": "Create a new tag"
+        },
+        {
+          "name": "User Setup",
+          "value": "userSetup",
+          "description": "Set the user",
+          "action": "Set up a user"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Repository Path",
+      "name": "repositoryPath",
+      "type": "string",
+      "default": "",
+      "description": "Local path of the git repository to operate on",
+      "required": true,
+      "displayOptions": {
+        "hide": {
+          "operation": [
+            "clone"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "New Repository Path",
+      "name": "repositoryPath",
+      "type": "string",
+      "default": "",
+      "description": "Local path to which the git repository should be cloned into",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "clone"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Paths to Add",
+      "name": "pathsToAdd",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of paths (absolute or relative to Repository Path) of files or folders to add",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "add"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Key",
+      "name": "key",
+      "type": "string",
+      "default": "",
+      "description": "Name of the key to set",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "addConfig"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Value",
+      "name": "value",
+      "type": "string",
+      "default": "",
+      "description": "Value of the key to set",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "addConfig"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Mode",
+          "name": "mode",
+          "type": "options",
+          "options": [
+            {
+              "name": "Append",
+              "value": "append"
+            },
+            {
+              "name": "Set",
+              "value": "set"
+            }
+          ],
+          "default": "set",
+          "description": "Append setting rather than set it in the local config"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "addConfig"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Source Repository",
+      "name": "sourceRepository",
+      "type": "string",
+      "default": "",
+      "description": "The URL or path of the repository to clone",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "clone"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Message",
+      "name": "message",
+      "type": "string",
+      "default": "",
+      "description": "The commit message to use",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "commit"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Paths to Add",
+          "name": "pathsToAdd",
+          "type": "string",
+          "default": "",
+          "placeholder": "/data/file1.json",
+          "description": "Comma-separated list of paths (absolute or relative to Repository Path) of files or folders to commit. If not set will all \"added\" files and folders be committed."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "commit"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "log"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "log"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "File",
+          "name": "file",
+          "type": "string",
+          "default": "README.md",
+          "description": "The path (absolute or relative to Repository Path) of file or folder to get the history of"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "log"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Target Repository",
+          "name": "targetRepository",
+          "type": "string",
+          "default": "",
+          "placeholder": "https://github.com/n8n-io/n8n",
+          "description": "The URL or path of the repository to push to"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "push"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Name",
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "description": "The name of the tag to create",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "tag"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "add",
+      "name": "Add",
+      "description": "Add a file or folder to commit"
+    },
+    {
+      "operation": "addConfig",
+      "name": "Add Config",
+      "description": "Add configuration property"
+    },
+    {
+      "operation": "clone",
+      "name": "Clone",
+      "description": "Clone a repository"
+    },
+    {
+      "operation": "commit",
+      "name": "Commit",
+      "description": "Commit files or folders to git"
+    },
+    {
+      "operation": "fetch",
+      "name": "Fetch",
+      "description": "Fetch from remote repository"
+    },
+    {
+      "operation": "listConfig",
+      "name": "List Config",
+      "description": "Return current configuration"
+    },
+    {
+      "operation": "log",
+      "name": "Log",
+      "description": "Return git commit history"
+    },
+    {
+      "operation": "pull",
+      "name": "Pull",
+      "description": "Pull from remote repository"
+    },
+    {
+      "operation": "push",
+      "name": "Push",
+      "description": "Push to remote repository"
+    },
+    {
+      "operation": "pushTags",
+      "name": "Push Tags",
+      "description": "Push Tags to remote repository"
+    },
+    {
+      "operation": "status",
+      "name": "Status",
+      "description": "Return status of current repository"
+    },
+    {
+      "operation": "tag",
+      "name": "Tag",
+      "description": "Create a new tag"
+    },
+    {
+      "operation": "userSetup",
+      "name": "User Setup",
+      "description": "Set the user"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "gitPassword",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "gitPassword"
+          ]
+        }
+      }
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

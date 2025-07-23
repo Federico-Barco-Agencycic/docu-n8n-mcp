@@ -1,0 +1,174 @@
+{
+  "node_type": "nodes-base.yourls",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Yourls",
+  "description": "Consume Yourls API",
+  "category": "input",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Yourls node documentation\ndescription: Learn how to use the Yourls node in n8n. Follow technical documentation to integrate Yourls node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Yourls node\n\nUse the Yourls node to automate work in Yourls, and integrate Yourls with other applications. n8n has built-in support for a wide range of Yourls features, including expanding and shortening URLs. \n\nOn this page, you'll find a list of operations the Yourls node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Yourls credentials](/integrations/builtin/credentials/yourls.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* URL\n    * Expand a URL\n    * Shorten a URL\n    * Get stats about one short URL\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'yourls') ]]\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "url",
+      "options": [
+        {
+          "name": "URL",
+          "value": "url"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "shorten",
+      "options": [
+        {
+          "name": "Expand",
+          "value": "expand",
+          "description": "Expand a URL",
+          "action": "Expand a URL"
+        },
+        {
+          "name": "Shorten",
+          "value": "shorten",
+          "description": "Shorten a URL",
+          "action": "Shorten a URL"
+        },
+        {
+          "name": "Stats",
+          "value": "stats",
+          "description": "Get stats about one short URL",
+          "action": "Get stats for a URL"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "url"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "URL",
+      "name": "url",
+      "type": "string",
+      "default": "",
+      "description": "The URL to shorten",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "url"
+          ],
+          "operation": [
+            "shorten"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Keyword",
+          "name": "keyword",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Title",
+          "name": "title",
+          "type": "string",
+          "default": "",
+          "description": "Title for custom short URLs"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "url"
+          ],
+          "operation": [
+            "shorten"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Short URL",
+      "name": "shortUrl",
+      "type": "string",
+      "default": "",
+      "description": "The short URL to expand",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "url"
+          ],
+          "operation": [
+            "expand"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Short URL",
+      "name": "shortUrl",
+      "type": "string",
+      "default": "",
+      "description": "The short URL for which to get stats",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "url"
+          ],
+          "operation": [
+            "stats"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "expand",
+      "name": "Expand",
+      "description": "Expand a URL"
+    },
+    {
+      "operation": "shorten",
+      "name": "Shorten",
+      "description": "Shorten a URL"
+    },
+    {
+      "operation": "stats",
+      "name": "Stats",
+      "description": "Get stats about one short URL"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "yourlsApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

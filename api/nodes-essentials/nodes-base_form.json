@@ -1,0 +1,50 @@
+{
+  "node_type": "nodes-base.form",
+  "display_name": "n8n Form",
+  "description": "Generate webforms in n8n and pass their responses to the workflow",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "operation",
+      "displayName": "Page Type",
+      "type": "options",
+      "required": false,
+      "default": "page"
+    },
+    {
+      "name": "redirectUrl",
+      "displayName": "URL",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "completionTitle",
+      "displayName": "Completion Title",
+      "type": "string",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "page",
+      "name": "Next Form Page"
+    },
+    {
+      "operation": "completion",
+      "name": "Form Ending"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_form.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.form"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

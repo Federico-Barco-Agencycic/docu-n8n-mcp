@@ -1,0 +1,173 @@
+{
+  "node_type": "nodes-base.readWriteFile",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Read/Write Files from Disk",
+  "description": "Read or write files from the computer that runs n8n",
+  "category": "input",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Read/Write Files from Disk\ndescription: Documentation for the Read/Write Files from Disk node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: critical\n---\n\n# Read/Write Files from Disk\n\nUse the Read/Write Files from Disk node to read and write files from/to the machine where n8n is running.\n\n/// note | Self-hosted n8n only\nThis node isn't available on n8n Cloud.\n///\n\n## Operations\n\n- [**Read File(s) From Disk**](#read-files-from-disk): Use this operation to retrieve one or more files from the computer that runs n8n.\n- [**Write File to Disk**](#write-file-to-disk): Use this operation to create a binary file on the computer that runs n8n.\n\nRefer to the sections below for more information on configuring the node for each operation.\n\n## Read File(s) From Disk\n\nConfigure this operation with these parameters:\n\n* **File(s) Selector**: Enter the path of the file you want to read.\n\t- To enter multiple files, enter a page path pattern. You can use these characters to define a path pattern:\n\t\t- `*`: Matches any character zero or more times, excluding path separators.\n\t\t- `**`: Matches any character zero or more times, include path separators.\n\t\t- `?`: Matches any character except for path separators one time.\n\t\t- `[]`: Matches any characters inside the brackets. For example, `[abc]` would match the characters `a`, `b`, or `c`, and nothing else.\n\nRefer to [Picomatch's Basic globbing](https://github.com/micromatch/picomatch#basic-globbing){:target=_blank .external-link} documentation for more information on these characters and their expected behavior.\n\n### Read File(s) From Disk options\n\nYou can also configure this operation with these **Options**:\n\n* **File Extension**: Enter the extension for the file in the node output.\n* **File Name**: Enter the name for the file in the node output.\n* **MIME Type**: Enter the file's MIME type in the node output. Refer to [Common MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types){:target=_blank .external-link} for a list of file extensions and their MIME types.\n* **Put Output File in Field**: Enter the name of the field in the output data to contain the file.\n\n## Write File to Disk\n\nConfigure this operation with these parameters:\n\n* **File Path and Name**: Enter the destination for the file, the file's name, and the file's extension.\n* **Input Binary Field**: Enter the name of the field in the node input data that will contain the binary file.\n\n### Write File to Disk options\n\nYou can also configure this operation with these **Options**:\n\nThis operation includes a single option, whether to **Append** data to an existing file instead of creating a new one (turned on) or to create a new file instead of appending to existing (turned off).\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'readwrite-files-from-disk') ]]\n\n## File locations\n\nIf you run n8n in Docker, your command runs in the n8n container and not the Docker host.\n\nThis node looks for files relative to the n8n install path. n8n recommends using absolute file paths to prevent any errors.\n",
+  "properties_schema": [
+    {
+      "displayName": "Use this node to read and write files on the same computer running n8n. To handle files between different computers please use other nodes (e.g. FTP, HTTP Request, AWS).",
+      "name": "info",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "read",
+      "options": [
+        {
+          "name": "Read File(s) From Disk",
+          "value": "read",
+          "description": "Retrieve one or more files from the computer that runs n8n",
+          "action": "Read File(s) From Disk"
+        },
+        {
+          "name": "Write File to Disk",
+          "value": "write",
+          "description": "Create a binary file on the computer that runs n8n",
+          "action": "Write File to Disk"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "File(s) Selector",
+      "name": "fileSelector",
+      "type": "string",
+      "default": "",
+      "description": "Specify a file's path or path pattern to read multiple files. Always use forward-slashes for path separator even on Windows.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "read"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "File Extension",
+          "name": "fileExtension",
+          "type": "string",
+          "default": "",
+          "placeholder": "e.g. zip",
+          "description": "Extension of the file in the output binary"
+        },
+        {
+          "displayName": "File Name",
+          "name": "fileName",
+          "type": "string",
+          "default": "",
+          "placeholder": "e.g. data.zip",
+          "description": "Name of the file in the output binary"
+        },
+        {
+          "displayName": "Mime Type",
+          "name": "mimeType",
+          "type": "string",
+          "default": "",
+          "placeholder": "e.g. application/zip",
+          "description": "Mime type of the file in the output binary"
+        },
+        {
+          "displayName": "Put Output File in Field",
+          "name": "dataPropertyName",
+          "type": "string",
+          "default": "data",
+          "placeholder": "e.g. data",
+          "description": "By default 'data' is used",
+          "hint": "The name of the output binary field to put the file in"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "read"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File Path and Name",
+      "name": "fileName",
+      "type": "string",
+      "default": "",
+      "description": "Path and name of the file that should be written. Also include the file extension.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "write"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Input Binary Field",
+      "name": "dataPropertyName",
+      "type": "string",
+      "default": "data",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "write"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Append",
+          "name": "append",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to append to an existing file. While it's commonly used with text files, it's not limited to them, however, it wouldn't be applicable for file types that have a specific structure like most binary formats."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "write"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "read",
+      "name": "Read File(s) From Disk",
+      "description": "Retrieve one or more files from the computer that runs n8n"
+    },
+    {
+      "operation": "write",
+      "name": "Write File to Disk",
+      "description": "Create a binary file on the computer that runs n8n"
+    }
+  ],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

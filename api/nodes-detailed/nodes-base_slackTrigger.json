@@ -1,0 +1,182 @@
+{
+  "node_type": "nodes-base.slackTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Slack Trigger",
+  "description": "Handle Slack events via webhooks",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 1,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Slack Trigger node documentation\ndescription: Learn how to use the Slack Trigger node in n8n. Follow technical documentation to integrate Slack Trigger node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Slack Trigger node\n\nUse the Slack Trigger node to respond to events in [Slack](https://slack.com/){:target=_blank .external-link} and integrate Slack with other applications. n8n has built-in support for a wide range of Slack events, including new messages, reactions, and new channels.\n\nOn this page, you'll find a list of events the Slack Trigger node can respond to and links to more resources.\n\n///  note  | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/slack.md).\n///\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Slack integrations](https://n8n.io/integrations/slack-trigger/){:target=_blank .external-link} page.\n///\n\n## Events\n\n* **Any Event**: The node triggers on any event in Slack.\n* **Bot / App Mention**: The node triggers when your bot or app is [mentioned](https://slack.com/help/articles/205240127-Use-mentions-in-Slack){:target=_blank .external-link} in a channel the app is in.\n* **File Made Public**: The node triggers when a file is [made public](https://slack.com/help/articles/4412651915539-Manage-public-file-sharing){:target=_blank .external-link}.\n* **File Shared**: The node triggers when a file is [shared](https://slack.com/help/articles/201330736-Add-files-to-Slack){:target=_blank .external-link} in a channel the app is in.\n* **New Message Posted to Channel**: The node triggers when a new message is posted to a channel the app is in.\n* **New Public Channel Created**: The node triggers when a new [public channel](https://slack.com/help/articles/360017938993-What-is-a-channel){:target=_blank .external-link} is created.\n* **New User**: The node triggers when a new user is added to Slack.\n* **Reaction Added**: The node triggers when a [reaction](https://slack.com/help/articles/202931348-Use-emoji-and-reactions){:target=_blank .external-link} is added to a message the app is added to.\n\n## Parameters\n\nOnce you've set the events to trigger on, use the remaining parameters to further define the node's behavior:\n\n* **Watch Whole Workspace**: Whether the node should watch for the selected **Events** in all channels in the workspace (turned on) or not (turned off, default).\n\n    ///warning | Caution\n    This will use one execution for every event in any channel your bot or app is in. Use with caution!\n    ///\n\n* **Channel to Watch**: Select the channel your node should watch for the selected **Events**. This parameter only appears if you don't turn on **Watch Whole Workspace**. You can select a channel:\n    * **From list**: The node uses your credential to look up a list of channels in the workspace so you can select the channel you want.\n    * **By ID**: Enter the ID of a channel you want to watch. Slack displays the channel ID at the bottom of the channel details with a one-click copy button.\n    * **By URL**: Enter the URL of the channel you want to watch, formatted as `https://app.slack.com/client/<channel-address>`.\n* **Download Files**: Whether to download files and use them in the node's output (turned on) or not (turned off, default). Use this parameter with the **File Made Public** and **File Shared** events.\n\n## Options\n\nYou can further refine the node's behavior when you **Add Option**s:\n\n* **Resolve IDs**: Whether to resolve the IDs to their respective names and return them (turned on) or not (turned off, default).\n* **Usernames or IDs to ignore**: Select usernames or enter a comma-separated string of encoded user IDs to ignore events from. Choose from the list, or specify IDs using an [expression](/code/expressions.md).\n\n## Related resources\n\nn8n provides an app node for Slack. You can find the node docs [here](/integrations/builtin/app-nodes/n8n-nodes-base.slack.md).\n\nView [example workflows and related content](https://n8n.io/integrations/slack-trigger/){:target=_blank .external-link} on n8n's website.\n\nRefer to [Slack's documentation](https://api.slack.com/apis/connections/events-api){:target=_blank .external-link} for details about their API.\n\n## Required scopes\n\nTo use this node, you need to create an application in Slack and enable event subscriptions. Refer to [Slack credentials | Slack Trigger configuration](/integrations/builtin/credentials/slack.md#slack-trigger-configuration) for more information.\n\nYou must add the appropriate scopes to your Slack app for this trigger node to work.\n\nThe node requires scopes for the [conversations.list](https://api.slack.com/methods/conversations.list){:target=blank .external-link} and [users.list](https://api.slack.com/methods/users.list){:target=blank .external-link} methods at minimum. Check out the [Scopes | Slack credentials](/integrations/builtin/credentials/slack.md#scopes) list for a more complete list of scopes.\n\n## Common issues\n\nHere are some common errors and issues with the Slack Trigger node and steps to resolve or troubleshoot them.\n\n### Workflow only works in testing or production\n\nSlack only allows you to register a single webhook per app. This means that you can't switch from using the testing URL to the production URL (and vice versa) without reconfiguring the registered webhook URL. \n\nYou may have trouble with this if you try to test a workflow that's also active in production. Slack will only send events to one of the two webhook URLs, so the other will never receive event notifications.\n\nTo work around this, you can disable your workflow when testing:\n\n/// warning | Halts production traffic\nThis temporarily disables your production workflow for testing. Your workflow will no longer receive production traffic while it's deactivated.\n///\n\n1. Go to your workflow page.\n2. Toggle the **Active** switch in the top panel to disable the workflow temporarily.\n3. Edit the **Request URL** in your the [Slack Trigger configuration](/integrations/builtin/credentials/slack.md#slack-trigger-configuration) to use the testing webhook URL instead of the production webhook URL.\n4. Test your workflow using the test webhook URL.\n5. When you finish testing, edit the **Request URL** in your the [Slack Trigger configuration](/integrations/builtin/credentials/slack.md#slack-trigger-configuration) to use the production webhook URL instead of the testing webhook URL.\n6. Toggle the **Inactive** toggle to enable the workflow again. The production webhook URL should resume working.\n\n### Token expired\n\n--8<-- \"_snippets/integrations/builtin/credentials/slack/token-rotation.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "hidden",
+      "default": "accessToken"
+    },
+    {
+      "displayName": "Set up a webhook in your Slack app to enable this node. <a href=\"https://docs.n8n.io/integrations/builtin/trigger-nodes/n8n-nodes-base.slacktrigger/#configure-a-webhook-in-slack\" target=\"_blank\">More info</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Trigger On",
+      "name": "trigger",
+      "type": "multiOptions",
+      "default": [],
+      "options": [
+        {
+          "name": "Any Event",
+          "value": "any_event",
+          "description": "Triggers on any event"
+        },
+        {
+          "name": "Bot / App Mention",
+          "value": "app_mention",
+          "description": "When your bot or app is mentioned in a channel the app is added to"
+        },
+        {
+          "name": "File Made Public",
+          "value": "file_public",
+          "description": "When a file is made public"
+        },
+        {
+          "name": "File Shared",
+          "value": "file_share",
+          "description": "When a file is shared in a channel the app is added to"
+        },
+        {
+          "name": "New Message Posted to Channel",
+          "value": "message",
+          "description": "When a message is posted to a channel the app is added to"
+        },
+        {
+          "name": "New Public Channel Created",
+          "value": "channel_created",
+          "description": "When a new public channel is created"
+        },
+        {
+          "name": "New User",
+          "value": "team_join",
+          "description": "When a new user is added to Slack"
+        },
+        {
+          "name": "Reaction Added",
+          "value": "reaction_added",
+          "description": "When a reaction is added to a message the app is added to"
+        }
+      ]
+    },
+    {
+      "displayName": "Watch Whole Workspace",
+      "name": "watchWorkspace",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to watch for the event in the whole workspace, rather than a specific channel",
+      "displayOptions": {
+        "show": {
+          "trigger": [
+            "any_event",
+            "message",
+            "reaction_added",
+            "file_share",
+            "app_mention"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "This will use one execution for every event in any channel your bot is in, use with caution",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "trigger": [
+            "any_event",
+            "message",
+            "reaction_added",
+            "file_share",
+            "app_mention"
+          ],
+          "watchWorkspace": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Channel to Watch",
+      "name": "channelId",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "description": "The Slack channel to listen to events from. Applies to events: Bot/App mention, File Shared, New Message Posted on Channel, Reaction Added.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "watchWorkspace": [
+            false
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Download Files",
+      "name": "downloadFiles",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to download the files and add it to the output",
+      "displayOptions": {
+        "show": {
+          "trigger": [
+            "any_event",
+            "file_share"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Resolve IDs",
+          "name": "resolveIds",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to resolve the IDs to their respective names and return them"
+        },
+        {
+          "displayName": "Usernames or IDs to Ignore",
+          "name": "userIds",
+          "type": "multiOptions",
+          "typeOptions": {
+            "loadOptionsMethod": "getUsers"
+          },
+          "default": [],
+          "description": "A comma-separated string of encoded user IDs. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "slackApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

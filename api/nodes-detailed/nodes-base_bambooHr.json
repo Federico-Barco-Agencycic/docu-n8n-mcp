@@ -1,0 +1,3001 @@
+{
+  "node_type": "nodes-base.bambooHr",
+  "package_name": "n8n-nodes-base",
+  "display_name": "BambooHR",
+  "description": "Consume BambooHR API",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: BambooHR node documentation\ndescription: Learn how to use the BambooHR node in n8n. Follow technical documentation to integrate BambooHR node into your workflows.\ncontentType: [integration, reference]\n---\n\n# BambooHR node\n\nUse the BambooHR node to automate work in BambooHR, and integrate BambooHR with other applications. n8n has built-in support for a wide range of BambooHR features, including creating, deleting, downloading, and getting company reports, employee documents, and files.\n\nOn this page, you'll find a list of operations the BambooHR node supports and links to more resources.\n\n/// note | Credentials\nRefer to [BambooHR credentials](/integrations/builtin/credentials/bamboohr.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Company Report\n    * Get a company report\n* Employee\n    * Create an employee\n    * Get an employee\n    * Get all employees\n    * Update an employee\n* Employee Document\n    * Delete an employee document\n    * Download an employee document\n    * Get all employee document\n    * Update an employee document\n    * Upload an employee document\n* File\n    * Delete a company file\n    * Download a company file\n    * Get all company files\n    * Update a company file\n    * Upload a company file\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'bamboohr') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "employee",
+      "options": [
+        {
+          "name": "Company Report",
+          "value": "companyReport"
+        },
+        {
+          "name": "Employee",
+          "value": "employee"
+        },
+        {
+          "name": "Employee Document",
+          "value": "employeeDocument"
+        },
+        {
+          "name": "File",
+          "value": "file"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create an employee",
+          "action": "Create an employee"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get an employee",
+          "action": "Get an employee"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many employees",
+          "action": "Get many employees"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update an employee",
+          "action": "Update an employee"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Synced with Trax Payroll",
+      "name": "synced",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the employee to create was added to a pay schedule synced with Trax Payroll",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "employee"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "First Name",
+      "name": "firstName",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "employee"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Last Name",
+      "name": "lastName",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "employee"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Address",
+      "name": "address",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "name": "value",
+          "displayName": "Address",
+          "values": [
+            {
+              "displayName": "Line 1",
+              "name": "address1",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Line 2",
+              "name": "address2",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "City",
+              "name": "city",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "State",
+              "name": "state",
+              "type": "string",
+              "default": "",
+              "placeholder": "Florida",
+              "description": "The full name of the state/province"
+            },
+            {
+              "displayName": "Country",
+              "name": "country",
+              "type": "string",
+              "default": "",
+              "placeholder": "United States",
+              "description": "The name of the country. Must exist in the BambooHr country list."
+            }
+          ]
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": false
+      }
+    },
+    {
+      "displayName": "Date of Birth",
+      "name": "dateOfBirth",
+      "type": "dateTime",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Department Name or ID",
+      "name": "department",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDepartments"
+      }
+    },
+    {
+      "displayName": "Division Name or ID",
+      "name": "division",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDivisions"
+      }
+    },
+    {
+      "displayName": "Employee Number",
+      "name": "employeeNumber",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "FLSA Overtime Status",
+      "name": "exempt",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "Exempt",
+          "value": "exempt"
+        },
+        {
+          "name": "Non-Exempt",
+          "value": "non-exempt"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Gender",
+      "name": "gender",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "Female",
+          "value": "female"
+        },
+        {
+          "name": "Male",
+          "value": "male"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Hire Date",
+      "name": "hireDate",
+      "type": "dateTime",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Location Name or ID",
+      "name": "location",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getEmployeeLocations"
+      }
+    },
+    {
+      "displayName": "Marital Status",
+      "name": "maritalStatus",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "Single",
+          "value": "single"
+        },
+        {
+          "name": "Married",
+          "value": "married"
+        },
+        {
+          "name": "Domestic Partnership",
+          "value": "domesticPartnership"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Mobile Phone",
+      "name": "mobilePhone",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Pay Per",
+      "name": "paidPer",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "Hour",
+          "value": "hour"
+        },
+        {
+          "name": "Day",
+          "value": "day"
+        },
+        {
+          "name": "Week",
+          "value": "week"
+        },
+        {
+          "name": "Month",
+          "value": "month"
+        },
+        {
+          "name": "Quater",
+          "value": "quater"
+        },
+        {
+          "name": "Year",
+          "value": "year"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Pay Rate",
+      "name": "payRate",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "name": "value",
+          "displayName": "Pay Rate",
+          "values": [
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": "",
+              "placeholder": "20.00"
+            },
+            {
+              "displayName": "Currency",
+              "name": "currency",
+              "type": "string",
+              "default": "",
+              "placeholder": "USD"
+            }
+          ]
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": false
+      }
+    },
+    {
+      "displayName": "Pay Type",
+      "name": "payType",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "Commission",
+          "value": "commission"
+        },
+        {
+          "name": "Contract",
+          "value": "contract"
+        },
+        {
+          "name": "Daily",
+          "value": "daily"
+        },
+        {
+          "name": "Exception Hourly",
+          "value": "exceptionHourly"
+        },
+        {
+          "name": "Hourly",
+          "value": "hourly"
+        },
+        {
+          "name": "Monthly",
+          "value": "monthly"
+        },
+        {
+          "name": "Piece Rate",
+          "value": "pieceRate"
+        },
+        {
+          "name": "Pro Rata",
+          "value": "proRata"
+        },
+        {
+          "name": "Salary",
+          "value": "salary"
+        },
+        {
+          "name": "Weekly",
+          "value": "weekly"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Preferred Name",
+      "name": "preferredName",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Social Security Number",
+      "name": "ssn",
+      "type": "string",
+      "default": "",
+      "description": "A standard United States Social Security number, with dashes",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "create"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Address",
+          "name": "address",
+          "placeholder": "Address",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": false
+          },
+          "default": {},
+          "options": [
+            {
+              "name": "value",
+              "displayName": "Address",
+              "values": [
+                {
+                  "displayName": "Line 1",
+                  "name": "address1",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Line 2",
+                  "name": "address2",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "City",
+                  "name": "city",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "State",
+                  "name": "state",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "Florida",
+                  "description": "The full name of the state/province"
+                },
+                {
+                  "displayName": "Country",
+                  "name": "country",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "United States",
+                  "description": "The name of the country. Must exist in the BambooHr country list."
+                }
+              ]
+            }
+          ],
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Date of Birth",
+          "name": "dateOfBirth",
+          "type": "dateTime",
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Department Name or ID",
+          "name": "department",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsMethod": "getDepartments"
+          },
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Division Name or ID",
+          "name": "division",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsMethod": "getDivisions"
+          },
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Employee Number",
+          "name": "employeeNumber",
+          "type": "string",
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "FLSA Overtime Status",
+          "name": "exempt",
+          "type": "options",
+          "options": [
+            {
+              "name": "Exempt",
+              "value": "exempt"
+            },
+            {
+              "name": "Non-Exempt",
+              "value": "non-exempt"
+            }
+          ],
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Gender",
+          "name": "gender",
+          "type": "options",
+          "options": [
+            {
+              "name": "Female",
+              "value": "female"
+            },
+            {
+              "name": "Male",
+              "value": "male"
+            }
+          ],
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Hire Date",
+          "name": "hireDate",
+          "type": "dateTime",
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Location Name or ID",
+          "name": "location",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsMethod": "getEmployeeLocations"
+          },
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Marital Status",
+          "name": "maritalStatus",
+          "type": "options",
+          "options": [
+            {
+              "name": "Single",
+              "value": "single"
+            },
+            {
+              "name": "Married",
+              "value": "married"
+            },
+            {
+              "name": "Domestic Partnership",
+              "value": "domesticPartnership"
+            }
+          ],
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Mobile Phone",
+          "name": "mobilePhone",
+          "type": "string",
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Pay Per",
+          "name": "paidPer",
+          "type": "options",
+          "options": [
+            {
+              "name": "Hour",
+              "value": "hour"
+            },
+            {
+              "name": "Day",
+              "value": "day"
+            },
+            {
+              "name": "Week",
+              "value": "week"
+            },
+            {
+              "name": "Month",
+              "value": "month"
+            },
+            {
+              "name": "Quater",
+              "value": "quater"
+            },
+            {
+              "name": "Year",
+              "value": "year"
+            }
+          ],
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Pay Rate",
+          "name": "payRate",
+          "placeholder": "Add Pay Rate",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": false
+          },
+          "default": {},
+          "options": [
+            {
+              "name": "value",
+              "displayName": "Pay Rate",
+              "values": [
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "20.00"
+                },
+                {
+                  "displayName": "Currency",
+                  "name": "currency",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "USD"
+                }
+              ]
+            }
+          ],
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Pay Type",
+          "name": "payType",
+          "type": "options",
+          "options": [
+            {
+              "name": "Commission",
+              "value": "commission"
+            },
+            {
+              "name": "Contract",
+              "value": "contract"
+            },
+            {
+              "name": "Daily",
+              "value": "daily"
+            },
+            {
+              "name": "Exception Hourly",
+              "value": "exceptionHourly"
+            },
+            {
+              "name": "Hourly",
+              "value": "hourly"
+            },
+            {
+              "name": "Monthly",
+              "value": "monthly"
+            },
+            {
+              "name": "Piece Rate",
+              "value": "pieceRate"
+            },
+            {
+              "name": "Pro Rata",
+              "value": "proRata"
+            },
+            {
+              "name": "Salary",
+              "value": "salary"
+            },
+            {
+              "name": "Weekly",
+              "value": "weekly"
+            }
+          ],
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Preferred Name",
+          "name": "preferredName",
+          "type": "string",
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Social Security Number",
+          "name": "ssn",
+          "type": "string",
+          "default": "",
+          "placeholder": "123-45-6789",
+          "description": "A standard United States Social Security number, with dashes",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Work Email",
+          "name": "workEmail",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Work Phone",
+          "name": "workPhone",
+          "type": "string",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "employee"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Employee ID",
+      "name": "employeeId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "employee"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Field Names or IDs",
+          "name": "fields",
+          "type": "multiOptions",
+          "typeOptions": {
+            "loadOptionsMethod": "getEmployeeFields"
+          },
+          "default": [
+            "all"
+          ],
+          "description": "Set of fields to get from employee data. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "employee"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 5,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 1000
+      }
+    },
+    {
+      "displayName": "Employee ID",
+      "name": "employeeId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "employee"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Synced with Trax Payroll",
+      "name": "synced",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the employee to create was added to a pay schedule synced with Trax Payroll",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "employee"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Address",
+      "name": "addasasress",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "name": "value",
+          "displayName": "Address",
+          "values": [
+            {
+              "displayName": "Line 1",
+              "name": "address1",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Line 2",
+              "name": "address2",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "City",
+              "name": "city",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "State",
+              "name": "state",
+              "type": "string",
+              "default": "",
+              "placeholder": "Florida",
+              "description": "The full name of the state/province"
+            },
+            {
+              "displayName": "Country",
+              "name": "country",
+              "type": "string",
+              "default": "",
+              "placeholder": "United States",
+              "description": "The name of the country. Must exist in the BambooHr country list."
+            }
+          ]
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": false
+      }
+    },
+    {
+      "displayName": "Date of Birth",
+      "name": "dateOfBirth",
+      "type": "dateTime",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Department Name or ID",
+      "name": "department",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDepartments"
+      }
+    },
+    {
+      "displayName": "Division Name or ID",
+      "name": "division",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getDivisions"
+      }
+    },
+    {
+      "displayName": "Employee Number",
+      "name": "employeeNumber",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "First Name",
+      "name": "firstName",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Last Name",
+      "name": "lastName",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "FLSA Overtime Status",
+      "name": "exempt",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "Exempt",
+          "value": "exempt"
+        },
+        {
+          "name": "Non-Exempt",
+          "value": "non-exempt"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Gender",
+      "name": "gender",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "Female",
+          "value": "female"
+        },
+        {
+          "name": "Male",
+          "value": "male"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Hire Date",
+      "name": "hireDate",
+      "type": "dateTime",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Location Name or ID",
+      "name": "location",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getEmployeeLocations"
+      }
+    },
+    {
+      "displayName": "Marital Status",
+      "name": "maritalStatus",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "Single",
+          "value": "single"
+        },
+        {
+          "name": "Married",
+          "value": "married"
+        },
+        {
+          "name": "Domestic Partnership",
+          "value": "domesticPartnership"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Mobile Phone",
+      "name": "mobilePhone",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Pay Per",
+      "name": "paidPer",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "Hour",
+          "value": "hour"
+        },
+        {
+          "name": "Day",
+          "value": "day"
+        },
+        {
+          "name": "Week",
+          "value": "week"
+        },
+        {
+          "name": "Month",
+          "value": "month"
+        },
+        {
+          "name": "Quater",
+          "value": "quater"
+        },
+        {
+          "name": "Year",
+          "value": "year"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Pay Rate",
+      "name": "payRate",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "name": "value",
+          "displayName": "Pay Rate",
+          "values": [
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": "",
+              "placeholder": "20.00"
+            },
+            {
+              "displayName": "Currency",
+              "name": "currency",
+              "type": "string",
+              "default": "",
+              "placeholder": "USD"
+            }
+          ]
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": false
+      }
+    },
+    {
+      "displayName": "Pay Type",
+      "name": "payType",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "Commission",
+          "value": "commission"
+        },
+        {
+          "name": "Contract",
+          "value": "contract"
+        },
+        {
+          "name": "Daily",
+          "value": "daily"
+        },
+        {
+          "name": "Exception Hourly",
+          "value": "exceptionHourly"
+        },
+        {
+          "name": "Hourly",
+          "value": "hourly"
+        },
+        {
+          "name": "Monthly",
+          "value": "monthly"
+        },
+        {
+          "name": "Piece Rate",
+          "value": "pieceRate"
+        },
+        {
+          "name": "Pro Rata",
+          "value": "proRata"
+        },
+        {
+          "name": "Salary",
+          "value": "salary"
+        },
+        {
+          "name": "Weekly",
+          "value": "weekly"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Preferred Name",
+      "name": "preferredName",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Social Security Number",
+      "name": "ssn",
+      "type": "string",
+      "default": "",
+      "description": "A standard United States Social Security number, with dashes",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employee"
+          ],
+          "operation": [
+            "update"
+          ],
+          "synced": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Address",
+          "name": "addasasress",
+          "placeholder": "Address",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": false
+          },
+          "default": {},
+          "options": [
+            {
+              "name": "value",
+              "displayName": "Address",
+              "values": [
+                {
+                  "displayName": "Line 1",
+                  "name": "address1",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Line 2",
+                  "name": "address2",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "City",
+                  "name": "city",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "State",
+                  "name": "state",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "Florida",
+                  "description": "The full name of the state/province"
+                },
+                {
+                  "displayName": "Country",
+                  "name": "country",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "United States",
+                  "description": "The name of the country. Must exist in the BambooHr country list."
+                }
+              ]
+            }
+          ],
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Date of Birth",
+          "name": "dateOfBirth",
+          "type": "dateTime",
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Department Name or ID",
+          "name": "department",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsMethod": "getDepartments"
+          },
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Division Name or ID",
+          "name": "division",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsMethod": "getDivisions"
+          },
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Employee Number",
+          "name": "employeeNumber",
+          "type": "string",
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "First Name",
+          "name": "firstName",
+          "type": "string",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          },
+          "default": ""
+        },
+        {
+          "displayName": "Last Name",
+          "name": "lastName",
+          "type": "string",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          },
+          "default": ""
+        },
+        {
+          "displayName": "FLSA Overtime Status",
+          "name": "exempt",
+          "type": "options",
+          "options": [
+            {
+              "name": "Exempt",
+              "value": "exempt"
+            },
+            {
+              "name": "Non-Exempt",
+              "value": "non-exempt"
+            }
+          ],
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Gender",
+          "name": "gender",
+          "type": "options",
+          "options": [
+            {
+              "name": "Female",
+              "value": "female"
+            },
+            {
+              "name": "Male",
+              "value": "male"
+            }
+          ],
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Hire Date",
+          "name": "hireDate",
+          "type": "dateTime",
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Location Name or ID",
+          "name": "location",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "typeOptions": {
+            "loadOptionsMethod": "getEmployeeLocations"
+          },
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Marital Status",
+          "name": "maritalStatus",
+          "type": "options",
+          "options": [
+            {
+              "name": "Single",
+              "value": "single"
+            },
+            {
+              "name": "Married",
+              "value": "married"
+            },
+            {
+              "name": "Domestic Partnership",
+              "value": "domesticPartnership"
+            }
+          ],
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Mobile Phone",
+          "name": "mobilePhone",
+          "type": "string",
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Pay Per",
+          "name": "paidPer",
+          "type": "options",
+          "options": [
+            {
+              "name": "Hour",
+              "value": "hour"
+            },
+            {
+              "name": "Day",
+              "value": "day"
+            },
+            {
+              "name": "Week",
+              "value": "week"
+            },
+            {
+              "name": "Month",
+              "value": "month"
+            },
+            {
+              "name": "Quater",
+              "value": "quater"
+            },
+            {
+              "name": "Year",
+              "value": "year"
+            }
+          ],
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Pay Rate",
+          "name": "payRate",
+          "placeholder": "Add Pay Rate",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": false
+          },
+          "default": {},
+          "options": [
+            {
+              "name": "value",
+              "displayName": "Pay Rate",
+              "values": [
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "20.00"
+                },
+                {
+                  "displayName": "Currency",
+                  "name": "currency",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "USD"
+                }
+              ]
+            }
+          ],
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Pay Type",
+          "name": "payType",
+          "type": "options",
+          "options": [
+            {
+              "name": "Commission",
+              "value": "commission"
+            },
+            {
+              "name": "Contract",
+              "value": "contract"
+            },
+            {
+              "name": "Daily",
+              "value": "daily"
+            },
+            {
+              "name": "Exception Hourly",
+              "value": "exceptionHourly"
+            },
+            {
+              "name": "Hourly",
+              "value": "hourly"
+            },
+            {
+              "name": "Monthly",
+              "value": "monthly"
+            },
+            {
+              "name": "Piece Rate",
+              "value": "pieceRate"
+            },
+            {
+              "name": "Pro Rata",
+              "value": "proRata"
+            },
+            {
+              "name": "Salary",
+              "value": "salary"
+            },
+            {
+              "name": "Weekly",
+              "value": "weekly"
+            }
+          ],
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Preferred Name",
+          "name": "preferredName",
+          "type": "string",
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Social Security Number",
+          "name": "ssn",
+          "type": "string",
+          "default": "",
+          "placeholder": "123-45-6789",
+          "description": "A standard United States Social Security number, with dashes",
+          "displayOptions": {
+            "show": {
+              "/synced": [
+                false
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Work Email",
+          "name": "workEmail",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Work Phone",
+          "name": "workPhone",
+          "type": "string",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "employee"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "delete",
+      "options": [
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete an employee document",
+          "action": "Delete an employee document"
+        },
+        {
+          "name": "Download",
+          "value": "download",
+          "description": "Download an employee document",
+          "action": "Download an employee document"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many employee documents",
+          "action": "Get many employee documents"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update an employee document",
+          "action": "Update an employee document"
+        },
+        {
+          "name": "Upload",
+          "value": "upload",
+          "description": "Upload an employee document",
+          "action": "Upload an employee document"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Employee ID",
+      "name": "employeeId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the employee",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "delete"
+          ],
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File ID",
+      "name": "fileId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the employee file",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "delete"
+          ],
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Employee ID",
+      "name": "employeeId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the employee",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "download"
+          ],
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File ID",
+      "name": "fileId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the employee file",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "download"
+          ],
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Put Output In Field",
+      "name": "output",
+      "type": "string",
+      "default": "data",
+      "description": "The name of the output field to put the binary file data in",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "download"
+          ],
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Employee ID",
+      "name": "employeeId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 5,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "employeeDocument"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 1000
+      }
+    },
+    {
+      "displayName": "Simplify",
+      "name": "simplifyOutput",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return a simplified version of the response instead of the raw data",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Employee ID",
+      "name": "employeeId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File ID",
+      "name": "fileId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Employee Document Category Name or ID",
+          "name": "categoryId",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsMethod": "getEmployeeDocumentCategories",
+            "loadOptionsDependsOn": [
+              "employeeId"
+            ]
+          },
+          "default": "",
+          "description": "ID of the new category of the file. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Name",
+          "name": "name",
+          "type": "string",
+          "default": "",
+          "description": "New name of the file"
+        },
+        {
+          "displayName": "Share with Employee",
+          "name": "shareWithEmployee",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether this file is shared or not"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Employee ID",
+      "name": "employeeId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the employee",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "upload"
+          ],
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Employee Document Category ID",
+      "name": "categoryId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "upload"
+          ],
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Input Data Field Name",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "description": "The name of the input field containing the binary file data to be uploaded. Supported file types: PNG, JPEG.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "upload"
+          ],
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Share with Employee",
+          "name": "share",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether this file is shared or not"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "upload"
+          ],
+          "resource": [
+            "employeeDocument"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "delete",
+      "options": [
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a company file",
+          "action": "Delete a file"
+        },
+        {
+          "name": "Download",
+          "value": "download",
+          "description": "Download a company file",
+          "action": "Download a file"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many company files",
+          "action": "Get many files"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a company file",
+          "action": "Update a file"
+        },
+        {
+          "name": "Upload",
+          "value": "upload",
+          "description": "Upload a company file",
+          "action": "Upload a file"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "File ID",
+      "name": "fileId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the file",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "delete"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File ID",
+      "name": "fileId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the file",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "download"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Put Output In Field",
+      "name": "output",
+      "type": "string",
+      "default": "data",
+      "description": "The name of the output field to put the binary file data in",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "download"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 5,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "file"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 1000
+      }
+    },
+    {
+      "displayName": "Simplify",
+      "name": "simplifyOutput",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return a simplified version of the response instead of the raw data",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File ID",
+      "name": "fileId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the file",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Category Name or ID",
+          "name": "categoryId",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsMethod": "getCompanyFileCategories"
+          },
+          "default": "",
+          "description": "Move the file to a different category. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Name",
+          "name": "name",
+          "type": "string",
+          "default": "",
+          "description": "New name of the file"
+        },
+        {
+          "displayName": "Share with Employee",
+          "name": "shareWithEmployee",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether this file is shared or not"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Input Data Field Name",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "description": "The name of the input field containing the binary file data to be uploaded. Supported file types: PNG, JPEG.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "upload"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Category Name or ID",
+      "name": "categoryId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "upload"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getCompanyFileCategories"
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Share with Employee",
+          "name": "share",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether this file is shared or not"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "upload"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a company report",
+          "action": "Get a company report"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "companyReport"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Report ID",
+      "name": "reportId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the report. You can get the report number by hovering over the report name on the reports page and grabbing the ID.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "companyReport"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Format",
+      "name": "format",
+      "type": "options",
+      "default": "JSON",
+      "description": "The output format for the report",
+      "options": [
+        {
+          "name": "CSV",
+          "value": "CSV"
+        },
+        {
+          "name": "JSON",
+          "value": "JSON"
+        },
+        {
+          "name": "PDF",
+          "value": "PDF"
+        },
+        {
+          "name": "XLS",
+          "value": "XLS"
+        },
+        {
+          "name": "XML",
+          "value": "XML"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "companyReport"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Put Output In Field",
+      "name": "output",
+      "type": "string",
+      "default": "data",
+      "description": "The name of the output field to put the binary file data in",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "companyReport"
+          ]
+        },
+        "hide": {
+          "format": [
+            "JSON"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Duplicate Field Filtering",
+          "name": "fd",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to apply the standard duplicate field filtering or not"
+        },
+        {
+          "displayName": "Only Current",
+          "name": "onlyCurrent",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to hide future dated values from the history table fields or not"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "companyReport"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create an employee"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get an employee"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many employees"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update an employee"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "bambooHrApi",
+      "required": true,
+      "testedBy": "bambooHrApiCredentialTest"
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

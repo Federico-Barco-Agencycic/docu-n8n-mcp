@@ -1,0 +1,277 @@
+{
+  "node_type": "nodes-base.postBin",
+  "package_name": "n8n-nodes-base",
+  "display_name": "PostBin",
+  "description": "Consume PostBin API",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: PostBin node documentation\ndescription: Learn how to use the PostBin node in n8n. Follow technical documentation to integrate PostBin node into your workflows.\ncontentType: [integration, reference]\npriority: high\n---\n\n# PostBin node\n\nPostBin is a service that helps you test API clients and webhooks. Use the PostBin node to automate work in PostBin, and integrate PostBin with other applications. n8n has built-in support for a wide range of PostBin features, including creating and deleting bins, and getting and sending requests. \n\nOn this page, you'll find a list of operations the PostBin node supports, and links to more resources.\n\n## Operations\n\n* Bin\n\t* Create\n\t* Get\n\t* Delete\n* Request\n\t* Get\n\t* Remove First\n\t* Send\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'postbin') ]]\n\n## Send requests\n\nTo send requests to a PostBin bin:\n\n1. Go to [PostBin](https://www.toptal.com/developers/postbin/){:target=_blank .external-link} and follow the steps to generate a new bin. PostBin gives you a unique URL, including a bin ID.\n2. In the PostBin node, select the **Request** resource.\n3. Choose the type of **Operation** you want to perform.\n4. Enter your bin ID in **Bin ID**.\n\n## Create and manage bins\n\nYou can create and manage PostBin bins using the PostBin node. \n\n1. In **Resource**, select **Bin**.\n2. Choose an **Operation**. You can create, delete, or get a bin.\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "bin",
+      "options": [
+        {
+          "name": "Bin",
+          "value": "bin"
+        },
+        {
+          "name": "Request",
+          "value": "request"
+        }
+      ],
+      "required": true,
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create bin",
+          "routing": {
+            "request": {
+              "method": "POST",
+              "url": "/api/bin"
+            },
+            "output": {
+              "postReceive": [
+                null
+              ]
+            }
+          },
+          "action": "Create a bin"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a bin",
+          "routing": {
+            "request": {
+              "method": "GET"
+            },
+            "output": {
+              "postReceive": [
+                null
+              ]
+            },
+            "send": {
+              "preSend": [
+                null
+              ]
+            }
+          },
+          "action": "Get a bin"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a bin",
+          "routing": {
+            "request": {
+              "method": "DELETE"
+            },
+            "send": {
+              "preSend": [
+                null
+              ]
+            }
+          },
+          "action": "Delete a bin"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "bin"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Bin ID",
+      "name": "binId",
+      "type": "string",
+      "default": "",
+      "description": "Unique identifier for each bin",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "bin"
+          ],
+          "operation": [
+            "get",
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a request",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "=/api/bin/{{$parameter[\"binId\"]}}/req/{{$parameter[\"requestId\"]}}"
+            },
+            "send": {
+              "preSend": [
+                null
+              ]
+            }
+          },
+          "action": "Get a request"
+        },
+        {
+          "name": "Remove First",
+          "value": "removeFirst",
+          "description": "Remove the first request from bin",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "=/api/bin/{{$parameter[\"binId\"]}}/req/shift"
+            },
+            "send": {
+              "preSend": [
+                null
+              ]
+            }
+          },
+          "action": "Remove First a request"
+        },
+        {
+          "name": "Send",
+          "value": "send",
+          "description": "Send a test request to the bin",
+          "routing": {
+            "request": {
+              "method": "POST"
+            },
+            "send": {
+              "preSend": [
+                null
+              ]
+            },
+            "output": {
+              "postReceive": [
+                {
+                  "type": "set",
+                  "properties": {
+                    "value": "={{ { \"requestId\": $response.body } }}"
+                  }
+                }
+              ]
+            }
+          },
+          "action": "Send a request"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "request"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Bin ID",
+      "name": "binId",
+      "type": "string",
+      "default": "",
+      "description": "Unique identifier for each bin",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "request"
+          ],
+          "operation": [
+            "get",
+            "removeFirst",
+            "send"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Bin Content",
+      "name": "binContent",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "request"
+          ],
+          "operation": [
+            "send"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 5
+      }
+    },
+    {
+      "displayName": "Request ID",
+      "name": "requestId",
+      "type": "string",
+      "default": "",
+      "description": "Unique identifier for each request",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "request"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create bin"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a bin"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a bin"
+    }
+  ],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

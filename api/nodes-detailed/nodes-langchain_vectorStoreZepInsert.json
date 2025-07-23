@@ -1,0 +1,61 @@
+{
+  "node_type": "nodes-langchain.vectorStoreZepInsert",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "Zep Vector Store: Insert",
+  "description": "Insert data into Zep Vector Store index",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "Collection Name",
+      "name": "collectionName",
+      "type": "string",
+      "default": "",
+      "required": true
+    },
+    {
+      "displayName": "Specify the document to load in the document loader sub-node",
+      "name": "notice",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Embedding Dimensions",
+          "name": "embeddingDimensions",
+          "type": "number",
+          "default": 1536,
+          "description": "Whether to allow using characters from the Unicode surrogate blocks"
+        },
+        {
+          "displayName": "Is Auto Embedded",
+          "name": "isAutoEmbedded",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to automatically embed documents when they are added"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "zepApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

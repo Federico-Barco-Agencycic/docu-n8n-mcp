@@ -1,0 +1,62 @@
+{
+  "node_type": "nodes-langchain.vectorStoreSupabase",
+  "display_name": "Supabase Vector Store",
+  "description": "Work with your data in Supabase Vector Store",
+  "category": "transform",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1.3",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "toolName",
+      "displayName": "Name",
+      "type": "string",
+      "description": "Name of the vector store",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "toolDescription",
+      "displayName": "Description",
+      "type": "string",
+      "description": "Explain to the LLM what this tool does, a good, specific description would allow LLMs to produce expected results much more often",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "tableName",
+      "displayName": "Table Name",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "prompt",
+      "displayName": "Prompt",
+      "type": "string",
+      "description": "Search prompt to retrieve matching documents from the vector store using similarity-based ranking",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "id",
+      "displayName": "ID",
+      "type": "string",
+      "description": "ID of an embedding entry",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_vectorStoreSupabase.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-langchain.vectorStoreSupabase"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

@@ -1,0 +1,3947 @@
+[
+  {
+    "node_type": "nodes-base.Brandfetch",
+    "display_name": "Brandfetch",
+    "description": "Consume Brandfetch API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_Brandfetch.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_Brandfetch.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.actionNetwork",
+    "display_name": "Action Network",
+    "description": "Consume the Action Network API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_actionNetwork.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_actionNetwork.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.activeCampaign",
+    "display_name": "ActiveCampaign",
+    "description": "Create and edit data in ActiveCampaign",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_activeCampaign.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_activeCampaign.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.activeCampaignTrigger",
+    "display_name": "ActiveCampaign Trigger",
+    "description": "Handle ActiveCampaign events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_activeCampaignTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_activeCampaignTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.adalo",
+    "display_name": "Adalo",
+    "description": "Consume Adalo API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_adalo.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_adalo.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.affinity",
+    "display_name": "Affinity",
+    "description": "Consume Affinity API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_affinity.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_affinity.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.agileCrm",
+    "display_name": "Agile CRM",
+    "description": "Consume Agile CRM API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_agileCrm.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_agileCrm.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.aiTransform",
+    "display_name": "AI Transform",
+    "description": "Modify data based on instructions written in plain english",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_aiTransform.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_aiTransform.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.airtable",
+    "display_name": "Airtable",
+    "description": "Read, update, write and delete data from Airtable",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_airtable.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_airtable.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.airtableTrigger",
+    "display_name": "Airtable Trigger",
+    "description": "Starts the workflow when Airtable events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_airtableTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_airtableTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.airtop",
+    "display_name": "Airtop",
+    "description": "Scrape and control any site with Airtop",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_airtop.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_airtop.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.amqp",
+    "display_name": "AMQP Sender",
+    "description": "Sends a raw-message via AMQP 1.0, executed once per item",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_amqp.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_amqp.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.apiTemplateIo",
+    "display_name": "APITemplate.io",
+    "description": "Consume the APITemplate.io API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_apiTemplateIo.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_apiTemplateIo.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.asana",
+    "display_name": "Asana",
+    "description": "Consume Asana REST API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_asana.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_asana.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.autopilot",
+    "display_name": "Autopilot",
+    "description": "Consume Autopilot API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_autopilot.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_autopilot.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.awsLambda",
+    "display_name": "AWS Lambda",
+    "description": "Invoke functions on AWS Lambda",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_awsLambda.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_awsLambda.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.awsSes",
+    "display_name": "AWS SES",
+    "description": "Sends data to AWS SES",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_awsSes.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_awsSes.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.awsSns",
+    "display_name": "AWS SNS",
+    "description": "Sends data to AWS SNS",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_awsSns.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_awsSns.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.awsTextract",
+    "display_name": "AWS Textract",
+    "description": "Sends data to Amazon Textract",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_awsTextract.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_awsTextract.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.awsTranscribe",
+    "display_name": "AWS Transcribe",
+    "description": "Sends data to AWS Transcribe",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_awsTranscribe.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_awsTranscribe.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.bambooHr",
+    "display_name": "BambooHR",
+    "description": "Consume BambooHR API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_bambooHr.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_bambooHr.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.baserow",
+    "display_name": "Baserow",
+    "description": "Consume the Baserow API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_baserow.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_baserow.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.beeminder",
+    "display_name": "Beeminder",
+    "description": "Consume Beeminder API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_beeminder.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_beeminder.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.bitly",
+    "display_name": "Bitly",
+    "description": "Consume Bitly API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_bitly.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_bitly.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.bitwarden",
+    "display_name": "Bitwarden",
+    "description": "Consume the Bitwarden API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_bitwarden.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_bitwarden.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.bubble",
+    "display_name": "Bubble",
+    "description": "Consume the Bubble Data API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_bubble.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_bubble.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.chargebee",
+    "display_name": "Chargebee",
+    "description": "Retrieve data from Chargebee API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_chargebee.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_chargebee.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.circleCi",
+    "display_name": "CircleCI",
+    "description": "Consume CircleCI API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_circleCi.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_circleCi.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.ciscoWebex",
+    "display_name": "Webex by Cisco",
+    "description": "Consume the Cisco Webex API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_ciscoWebex.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_ciscoWebex.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.clearbit",
+    "display_name": "Clearbit",
+    "description": "Consume Clearbit API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_clearbit.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_clearbit.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.clickUp",
+    "display_name": "ClickUp",
+    "description": "Consume ClickUp API (Beta)",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_clickUp.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_clickUp.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.clockify",
+    "display_name": "Clockify",
+    "description": "Consume Clockify REST API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_clockify.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_clockify.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.cloudflare",
+    "display_name": "Cloudflare",
+    "description": "Consume Cloudflare API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_cloudflare.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_cloudflare.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.cockpit",
+    "display_name": "Cockpit",
+    "description": "Consume Cockpit API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_cockpit.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_cockpit.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.coda",
+    "display_name": "Coda",
+    "description": "Consume Coda API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_coda.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_coda.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.coinGecko",
+    "display_name": "CoinGecko",
+    "description": "Consume CoinGecko API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_coinGecko.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_coinGecko.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.compression",
+    "display_name": "Compression",
+    "description": "Compress and decompress files",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_compression.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_compression.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.contentful",
+    "display_name": "Contentful",
+    "description": "Consume Contentful API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_contentful.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_contentful.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.convertKit",
+    "display_name": "ConvertKit",
+    "description": "Consume ConvertKit API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_convertKit.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_convertKit.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.copper",
+    "display_name": "Copper",
+    "description": "Consume the Copper API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_copper.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_copper.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.crateDb",
+    "display_name": "CrateDB",
+    "description": "Add and update data in CrateDB",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_crateDb.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_crateDb.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.crowdDev",
+    "display_name": "crowd.dev",
+    "description": "crowd.dev is an open-source suite of community and data tools built to unlock community-led growth for your organization.",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_crowdDev.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_crowdDev.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.crypto",
+    "display_name": "Crypto",
+    "description": "Provide cryptographic utilities",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_crypto.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_crypto.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.customerIo",
+    "display_name": "Customer.io",
+    "description": "Consume Customer.io API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_customerIo.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_customerIo.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.deepL",
+    "display_name": "DeepL",
+    "description": "Translate data using DeepL",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_deepL.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_deepL.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.demio",
+    "display_name": "Demio",
+    "description": "Consume the Demio API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_demio.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_demio.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.dhl",
+    "display_name": "DHL",
+    "description": "Consume DHL API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_dhl.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_dhl.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.discourse",
+    "display_name": "Discourse",
+    "description": "Consume Discourse API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_discourse.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_discourse.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.drift",
+    "display_name": "Drift",
+    "description": "Consume Drift API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_drift.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_drift.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.dropbox",
+    "display_name": "Dropbox",
+    "description": "Access data on Dropbox",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_dropbox.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_dropbox.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.dropcontact",
+    "display_name": "Dropcontact",
+    "description": "Find B2B emails and enrich contacts",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_dropcontact.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_dropcontact.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.e2eTest",
+    "display_name": "E2E Test",
+    "description": "Dummy node used for e2e testing",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_e2eTest.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_e2eTest.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.egoi",
+    "display_name": "E-goi",
+    "description": "Consume E-goi API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_egoi.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_egoi.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.elasticSecurity",
+    "display_name": "Elastic Security",
+    "description": "Consume the Elastic Security API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_elasticSecurity.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_elasticSecurity.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.elasticsearch",
+    "display_name": "Elasticsearch",
+    "description": "Consume the Elasticsearch API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_elasticsearch.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_elasticsearch.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.emailReadImap",
+    "display_name": "Email Trigger (IMAP)",
+    "description": "Triggers the workflow when a new email is received",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_emailReadImap.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_emailReadImap.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.emailSend",
+    "display_name": "Send Email",
+    "description": "Sends an email using SMTP protocol",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_emailSend.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_emailSend.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.emelia",
+    "display_name": "Emelia",
+    "description": "Consume the Emelia API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_emelia.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_emelia.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.erpNext",
+    "display_name": "ERPNext",
+    "description": "Consume ERPNext API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_erpNext.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_erpNext.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.executeCommand",
+    "display_name": "Execute Command",
+    "description": "Executes a command on the host",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_executeCommand.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_executeCommand.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.facebookGraphApi",
+    "display_name": "Facebook Graph API",
+    "description": "Interacts with Facebook using the Graph API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_facebookGraphApi.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_facebookGraphApi.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.filemaker",
+    "display_name": "FileMaker",
+    "description": "Retrieve data from the FileMaker data API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_filemaker.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_filemaker.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.freshdesk",
+    "display_name": "Freshdesk",
+    "description": "Consume Freshdesk API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_freshdesk.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_freshdesk.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.freshservice",
+    "display_name": "Freshservice",
+    "description": "Consume the Freshservice API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_freshservice.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_freshservice.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.freshworksCrm",
+    "display_name": "Freshworks CRM",
+    "description": "Consume the Freshworks CRM API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_freshworksCrm.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_freshworksCrm.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.gSuiteAdmin",
+    "display_name": "Google Workspace Admin",
+    "description": "Consume Google Workspace Admin API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_gSuiteAdmin.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_gSuiteAdmin.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.getResponse",
+    "display_name": "GetResponse",
+    "description": "Consume GetResponse API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_getResponse.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_getResponse.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.ghost",
+    "display_name": "Ghost",
+    "description": "Consume Ghost API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_ghost.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_ghost.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.git",
+    "display_name": "Git",
+    "description": "Control git.",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_git.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_git.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.github",
+    "display_name": "GitHub",
+    "description": "Consume GitHub API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_github.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_github.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.gitlab",
+    "display_name": "GitLab",
+    "description": "Retrieve data from GitLab API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_gitlab.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_gitlab.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.gmail",
+    "display_name": "Gmail",
+    "description": "Consume the Gmail API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_gmail.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_gmail.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.gmailTrigger",
+    "display_name": "Gmail Trigger",
+    "description": "Fetches emails from Gmail and starts the workflow on specified polling intervals.",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_gmailTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_gmailTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.goToWebinar",
+    "display_name": "GoToWebinar",
+    "description": "Consume the GoToWebinar API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_goToWebinar.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_goToWebinar.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.gong",
+    "display_name": "Gong",
+    "description": "Interact with Gong API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_gong.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_gong.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleAds",
+    "display_name": "Google Ads",
+    "description": "Use the Google Ads API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleAds.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleAds.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleBooks",
+    "display_name": "Google Books",
+    "description": "Read data from Google Books",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleBooks.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleBooks.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleBusinessProfile",
+    "display_name": "Google Business Profile",
+    "description": "Consume Google Business Profile API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleBusinessProfile.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleBusinessProfile.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleCalendar",
+    "display_name": "Google Calendar",
+    "description": "Consume Google Calendar API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleCalendar.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleCalendar.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleChat",
+    "display_name": "Google Chat",
+    "description": "Consume Google Chat API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleChat.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleChat.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleCloudNaturalLanguage",
+    "display_name": "Google Cloud Natural Language",
+    "description": "Consume Google Cloud Natural Language API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleCloudNaturalLanguage.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleCloudNaturalLanguage.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleCloudStorage",
+    "display_name": "Google Cloud Storage",
+    "description": "Use the Google Cloud Storage API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleCloudStorage.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleCloudStorage.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleContacts",
+    "display_name": "Google Contacts",
+    "description": "Consume Google Contacts API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleContacts.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleContacts.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleDocs",
+    "display_name": "Google Docs",
+    "description": "Consume Google Docs API.",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleDocs.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleDocs.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleFirebaseCloudFirestore",
+    "display_name": "Google Cloud Firestore",
+    "description": "Interact with Google Firebase - Cloud Firestore API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleFirebaseCloudFirestore.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleFirebaseCloudFirestore.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleFirebaseRealtimeDatabase",
+    "display_name": "Google Cloud Realtime Database",
+    "description": "Interact with Google Firebase - Realtime Database API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleFirebaseRealtimeDatabase.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleFirebaseRealtimeDatabase.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googlePerspective",
+    "display_name": "Google Perspective",
+    "description": "Consume Google Perspective API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googlePerspective.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googlePerspective.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleSlides",
+    "display_name": "Google Slides",
+    "description": "Consume the Google Slides API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleSlides.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleSlides.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleTasks",
+    "display_name": "Google Tasks",
+    "description": "Consume Google Tasks API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleTasks.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleTasks.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleTranslate",
+    "display_name": "Google Translate",
+    "description": "Translate data using Google Translate",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleTranslate.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleTranslate.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.gotify",
+    "display_name": "Gotify",
+    "description": "Consume Gotify API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_gotify.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_gotify.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.grafana",
+    "display_name": "Grafana",
+    "description": "Consume the Grafana API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_grafana.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_grafana.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.graphql",
+    "display_name": "GraphQL",
+    "description": "Makes a GraphQL request and returns the received data",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_graphql.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_graphql.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.grist",
+    "display_name": "Grist",
+    "description": "Consume the Grist API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_grist.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_grist.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.hackerNews",
+    "display_name": "Hacker News",
+    "description": "Consume Hacker News API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_hackerNews.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_hackerNews.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.haloPSA",
+    "display_name": "HaloPSA",
+    "description": "Consume HaloPSA API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_haloPSA.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_haloPSA.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.harvest",
+    "display_name": "Harvest",
+    "description": "Access data on Harvest",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_harvest.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_harvest.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.helpScout",
+    "display_name": "Help Scout",
+    "description": "Consume Help Scout API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_helpScout.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_helpScout.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.homeAssistant",
+    "display_name": "Home Assistant",
+    "description": "Consume Home Assistant API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_homeAssistant.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_homeAssistant.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.humanticAi",
+    "display_name": "Humantic AI",
+    "description": "Consume Humantic AI API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_humanticAi.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_humanticAi.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.hunter",
+    "display_name": "Hunter",
+    "description": "Consume Hunter API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_hunter.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_hunter.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.intercom",
+    "display_name": "Intercom",
+    "description": "Consume Intercom API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_intercom.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_intercom.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.invoiceNinja",
+    "display_name": "Invoice Ninja",
+    "description": "Consume Invoice Ninja API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_invoiceNinja.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_invoiceNinja.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.iterable",
+    "display_name": "Iterable",
+    "description": "Consume Iterable API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_iterable.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_iterable.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.jenkins",
+    "display_name": "Jenkins",
+    "description": "Consume Jenkins API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_jenkins.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_jenkins.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.jinaAi",
+    "display_name": "Jina AI",
+    "description": "Interact with Jina AI API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_jinaAi.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_jinaAi.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.jira",
+    "display_name": "Jira Software",
+    "description": "Consume Jira Software API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_jira.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_jira.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.jwt",
+    "display_name": "JWT",
+    "description": "JWT",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_jwt.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_jwt.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.kafka",
+    "display_name": "Kafka",
+    "description": "Sends messages to a Kafka topic",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_kafka.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_kafka.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.keap",
+    "display_name": "Keap",
+    "description": "Consume Keap API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_keap.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_keap.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.kitemaker",
+    "display_name": "Kitemaker",
+    "description": "Consume the Kitemaker GraphQL API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_kitemaker.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_kitemaker.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.koBoToolbox",
+    "display_name": "KoBoToolbox",
+    "description": "Work with KoBoToolbox forms and submissions",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_koBoToolbox.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_koBoToolbox.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.ldap",
+    "display_name": "Ldap",
+    "description": "Interact with LDAP servers",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_ldap.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_ldap.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.line",
+    "display_name": "Line",
+    "description": "Consume Line API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_line.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_line.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.linear",
+    "display_name": "Linear",
+    "description": "Consume Linear API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_linear.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_linear.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.lingvaNex",
+    "display_name": "LingvaNex",
+    "description": "Consume LingvaNex API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_lingvaNex.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_lingvaNex.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.linkedIn",
+    "display_name": "LinkedIn",
+    "description": "Consume LinkedIn API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_linkedIn.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_linkedIn.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.loneScale",
+    "display_name": "LoneScale",
+    "description": "Create List, add / delete items",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_loneScale.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_loneScale.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.magento2",
+    "display_name": "Magento 2",
+    "description": "Consume Magento API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_magento2.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_magento2.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mailcheck",
+    "display_name": "Mailcheck",
+    "description": "Consume Mailcheck API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailcheck.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mailcheck.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mailchimp",
+    "display_name": "Mailchimp",
+    "description": "Consume Mailchimp API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailchimp.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mailchimp.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mailchimpTrigger",
+    "display_name": "Mailchimp Trigger",
+    "description": "Handle Mailchimp events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailchimpTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mailchimpTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mailerLite",
+    "display_name": "MailerLite",
+    "description": "Consume MailerLite API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailerLite.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mailerLite.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mailerLiteTrigger",
+    "display_name": "MailerLite Trigger",
+    "description": "Starts the workflow when MailerLite events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailerLiteTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mailerLiteTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mailgun",
+    "display_name": "Mailgun",
+    "description": "Sends an email via Mailgun",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailgun.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mailgun.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mailjet",
+    "display_name": "Mailjet",
+    "description": "Consume Mailjet API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailjet.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mailjet.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mailjetTrigger",
+    "display_name": "Mailjet Trigger",
+    "description": "Handle Mailjet events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailjetTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mailjetTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mandrill",
+    "display_name": "Mandrill",
+    "description": "Consume Mandrill API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mandrill.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mandrill.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.marketstack",
+    "display_name": "Marketstack",
+    "description": "Consume Marketstack API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_marketstack.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_marketstack.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.matrix",
+    "display_name": "Matrix",
+    "description": "Consume Matrix API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_matrix.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_matrix.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mautic",
+    "display_name": "Mautic",
+    "description": "Consume Mautic API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mautic.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mautic.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.medium",
+    "display_name": "Medium",
+    "description": "Consume Medium API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_medium.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_medium.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.messageBird",
+    "display_name": "MessageBird",
+    "description": "Sends SMS via MessageBird",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_messageBird.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_messageBird.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.metabase",
+    "display_name": "Metabase",
+    "description": "Use the Metabase API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_metabase.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_metabase.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.microsoftDynamicsCrm",
+    "display_name": "Microsoft Dynamics CRM",
+    "description": "Consume Microsoft Dynamics CRM API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_microsoftDynamicsCrm.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_microsoftDynamicsCrm.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.microsoftEntra",
+    "display_name": "Microsoft Entra ID",
+    "description": "Interact with Microsoft Entra ID API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_microsoftEntra.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_microsoftEntra.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.microsoftGraphSecurity",
+    "display_name": "Microsoft Graph Security",
+    "description": "Consume the Microsoft Graph Security API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_microsoftGraphSecurity.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_microsoftGraphSecurity.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.microsoftOneDrive",
+    "display_name": "Microsoft OneDrive",
+    "description": "Consume Microsoft OneDrive API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_microsoftOneDrive.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_microsoftOneDrive.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.microsoftSharePoint",
+    "display_name": "Microsoft SharePoint",
+    "description": "Interact with Microsoft SharePoint API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_microsoftSharePoint.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_microsoftSharePoint.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.microsoftSql",
+    "display_name": "Microsoft SQL",
+    "description": "Get, add and update data in Microsoft SQL",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_microsoftSql.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_microsoftSql.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.microsoftToDo",
+    "display_name": "Microsoft To Do",
+    "description": "Consume Microsoft To Do API.",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_microsoftToDo.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_microsoftToDo.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.misp",
+    "display_name": "MISP",
+    "description": "Consume the MISP API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_misp.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_misp.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mocean",
+    "display_name": "Mocean",
+    "description": "Send SMS and voice messages via Mocean",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mocean.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mocean.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mondayCom",
+    "display_name": "Monday.com",
+    "description": "Consume Monday.com API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mondayCom.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mondayCom.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mongoDb",
+    "display_name": "MongoDB",
+    "description": "Find, insert and update documents in MongoDB",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mongoDb.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mongoDb.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.monicaCrm",
+    "display_name": "Monica CRM",
+    "description": "Consume the Monica CRM API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_monicaCrm.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_monicaCrm.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mqtt",
+    "display_name": "MQTT",
+    "description": "Push messages to MQTT",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mqtt.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mqtt.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.msg91",
+    "display_name": "MSG91",
+    "description": "Sends transactional SMS via MSG91",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_msg91.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_msg91.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.n8nTrainingCustomerDatastore",
+    "display_name": "Customer Datastore (n8n training)",
+    "description": "Dummy node used for n8n training",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_n8nTrainingCustomerDatastore.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_n8nTrainingCustomerDatastore.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.n8nTrainingCustomerMessenger",
+    "display_name": "Customer Messenger (n8n training)",
+    "description": "Dummy node used for n8n training",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_n8nTrainingCustomerMessenger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_n8nTrainingCustomerMessenger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.nasa",
+    "display_name": "NASA",
+    "description": "Retrieve data from the NASA API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_nasa.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_nasa.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.netlify",
+    "display_name": "Netlify",
+    "description": "Consume Netlify API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_netlify.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_netlify.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.nextCloud",
+    "display_name": "Nextcloud",
+    "description": "Access data on Nextcloud",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_nextCloud.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_nextCloud.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.nocoDb",
+    "display_name": "NocoDB",
+    "description": "Read, update, write and delete data from NocoDB",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_nocoDb.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_nocoDb.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.npm",
+    "display_name": "Npm",
+    "description": "Consume NPM registry API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_npm.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_npm.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.odoo",
+    "display_name": "Odoo",
+    "description": "Consume Odoo API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_odoo.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_odoo.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.okta",
+    "display_name": "Okta",
+    "description": "Use the Okta API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_okta.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_okta.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.oneSimpleApi",
+    "display_name": "One Simple API",
+    "description": "A toolbox of no-code utilities",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_oneSimpleApi.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_oneSimpleApi.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.onfleet",
+    "display_name": "Onfleet",
+    "description": "Consume Onfleet API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_onfleet.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_onfleet.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.openAi",
+    "display_name": "OpenAI",
+    "description": "Consume Open AI",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_openAi.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_openAi.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.openThesaurus",
+    "display_name": "OpenThesaurus",
+    "description": "Get synonmns for German words using the OpenThesaurus API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_openThesaurus.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_openThesaurus.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.openWeatherMap",
+    "display_name": "OpenWeatherMap",
+    "description": "Gets current and future weather information",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_openWeatherMap.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_openWeatherMap.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.oura",
+    "display_name": "Oura",
+    "description": "Consume Oura API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_oura.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_oura.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.paddle",
+    "display_name": "Paddle",
+    "description": "Consume Paddle API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_paddle.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_paddle.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.pagerDuty",
+    "display_name": "PagerDuty",
+    "description": "Consume PagerDuty API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_pagerDuty.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_pagerDuty.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.peekalink",
+    "display_name": "Peekalink",
+    "description": "Consume the Peekalink API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_peekalink.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_peekalink.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.perplexity",
+    "display_name": "Perplexity",
+    "description": "Interact with the Perplexity API to generate AI responses with citations",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_perplexity.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_perplexity.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.phantombuster",
+    "display_name": "Phantombuster",
+    "description": "Consume Phantombuster API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_phantombuster.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_phantombuster.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.philipsHue",
+    "display_name": "Philips Hue",
+    "description": "Consume Philips Hue API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_philipsHue.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_philipsHue.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.pipedrive",
+    "display_name": "Pipedrive",
+    "description": "Create and edit data in Pipedrive",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_pipedrive.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_pipedrive.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.plivo",
+    "display_name": "Plivo",
+    "description": "Send SMS/MMS messages or make phone calls",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_plivo.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_plivo.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.postBin",
+    "display_name": "PostBin",
+    "description": "Consume PostBin API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_postBin.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_postBin.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.postHog",
+    "display_name": "PostHog",
+    "description": "Consume PostHog API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_postHog.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_postHog.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.profitWell",
+    "display_name": "ProfitWell",
+    "description": "Consume ProfitWell API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_profitWell.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_profitWell.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.pushbullet",
+    "display_name": "Pushbullet",
+    "description": "Consume Pushbullet API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_pushbullet.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_pushbullet.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.pushcut",
+    "display_name": "Pushcut",
+    "description": "Consume Pushcut API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_pushcut.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_pushcut.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.pushover",
+    "display_name": "Pushover",
+    "description": "Consume Pushover API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_pushover.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_pushover.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.questDb",
+    "display_name": "QuestDB",
+    "description": "Get, add and update data in QuestDB",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_questDb.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_questDb.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.quickChart",
+    "display_name": "QuickChart",
+    "description": "Create a chart via QuickChart",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_quickChart.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_quickChart.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.quickbase",
+    "display_name": "Quick Base",
+    "description": "Integrate with the Quick Base RESTful API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_quickbase.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_quickbase.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.quickbooks",
+    "display_name": "QuickBooks Online",
+    "description": "Consume the QuickBooks Online API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_quickbooks.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_quickbooks.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.rabbitmq",
+    "display_name": "RabbitMQ",
+    "description": "Sends messages to a RabbitMQ topic",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_rabbitmq.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_rabbitmq.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.raindrop",
+    "display_name": "Raindrop",
+    "description": "Consume the Raindrop API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_raindrop.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_raindrop.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.reddit",
+    "display_name": "Reddit",
+    "description": "Consume the Reddit API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_reddit.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_reddit.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.redis",
+    "display_name": "Redis",
+    "description": "Get, send and update data in Redis",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_redis.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_redis.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.rocketchat",
+    "display_name": "RocketChat",
+    "description": "Consume RocketChat API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_rocketchat.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_rocketchat.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.rssFeedRead",
+    "display_name": "RSS Read",
+    "description": "Reads data from an RSS Feed",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_rssFeedRead.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_rssFeedRead.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.rundeck",
+    "display_name": "Rundeck",
+    "description": "Manage Rundeck API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_rundeck.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_rundeck.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.s3",
+    "display_name": "S3",
+    "description": "Sends data to any S3-compatible service",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_s3.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_s3.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.salesforce",
+    "display_name": "Salesforce",
+    "description": "Consume Salesforce API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_salesforce.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_salesforce.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.salesmate",
+    "display_name": "Salesmate",
+    "description": "Consume Salesmate API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_salesmate.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_salesmate.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.seaTable",
+    "display_name": "SeaTable",
+    "description": "Read, update, write and delete data from SeaTable",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_seaTable.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_seaTable.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.securityScorecard",
+    "display_name": "SecurityScorecard",
+    "description": "Consume SecurityScorecard API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_securityScorecard.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_securityScorecard.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.segment",
+    "display_name": "Segment",
+    "description": "Consume Segment API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_segment.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_segment.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.sendGrid",
+    "display_name": "SendGrid",
+    "description": "Consume SendGrid API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_sendGrid.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_sendGrid.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.sendInBlue",
+    "display_name": "Brevo",
+    "description": "Consume Brevo API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_sendInBlue.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_sendInBlue.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.sendy",
+    "display_name": "Sendy",
+    "description": "Consume Sendy API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_sendy.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_sendy.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.sentryIo",
+    "display_name": "Sentry.io",
+    "description": "Consume Sentry.io API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_sentryIo.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_sentryIo.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.serviceNow",
+    "display_name": "ServiceNow",
+    "description": "Consume ServiceNow API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_serviceNow.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_serviceNow.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.shopify",
+    "display_name": "Shopify",
+    "description": "Consume Shopify API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_shopify.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_shopify.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.signl4",
+    "display_name": "SIGNL4",
+    "description": "Consume SIGNL4 API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_signl4.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_signl4.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.sms77",
+    "display_name": "seven",
+    "description": "Send SMS and make text-to-speech calls",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_sms77.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_sms77.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.snowflake",
+    "display_name": "Snowflake",
+    "description": "Get, add and update data in Snowflake",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_snowflake.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_snowflake.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.spontit",
+    "display_name": "Spontit",
+    "description": "Consume Spontit API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_spontit.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_spontit.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.spotify",
+    "display_name": "Spotify",
+    "description": "Access public song data via the Spotify API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_spotify.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_spotify.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.stackby",
+    "display_name": "Stackby",
+    "description": "Read, write, and delete data in Stackby",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_stackby.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_stackby.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.storyblok",
+    "display_name": "Storyblok",
+    "description": "Consume Storyblok API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_storyblok.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_storyblok.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.strapi",
+    "display_name": "Strapi",
+    "description": "Consume Strapi API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_strapi.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_strapi.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.strava",
+    "display_name": "Strava",
+    "description": "Consume Strava API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_strava.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_strava.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.stripe",
+    "display_name": "Stripe",
+    "description": "Consume the Stripe API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_stripe.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_stripe.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.supabase",
+    "display_name": "Supabase",
+    "description": "Add, get, delete and update data in a table",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_supabase.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_supabase.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.taiga",
+    "display_name": "Taiga",
+    "description": "Consume Taiga API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_taiga.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_taiga.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.taigaTrigger",
+    "display_name": "Taiga Trigger",
+    "description": "Handle Taiga events via webhook",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_taigaTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_taigaTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.tapfiliate",
+    "display_name": "Tapfiliate",
+    "description": "Consume Tapfiliate API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_tapfiliate.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_tapfiliate.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.telegram",
+    "display_name": "Telegram",
+    "description": "Sends data to Telegram",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_telegram.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_telegram.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.theHive",
+    "display_name": "TheHive",
+    "description": "Consume TheHive API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_theHive.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_theHive.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.theHiveProject",
+    "display_name": "TheHive 5",
+    "description": "Consume TheHive 5 API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_theHiveProject.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_theHiveProject.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.timescaleDb",
+    "display_name": "TimescaleDB",
+    "description": "Add and update data in TimescaleDB",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_timescaleDb.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_timescaleDb.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.totp",
+    "display_name": "TOTP",
+    "description": "Generate a time-based one-time password",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_totp.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_totp.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.travisCi",
+    "display_name": "TravisCI",
+    "description": "Consume TravisCI API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_travisCi.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_travisCi.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.trello",
+    "display_name": "Trello",
+    "description": "Create, change and delete boards and cards",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_trello.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_trello.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.twake",
+    "display_name": "Twake",
+    "description": "Consume Twake API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_twake.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_twake.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.twilio",
+    "display_name": "Twilio",
+    "description": "Send SMS and WhatsApp messages or make phone calls",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_twilio.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_twilio.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.twist",
+    "display_name": "Twist",
+    "description": "Consume Twist API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_twist.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_twist.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.unleashedSoftware",
+    "display_name": "Unleashed Software",
+    "description": "Consume Unleashed Software API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_unleashedSoftware.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_unleashedSoftware.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.uplead",
+    "display_name": "Uplead",
+    "description": "Consume Uplead API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_uplead.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_uplead.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.uproc",
+    "display_name": "uProc",
+    "description": "Consume uProc API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_uproc.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_uproc.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.uptimeRobot",
+    "display_name": "UptimeRobot",
+    "description": "Consume UptimeRobot API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_uptimeRobot.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_uptimeRobot.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.urlScanIo",
+    "display_name": "urlscan.io",
+    "description": "Provides various utilities for monitoring websites like health checks or screenshots",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_urlScanIo.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_urlScanIo.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.venafiTlsProtectCloud",
+    "display_name": "Venafi TLS Protect Cloud",
+    "description": "Consume Venafi TLS Protect Cloud API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_venafiTlsProtectCloud.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_venafiTlsProtectCloud.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.venafiTlsProtectDatacenter",
+    "display_name": "Venafi TLS Protect Datacenter",
+    "description": "Consume Venafi TLS Protect Datacenter",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_venafiTlsProtectDatacenter.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_venafiTlsProtectDatacenter.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.vero",
+    "display_name": "Vero",
+    "description": "Consume Vero API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_vero.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_vero.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.vonage",
+    "display_name": "Vonage",
+    "description": "Consume Vonage API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_vonage.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_vonage.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.wait",
+    "display_name": "Wait",
+    "description": "Wait before continue with execution",
+    "category": "organization",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_wait.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_wait.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.wekan",
+    "display_name": "Wekan",
+    "description": "Consume Wekan API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_wekan.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_wekan.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.whatsApp",
+    "display_name": "WhatsApp Business Cloud",
+    "description": "Access WhatsApp API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_whatsApp.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_whatsApp.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.wooCommerce",
+    "display_name": "WooCommerce",
+    "description": "Consume WooCommerce API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_wooCommerce.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_wooCommerce.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.wordpress",
+    "display_name": "Wordpress",
+    "description": "Consume Wordpress API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_wordpress.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_wordpress.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.xero",
+    "display_name": "Xero",
+    "description": "Consume Xero API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_xero.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_xero.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.youTube",
+    "display_name": "YouTube",
+    "description": "Consume YouTube API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_youTube.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_youTube.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.yourls",
+    "display_name": "Yourls",
+    "description": "Consume Yourls API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_yourls.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_yourls.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.zammad",
+    "display_name": "Zammad",
+    "description": "Consume the Zammad API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_zammad.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_zammad.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.zendesk",
+    "display_name": "Zendesk",
+    "description": "Consume Zendesk API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_zendesk.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_zendesk.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.zohoCrm",
+    "display_name": "Zoho CRM",
+    "description": "Consume Zoho CRM API",
+    "category": "transform",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_zohoCrm.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_zohoCrm.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.zoom",
+    "display_name": "Zoom",
+    "description": "Consume Zoom API",
+    "category": "input",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_zoom.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_zoom.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.zulip",
+    "display_name": "Zulip",
+    "description": "Consume Zulip API",
+    "category": "output",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_zulip.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_zulip.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.chainLlm",
+    "display_name": "Basic LLM Chain",
+    "description": "A simple chain to prompt a large language model",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_chainLlm.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_chainLlm.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.chainRetrievalQa",
+    "display_name": "Question and Answer Chain",
+    "description": "Answer questions about retrieved documents",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_chainRetrievalQa.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_chainRetrievalQa.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.chainSummarization",
+    "display_name": "Summarization Chain",
+    "description": "Transforms text into a concise summary",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_chainSummarization.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_chainSummarization.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.embeddingsAzureOpenAi",
+    "display_name": "Embeddings Azure OpenAI",
+    "description": "Use Embeddings Azure OpenAI",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_embeddingsAzureOpenAi.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_embeddingsAzureOpenAi.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.embeddingsCohere",
+    "display_name": "Embeddings Cohere",
+    "description": "Use Cohere Embeddings",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_embeddingsCohere.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_embeddingsCohere.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.embeddingsHuggingFaceInference",
+    "display_name": "Embeddings Hugging Face Inference",
+    "description": "Use HuggingFace Inference Embeddings",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_embeddingsHuggingFaceInference.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_embeddingsHuggingFaceInference.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.embeddingsOpenAi",
+    "display_name": "Embeddings OpenAI",
+    "description": "Use Embeddings OpenAI",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_embeddingsOpenAi.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_embeddingsOpenAi.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.lmChatAnthropic",
+    "display_name": "Anthropic Chat Model",
+    "description": "Language Model Anthropic",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_lmChatAnthropic.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_lmChatAnthropic.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.lmChatAzureOpenAi",
+    "display_name": "Azure OpenAI Chat Model",
+    "description": "For advanced usage with an AI chain",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_lmChatAzureOpenAi.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_lmChatAzureOpenAi.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.lmChatOpenAi",
+    "display_name": "OpenAI Chat Model",
+    "description": "For advanced usage with an AI chain",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_lmChatOpenAi.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_lmChatOpenAi.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.lmChatXAiGrok",
+    "display_name": "xAI Grok Chat Model",
+    "description": "For advanced usage with an AI chain",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_lmChatXAiGrok.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_lmChatXAiGrok.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.lmCohere",
+    "display_name": "Cohere Model",
+    "description": "Language Model Cohere",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_lmCohere.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_lmCohere.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.lmOpenAi",
+    "display_name": "OpenAI Model",
+    "description": "For advanced usage with an AI chain",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_lmOpenAi.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_lmOpenAi.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.lmOpenHuggingFaceInference",
+    "display_name": "Hugging Face Inference Model",
+    "description": "Language Model HuggingFaceInference",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_lmOpenHuggingFaceInference.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_lmOpenHuggingFaceInference.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.openAi",
+    "display_name": "OpenAI",
+    "description": "Message an assistant or GPT, analyze images, generate audio, etc.",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_openAi.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_openAi.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.openAiAssistant",
+    "display_name": "OpenAI Assistant",
+    "description": "Utilizes Assistant API from Open AI.",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_openAiAssistant.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_openAiAssistant.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.rerankerCohere",
+    "display_name": "Reranker Cohere",
+    "description": "Use Cohere Reranker to reorder documents after retrieval from a vector store by relevance to the given query.",
+    "category": "transform",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_rerankerCohere.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_rerankerCohere.json"
+    }
+  }
+]

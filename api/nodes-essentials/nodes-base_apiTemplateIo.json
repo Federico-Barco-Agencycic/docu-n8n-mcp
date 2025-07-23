@@ -1,0 +1,76 @@
+{
+  "node_type": "nodes-base.apiTemplateIo",
+  "display_name": "APITemplate.io",
+  "description": "Consume the APITemplate.io API",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "image"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": true,
+      "default": "create"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": true,
+      "default": "create"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": true,
+      "default": "get"
+    },
+    {
+      "name": "imageTemplateId",
+      "displayName": "Template Name or ID",
+      "type": "options",
+      "description": "ID of the image template to use. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "pdfTemplateId",
+      "displayName": "Template Name or ID",
+      "type": "options",
+      "description": "ID of the PDF template to use. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "binaryProperty",
+      "displayName": "Put Output File in Field",
+      "type": "string",
+      "required": true,
+      "default": "data"
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_apiTemplateIo.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.apiTemplateIo"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

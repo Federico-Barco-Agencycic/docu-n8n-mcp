@@ -1,0 +1,60 @@
+{
+  "node_type": "nodes-base.graphql",
+  "display_name": "GraphQL",
+  "description": "Makes a GraphQL request and returns the received data",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1.1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "endpoint",
+      "displayName": "Endpoint",
+      "type": "string",
+      "description": "The GraphQL endpoint",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "requestFormat",
+      "displayName": "Request Format",
+      "type": "options",
+      "description": "The format for the query payload",
+      "required": true,
+      "default": "graphql"
+    },
+    {
+      "name": "requestFormat",
+      "displayName": "Request Format",
+      "type": "options",
+      "description": "The request format for the query payload",
+      "required": true,
+      "default": "json"
+    },
+    {
+      "name": "query",
+      "displayName": "Query",
+      "type": "string",
+      "description": "GraphQL query",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "dataPropertyName",
+      "displayName": "Response Data Property Name",
+      "type": "string",
+      "description": "Name of the property to which to write the response data",
+      "required": true,
+      "default": "data"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_graphql.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.graphql"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

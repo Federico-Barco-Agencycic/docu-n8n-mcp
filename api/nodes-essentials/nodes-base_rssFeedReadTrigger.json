@@ -1,0 +1,28 @@
+{
+  "node_type": "nodes-base.rssFeedReadTrigger",
+  "display_name": "RSS Feed Trigger",
+  "description": "Starts a workflow when an RSS feed is updated",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "feedUrl",
+      "displayName": "Feed URL",
+      "type": "string",
+      "description": "URL of the RSS feed to poll",
+      "required": true,
+      "default": "https://blog.n8n.io/rss/"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_rssFeedReadTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.rssFeedReadTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

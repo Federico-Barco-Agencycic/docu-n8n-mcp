@@ -1,0 +1,91 @@
+{
+  "node_type": "nodes-base.phantombuster",
+  "display_name": "Phantombuster",
+  "description": "Consume Phantombuster API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "agent"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "launch"
+    },
+    {
+      "name": "agentId",
+      "displayName": "Agent Name or ID",
+      "type": "options",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "agentId",
+      "displayName": "Agent ID",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "agentId",
+      "displayName": "Agent Name or ID",
+      "type": "options",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "agentId",
+      "displayName": "Agent Name or ID",
+      "type": "options",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete an agent by ID"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get an agent by ID"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many agents of the current user's organization"
+    },
+    {
+      "operation": "getOutput",
+      "name": "Get Output",
+      "description": "Get the output of the most recent container of an agent"
+    },
+    {
+      "operation": "launch",
+      "name": "Launch",
+      "description": "Add an agent to the launch queue"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_phantombuster.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.phantombuster"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

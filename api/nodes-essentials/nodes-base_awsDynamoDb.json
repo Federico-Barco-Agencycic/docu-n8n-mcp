@@ -1,0 +1,79 @@
+{
+  "node_type": "nodes-base.awsDynamoDb",
+  "display_name": "AWS DynamoDB",
+  "description": "Consume the AWS DynamoDB API",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "item"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "upsert"
+    },
+    {
+      "name": "tableName",
+      "displayName": "Table Name or ID",
+      "type": "options",
+      "description": "Table to operate on. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": []
+    },
+    {
+      "name": "keyConditionExpression",
+      "displayName": "Key Condition Expression",
+      "type": "string",
+      "description": "Condition to determine the items to be retrieved. The condition must perform an equality test on a single partition key value, in this format: <code>partitionKeyName = :partitionkeyval</code>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "eavUi",
+      "displayName": "Expression Attribute Values",
+      "type": "fixedCollection",
+      "description": "Substitution tokens for attribute names in an expression",
+      "required": true,
+      "default": {}
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "upsert",
+      "name": "Create or Update",
+      "description": "Create a new record, or update the current one if it already exists (upsert)"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete an item"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get an item"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many items"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_awsDynamoDb.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.awsDynamoDb"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

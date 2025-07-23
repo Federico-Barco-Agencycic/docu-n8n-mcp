@@ -1,0 +1,944 @@
+{
+  "node_type": "nodes-base.nextCloud",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Nextcloud",
+  "description": "Access data on Nextcloud",
+  "category": "input",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Nextcloud node documentation\ndescription: Learn how to use the Nextcloud node in n8n. Follow technical documentation to integrate Nextcloud node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Nextcloud node\n\nUse the Nextcloud node to automate work in Nextcloud, and integrate Nextcloud with other applications. n8n has built-in support for a wide range of Nextcloud features, including creating, updating, deleting, and getting files, and folders as well as retrieving, and inviting users. \n\nOn this page, you'll find a list of operations the Nextcloud node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Nextcloud credentials](/integrations/builtin/credentials/nextcloud.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n* File\n    * Copy a file\n    * Delete a file\n    * Download a file\n    * Move a file\n    * Share a file\n    * Upload a file\n* Folder\n    * Copy a folder\n    * Create a folder\n    * Delete a folder\n    * Return the contents of a given folder\n    * Move a folder\n    * Share a folder\n* User\n    * Invite a user to a Nextcloud organization\n    * Delete a user.\n    * Retrieve information about a single user.\n    * Retrieve a list of users.\n    * Edit attributes related to a user.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'nextcloud') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "accessToken",
+      "options": [
+        {
+          "name": "Access Token",
+          "value": "accessToken"
+        },
+        {
+          "name": "OAuth2",
+          "value": "oAuth2"
+        }
+      ]
+    },
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "file",
+      "options": [
+        {
+          "name": "File",
+          "value": "file"
+        },
+        {
+          "name": "Folder",
+          "value": "folder"
+        },
+        {
+          "name": "User",
+          "value": "user"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "upload",
+      "options": [
+        {
+          "name": "Copy",
+          "value": "copy",
+          "description": "Copy a file",
+          "action": "Copy a file"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a file",
+          "action": "Delete a file"
+        },
+        {
+          "name": "Download",
+          "value": "download",
+          "description": "Download a file",
+          "action": "Download a file"
+        },
+        {
+          "name": "Move",
+          "value": "move",
+          "description": "Move a file",
+          "action": "Move a file"
+        },
+        {
+          "name": "Share",
+          "value": "share",
+          "description": "Share a file",
+          "action": "Share a file"
+        },
+        {
+          "name": "Upload",
+          "value": "upload",
+          "description": "Upload a file",
+          "action": "Upload a file"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Copy",
+          "value": "copy",
+          "description": "Copy a folder",
+          "action": "Copy a folder"
+        },
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a folder",
+          "action": "Create a folder"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a folder",
+          "action": "Delete a folder"
+        },
+        {
+          "name": "List",
+          "value": "list",
+          "description": "Return the contents of a given folder",
+          "action": "List a folder"
+        },
+        {
+          "name": "Move",
+          "value": "move",
+          "description": "Move a folder",
+          "action": "Move a folder"
+        },
+        {
+          "name": "Share",
+          "value": "share",
+          "description": "Share a folder",
+          "action": "Share a folder"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "folder"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Invite a user to a NextCloud organization",
+          "action": "Create a user"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a user",
+          "action": "Delete a user"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Retrieve information about a single user",
+          "action": "Get a user"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Retrieve a list of users",
+          "action": "Get many users"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Edit attributes related to a user",
+          "action": "Update a user"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "From Path",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "The path of file or folder to copy. The path should start with \"/\".",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "copy"
+          ],
+          "resource": [
+            "file",
+            "folder"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "To Path",
+      "name": "toPath",
+      "type": "string",
+      "default": "",
+      "description": "The destination path of file or folder. The path should start with \"/\".",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "copy"
+          ],
+          "resource": [
+            "file",
+            "folder"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Delete Path",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "The path to delete. Can be a single file or a whole folder. The path should start with \"/\".",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "delete"
+          ],
+          "resource": [
+            "file",
+            "folder"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "From Path",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "The path of file or folder to move. The path should start with \"/\".",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "move"
+          ],
+          "resource": [
+            "file",
+            "folder"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "To Path",
+      "name": "toPath",
+      "type": "string",
+      "default": "",
+      "description": "The new path of file or folder. The path should start with \"/\".",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "move"
+          ],
+          "resource": [
+            "file",
+            "folder"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File Path",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "The file path of the file to download. Has to contain the full path. The path should start with \"/\".",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "download"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Put Output File in Field",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "download"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File Path",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "The absolute file path of the file to upload. Has to contain the full path. The parent folder has to exist. Existing files get overwritten.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "upload"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Binary File",
+      "name": "binaryDataUpload",
+      "type": "boolean",
+      "default": false,
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "upload"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File Content",
+      "name": "fileContent",
+      "type": "string",
+      "default": "",
+      "description": "The text content of the file to upload",
+      "displayOptions": {
+        "show": {
+          "binaryDataUpload": [
+            false
+          ],
+          "operation": [
+            "upload"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Input Binary Field",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "binaryDataUpload": [
+            true
+          ],
+          "operation": [
+            "upload"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File Path",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "The file path of the file to share. Has to contain the full path. The path should start with \"/\".",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "share"
+          ],
+          "resource": [
+            "file",
+            "folder"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Share Type",
+      "name": "shareType",
+      "type": "options",
+      "default": 0,
+      "description": "The share permissions to set",
+      "options": [
+        {
+          "name": "Circle",
+          "value": 7
+        },
+        {
+          "name": "Email",
+          "value": 4
+        },
+        {
+          "name": "Group",
+          "value": 1
+        },
+        {
+          "name": "Public Link",
+          "value": 3
+        },
+        {
+          "name": "User",
+          "value": 0
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "share"
+          ],
+          "resource": [
+            "file",
+            "folder"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Circle ID",
+      "name": "circleId",
+      "type": "string",
+      "default": "",
+      "description": "The ID of the circle to share with",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file",
+            "folder"
+          ],
+          "operation": [
+            "share"
+          ],
+          "shareType": [
+            7
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "The Email address to share with",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file",
+            "folder"
+          ],
+          "operation": [
+            "share"
+          ],
+          "shareType": [
+            4
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Group ID",
+      "name": "groupId",
+      "type": "string",
+      "default": "",
+      "description": "The ID of the group to share with",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file",
+            "folder"
+          ],
+          "operation": [
+            "share"
+          ],
+          "shareType": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "User",
+      "name": "user",
+      "type": "string",
+      "default": "",
+      "description": "The user to share with",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file",
+            "folder"
+          ],
+          "operation": [
+            "share"
+          ],
+          "shareType": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Password",
+          "name": "password",
+          "type": "string",
+          "typeOptions": {
+            "password": true
+          },
+          "displayOptions": {
+            "show": {
+              "/resource": [
+                "file",
+                "folder"
+              ],
+              "/operation": [
+                "share"
+              ],
+              "/shareType": [
+                3
+              ]
+            }
+          },
+          "default": "",
+          "description": "Optional search string"
+        },
+        {
+          "displayName": "Permissions",
+          "name": "permissions",
+          "type": "options",
+          "options": [
+            {
+              "name": "All",
+              "value": 31
+            },
+            {
+              "name": "Create",
+              "value": 4
+            },
+            {
+              "name": "Delete",
+              "value": 8
+            },
+            {
+              "name": "Read",
+              "value": 1
+            },
+            {
+              "name": "Update",
+              "value": 2
+            }
+          ],
+          "default": 1,
+          "description": "The share permissions to set"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file",
+            "folder"
+          ],
+          "operation": [
+            "share"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Folder",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "The folder to create. The parent folder has to exist. The path should start with \"/\".",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "folder"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Folder Path",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "The path of which to list the content. The path should start with \"/\".",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "list"
+          ],
+          "resource": [
+            "folder"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Username",
+      "name": "userId",
+      "type": "string",
+      "default": "",
+      "description": "Username the user will have",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "The email of the user to invite",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Display Name",
+          "name": "displayName",
+          "type": "string",
+          "default": "",
+          "description": "The display name of the user to invite"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Username",
+      "name": "userId",
+      "type": "string",
+      "default": "",
+      "description": "Username the user will have",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "delete",
+            "get",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Search",
+          "name": "search",
+          "type": "string",
+          "default": "",
+          "description": "Optional search string"
+        },
+        {
+          "displayName": "Offset",
+          "name": "offset",
+          "type": "number",
+          "default": "",
+          "description": "Optional offset value"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Fields",
+          "name": "field",
+          "values": [
+            {
+              "displayName": "Key",
+              "name": "key",
+              "type": "options",
+              "default": "email",
+              "options": [
+                {
+                  "name": "Address",
+                  "value": "address",
+                  "description": "The new address for the user"
+                },
+                {
+                  "name": "Display Name",
+                  "value": "displayname",
+                  "description": "The new display name for the user"
+                },
+                {
+                  "name": "Email",
+                  "value": "email",
+                  "description": "The new email for the user"
+                },
+                {
+                  "name": "Password",
+                  "value": "password",
+                  "description": "The new password for the user"
+                },
+                {
+                  "name": "Twitter",
+                  "value": "twitter",
+                  "description": "The new twitter handle for the user"
+                },
+                {
+                  "name": "Website",
+                  "value": "website",
+                  "description": "The new website for the user"
+                }
+              ],
+              "description": "Key of the updated attribute"
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": "",
+              "description": "Value of the updated attribute"
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": false
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "copy",
+      "name": "Copy",
+      "description": "Copy a file"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a file"
+    },
+    {
+      "operation": "download",
+      "name": "Download",
+      "description": "Download a file"
+    },
+    {
+      "operation": "move",
+      "name": "Move",
+      "description": "Move a file"
+    },
+    {
+      "operation": "share",
+      "name": "Share",
+      "description": "Share a file"
+    },
+    {
+      "operation": "upload",
+      "name": "Upload",
+      "description": "Upload a file"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "nextCloudApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "accessToken"
+          ]
+        }
+      }
+    },
+    {
+      "name": "nextCloudOAuth2Api",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,218 @@
+{
+  "node_type": "nodes-base.xml",
+  "package_name": "n8n-nodes-base",
+  "display_name": "XML",
+  "description": "Convert data from and to XML",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: XML\ndescription: Documentation for the XML node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# XML\n\nUse the XML node to convert data from and to XML.\n\n/// note | Binary files\nIf your XML is within a binary file, use the [Extract from File](/integrations/builtin/core-nodes/n8n-nodes-base.extractfromfile.md) node to convert it to text first.\n///\n\n## Node parameters\n\n- **Mode**: The format the data should be converted from and to.\n\t- **JSON to XML**: Converts data from JSON to XML.\n    - **XML to JSON**: Converts data from XML to JSON.\n- **Property Name**: Enter the name of the property which contains the data to convert.\n\n## Node options\n\nThese options are available regardless of the **Mode** you select:\n\n- **Attribute Key**: Enter the prefix used to access the attributes. Default is `$`.\n- **Character Key**: Enter the prefix used to access the character content. Default is `_`.\n\nAll other options depend on the selected **Mode**.\n\n### JSON to XML options\n\nThese options only appear if you select **JSON to XML** as the **Mode**:\n\n- **Allow Surrogate Chars**: Set whether to allow using characters from the Unicode surrogate blocks (turned on) or not (turned off).\n- **Cdata**: Set whether to wrap text nodes in `<![CDATA[ ... ]]>` instead of escaping when it's required (turned on) or not (turned off).\n    * Turning this option on doesn't add `<![CDATA[ ... ]]>` if it's not required.\n- **Headless**: Set whether to omit the XML header (turned on) or include it (turned off).\n- **Root Name**: Enter the root element name to use.\n\n### XML to JSON options\n\nThese options only appear if you select **XML to JSON** as the **Mode**:\n\n- **Explicit Array**: Set whether to put child nodes in an array (turned on) or create an array only if there's more than one child node (turned off).\n- **Explicit Root**: Set whether to get the root node in the resulting object (turned on) or not (turned off).\n- **Ignore Attributes**: Set whether to ignore all XML attributes and only create text nodes (turned on) or not (turned off).\n- **Merge Attributes**: Set whether to merge attributes and child elements as properties of the parent (turned on) or key attributes off a child attribute object (turned off). This option is ignored if **Ignore Attribute** is turned on.\n- **Normalize**: Set whether to trim whitespaces inside the text nodes (turned on) or not to trim them (turned off).\n- **Normalize Tags**: Set whether to normalize all tag names to lowercase (turned on) or keep tag names as-is (turned off).\n- **Trim**: Set whether to trim the whitespace at the beginning and end of text nodes (turned on) or to leave the whitespace as-is (turned off).\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'xml') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Mode",
+      "name": "mode",
+      "type": "options",
+      "default": "xmlToJson",
+      "description": "From and to what format the data should be converted",
+      "options": [
+        {
+          "name": "JSON to XML",
+          "value": "jsonToxml",
+          "description": "Converts data from JSON to XML"
+        },
+        {
+          "name": "XML to JSON",
+          "value": "xmlToJson",
+          "description": "Converts data from XML to JSON"
+        }
+      ]
+    },
+    {
+      "displayName": "If your XML is inside a binary file, use the 'Extract from File' node to convert it to text first",
+      "name": "xmlNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "xmlToJson"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Property Name",
+      "name": "dataPropertyName",
+      "type": "string",
+      "default": "data",
+      "description": "Name of the property to which to contains the converted XML data",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "jsonToxml"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Allow Surrogate Chars",
+          "name": "allowSurrogateChars",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to allow using characters from the Unicode surrogate blocks"
+        },
+        {
+          "displayName": "Attribute Key",
+          "name": "attrkey",
+          "type": "string",
+          "default": "$",
+          "description": "Prefix that is used to access the attributes"
+        },
+        {
+          "displayName": "Cdata",
+          "name": "cdata",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to wrap text nodes in &lt;![CDATA[ ... ]]&gt; instead of escaping when necessary. Does not add &lt;![CDATA[ ... ]]&gt; if it is not required."
+        },
+        {
+          "displayName": "Character Key",
+          "name": "charkey",
+          "type": "string",
+          "default": "_",
+          "description": "Prefix that is used to access the character content"
+        },
+        {
+          "displayName": "Headless",
+          "name": "headless",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to omit the XML header"
+        },
+        {
+          "displayName": "Root Name",
+          "name": "rootName",
+          "type": "string",
+          "default": "root",
+          "description": "Root element name to be used"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "jsonToxml"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Property Name",
+      "name": "dataPropertyName",
+      "type": "string",
+      "default": "data",
+      "description": "Name of the property which contains the XML data to convert",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "xmlToJson"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Attribute Key",
+          "name": "attrkey",
+          "type": "string",
+          "default": "$",
+          "description": "Prefix that is used to access the attributes"
+        },
+        {
+          "displayName": "Character Key",
+          "name": "charkey",
+          "type": "string",
+          "default": "_",
+          "description": "Prefix that is used to access the character content"
+        },
+        {
+          "displayName": "Explicit Array",
+          "name": "explicitArray",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to always put child nodes in an array if true; otherwise an array is created only if there is more than one"
+        },
+        {
+          "displayName": "Explicit Root",
+          "name": "explicitRoot",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to set this if you want to get the root node in the resulting object"
+        },
+        {
+          "displayName": "Ignore Attributes",
+          "name": "ignoreAttrs",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to ignore all XML attributes and only create text nodes"
+        },
+        {
+          "displayName": "Merge Attributes",
+          "name": "mergeAttrs",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to merge attributes and child elements as properties of the parent, instead of keying attributes off a child attribute object. This option is ignored if ignoreAttrs is true."
+        },
+        {
+          "displayName": "Normalize",
+          "name": "normalize",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to trim whitespaces inside text nodes"
+        },
+        {
+          "displayName": "Normalize Tags",
+          "name": "normalizeTags",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to normalize all tag names to lowercase"
+        },
+        {
+          "displayName": "Trim",
+          "name": "trim",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to trim the whitespace at the beginning and end of text nodes"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "xmlToJson"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

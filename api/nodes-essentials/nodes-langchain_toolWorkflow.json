@@ -1,0 +1,45 @@
+{
+  "node_type": "nodes-langchain.toolWorkflow",
+  "display_name": "Call n8n Sub-Workflow Tool",
+  "description": "Uses another n8n workflow as a tool. Allows packaging any n8n node(s) as a tool.",
+  "category": "transform",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "2.2",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "workflowId",
+      "displayName": "Workflow",
+      "type": "workflowSelector",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "workflowInputs",
+      "displayName": "Workflow Inputs",
+      "type": "resourceMapper",
+      "required": true,
+      "default": {
+        "mappingMode": "defineBelow",
+        "value": null
+      }
+    },
+    {
+      "name": "workflowJson",
+      "displayName": "Workflow JSON",
+      "type": "json",
+      "description": "The workflow JSON code to execute",
+      "required": true,
+      "default": "\n\n\n\n\n\n\n\n\n"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_toolWorkflow.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-langchain.toolWorkflow"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

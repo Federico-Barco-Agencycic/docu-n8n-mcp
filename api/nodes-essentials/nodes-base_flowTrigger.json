@@ -1,0 +1,44 @@
+{
+  "node_type": "nodes-base.flowTrigger",
+  "display_name": "Flow Trigger",
+  "description": "Handle Flow events via webhooks",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "description": "Resource that triggers the webhook",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "listIds",
+      "displayName": "Project ID",
+      "type": "string",
+      "description": "Lists IDs, perhaps known better as \"Projects\" separated by a comma (,)",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "taskIds",
+      "displayName": "Task ID",
+      "type": "string",
+      "description": "Task IDs separated by a comma (,)",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_flowTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.flowTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

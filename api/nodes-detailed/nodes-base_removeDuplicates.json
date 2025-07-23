@@ -1,0 +1,324 @@
+{
+  "node_type": "nodes-base.removeDuplicates",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Remove Duplicates",
+  "description": "Delete items with matching field values",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "2",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Remove Duplicates node documentation\ndescription: Documentation for the Remove Duplicates node in n8n, a workflow automation platform. Includes guidance on usage and links to examples.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Remove Duplicates node\n\nUse the Remove Duplicates node to identify and delete items that are:\n\n* identical across all fields or a subset of fields in a single execution\n* identical to or surpassed by items seen in previous executions\n\nThis is helpful in situations where you can end up with duplicate data, such as a user creating multiple accounts, or a customer submitting the same order multiple times. When working with large datasets it becomes more difficult to spot and remove these items.\n\nBy comparing against data from previous executions, the Remove Duplicates node can  delete items seen in earlier executions. It can also ensure that new items have a later date or a higher value than previous values.\n\n/// note | Major changes in 1.64.0\nThe n8n team overhauled this node in n8n 1.64.0. This document reflects the latest version of the node. If you're using an older version of n8n, you can find the previous version of this document [here](https://github.com/n8n-io/n8n-docs/blob/7a66308290e6e5b104fcb82a3beafa0d6987df36/docs/integrations/builtin/core-nodes/n8n-nodes-base.removeduplicates.md){:target=_blank .external-link}.\n///\n\n## Operation modes\n\nThe remove duplication node works differently depending on the value of the **operation** parameter:\n\n* **[Remove Items Repeated Within Current Input](#remove-items-repeated-within-current-input)**: Identify and remove duplicate items in the current input across all fields or a subset of fields.\n* **[Remove Items Processed in Previous Executions](#remove-items-processed-in-previous-executions)**: Compare items in the current input to items from previous executions and remove duplicates.\n* **[Clear Deduplication History](#clear-deduplication-history)**: Wipe the memory of items from previous executions.\n\n### Remove Items Repeated Within Current Input\n\nWhen you set the \"Operations\" field to **Remove Items Repeated Within Current Input**, the Remove Duplicate node identifies and removes duplicate items in the current input. It can do this across all fields, or within a subset of fields.\n\n#### Remove Items Repeated Within Current Input parameters\n\nWhen using the **Remove Items Repeated Within Current Input** operation, the following parameter is available:\n\n* **Compare**: Select which fields of the input data n8n should compare to check if they're the same. The following options are available:\n\t* **All Fields**: Compares all fields of the input data.\n\t* **All Fields Except**: Enter which input data fields n8n should exclude from the comparison. You can provide multiple values separated by commas.\n\t* **Selected Fields**: Enter which input data fields n8n should include in the comparison. You can provide multiple values separated by commas.\n\n#### Remove Items Repeated Within Current Input options\n\nIf you choose **All Fields Except** or **Selected Fields** as your compare type, you can add these options:\n\n* **Disable Dot Notation**: Set whether to use dot notation to reference child fields in the format `parent.child` (turned off) or not (turn on).\n* **Remove Other Fields**: Set whether to remove any fields that aren't used in the comparison (turned on) or not (turned off).\n\n### Remove Items Processed in Previous Executions\n\nWhen you set the \"Operation\" field to **Remove Items Processed in Previous Executions**, the Remove Duplicate node compares items in the current input to items from previous executions.\n\n#### Remove Items Processed in Previous Executions parameters\n\nWhen using the **Remove Items Processed in Previous Executions** operation, the following parameters are available:\n\n* **Keep Items Where**: Select how n8n decides which items to keep. The following options are available:\n\t* **Value Is New**: n8n removes items if their value matches items from earlier executions.\n\t* **Value Is Higher than Any Previous Value**: n8n removes items if the current value isn't higher than previous values.\n\t* **Value Is a Date Later than Any Previous Date**: n8n removes date items if the current date isn't later than previous dates.\n\n* **Value to Dedupe On**: The input field or fields to compare. The option you select for the **Keep Items Where** parameter determines the exact format you need:\n\t* When using **Value Is New**, this must be an input field or combination of fields with a unique ID.\n\t* When using **Value Is Higher than Any Previous Value**, this must be an input field or combination of fields that has an incremental value.\n\t* When using **Value Is a Date Later than Any Previous Date**, this must be an input field that has a date value in ISO format.\n\n#### Remove Items Processed in Previous Executions options\n\nWhen using the **Remove Items Processed in Previous Executions** operation, the following option is available:\n\n* **Scope**: Sets how n8n stores and uses the deduplication data for comparisons. The following options are available:\n\t* **Node**: (default) Stores the data for this node independently from other Remove Duplicates instances in the workflow. When you use this scope, you can [clear the duplication history](#clear-deduplication-history) for this node instance without affecting other nodes.\n\t* **Workflow**: Stores the duplication data at the workflow level. This shares duplication data with any other Remove Duplicate nodes set to use \"workflow\" scope.  n8n will still manage the duplication data for other Remove Duplicate nodes set to \"node\" scope independently.\n\nWhen you select **Value Is New** as your **Keep Items Where** choice, this option is also available:\n\n* **History Size**: The number of items for n8n to store to track duplicates across executions. The value of the **Scope** option determines whether this history size is specific to this individual Remove Duplicate node instance or shared with other instances in the workflow. By default, n8n stores 10,000 items.\n\n### Clear Deduplication History\n\nWhen you set the \"Operation\" field to **Clear Deduplication History**, the Remove Duplicates node manages and clears the stored items from previous executions. This operation doesn't affect any items in the current input. Instead, it manages the database of items that the \"Remove Items Processed in Previous Executions\" operation uses.\n\n#### Clear Deduplication History parameters\n\nWhen using the **Clear Deduplication History** operation, the following parameter is available:\n\n* **Mode**: How you want to manage the key / value items stored in the database. The following option is available:\n\t* **Clean Database**: Deletes all duplication data stored in the database. This resets the duplication database to its original state.\n\n#### Clear Deduplication History options\n\nWhen using the **Clear Deduplication History** operation, the following option is available:\n\n* **Scope**: Sets the scope n8n uses when managing the duplication database.\n\t* **Node**: (default) Manages the duplication database specific to this Remove Duplicates node instance.\n\t* **Workflow**: Manages the duplication database shared by all Remove Duplicate node instances that use workflow scope.\n\n## Templates and examples\n\nFor templates using the Remove Duplicates node and examples of how to use it, refer to [Templates and examples](/integrations/builtin/core-nodes/n8n-nodes-base.removeduplicates/templates-and-examples.md).\n\n## Related resources\n\n--8<-- \"_snippets/integrations/builtin/core-nodes/data-transformation-actions/data-section-link.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "removeDuplicateInputItems",
+      "options": [
+        {
+          "name": "Remove Items Repeated Within Current Input",
+          "value": "removeDuplicateInputItems",
+          "description": "Remove duplicates from incoming items",
+          "action": "Remove items repeated within current input"
+        },
+        {
+          "name": "Remove Items Processed in Previous Executions",
+          "value": "removeItemsSeenInPreviousExecutions",
+          "description": "Deduplicate items already seen in previous executions",
+          "action": "Remove items processed in previous executions"
+        },
+        {
+          "name": "Clear Deduplication History",
+          "value": "clearDeduplicationHistory",
+          "description": "Wipe the store of previous items",
+          "action": "Clear deduplication history"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Compare",
+      "name": "compare",
+      "type": "options",
+      "default": "allFields",
+      "description": "The fields of the input items to compare to see if they are the same",
+      "options": [
+        {
+          "name": "All Fields",
+          "value": "allFields"
+        },
+        {
+          "name": "All Fields Except",
+          "value": "allFieldsExcept"
+        },
+        {
+          "name": "Selected Fields",
+          "value": "selectedFields"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "removeDuplicateInputItems"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Fields To Exclude",
+      "name": "fieldsToExclude",
+      "type": "string",
+      "default": "",
+      "description": "Fields in the input to exclude from the comparison",
+      "displayOptions": {
+        "show": {
+          "compare": [
+            "allFieldsExcept"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Fields To Compare",
+      "name": "fieldsToCompare",
+      "type": "string",
+      "default": "",
+      "description": "Fields in the input to add to the comparison",
+      "displayOptions": {
+        "show": {
+          "compare": [
+            "selectedFields"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Keep Items Where",
+      "name": "logic",
+      "type": "options",
+      "default": "removeItemsWithAlreadySeenKeyValues",
+      "description": "How to select input items to remove by comparing them with key values previously processed",
+      "options": [
+        {
+          "name": "Value Is New",
+          "value": "removeItemsWithAlreadySeenKeyValues",
+          "description": "Remove all input items with values matching those already processed"
+        },
+        {
+          "name": "Value Is Higher than Any Previous Value",
+          "value": "removeItemsUpToStoredIncrementalKey",
+          "description": "Works with incremental values, removes all input items with values up to the stored value"
+        },
+        {
+          "name": "Value Is a Date Later than Any Previous Date",
+          "value": "removeItemsUpToStoredDate",
+          "description": "Works with date values, removes all input items with values up to the stored date"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "removeItemsSeenInPreviousExecutions"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Value to Dedupe On",
+      "name": "dedupeValue",
+      "type": "string",
+      "default": "",
+      "description": "Use an input field (or a combination of fields) that has a unique ID value",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "logic": [
+            "removeItemsWithAlreadySeenKeyValues"
+          ],
+          "/operation": [
+            "removeItemsSeenInPreviousExecutions"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Value to Dedupe On",
+      "name": "incrementalDedupeValue",
+      "type": "number",
+      "default": "",
+      "description": "Use an input field (or a combination of fields) that has an incremental value",
+      "displayOptions": {
+        "show": {
+          "logic": [
+            "removeItemsUpToStoredIncrementalKey"
+          ],
+          "/operation": [
+            "removeItemsSeenInPreviousExecutions"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Value to Dedupe On",
+      "name": "dateDedupeValue",
+      "type": "dateTime",
+      "default": "",
+      "description": "Use an input field that has a date value in ISO format",
+      "displayOptions": {
+        "show": {
+          "logic": [
+            "removeItemsUpToStoredDate"
+          ],
+          "/operation": [
+            "removeItemsSeenInPreviousExecutions"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Mode",
+      "name": "mode",
+      "type": "options",
+      "default": "cleanDatabase",
+      "description": "How you want to modify the key values stored on the database. None of these modes removes input items.",
+      "options": [
+        {
+          "name": "Clean Database",
+          "value": "cleanDatabase",
+          "description": "Clear all values stored for a key in the database"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "clearDeduplicationHistory"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Disable Dot Notation",
+          "name": "disableDotNotation",
+          "type": "boolean",
+          "default": false,
+          "displayOptions": {
+            "show": {
+              "/operation": [
+                "removeDuplicateInputItems"
+              ]
+            },
+            "hide": {
+              "/compare": [
+                "allFields"
+              ]
+            }
+          },
+          "description": "Whether to disallow referencing child fields using `parent.child` in the field name"
+        },
+        {
+          "displayName": "Remove Other Fields",
+          "name": "removeOtherFields",
+          "type": "boolean",
+          "default": false,
+          "displayOptions": {
+            "show": {
+              "/operation": [
+                "removeDuplicateInputItems"
+              ]
+            },
+            "hide": {
+              "/compare": [
+                "allFields"
+              ]
+            }
+          },
+          "description": "Whether to remove any fields that are not being compared. If disabled, will keep the values from the first of the duplicates."
+        },
+        {
+          "displayName": "Scope",
+          "name": "scope",
+          "type": "options",
+          "default": "node",
+          "displayOptions": {
+            "show": {
+              "/operation": [
+                "clearDeduplicationHistory",
+                "removeItemsSeenInPreviousExecutions"
+              ]
+            }
+          },
+          "description": "If set to ‘workflow,’ key values will be shared across all nodes in the workflow. If set to ‘node,’ key values will be specific to this node.",
+          "options": [
+            {
+              "name": "Workflow",
+              "value": "workflow",
+              "description": "Deduplication info will be shared by all the nodes in the workflow"
+            },
+            {
+              "name": "Node",
+              "value": "node",
+              "description": "Deduplication info will be stored only for this node"
+            }
+          ]
+        },
+        {
+          "displayName": "History Size",
+          "name": "historySize",
+          "type": "number",
+          "default": 10000,
+          "hint": "The max number of past items to store for deduplication",
+          "displayOptions": {
+            "show": {
+              "/logic": [
+                "removeItemsWithAlreadySeenKeyValues"
+              ],
+              "/operation": [
+                "removeItemsSeenInPreviousExecutions"
+              ]
+            }
+          }
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "removeDuplicateInputItems",
+            "removeItemsSeenInPreviousExecutions",
+            "clearDeduplicationHistory"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "removeDuplicateInputItems",
+      "name": "Remove Items Repeated Within Current Input",
+      "description": "Remove duplicates from incoming items"
+    },
+    {
+      "operation": "removeItemsSeenInPreviousExecutions",
+      "name": "Remove Items Processed in Previous Executions",
+      "description": "Deduplicate items already seen in previous executions"
+    },
+    {
+      "operation": "clearDeduplicationHistory",
+      "name": "Clear Deduplication History",
+      "description": "Wipe the store of previous items"
+    }
+  ],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

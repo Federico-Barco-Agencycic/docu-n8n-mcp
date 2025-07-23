@@ -1,0 +1,308 @@
+{
+  "node_type": "nodes-langchain.lmChatAnthropic",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "Anthropic Chat Model",
+  "description": "Language Model Anthropic",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "1.3",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Anthropic Chat Model node documentation\ndescription: Learn how to use the Anthropic Chat Model node in n8n. Follow technical documentation to integrate Anthropic Chat Model node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Anthropic Chat Model node\n\nUse the Anthropic Chat Model node to use Anthropic's Claude family of chat models with conversational [agents](/glossary.md#ai-agent).\n\nOn this page, you'll find the node parameters for the Anthropic Chat Model node, and links to more resources.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/anthropic.md).\n///\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\n## Node parameters\n\n* **Model**: Select the model that generates the completion. Choose from:\n\t* **Claude**\n\t* **Claude Instant**\n\nLearn more in the [Anthropic model documentation](https://docs.anthropic.com/claude/reference/selecting-a-model){:target=_blank .external-link}.\n\n## Node options\n\n* **Maximum Number of Tokens**: Enter the maximum number of tokens used, which sets the completion length.\n* **Sampling Temperature**: Use this option to control the randomness of the sampling process. A higher temperature creates more diverse sampling, but increases the risk of hallucinations.\n* **Top K**: Enter the number of token choices the model uses to generate the next token.\n* **Top P**: Use this option to set the probability the completion should use. Use a lower value to ignore less probable options. \n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'anthropic-chat-model') ]]\n\n## Related resources\n\nRefer to [LangChains's Anthropic documentation](https://js.langchain.com/docs/integrations/chat/anthropic/){:target=_blank .external-link} for more information about the service.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "This node must be connected to an AI chain. <a data-action='openSelectiveNodeCreator' data-action-parameter-creatorview='AI'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "Model",
+      "name": "model",
+      "type": "options",
+      "default": "claude-2",
+      "description": "The model which will generate the completion. <a href=\"https://docs.anthropic.com/claude/docs/models-overview\">Learn more</a>.",
+      "options": [
+        {
+          "name": "Claude 3.5 Sonnet(20241022)",
+          "value": "claude-3-5-sonnet-20241022"
+        },
+        {
+          "name": "Claude 3 Opus(20240229)",
+          "value": "claude-3-opus-20240229"
+        },
+        {
+          "name": "Claude 3.5 Sonnet(20240620)",
+          "value": "claude-3-5-sonnet-20240620"
+        },
+        {
+          "name": "Claude 3 Sonnet(20240229)",
+          "value": "claude-3-sonnet-20240229"
+        },
+        {
+          "name": "Claude 3.5 Haiku(20241022)",
+          "value": "claude-3-5-haiku-20241022"
+        },
+        {
+          "name": "Claude 3 Haiku(20240307)",
+          "value": "claude-3-haiku-20240307"
+        },
+        {
+          "name": "LEGACY: Claude 2",
+          "value": "claude-2"
+        },
+        {
+          "name": "LEGACY: Claude 2.1",
+          "value": "claude-2.1"
+        },
+        {
+          "name": "LEGACY: Claude Instant 1.2",
+          "value": "claude-instant-1.2"
+        },
+        {
+          "name": "LEGACY: Claude Instant 1",
+          "value": "claude-instant-1"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Model",
+      "name": "model",
+      "type": "options",
+      "default": "claude-3-sonnet-20240229",
+      "description": "The model which will generate the completion. <a href=\"https://docs.anthropic.com/claude/docs/models-overview\">Learn more</a>.",
+      "options": [
+        {
+          "name": "Claude 3.5 Sonnet(20241022)",
+          "value": "claude-3-5-sonnet-20241022"
+        },
+        {
+          "name": "Claude 3 Opus(20240229)",
+          "value": "claude-3-opus-20240229"
+        },
+        {
+          "name": "Claude 3.5 Sonnet(20240620)",
+          "value": "claude-3-5-sonnet-20240620"
+        },
+        {
+          "name": "Claude 3 Sonnet(20240229)",
+          "value": "claude-3-sonnet-20240229"
+        },
+        {
+          "name": "Claude 3.5 Haiku(20241022)",
+          "value": "claude-3-5-haiku-20241022"
+        },
+        {
+          "name": "Claude 3 Haiku(20240307)",
+          "value": "claude-3-haiku-20240307"
+        },
+        {
+          "name": "LEGACY: Claude 2",
+          "value": "claude-2"
+        },
+        {
+          "name": "LEGACY: Claude 2.1",
+          "value": "claude-2.1"
+        },
+        {
+          "name": "LEGACY: Claude Instant 1.2",
+          "value": "claude-instant-1.2"
+        },
+        {
+          "name": "LEGACY: Claude Instant 1",
+          "value": "claude-instant-1"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1.1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Model",
+      "name": "model",
+      "type": "options",
+      "default": "claude-3-5-sonnet-20240620",
+      "description": "The model which will generate the completion. <a href=\"https://docs.anthropic.com/claude/docs/models-overview\">Learn more</a>.",
+      "options": [
+        {
+          "name": "Claude 3.5 Sonnet(20241022)",
+          "value": "claude-3-5-sonnet-20241022"
+        },
+        {
+          "name": "Claude 3 Opus(20240229)",
+          "value": "claude-3-opus-20240229"
+        },
+        {
+          "name": "Claude 3.5 Sonnet(20240620)",
+          "value": "claude-3-5-sonnet-20240620"
+        },
+        {
+          "name": "Claude 3 Sonnet(20240229)",
+          "value": "claude-3-sonnet-20240229"
+        },
+        {
+          "name": "Claude 3.5 Haiku(20241022)",
+          "value": "claude-3-5-haiku-20241022"
+        },
+        {
+          "name": "Claude 3 Haiku(20240307)",
+          "value": "claude-3-haiku-20240307"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "@version": [
+            {
+              "_cnd": {
+                "lte": 1.2
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Model",
+      "name": "model",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": "claude-sonnet-4-20250514",
+        "cachedResultName": "Claude 4 Sonnet"
+      },
+      "description": "The model. Choose from the list, or specify an ID. <a href=\"https://docs.anthropic.com/claude/docs/models-overview\">Learn more</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "@version": [
+            {
+              "_cnd": {
+                "gte": 1.3
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "description": "Additional options to add",
+      "options": [
+        {
+          "displayName": "Maximum Number of Tokens",
+          "name": "maxTokensToSample",
+          "default": 4096,
+          "description": "The maximum number of tokens to generate in the completion",
+          "type": "number"
+        },
+        {
+          "displayName": "Sampling Temperature",
+          "name": "temperature",
+          "default": 0.7,
+          "typeOptions": {
+            "maxValue": 1,
+            "minValue": 0,
+            "numberPrecision": 1
+          },
+          "description": "Controls randomness: Lowering results in less random completions. As the temperature approaches zero, the model will become deterministic and repetitive.",
+          "type": "number",
+          "displayOptions": {
+            "hide": {
+              "thinking": [
+                true
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Top K",
+          "name": "topK",
+          "default": -1,
+          "typeOptions": {
+            "maxValue": 1,
+            "minValue": -1,
+            "numberPrecision": 1
+          },
+          "description": "Used to remove \"long tail\" low probability responses. Defaults to -1, which disables it.",
+          "type": "number",
+          "displayOptions": {
+            "hide": {
+              "thinking": [
+                true
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Top P",
+          "name": "topP",
+          "default": 1,
+          "typeOptions": {
+            "maxValue": 1,
+            "minValue": 0,
+            "numberPrecision": 1
+          },
+          "description": "Controls diversity via nucleus sampling: 0.5 means half of all likelihood-weighted options are considered. We generally recommend altering this or temperature but not both.",
+          "type": "number",
+          "displayOptions": {
+            "hide": {
+              "thinking": [
+                true
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Enable Thinking",
+          "name": "thinking",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to enable thinking mode for the model"
+        },
+        {
+          "displayName": "Thinking Budget (Tokens)",
+          "name": "thinkingBudget",
+          "type": "number",
+          "default": 1024,
+          "description": "The maximum number of tokens to use for thinking",
+          "displayOptions": {
+            "show": {
+              "thinking": [
+                true
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "anthropicApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

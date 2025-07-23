@@ -1,0 +1,28 @@
+{
+  "node_type": "nodes-langchain.toolThink",
+  "display_name": "Think Tool",
+  "description": "Invite the AI agent to do some thinking",
+  "category": "transform",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "description",
+      "displayName": "Think Tool Description",
+      "type": "string",
+      "description": "The thinking tool's description",
+      "required": true,
+      "default": "Use the tool to think about something. It will not obtain new information or change the database, but just append the thought to the log. Use it when complex reasoning or some cache memory is needed."
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_toolThink.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-langchain.toolThink"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

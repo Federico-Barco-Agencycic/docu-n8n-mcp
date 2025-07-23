@@ -1,0 +1,234 @@
+{
+  "node_type": "nodes-base.signl4",
+  "package_name": "n8n-nodes-base",
+  "display_name": "SIGNL4",
+  "description": "Consume SIGNL4 API",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: SIGNL4 node documentation\ndescription: Learn how to use the SIGNL4 node in n8n. Follow technical documentation to integrate SIGNL4 node into your workflows.\ncontentType: [integration, reference]\n---\n\n# SIGNL4 node\n\nUse the SIGNL4 node to automate work in SIGNL4, and integrate SIGNL4 with other applications. n8n supports sending and resolving alerts with SIGNL4.\n\nOn this page, you'll find a list of operations the SIGNL4 node supports and links to more resources.\n\n/// note | Credentials\nRefer to [SIGNL4 credentials](/integrations/builtin/credentials/signl4.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Alert\n    * Send an alert\n    * Resolve an alert\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'signl4') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "alert",
+      "options": [
+        {
+          "name": "Alert",
+          "value": "alert"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "send",
+      "options": [
+        {
+          "name": "Send",
+          "value": "send",
+          "description": "Send an alert",
+          "action": "Send an alert"
+        },
+        {
+          "name": "Resolve",
+          "value": "resolve",
+          "description": "Resolve an alert",
+          "action": "Resolve an alert"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "alert"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Message",
+      "name": "message",
+      "type": "string",
+      "default": "",
+      "description": "A more detailed description for the alert",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "send"
+          ],
+          "resource": [
+            "alert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Alerting Scenario",
+          "name": "alertingScenario",
+          "type": "options",
+          "options": [
+            {
+              "name": "Single ACK",
+              "value": "single_ack",
+              "description": "In case only one person needs to confirm this Signl"
+            },
+            {
+              "name": "Multi ACK",
+              "value": "multi_ack",
+              "description": "In case this alert must be confirmed by the number of people who are on duty at the time this Singl is raised"
+            }
+          ],
+          "default": "single_ack"
+        },
+        {
+          "displayName": "Attachments",
+          "name": "attachmentsUi",
+          "placeholder": "Add Attachments",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": false
+          },
+          "options": [
+            {
+              "name": "attachmentsBinary",
+              "displayName": "Attachments Binary",
+              "values": [
+                {
+                  "displayName": "Property Name",
+                  "name": "property",
+                  "type": "string",
+                  "placeholder": "data",
+                  "default": "",
+                  "description": "Name of the binary properties which contain data which should be added as attachment"
+                }
+              ]
+            }
+          ],
+          "default": {}
+        },
+        {
+          "displayName": "External ID",
+          "name": "externalId",
+          "type": "string",
+          "default": "",
+          "description": "If the event originates from a record in a 3rd party system, use this parameter to pass the unique ID of that record. That ID will be communicated in outbound webhook notifications from SIGNL4, which is great for correlation/synchronization of that record with the alert. If you resolve / close an alert you must use the same External ID as in the original alert."
+        },
+        {
+          "displayName": "Filtering",
+          "name": "filtering",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to apply event filtering for this event, or not. If set to true, the event will only trigger a notification to the team, if it contains at least one keyword from one of your services and system categories (i.e. it is whitelisted)"
+        },
+        {
+          "displayName": "Location",
+          "name": "locationFieldsUi",
+          "type": "fixedCollection",
+          "placeholder": "Add Location",
+          "default": {},
+          "description": "Transmit location information ('latitude, longitude') with your event and display a map in the mobile app",
+          "options": [
+            {
+              "name": "locationFieldsValues",
+              "displayName": "Location",
+              "values": [
+                {
+                  "displayName": "Latitude",
+                  "name": "latitude",
+                  "type": "string",
+                  "required": true,
+                  "description": "The location latitude",
+                  "default": ""
+                },
+                {
+                  "displayName": "Longitude",
+                  "name": "longitude",
+                  "type": "string",
+                  "required": true,
+                  "description": "The location longitude",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Service",
+          "name": "service",
+          "type": "string",
+          "default": "",
+          "description": "Assigns the alert to the service/system category with the specified name"
+        },
+        {
+          "displayName": "Title",
+          "name": "title",
+          "type": "string",
+          "default": "",
+          "description": "The title or subject of this alert"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "send"
+          ],
+          "resource": [
+            "alert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "External ID",
+      "name": "externalId",
+      "type": "string",
+      "default": "",
+      "description": "If the event originates from a record in a 3rd party system, use this parameter to pass the unique ID of that record. That ID will be communicated in outbound webhook notifications from SIGNL4, which is great for correlation/synchronization of that record with the alert. If you resolve / close an alert you must use the same External ID as in the original alert.",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "resolve"
+          ],
+          "resource": [
+            "alert"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "send",
+      "name": "Send",
+      "description": "Send an alert"
+    },
+    {
+      "operation": "resolve",
+      "name": "Resolve",
+      "description": "Resolve an alert"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "signl4Api",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

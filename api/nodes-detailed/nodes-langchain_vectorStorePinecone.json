@@ -1,0 +1,380 @@
+{
+  "node_type": "nodes-langchain.vectorStorePinecone",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "Pinecone Vector Store",
+  "description": "Work with your data in Pinecone Vector Store",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "1.3",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Pinecone Vector Store node documentation\ndescription: Learn how to use the Pinecone Vector Store node in n8n. Follow technical documentation to integrate Pinecone Vector Store node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Pinecone Vector Store node\n\nUse the Pinecone node to interact with your Pinecone database as [vector store](/glossary.md#ai-vector-store). You can insert documents into a vector database, get documents from a vector database, retrieve documents to provide them to a retriever connected to a [chain](/glossary.md#ai-chain), or connect directly to an [agent](/glossary.md#ai-agent) as a [tool](/glossary.md#ai-tool).\n\nOn this page, you'll find the node parameters for the Pinecone node, and links to more resources.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/pinecone.md).\n///\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\n## Node usage patterns\n\nYou can use the Pinecone Vector Store node in the following patterns.\n\n### Use as a regular node to insert, update, and retrieve documents\n\nYou can use the Pinecone Vector Store as a regular node to insert, update, or get documents. This pattern places the Pinecone Vector Store in the regular connection flow without using an agent.\n\nYou can see an example of this in scenario 1 of [this template](https://n8n.io/workflows/2165-chat-with-pdf-docs-using-ai-quoting-sources/).\n\n### Connect directly to an AI agent as a tool\n\nYou can connect the Pinecone Vector Store node directly to the tool connector of an [AI agent](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/index.md) to use a vector store as a resource when answering queries.\n\nHere, the connection would be: AI agent (tools connector) -> Pinecone Vector Store node.\n\n### Use a retriever to fetch documents\n\nYou can use the [Vector Store Retriever](/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrievervectorstore.md) node with the Pinecone Vector Store node to fetch documents from the Pinecone Vector Store node. This is often used with the [Question and Answer Chain](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainretrievalqa/index.md) node to fetch documents from the vector store that match the given chat input.\n\nAn [example of the connection flow](https://n8n.io/workflows/1960-ask-questions-about-a-pdf-using-ai/) would be: Question and Answer Chain (Retriever connector) -> Vector Store Retriever (Vector Store connector) -> Pinecone Vector Store.\n\n### Use the Vector Store Question Answer Tool to answer questions\n\nAnother pattern uses the [Vector Store Question Answer Tool](/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolvectorstore.md) to summarize results and answer questions from the Pinecone Vector Store node. Rather than connecting the Pinecone Vector Store directly as a tool, this pattern uses a tool specifically designed to summarizes data in the vector store.\n\nThe [connections flow](https://n8n.io/workflows/2705-chat-with-github-api-documentation-rag-powered-chatbot-with-pinecone-and-openai/) in this case would look like this: AI agent (tools connector) -> Vector Store Question Answer Tool (Vector Store connector) -> Pinecone Vector store.\n\t\n## Node parameters\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/vector-store-mode-with-update.md\"\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/vector-store-rerank-results.md\"\n\n<!-- vale from-write-good.Weasel = NO -->\n### Get Many parameters\n<!-- vale from-write-good.Weasel = YES -->\n\n* **Pinecone Index**: Select or enter the Pinecone Index to use.\n* **Prompt**: Enter your search query.\n* **Limit**: Enter how many results to retrieve from the vector store. For example, set this to `10` to get the ten best results.\n\n### Insert Documents parameters\n\n* **Pinecone Index**: Select or enter the Pinecone Index to use.\n\n### Retrieve Documents (As Vector Store for Chain/Tool) parameters\n\n* **Pinecone Index**: Select or enter the Pinecone Index to use.\n\n### Retrieve Documents (As Tool for AI Agent) parameters\n\n* **Name**: The name of the vector store.\n* **Description**: Explain to the LLM what this tool does. A good, specific description allows LLMs to produce expected results more often.\n* **Pinecone Index**: Select or enter the Pinecone Index to use.\n* **Limit**: Enter how many results to retrieve from the vector store. For example, set this to `10` to get the ten best results.\n\n## Node options\n\n### Pinecone Namespace \n\nAnother segregation option for how to store your data within the index.\n\n### Metadata Filter\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/vector-store-metadata-filter.md\"\n\n### Clear Namespace\n\nAvailable in **Insert Documents** mode. Deletes all data from the namespace before inserting the new data.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'pinecone-vector-store') ]]\n\n## Related resources\n\nRefer to [LangChain's Pinecone documentation](https://js.langchain.com/docs/integrations/vectorstores/pinecone/){:target=_blank .external-link} for more information about the service.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n\n### Find your Pinecone index and namespace\n\nYour Pinecone index and namespace are available in your Pinecone account.\n\n![Screenshot of a Pinecone account, with the Pinecone index labelled](/_images/integrations/builtin/cluster-nodes/vectorstorepinecone/pinecone-index-namespace.png)\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Tip: Get a feel for vector stores in n8n with our",
+      "name": "ragStarterCallout",
+      "type": "callout",
+      "default": "",
+      "typeOptions": {
+        "calloutAction": {
+          "label": "RAG starter template",
+          "type": "openRagStarterTemplate"
+        }
+      }
+    },
+    {
+      "displayName": "Operation Mode",
+      "name": "mode",
+      "type": "options",
+      "default": "retrieve",
+      "options": [
+        {
+          "name": "Get Many",
+          "value": "load",
+          "description": "Get many ranked documents from vector store for query",
+          "action": "Get ranked documents from vector store"
+        },
+        {
+          "name": "Insert Documents",
+          "value": "insert",
+          "description": "Insert documents into vector store",
+          "action": "Add documents to vector store"
+        },
+        {
+          "name": "Retrieve Documents (As Vector Store for Chain/Tool)",
+          "value": "retrieve",
+          "description": "Retrieve documents from vector store to be used as vector store with AI nodes",
+          "action": "Retrieve documents for Chain/Tool as Vector Store",
+          "outputConnectionType": "ai_vectorStore"
+        },
+        {
+          "name": "Retrieve Documents (As Tool for AI Agent)",
+          "value": "retrieve-as-tool",
+          "description": "Retrieve documents from vector store to be used as tool with AI nodes",
+          "action": "Retrieve documents for AI Agent as Tool",
+          "outputConnectionType": "ai_tool"
+        },
+        {
+          "name": "Update Documents",
+          "value": "update",
+          "description": "Update documents in vector store by ID",
+          "action": "Update vector store documents"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "This node must be connected to a vector store retriever. <a data-action='openSelectiveNodeCreator' data-action-parameter-connectiontype='ai_retriever'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "retrieve"
+          ]
+        }
+      },
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "Name",
+      "name": "toolName",
+      "type": "string",
+      "default": "",
+      "description": "Name of the vector store",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "@version": [
+            {
+              "_cnd": {
+                "lte": 1.2
+              }
+            }
+          ],
+          "mode": [
+            "retrieve-as-tool"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Description",
+      "name": "toolDescription",
+      "type": "string",
+      "default": "",
+      "description": "Explain to the LLM what this tool does, a good, specific description would allow LLMs to produce expected results much more often",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "retrieve-as-tool"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 2
+      }
+    },
+    {
+      "displayName": "Pinecone Index",
+      "name": "pineconeIndex",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "required": true
+    },
+    {
+      "displayName": "Embedding Batch Size",
+      "name": "embeddingBatchSize",
+      "type": "number",
+      "default": 200,
+      "description": "Number of documents to embed in a single batch",
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "insert"
+          ],
+          "@version": [
+            {
+              "_cnd": {
+                "gte": 1.1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Clear Namespace",
+          "name": "clearNamespace",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to clear the namespace before inserting new data"
+        },
+        {
+          "displayName": "Pinecone Namespace",
+          "name": "pineconeNamespace",
+          "type": "string",
+          "description": "Partition the records in an index into namespaces. Queries and other operations are then limited to one namespace, so different requests can search different subsets of your index.",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "insert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Prompt",
+      "name": "prompt",
+      "type": "string",
+      "default": "",
+      "description": "Search prompt to retrieve matching documents from the vector store using similarity-based ranking",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "load"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "topK",
+      "type": "number",
+      "default": 4,
+      "description": "Number of top results to fetch from vector store",
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "load",
+            "retrieve-as-tool"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Include Metadata",
+      "name": "includeDocumentMetadata",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether or not to include document metadata",
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "load",
+            "retrieve-as-tool"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Rerank Results",
+      "name": "useReranker",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether or not to rerank results",
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "load",
+            "retrieve",
+            "retrieve-as-tool"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "ID of an embedding entry",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Pinecone Namespace",
+          "name": "pineconeNamespace",
+          "type": "string",
+          "description": "Partition the records in an index into namespaces. Queries and other operations are then limited to one namespace, so different requests can search different subsets of your index.",
+          "default": ""
+        },
+        {
+          "displayName": "Metadata Filter",
+          "name": "metadata",
+          "type": "fixedCollection",
+          "description": "Metadata to filter the document by",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "placeholder": "Add filter field",
+          "options": [
+            {
+              "name": "metadataValues",
+              "displayName": "Fields to Set",
+              "values": [
+                {
+                  "displayName": "Name",
+                  "name": "name",
+                  "type": "string",
+                  "default": "",
+                  "required": true
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "load",
+            "retrieve-as-tool"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Pinecone Namespace",
+          "name": "pineconeNamespace",
+          "type": "string",
+          "description": "Partition the records in an index into namespaces. Queries and other operations are then limited to one namespace, so different requests can search different subsets of your index.",
+          "default": ""
+        },
+        {
+          "displayName": "Metadata Filter",
+          "name": "metadata",
+          "type": "fixedCollection",
+          "description": "Metadata to filter the document by",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "placeholder": "Add filter field",
+          "options": [
+            {
+              "name": "metadataValues",
+              "displayName": "Fields to Set",
+              "values": [
+                {
+                  "displayName": "Name",
+                  "name": "name",
+                  "type": "string",
+                  "default": "",
+                  "required": true
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "retrieve"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "pineconeApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

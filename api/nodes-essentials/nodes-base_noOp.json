@@ -1,0 +1,19 @@
+{
+  "node_type": "nodes-base.noOp",
+  "display_name": "No Operation, do nothing",
+  "description": "No Operation",
+  "category": "organization",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_noOp.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.noOp"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

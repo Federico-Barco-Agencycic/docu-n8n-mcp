@@ -1,0 +1,35 @@
+{
+  "node_type": "nodes-langchain.toolExecutor",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "Tool Executor",
+  "description": "Node to execute tools without an AI Agent",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "Query",
+      "name": "query",
+      "type": "json",
+      "default": "{}",
+      "description": "Parameters to pass to the tool as JSON or string"
+    },
+    {
+      "displayName": "Tool Name",
+      "name": "toolName",
+      "type": "string",
+      "default": "",
+      "description": "Name of the tool to execute if the connected tool is a toolkit"
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

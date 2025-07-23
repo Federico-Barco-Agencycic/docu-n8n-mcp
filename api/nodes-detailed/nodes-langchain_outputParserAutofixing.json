@@ -1,0 +1,55 @@
+{
+  "node_type": "nodes-langchain.outputParserAutofixing",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "Auto-fixing Output Parser",
+  "description": "Deprecated, use structured output parser",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Auto-fixing Output Parser node documentation\ndescription: Learn how to use the Auto-fixing Output Parser node in n8n. Follow technical documentation to integrate Auto-fixing Output Parser node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Auto-fixing Output Parser node\n\nThe Auto-fixing Output Parser node wraps another output parser. If the first one fails, it calls out to another LLM to fix any errors.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'auto-fixing-output-parser') ]]\n\n## Related resources\n\nRefer to [LangChain's output parser documentation](https://js.langchain.com/docs/concepts/output_parsers/){:target=_blank .external-link} for more information about the service.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "This node wraps another output parser. If the first one fails it calls an LLM to fix the format",
+      "name": "info",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "This node must be connected to an AI chain. <a data-action='openSelectiveNodeCreator' data-action-parameter-creatorview='AI'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Retry Prompt",
+          "name": "prompt",
+          "type": "string",
+          "default": "Instructions:\n--------------\n{instructions}\n--------------\nCompletion:\n--------------\n{completion}\n--------------\n\nAbove, the Completion did not satisfy the constraints given in the Instructions.\nError:\n--------------\n{error}\n--------------\n\nPlease try again. Please only respond with an answer that satisfies the constraints laid out in the Instructions:",
+          "typeOptions": {
+            "rows": 10
+          },
+          "hint": "Should include \"{error}\", \"{instructions}\", and \"{completion}\" placeholders",
+          "description": "Prompt template used for fixing the output. Uses placeholders: \"{instructions}\" for parsing rules, \"{completion}\" for the failed attempt, and \"{error}\" for the validation error message."
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,769 @@
+{
+  "node_type": "nodes-base.customerIo",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Customer.io",
+  "description": "Consume Customer.io API",
+  "category": "output",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Customer.io node documentation\ndescription: Learn how to use the Customer.io node in n8n. Follow technical documentation to integrate Customer.io node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Customer.io node\n\nUse the Customer.io node to automate work in Customer.io, and integrate Customer.io with other applications. n8n has built-in support for a wide range of Customer.io features, including creating and updating customers, tracking events, and getting campaigns.\n\nOn this page, you'll find a list of operations the Customer.io node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Customer.io credentials](/integrations/builtin/credentials/customerio.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Customer\n    * Create/Update a customer.\n    * Delete a customer.\n* Event\n    * Track a customer event.\n    * Track an anonymous event.\n* Campaign\n    * Get\n    * Get All\n    * Get Metrics\n* Segment\n    * Add Customer\n    * Remove Customer\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'customerio') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "customer",
+      "options": [
+        {
+          "name": "Customer",
+          "value": "customer"
+        },
+        {
+          "name": "Event",
+          "value": "event"
+        },
+        {
+          "name": "Campaign",
+          "value": "campaign"
+        },
+        {
+          "name": "Segment",
+          "value": "segment"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "action": "Get a campaign"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "action": "Get many campaigns"
+        },
+        {
+          "name": "Get Metrics",
+          "value": "getMetrics",
+          "action": "Get metrics for a campaign"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Campaign ID",
+      "name": "campaignId",
+      "type": "number",
+      "default": 0,
+      "description": "The unique identifier for the campaign",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Campaign ID",
+      "name": "campaignId",
+      "type": "number",
+      "default": 0,
+      "description": "The unique identifier for the campaign",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "getMetrics"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Period",
+      "name": "period",
+      "type": "options",
+      "default": "days",
+      "description": "Specify metric period",
+      "options": [
+        {
+          "name": "Hours",
+          "value": "hours"
+        },
+        {
+          "name": "Days",
+          "value": "days"
+        },
+        {
+          "name": "Weeks",
+          "value": "weeks"
+        },
+        {
+          "name": "Months",
+          "value": "months"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "getMetrics"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "JSON Parameters",
+      "name": "jsonParameters",
+      "type": "boolean",
+      "default": false,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "getMetrics"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Steps",
+          "name": "steps",
+          "type": "number",
+          "default": 0,
+          "description": "Integer specifying how many steps to return. Defaults to the maximum number of timeperiods available, or 12 when using the months period. Maximum timeperiods available are 24 hours, 45 days, 12 weeks and 120 months",
+          "typeOptions": {
+            "minValue": 0,
+            "maxValue": 120
+          }
+        },
+        {
+          "displayName": "Type",
+          "name": "type",
+          "type": "options",
+          "default": "empty",
+          "description": "Specify metric type",
+          "options": [
+            {
+              "name": "Email",
+              "value": "email"
+            },
+            {
+              "name": "Empty",
+              "value": "empty"
+            },
+            {
+              "name": "Push",
+              "value": "push"
+            },
+            {
+              "name": "Slack",
+              "value": "slack"
+            },
+            {
+              "name": "Twilio",
+              "value": "twilio"
+            },
+            {
+              "name": "Urban Airship",
+              "value": "urbanAirship"
+            },
+            {
+              "name": "Webhook",
+              "value": "webhook"
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "getMetrics"
+          ],
+          "jsonParameters": [
+            false
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "upsert",
+      "options": [
+        {
+          "name": "Create or Update",
+          "value": "upsert",
+          "description": "Create a new customer, or update the current one if it already exists (upsert)",
+          "action": "Create or update a customer"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a customer",
+          "action": "Delete a customer"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "The unique identifier for the customer",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "The unique identifier for the customer",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "upsert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "JSON Parameters",
+      "name": "jsonParameters",
+      "type": "boolean",
+      "default": false,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "upsert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFieldsJson",
+      "type": "json",
+      "default": "",
+      "description": "Object of values to set as described <a href=\"https://github.com/agilecrm/rest-api#1-companys---companies-api\">here</a>",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "upsert"
+          ],
+          "jsonParameters": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "alwaysOpenEditWindow": true
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Custom Properties",
+          "name": "customProperties",
+          "type": "fixedCollection",
+          "default": {},
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "options": [
+            {
+              "displayName": "Property",
+              "name": "customProperty",
+              "values": [
+                {
+                  "displayName": "Key",
+                  "name": "key",
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "description": "Property name",
+                  "placeholder": "Plan"
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "description": "Property value",
+                  "placeholder": "Basic"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Email",
+          "name": "email",
+          "type": "string",
+          "placeholder": "name@email.com",
+          "default": "",
+          "description": "The email address of the user"
+        },
+        {
+          "displayName": "Created At",
+          "name": "createdAt",
+          "type": "dateTime",
+          "default": "",
+          "description": "The UNIX timestamp from when the user was created"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "customer"
+          ],
+          "operation": [
+            "upsert"
+          ],
+          "jsonParameters": [
+            false
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "track",
+      "options": [
+        {
+          "name": "Track",
+          "value": "track",
+          "description": "Track a customer event",
+          "action": "Track a customer event"
+        },
+        {
+          "name": "Track Anonymous",
+          "value": "trackAnonymous",
+          "description": "Track an anonymous event",
+          "action": "Track an anonymous event"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Customer ID",
+      "name": "customerId",
+      "type": "string",
+      "default": "",
+      "description": "The unique identifier for the customer",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ],
+          "operation": [
+            "track"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Event Name",
+      "name": "eventName",
+      "type": "string",
+      "default": "",
+      "description": "Name of the event to track",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ],
+          "operation": [
+            "track"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "JSON Parameters",
+      "name": "jsonParameters",
+      "type": "boolean",
+      "default": false,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ],
+          "operation": [
+            "track"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFieldsJson",
+      "type": "json",
+      "default": "",
+      "description": "Object of values to set as described <a href=\"https://customer.io/docs/api-triggered-data-format#basic-data-formatting\">here</a>",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ],
+          "operation": [
+            "track"
+          ],
+          "jsonParameters": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "alwaysOpenEditWindow": true
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Custom Attributes",
+          "name": "customAttributes",
+          "type": "fixedCollection",
+          "default": {},
+          "description": "Custom Properties",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "options": [
+            {
+              "displayName": "Attribute",
+              "name": "customAttribute",
+              "values": [
+                {
+                  "displayName": "Key",
+                  "name": "key",
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "description": "Attribute name",
+                  "placeholder": "Price"
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "description": "Attribute value",
+                  "placeholder": "25.50"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Type",
+          "name": "type",
+          "type": "string",
+          "default": "",
+          "description": "Used to change event type. For Page View events set to \"page\"."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ],
+          "operation": [
+            "track"
+          ],
+          "jsonParameters": [
+            false
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Event Name",
+      "name": "eventName",
+      "type": "string",
+      "default": "",
+      "description": "The unique identifier for the customer",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ],
+          "operation": [
+            "trackAnonymous"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "JSON Parameters",
+      "name": "jsonParameters",
+      "type": "boolean",
+      "default": false,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ],
+          "operation": [
+            "trackAnonymous"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFieldsJson",
+      "type": "json",
+      "default": "",
+      "description": "Object of values to set as described <a href=\"https://customer.io/docs/api-triggered-data-format#basic-data-formatting\">here</a>",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ],
+          "operation": [
+            "trackAnonymous"
+          ],
+          "jsonParameters": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "alwaysOpenEditWindow": true
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Custom Attributes",
+          "name": "customAttributes",
+          "type": "fixedCollection",
+          "default": {},
+          "description": "Custom Properties",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "options": [
+            {
+              "displayName": "Attribute",
+              "name": "customAttribute",
+              "values": [
+                {
+                  "displayName": "Key",
+                  "name": "key",
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "description": "Attribute name",
+                  "placeholder": "Price"
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "description": "Attribute value",
+                  "placeholder": "25.50"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ],
+          "operation": [
+            "trackAnonymous"
+          ],
+          "jsonParameters": [
+            false
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "add",
+      "options": [
+        {
+          "name": "Add Customer",
+          "value": "add",
+          "action": "Add a customer to a segment"
+        },
+        {
+          "name": "Remove Customer",
+          "value": "remove",
+          "action": "Remove a customer from a segment"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "segment"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Segment ID",
+      "name": "segmentId",
+      "type": "number",
+      "default": 0,
+      "description": "The unique identifier of the segment",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "segment"
+          ],
+          "operation": [
+            "add",
+            "remove"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Customer IDs",
+      "name": "customerIds",
+      "type": "string",
+      "default": "",
+      "description": "A list of customer IDs to add to the segment",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "segment"
+          ],
+          "operation": [
+            "add",
+            "remove"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "get",
+      "name": "Get"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many"
+    },
+    {
+      "operation": "getMetrics",
+      "name": "Get Metrics"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "customerIoApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

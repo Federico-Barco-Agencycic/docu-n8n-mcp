@@ -1,0 +1,122 @@
+{
+  "node_type": "nodes-base.jira",
+  "display_name": "Jira Software",
+  "description": "Consume Jira Software API",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "issue"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "project",
+      "displayName": "Project",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "issueType",
+      "displayName": "Issue Type",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "summary",
+      "displayName": "Summary",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "issueKey",
+      "displayName": "Issue Key",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "issueKey",
+      "displayName": "Issue Key",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "deleteSubtasks",
+      "displayName": "Delete Subtasks",
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    {
+      "name": "issueKey",
+      "displayName": "Issue Key",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "issueKey",
+      "displayName": "Issue Key",
+      "type": "string",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "changelog",
+      "name": "Changelog",
+      "description": "Get issue changelog"
+    },
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a new issue"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete an issue"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get an issue"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many issues"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_jira.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.jira"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

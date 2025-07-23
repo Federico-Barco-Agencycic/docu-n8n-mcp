@@ -1,0 +1,28 @@
+{
+  "node_type": "nodes-base.workflowTrigger",
+  "display_name": "Workflow Trigger",
+  "description": "Triggers based on various lifecycle events, like when a workflow is activated",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "events",
+      "displayName": "Events",
+      "type": "multiOptions",
+      "description": "Specifies under which conditions an execution should happen:\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t<li><b>Active Workflow Updated</b>: Triggers when this workflow is updated</li>\n\t\t\t\t\t\t<li><b>Workflow Activated</b>: Triggers when this workflow is activated</li>\n\t\t\t\t\t</ul>",
+      "required": true,
+      "default": []
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_workflowTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.workflowTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

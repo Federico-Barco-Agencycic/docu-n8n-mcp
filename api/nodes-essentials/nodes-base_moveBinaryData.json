@@ -1,0 +1,52 @@
+{
+  "node_type": "nodes-base.moveBinaryData",
+  "display_name": "Convert to/from binary data",
+  "description": "Move data between binary and JSON properties",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1.1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "sourceKey",
+      "displayName": "Source Key",
+      "type": "string",
+      "description": "The name of the binary key to get data from. It is also possible to define deep keys by using dot-notation like for example: \"level1.level2.currentKey\".",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "destinationKey",
+      "displayName": "Destination Key",
+      "type": "string",
+      "description": "The name the JSON key to copy data to. It is also possible to define deep keys by using dot-notation like for example: \"level1.level2.newKey\".",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "sourceKey",
+      "displayName": "Source Key",
+      "type": "string",
+      "description": "The name of the JSON key to get data from. It is also possible to define deep keys by using dot-notation like for example: \"level1.level2.currentKey\".",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "destinationKey",
+      "displayName": "Destination Key",
+      "type": "string",
+      "description": "The name the binary key to copy data to. It is also possible to define deep keys by using dot-notation like for example: \"level1.level2.newKey\".",
+      "required": true,
+      "default": "data"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_moveBinaryData.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.moveBinaryData"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

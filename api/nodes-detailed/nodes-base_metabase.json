@@ -1,0 +1,601 @@
+{
+  "node_type": "nodes-base.metabase",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Metabase",
+  "description": "Use the Metabase API",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Metabase node documentation\ndescription: Learn how to use the Metabase node in n8n. Follow technical documentation to integrate Metabase node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Metabase node\n\nUse the Metabase node to automate work in Metabase, and integrate Metabase with other applications. n8n has built-in support for a wide range of Metabase features, including adding, and getting alerts, databases, metrics, and questions. \n\nOn this page, you'll find a list of operations the Metabase node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Metabase credentials](/integrations/builtin/credentials/metabase.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Alert\n    * Get\n    * Get All\n* Database\n    * Add\n    * Get All\n    * Get Fields\n* Metric\n    * Get\n    * Get All\n* Question\n    * Get\n    * Get All\n    * Result Data\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'metabase') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "questions",
+      "options": [
+        {
+          "name": "Alert",
+          "value": "alerts"
+        },
+        {
+          "name": "Database",
+          "value": "databases"
+        },
+        {
+          "name": "Metric",
+          "value": "metrics"
+        },
+        {
+          "name": "Question",
+          "value": "questions"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a specific question",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "={{\"/api/card/\" + $parameter.questionId}}"
+            }
+          },
+          "action": "Get a questions"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many questions",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "/api/card/"
+            }
+          },
+          "action": "Get many questions"
+        },
+        {
+          "name": "Result Data",
+          "value": "resultData",
+          "description": "Return the result of the question to a specific file format",
+          "routing": {
+            "request": {
+              "method": "POST",
+              "url": "={{\"/api/card/\" + $parameter.questionId + \"/query/\" + $parameter.format}}",
+              "returnFullResponse": true,
+              "encoding": "arraybuffer"
+            },
+            "output": {
+              "postReceive": [
+                null
+              ]
+            }
+          },
+          "action": "Get the results from a question"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "questions"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Question ID",
+      "name": "questionId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "questions"
+          ],
+          "operation": [
+            "get",
+            "resultData"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Format",
+      "name": "format",
+      "type": "options",
+      "default": "csv",
+      "options": [
+        {
+          "name": "CSV",
+          "value": "csv"
+        },
+        {
+          "name": "JSON",
+          "value": "json"
+        },
+        {
+          "name": "XLSX",
+          "value": "xlsx"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "questions"
+          ],
+          "operation": [
+            "resultData"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a specific metric",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "={{\"/api/metric/\" + $parameter.metricId}}",
+              "returnFullResponse": true
+            }
+          },
+          "action": "Get a metric"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many metrics",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "/api/metric/"
+            }
+          },
+          "action": "Get many metrics"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "metrics"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Metric ID",
+      "name": "metricId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "metrics"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Add",
+          "value": "addNewDatasource",
+          "description": "Add a new datasource to the metabase instance",
+          "routing": {
+            "request": {
+              "method": "POST",
+              "url": "/api/database"
+            }
+          },
+          "action": "Add a databases"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many databases",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "/api/database/"
+            },
+            "output": {
+              "postReceive": [
+                {
+                  "type": "rootProperty",
+                  "properties": {
+                    "property": "data"
+                  }
+                }
+              ]
+            }
+          },
+          "action": "Get many databases"
+        },
+        {
+          "name": "Get Fields",
+          "value": "getFields",
+          "description": "Get fields from database",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "={{\"/api/database/\" + $parameter.databaseId + \"/fields\"}}"
+            }
+          },
+          "action": "Get Fields a databases"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "databases"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Database ID",
+      "name": "databaseId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "databases"
+          ],
+          "operation": [
+            "getFields"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Engine",
+      "name": "engine",
+      "type": "options",
+      "default": "postgres",
+      "options": [
+        {
+          "name": "H2",
+          "value": "h2"
+        },
+        {
+          "name": "MongoDB",
+          "value": "mongo"
+        },
+        {
+          "name": "Mysql",
+          "value": "mysql"
+        },
+        {
+          "name": "PostgreSQL",
+          "value": "postgres"
+        },
+        {
+          "name": "Redshift",
+          "value": "redshift"
+        },
+        {
+          "name": "Sqlite",
+          "value": "sqlite"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "databases"
+          ],
+          "operation": [
+            "addNewDatasource"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Host",
+      "name": "host",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "databases"
+          ],
+          "operation": [
+            "addNewDatasource"
+          ],
+          "engine": [
+            "postgres",
+            "redshift",
+            "mysql",
+            "mongo"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Name",
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "databases"
+          ],
+          "operation": [
+            "addNewDatasource"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Port",
+      "name": "port",
+      "type": "number",
+      "default": 5432,
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "databases"
+          ],
+          "operation": [
+            "addNewDatasource"
+          ],
+          "engine": [
+            "postgres",
+            "redshift",
+            "mysql",
+            "mongo"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "User",
+      "name": "user",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "databases"
+          ],
+          "operation": [
+            "addNewDatasource"
+          ],
+          "engine": [
+            "postgres",
+            "redshift",
+            "mysql",
+            "mongo"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Password",
+      "name": "password",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "databases"
+          ],
+          "operation": [
+            "addNewDatasource"
+          ],
+          "engine": [
+            "postgres",
+            "redshift",
+            "mysql",
+            "mongo"
+          ]
+        }
+      },
+      "typeOptions": {
+        "password": true
+      }
+    },
+    {
+      "displayName": "Database Name",
+      "name": "dbName",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "databases"
+          ],
+          "operation": [
+            "addNewDatasource"
+          ],
+          "engine": [
+            "postgres",
+            "redshift",
+            "mysql",
+            "mongo"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File Path",
+      "name": "filePath",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "databases"
+          ],
+          "operation": [
+            "addNewDatasource"
+          ],
+          "engine": [
+            "h2",
+            "sqlite"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Full Sync",
+      "name": "fullSync",
+      "type": "boolean",
+      "default": true,
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "databases"
+          ],
+          "operation": [
+            "addNewDatasource"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Simplify",
+      "name": "simple",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return a simplified version of the response instead of the raw data",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "databases"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get specific alert",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "={{\"/api/alert/\" + $parameter.alertId}}"
+            }
+          },
+          "action": "Get an alert"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many alerts",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "/api/alert/"
+            }
+          },
+          "action": "Get many alerts"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "alerts"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Alert ID",
+      "name": "alertId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "alerts"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a specific question"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many questions"
+    },
+    {
+      "operation": "resultData",
+      "name": "Result Data",
+      "description": "Return the result of the question to a specific file format"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "metabaseApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

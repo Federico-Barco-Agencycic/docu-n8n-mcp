@@ -1,0 +1,82 @@
+{
+  "node_type": "nodes-base.facebookLeadAdsTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Facebook Lead Ads Trigger",
+  "description": "Handle Facebook Lead Ads events via webhooks",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 1,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Facebook Lead Ads Trigger node documentation\ndescription: Learn how to use the Facebook Lead Ads Trigger node in n8n. Follow technical documentation to integrate Facebook Lead Ads Trigger node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Facebook Lead Ads Trigger node\n\nUse the Facebook Lead Ads Trigger node to respond to events in [Facebook Lead Ads](https://www.facebook.com/business/ads/lead-ads/){:target=_blank .external-link} and integrate Facebook Lead Ads with other applications. n8n has built-in support for responding to new leads.\n\nOn this page, you'll find a list of events the Facebook Lead Ads Trigger node can respond to, and links to more resources.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/facebookleadads.md).\n///\n\n/// note | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Facebook Lead Ads Trigger integrations](https://n8n.io/integrations/facebook-lead-ads-trigger/){:target=_blank .external-link} page.\n///\n\n## Events\n\n* New lead\n\n## Related resources\n\nView [example workflows and related content](https://n8n.io/integrations/facebook-lead-ads-trigger/){:target=_blank .external-link} on n8n's website.\n\nRefer to [Facebook Lead Ads' documentation](https://developers.facebook.com/docs/marketing-api/guides/lead-ads/){:target=_blank .external-link} for details about their API.\n\n## Common issues\n\nHere are some common errors and issues with the Facebook Lead Ads Trigger node and steps to resolve or troubleshoot them.\n\n### Workflow only works in testing or production\n\nFacebook Lead Ads only allows you to register a single webhook per app. This means that every time you switch from using the testing URL to the production URL (and vice versa), Facebook Lead Ads overwrites the registered webhook URL. \n\nYou may have trouble with this if you try to test a workflow that's also active in production. Facebook Lead Ads will only send events to one of the two webhook URLs, so the other will never receive event notifications.\n\nTo work around this, you can disable your workflow when testing:\n\n/// warning | Halts production traffic\nThis workaround temporarily disables your production workflow for testing. Your workflow will no longer receive production traffic while it's deactivated.\n///\n\n1. Go to your workflow page.\n2. Toggle the **Active** switch in the top panel to disable the workflow temporarily.\n3. Test your workflow using the test webhook URL.\n4. When you finish testing, toggle the **Inactive** toggle to enable the workflow again. The production webhook URL should resume working.\n",
+  "properties_schema": [
+    {
+      "displayName": "Due to Facebook API limitations, you can use just one Facebook Lead Ads trigger for each Facebook App",
+      "name": "facebookLeadAdsNotice",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Event",
+      "name": "event",
+      "type": "options",
+      "default": "newLead",
+      "options": [
+        {
+          "name": "New Lead",
+          "value": "newLead"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "Page",
+      "name": "page",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "description": "The page linked to the form for retrieving new leads",
+      "required": true
+    },
+    {
+      "displayName": "Form",
+      "name": "form",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "description": "The form to monitor for fetching lead details upon submission",
+      "required": true
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Simplify Output",
+          "name": "simplifyOutput",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to return a simplified version of the webhook event instead of all fields"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "facebookLeadAdsOAuth2Api",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

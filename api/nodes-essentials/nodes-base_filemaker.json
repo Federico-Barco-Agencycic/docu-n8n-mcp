@@ -1,0 +1,89 @@
+{
+  "node_type": "nodes-base.filemaker",
+  "display_name": "FileMaker",
+  "description": "Retrieve data from the FileMaker data API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "layout",
+      "displayName": "Layout Name or ID",
+      "type": "options",
+      "description": "FileMaker Layout Name. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "recid",
+      "displayName": "Record ID",
+      "type": "number",
+      "description": "Internal Record ID returned by get (recordid)",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "scriptBefore",
+      "displayName": "Script Name or ID",
+      "type": "options",
+      "description": "The name of the FileMaker script to be run after the action specified by the API call and after the subsequent sort. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "scriptSort",
+      "displayName": "Script Name or ID",
+      "type": "options",
+      "description": "The name of the FileMaker script to be run after the action specified by the API call but before the subsequent sort. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "scriptAfter",
+      "displayName": "Script Name or ID",
+      "type": "options",
+      "description": "The name of the FileMaker script to be run after the action specified by the API call and after the subsequent sort. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "script",
+      "displayName": "Script Name or ID",
+      "type": "options",
+      "description": "The name of the FileMaker script to be run. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create Record"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete Record"
+    },
+    {
+      "operation": "duplicate",
+      "name": "Duplicate Record"
+    },
+    {
+      "operation": "edit",
+      "name": "Edit Record"
+    },
+    {
+      "operation": "find",
+      "name": "Find Records"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_filemaker.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.filemaker"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

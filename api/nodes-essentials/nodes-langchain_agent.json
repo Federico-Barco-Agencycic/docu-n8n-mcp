@@ -1,0 +1,34 @@
+{
+  "node_type": "nodes-langchain.agent",
+  "display_name": "AI Agent",
+  "description": "Generates an action plan and executes it. Can use external tools.",
+  "category": "transform",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "2",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "text",
+      "displayName": "Prompt (User Message)",
+      "type": "string",
+      "required": true,
+      "default": "={{ $json.chatInput }}"
+    },
+    {
+      "name": "text",
+      "displayName": "Prompt (User Message)",
+      "type": "string",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_agent.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-langchain.agent"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

@@ -1,0 +1,57 @@
+{
+  "node_type": "nodes-base.airtableTrigger",
+  "display_name": "Airtable Trigger",
+  "description": "Starts the workflow when Airtable events occur",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "baseId",
+      "displayName": "Base",
+      "type": "resourceLocator",
+      "description": "The Airtable Base in which to operate on",
+      "required": true,
+      "default": {
+        "mode": "url",
+        "value": ""
+      }
+    },
+    {
+      "name": "tableId",
+      "displayName": "Table",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "url",
+        "value": ""
+      }
+    },
+    {
+      "name": "triggerField",
+      "displayName": "Trigger Field",
+      "type": "string",
+      "description": "A Created Time or Last Modified Time field that will be used to sort records. If you do not have a Created Time or Last Modified Time field in your schema, please create one, because without this field trigger will not work correctly.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "downloadFieldNames",
+      "displayName": "Download Fields",
+      "type": "string",
+      "description": "Name of the fields of type 'attachment' that should be downloaded. Multiple ones can be defined separated by comma. Case sensitive.",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_airtableTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.airtableTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

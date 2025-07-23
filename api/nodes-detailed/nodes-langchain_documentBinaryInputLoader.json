@@ -1,0 +1,172 @@
+{
+  "node_type": "nodes-langchain.documentBinaryInputLoader",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "Binary Input Loader",
+  "description": "Use binary data from a previous step in the workflow",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "This node must be connected to a vector store. <a data-action='openSelectiveNodeCreator' data-action-parameter-connectiontype='ai_vectorStore'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "Loader Type",
+      "name": "loader",
+      "type": "options",
+      "default": "jsonLoader",
+      "options": [
+        {
+          "name": "CSV Loader",
+          "value": "csvLoader",
+          "description": "Load CSV files"
+        },
+        {
+          "name": "Docx Loader",
+          "value": "docxLoader",
+          "description": "Load Docx documents"
+        },
+        {
+          "name": "EPub Loader",
+          "value": "epubLoader",
+          "description": "Load EPub files"
+        },
+        {
+          "name": "JSON Loader",
+          "value": "jsonLoader",
+          "description": "Load JSON files"
+        },
+        {
+          "name": "PDF Loader",
+          "value": "pdfLoader",
+          "description": "Load PDF documents"
+        },
+        {
+          "name": "Text Loader",
+          "value": "textLoader",
+          "description": "Load plain text files"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "Binary Data Key",
+      "name": "binaryDataKey",
+      "type": "string",
+      "default": "data",
+      "description": "Name of the binary property from which to read the file buffer",
+      "required": true
+    },
+    {
+      "displayName": "Split Pages",
+      "name": "splitPages",
+      "type": "boolean",
+      "default": true,
+      "displayOptions": {
+        "show": {
+          "loader": [
+            "pdfLoader"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Column",
+      "name": "column",
+      "type": "string",
+      "default": "",
+      "description": "Column to extract from CSV",
+      "displayOptions": {
+        "show": {
+          "loader": [
+            "csvLoader"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Separator",
+      "name": "separator",
+      "type": "string",
+      "default": ",",
+      "description": "Separator to use for CSV",
+      "displayOptions": {
+        "show": {
+          "loader": [
+            "csvLoader"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Pointers",
+      "name": "pointers",
+      "type": "string",
+      "default": "",
+      "description": "Pointers to extract from JSON, e.g. \"/text\" or \"/text, /meta/title\"",
+      "displayOptions": {
+        "show": {
+          "loader": [
+            "jsonLoader"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Metadata",
+          "name": "metadata",
+          "type": "fixedCollection",
+          "description": "Metadata to add to each document. Could be used for filtering during retrieval",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "placeholder": "Add property",
+          "options": [
+            {
+              "name": "metadataValues",
+              "displayName": "Fields to Set",
+              "values": [
+                {
+                  "displayName": "Name",
+                  "name": "name",
+                  "type": "string",
+                  "default": "",
+                  "required": true
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

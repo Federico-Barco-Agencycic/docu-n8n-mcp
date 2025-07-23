@@ -1,0 +1,114 @@
+{
+  "node_type": "nodes-base.bambooHr",
+  "display_name": "BambooHR",
+  "description": "Consume BambooHR API",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "employee"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "synced",
+      "displayName": "Synced with Trax Payroll",
+      "type": "boolean",
+      "description": "Whether the employee to create was added to a pay schedule synced with Trax Payroll",
+      "required": true,
+      "default": false
+    },
+    {
+      "name": "firstName",
+      "displayName": "First Name",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "lastName",
+      "displayName": "Last Name",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "address",
+      "displayName": "Address",
+      "type": "fixedCollection",
+      "required": true,
+      "default": {}
+    },
+    {
+      "name": "dateOfBirth",
+      "displayName": "Date of Birth",
+      "type": "dateTime",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "department",
+      "displayName": "Department Name or ID",
+      "type": "options",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "division",
+      "displayName": "Division Name or ID",
+      "type": "options",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "employeeNumber",
+      "displayName": "Employee Number",
+      "type": "string",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create an employee"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get an employee"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many employees"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update an employee"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_bambooHr.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.bambooHr"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

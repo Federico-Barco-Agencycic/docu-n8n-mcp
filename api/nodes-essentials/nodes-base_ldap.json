@@ -1,0 +1,125 @@
+{
+  "node_type": "nodes-base.ldap",
+  "display_name": "Ldap",
+  "description": "Interact with LDAP servers",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "search"
+    },
+    {
+      "name": "dn",
+      "displayName": "DN",
+      "type": "string",
+      "description": "The distinguished name of the entry to compare",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "dn",
+      "displayName": "DN",
+      "type": "string",
+      "description": "The distinguished name of the entry to create",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "dn",
+      "displayName": "DN",
+      "type": "string",
+      "description": "The distinguished name of the entry to delete",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "dn",
+      "displayName": "DN",
+      "type": "string",
+      "description": "The distinguished name of the entry to rename",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "dn",
+      "displayName": "DN",
+      "type": "string",
+      "description": "The distinguished name of the entry to modify",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "dn",
+      "displayName": "DN",
+      "type": "string",
+      "description": "The distinguished name of the entry to update",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "id",
+      "displayName": "Attribute ID",
+      "type": "options",
+      "description": "The ID of the attribute to compare",
+      "required": true,
+      "default": []
+    },
+    {
+      "name": "targetDn",
+      "displayName": "New DN",
+      "type": "string",
+      "description": "The new distinguished name for the entry",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "baseDN",
+      "displayName": "Base DN",
+      "type": "string",
+      "description": "The distinguished name of the subtree to search in",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "compare",
+      "name": "Compare",
+      "description": "Compare an attribute"
+    },
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a new entry"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete an entry"
+    },
+    {
+      "operation": "rename",
+      "name": "Rename",
+      "description": "Rename the DN of an existing entry"
+    },
+    {
+      "operation": "search",
+      "name": "Search",
+      "description": "Search LDAP"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_ldap.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.ldap"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

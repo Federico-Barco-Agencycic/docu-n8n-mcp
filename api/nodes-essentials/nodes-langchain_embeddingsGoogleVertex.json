@@ -1,0 +1,31 @@
+{
+  "node_type": "nodes-langchain.embeddingsGoogleVertex",
+  "display_name": "Embeddings Google Vertex",
+  "description": "Use Google Vertex Embeddings",
+  "category": "transform",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "projectId",
+      "displayName": "Project ID",
+      "type": "resourceLocator",
+      "description": "Select or enter your Google Cloud project ID",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_embeddingsGoogleVertex.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-langchain.embeddingsGoogleVertex"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

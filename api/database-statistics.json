@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "total_nodes": 526,
+    "ai_tools": 263,
+    "triggers": 108,
+    "webhooks": 79,
+    "packages": 2,
+    "categories": 5,
+    "documented_nodes": 470,
+    "documentation_coverage": 89,
+    "generated_at": "2025-07-23T03:58:15.685Z",
+    "api_version": "1.0.0"
+  },
+  "endpoints": {
+    "search_index": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/search-index.json",
+    "list_nodes_category": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/list-nodes/category-{category}.json",
+    "list_nodes_package": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/list-nodes/package-{package}.json",
+    "list_ai_tools": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/list-nodes/ai-tools-only.json",
+    "node_detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/{node_type}.json",
+    "node_essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/{node_type}.json",
+    "tasks_config": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/tasks-config.json",
+    "ai_tools_detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/ai-tools-detailed.json",
+    "properties_index": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json",
+    "property_dependencies": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/property-dependencies.json",
+    "templates_index": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/templates-index.json"
+  },
+  "available_categories": [
+    "output",
+    "transform",
+    "trigger",
+    "input",
+    "organization"
+  ],
+  "available_packages": [
+    "n8n-nodes-base",
+    "@n8n/n8n-nodes-langchain"
+  ]
+}

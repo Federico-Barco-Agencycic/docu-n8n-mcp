@@ -1,0 +1,31 @@
+{
+  "node_type": "nodes-base.slackTrigger",
+  "display_name": "Slack Trigger",
+  "description": "Handle Slack events via webhooks",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "channelId",
+      "displayName": "Channel to Watch",
+      "type": "resourceLocator",
+      "description": "The Slack channel to listen to events from. Applies to events: Bot/App mention, File Shared, New Message Posted on Channel, Reaction Added.",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_slackTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.slackTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

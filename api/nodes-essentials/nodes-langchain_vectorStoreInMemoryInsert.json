@@ -1,0 +1,19 @@
+{
+  "node_type": "nodes-langchain.vectorStoreInMemoryInsert",
+  "display_name": "In Memory Vector Store Insert",
+  "description": "Insert data into an in-memory vector store",
+  "category": "transform",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_vectorStoreInMemoryInsert.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-langchain.vectorStoreInMemoryInsert"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

@@ -1,0 +1,416 @@
+{
+  "node_type": "nodes-base.jenkins",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Jenkins",
+  "description": "Consume Jenkins API",
+  "category": "output",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Jenkins node documentation\ndescription: Learn how to use the Jenkins node in n8n. Follow technical documentation to integrate Jenkins node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Jenkins node\n\nUse the Jenkins node to automate work in Jenkins, and integrate Jenkins with other applications. n8n has built-in support for a wide range of Jenkins features, including listing builds, managing instances, and creating and copying jobs. \n\nOn this page, you'll find a list of operations the Jenkins node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Jenkins credentials](/integrations/builtin/credentials/jenkins.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n* Build\n    * List Builds\n* Instance\n    * Cancel quiet down state\n    * Put Jenkins in quiet mode, no builds can be started, Jenkins is ready for shutdown\n    * Restart Jenkins immediately on environments where it's possible\n    * Restart Jenkins once no jobs are running on environments where it's possible\n    * Shutdown once no jobs are running\n    * Shutdown Jenkins immediately\n* Job\n    * Copy a specific job\n    * Create a new job\n    * Trigger a specific job\n    * Trigger a specific job\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'jenkins') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "job",
+      "options": [
+        {
+          "name": "Build",
+          "value": "build"
+        },
+        {
+          "name": "Instance",
+          "value": "instance"
+        },
+        {
+          "name": "Job",
+          "value": "job"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "trigger",
+      "description": "Possible operations",
+      "options": [
+        {
+          "name": "Copy",
+          "value": "copy",
+          "description": "Copy a specific job",
+          "action": "Copy a job"
+        },
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a new job",
+          "action": "Create a job"
+        },
+        {
+          "name": "Trigger",
+          "value": "trigger",
+          "description": "Trigger a specific job",
+          "action": "Trigger a job"
+        },
+        {
+          "name": "Trigger with Parameters",
+          "value": "triggerParams",
+          "description": "Trigger a specific job",
+          "action": "Trigger a job with parameters"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "job"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Make sure the job is setup to support triggering with parameters. <a href=\"https://wiki.jenkins.io/display/JENKINS/Parameterized+Build\" target=\"_blank\">More info</a>",
+      "name": "triggerParamsNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "job"
+          ],
+          "operation": [
+            "triggerParams"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Job Name or ID",
+      "name": "job",
+      "type": "options",
+      "default": "",
+      "description": "Name of the job. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "job"
+          ],
+          "operation": [
+            "trigger",
+            "triggerParams",
+            "copy"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getJobs"
+      }
+    },
+    {
+      "displayName": "Parameters",
+      "name": "param",
+      "type": "fixedCollection",
+      "default": {},
+      "description": "Parameters for Jenkins job",
+      "options": [
+        {
+          "name": "params",
+          "displayName": "Parameters",
+          "values": [
+            {
+              "displayName": "Name or ID",
+              "name": "name",
+              "type": "options",
+              "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+              "typeOptions": {
+                "loadOptionsMethod": "getJobParameters",
+                "loadOptionsDependsOn": [
+                  "job"
+                ]
+              },
+              "default": ""
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "job"
+          ],
+          "operation": [
+            "triggerParams"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "New Job Name",
+      "name": "newJob",
+      "type": "string",
+      "default": "",
+      "description": "Name of the new Jenkins job",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "job"
+          ],
+          "operation": [
+            "copy",
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "XML",
+      "name": "xml",
+      "type": "string",
+      "default": "",
+      "description": "XML of Jenkins config",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "job"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "To get the XML of an existing job, add ‘config.xml’ to the end of the job URL",
+      "name": "createNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "job"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "safeRestart",
+      "description": "Jenkins instance operations",
+      "options": [
+        {
+          "name": "Cancel Quiet Down",
+          "value": "cancelQuietDown",
+          "description": "Cancel quiet down state",
+          "action": "Cancel Quiet Down an instance"
+        },
+        {
+          "name": "Quiet Down",
+          "value": "quietDown",
+          "description": "Put Jenkins in quiet mode, no builds can be started, Jenkins is ready for shutdown",
+          "action": "Quiet Down an instance"
+        },
+        {
+          "name": "Restart",
+          "value": "restart",
+          "description": "Restart Jenkins immediately on environments where it is possible",
+          "action": "Restart an instance"
+        },
+        {
+          "name": "Safely Restart",
+          "value": "safeRestart",
+          "description": "Restart Jenkins once no jobs are running on environments where it is possible",
+          "action": "Safely Restart an instance"
+        },
+        {
+          "name": "Safely Shutdown",
+          "value": "safeExit",
+          "description": "Shutdown once no jobs are running",
+          "action": "Safely Shutdown an instance"
+        },
+        {
+          "name": "Shutdown",
+          "value": "exit",
+          "description": "Shutdown Jenkins immediately",
+          "action": "Shutdown an instance"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "instance"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Reason",
+      "name": "reason",
+      "type": "string",
+      "default": "",
+      "description": "Freeform reason for quiet down mode",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "instance"
+          ],
+          "operation": [
+            "quietDown"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Instance operation can shutdown Jenkins instance and make it unresponsive. Some commands may not be available depending on instance implementation.",
+      "name": "instanceNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "instance"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "List Builds",
+          "action": "Get many builds"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "build"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Job Name or ID",
+      "name": "job",
+      "type": "options",
+      "default": "",
+      "description": "Name of the job. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "build"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getJobs"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "build"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "build"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "copy",
+      "name": "Copy",
+      "description": "Copy a specific job"
+    },
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a new job"
+    },
+    {
+      "operation": "trigger",
+      "name": "Trigger",
+      "description": "Trigger a specific job"
+    },
+    {
+      "operation": "triggerParams",
+      "name": "Trigger with Parameters",
+      "description": "Trigger a specific job"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "jenkinsApi",
+      "required": true,
+      "testedBy": "jenkinApiCredentialTest"
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,546 @@
+{
+  "node_type": "nodes-base.postHog",
+  "package_name": "n8n-nodes-base",
+  "display_name": "PostHog",
+  "description": "Consume PostHog API",
+  "category": "input",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: PostHog node documentation\ndescription: Learn how to use the PostHog node in n8n. Follow technical documentation to integrate PostHog node into your workflows.\ncontentType: [integration, reference]\n---\n\n# PostHog node\n\nUse the PostHog node to automate work in PostHog, and integrate PostHog with other applications. n8n has built-in support for a wide range of PostHog features, including creating aliases, events, and identity, as well as tracking pages.\n\nOn this page, you'll find a list of operations the PostHog node supports and links to more resources.\n\n/// note | Credentials\nRefer to [PostHog credentials](/integrations/builtin/credentials/posthog.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Alias\n    * Create an alias\n* Event\n    * Create an event\n* Identity\n    * Create\n* Track\n    * Track a page\n    * Track a screen\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'posthog') ]]\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "event",
+      "options": [
+        {
+          "name": "Alias",
+          "value": "alias"
+        },
+        {
+          "name": "Event",
+          "value": "event"
+        },
+        {
+          "name": "Identity",
+          "value": "identity"
+        },
+        {
+          "name": "Track",
+          "value": "track"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create an alias",
+          "action": "Create an alias"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "alias"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Alias",
+      "name": "alias",
+      "type": "string",
+      "default": "",
+      "description": "The name of the alias",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "alias"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Distinct ID",
+      "name": "distinctId",
+      "type": "string",
+      "default": "",
+      "description": "The user's distinct ID",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "alias"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Context",
+          "name": "contextUi",
+          "type": "fixedCollection",
+          "placeholder": "Add Property",
+          "default": {},
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "options": [
+            {
+              "displayName": "Context",
+              "name": "contextValues",
+              "values": [
+                {
+                  "displayName": "Key",
+                  "name": "key",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Timestamp",
+          "name": "timestamp",
+          "type": "dateTime",
+          "default": "",
+          "description": "If not set, it'll automatically be set to the current time"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "alias"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create an event",
+          "action": "Create an event"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Event",
+      "name": "eventName",
+      "type": "string",
+      "default": "",
+      "description": "The name of the event",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Distinct ID",
+      "name": "distinctId",
+      "type": "string",
+      "default": "",
+      "description": "The user's distinct ID",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Properties",
+          "name": "propertiesUi",
+          "type": "fixedCollection",
+          "placeholder": "Add Property",
+          "default": {},
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "options": [
+            {
+              "displayName": "Property",
+              "name": "propertyValues",
+              "values": [
+                {
+                  "displayName": "Key",
+                  "name": "key",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Timestamp",
+          "name": "timestamp",
+          "type": "dateTime",
+          "default": "",
+          "description": "If not set, it'll automatically be set to the current time"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "event"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "action": "Create an identity"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "identity"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Distinct ID",
+      "name": "distinctId",
+      "type": "string",
+      "default": "",
+      "description": "The identity's distinct ID",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "identity"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Properties",
+          "name": "propertiesUi",
+          "type": "fixedCollection",
+          "placeholder": "Add Property",
+          "default": {},
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "options": [
+            {
+              "displayName": "Property",
+              "name": "propertyValues",
+              "values": [
+                {
+                  "displayName": "Key",
+                  "name": "key",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Message ID",
+          "name": "messageId",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Timestamp",
+          "name": "timestamp",
+          "type": "dateTime",
+          "default": "",
+          "description": "If not set, it'll automatically be set to the current time"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "identity"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "page",
+      "options": [
+        {
+          "name": "Page",
+          "value": "page",
+          "description": "Track a page",
+          "action": "Track a page"
+        },
+        {
+          "name": "Screen",
+          "value": "screen",
+          "description": "Track a screen",
+          "action": "Track a screen"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "track"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Name",
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "track"
+          ],
+          "operation": [
+            "page",
+            "screen"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Distinct ID",
+      "name": "distinctId",
+      "type": "string",
+      "default": "",
+      "description": "The user's distinct ID",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "track"
+          ],
+          "operation": [
+            "page",
+            "screen"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Category",
+          "name": "category",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Context",
+          "name": "contextUi",
+          "type": "fixedCollection",
+          "placeholder": "Add Property",
+          "default": {},
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "options": [
+            {
+              "displayName": "Context",
+              "name": "contextValues",
+              "values": [
+                {
+                  "displayName": "Key",
+                  "name": "key",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Message ID",
+          "name": "messageId",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Properties",
+          "name": "propertiesUi",
+          "type": "fixedCollection",
+          "placeholder": "Add Property",
+          "default": {},
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "options": [
+            {
+              "displayName": "Property",
+              "name": "propertyValues",
+              "values": [
+                {
+                  "displayName": "Key",
+                  "name": "key",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Timestamp",
+          "name": "timestamp",
+          "type": "dateTime",
+          "default": "",
+          "description": "If not set, it'll automatically be set to the current time"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "track"
+          ],
+          "operation": [
+            "page",
+            "screen"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create an alias"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "postHogApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

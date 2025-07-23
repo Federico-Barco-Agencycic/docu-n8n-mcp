@@ -1,0 +1,48 @@
+{
+  "node_type": "nodes-base.postgresTrigger",
+  "display_name": "Postgres Trigger",
+  "description": "Listens to Postgres messages",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "schema",
+      "displayName": "Schema Name",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": "public"
+      }
+    },
+    {
+      "name": "tableName",
+      "displayName": "Table Name",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "channelName",
+      "displayName": "Channel Name",
+      "type": "string",
+      "description": "Name of the channel to listen to",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_postgresTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.postgresTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

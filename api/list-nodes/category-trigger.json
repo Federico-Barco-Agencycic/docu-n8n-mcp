@@ -1,0 +1,1622 @@
+[
+  {
+    "node_type": "nodes-base.activeCampaignTrigger",
+    "display_name": "ActiveCampaign Trigger",
+    "description": "Handle ActiveCampaign events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_activeCampaignTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_activeCampaignTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.acuitySchedulingTrigger",
+    "display_name": "Acuity Scheduling Trigger",
+    "description": "Handle Acuity Scheduling events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_acuitySchedulingTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_acuitySchedulingTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.affinityTrigger",
+    "display_name": "Affinity Trigger",
+    "description": "Handle Affinity events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_affinityTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_affinityTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.airtableTrigger",
+    "display_name": "Airtable Trigger",
+    "description": "Starts the workflow when Airtable events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_airtableTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_airtableTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.amqpTrigger",
+    "display_name": "AMQP Trigger",
+    "description": "Listens to AMQP 1.0 Messages",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_amqpTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_amqpTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.asanaTrigger",
+    "display_name": "Asana Trigger",
+    "description": "Starts the workflow when Asana events occur.",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_asanaTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_asanaTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.autopilotTrigger",
+    "display_name": "Autopilot Trigger",
+    "description": "Handle Autopilot events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_autopilotTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_autopilotTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.awsSnsTrigger",
+    "display_name": "AWS SNS Trigger",
+    "description": "Handle AWS SNS events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_awsSnsTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_awsSnsTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.bitbucketTrigger",
+    "display_name": "Bitbucket Trigger",
+    "description": "Handle Bitbucket events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_bitbucketTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_bitbucketTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.boxTrigger",
+    "display_name": "Box Trigger",
+    "description": "Starts the workflow when Box events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_boxTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_boxTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.calTrigger",
+    "display_name": "Cal.com Trigger",
+    "description": "Handle Cal.com events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_calTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_calTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.calendlyTrigger",
+    "display_name": "Calendly Trigger",
+    "description": "Starts the workflow when Calendly events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_calendlyTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_calendlyTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.chargebeeTrigger",
+    "display_name": "Chargebee Trigger",
+    "description": "Starts the workflow when Chargebee events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_chargebeeTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_chargebeeTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.ciscoWebexTrigger",
+    "display_name": "Webex by Cisco Trigger",
+    "description": "Starts the workflow when Cisco Webex events occur.",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_ciscoWebexTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_ciscoWebexTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.clickUpTrigger",
+    "display_name": "ClickUp Trigger",
+    "description": "Handle ClickUp events via webhooks (Beta)",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_clickUpTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_clickUpTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.clockifyTrigger",
+    "display_name": "Clockify Trigger",
+    "description": "Listens to Clockify events",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_clockifyTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_clockifyTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.convertKitTrigger",
+    "display_name": "ConvertKit Trigger",
+    "description": "Handle ConvertKit events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_convertKitTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_convertKitTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.copperTrigger",
+    "display_name": "Copper Trigger",
+    "description": "Handle Copper events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_copperTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_copperTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.cron",
+    "display_name": "Cron",
+    "description": "Triggers the workflow at a specific time",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_cron.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_cron.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.crowdDevTrigger",
+    "display_name": "crowd.dev Trigger",
+    "description": "Starts the workflow when crowd.dev events occur.",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_crowdDevTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_crowdDevTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.customerIoTrigger",
+    "display_name": "Customer.io Trigger",
+    "description": "Starts the workflow on a Customer.io update (Beta)",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_customerIoTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_customerIoTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.emailReadImap",
+    "display_name": "Email Trigger (IMAP)",
+    "description": "Triggers the workflow when a new email is received",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_emailReadImap.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_emailReadImap.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.emeliaTrigger",
+    "display_name": "Emelia Trigger",
+    "description": "Handle Emelia campaign activity events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_emeliaTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_emeliaTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.errorTrigger",
+    "display_name": "Error Trigger",
+    "description": "Triggers the workflow when another workflow has an error",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_errorTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_errorTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.eventbriteTrigger",
+    "display_name": "Eventbrite Trigger",
+    "description": "Handle Eventbrite events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_eventbriteTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_eventbriteTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.executeWorkflowTrigger",
+    "display_name": "Execute Workflow Trigger",
+    "description": "Helpers for calling other n8n workflows. Used for designing modular, microservice-like workflows.",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_executeWorkflowTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_executeWorkflowTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.facebookLeadAdsTrigger",
+    "display_name": "Facebook Lead Ads Trigger",
+    "description": "Handle Facebook Lead Ads events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_facebookLeadAdsTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_facebookLeadAdsTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.facebookTrigger",
+    "display_name": "Facebook Trigger",
+    "description": "Starts the workflow when Facebook events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_facebookTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_facebookTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.figmaTrigger",
+    "display_name": "Figma Trigger (Beta)",
+    "description": "Starts the workflow when Figma events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_figmaTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_figmaTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.flowTrigger",
+    "display_name": "Flow Trigger",
+    "description": "Handle Flow events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_flowTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_flowTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.formIoTrigger",
+    "display_name": "Form.io Trigger",
+    "description": "Handle form.io events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_formIoTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_formIoTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.formTrigger",
+    "display_name": "n8n Form Trigger",
+    "description": "Generate webforms in n8n and pass their responses to the workflow",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_formTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_formTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.formstackTrigger",
+    "display_name": "Formstack Trigger",
+    "description": "Starts the workflow on a Formstack form submission.",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_formstackTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_formstackTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.getResponseTrigger",
+    "display_name": "GetResponse Trigger",
+    "description": "Starts the workflow when GetResponse events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_getResponseTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_getResponseTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.githubTrigger",
+    "display_name": "Github Trigger",
+    "description": "Starts the workflow when Github events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_githubTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_githubTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.gitlabTrigger",
+    "display_name": "GitLab Trigger",
+    "description": "Starts the workflow when GitLab events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_gitlabTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_gitlabTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.gmailTrigger",
+    "display_name": "Gmail Trigger",
+    "description": "Fetches emails from Gmail and starts the workflow on specified polling intervals.",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_gmailTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_gmailTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleBusinessProfileTrigger",
+    "display_name": "Google Business Profile Trigger",
+    "description": "Fetches reviews from Google Business Profile and starts the workflow on specified polling intervals.",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleBusinessProfileTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleBusinessProfileTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleCalendarTrigger",
+    "display_name": "Google Calendar Trigger",
+    "description": "Starts the workflow when Google Calendar events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleCalendarTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleCalendarTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleDriveTrigger",
+    "display_name": "Google Drive Trigger",
+    "description": "Starts the workflow when Google Drive events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleDriveTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleDriveTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.googleSheetsTrigger",
+    "display_name": "Google Sheets Trigger",
+    "description": "Starts the workflow when Google Sheets events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleSheetsTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleSheetsTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.gumroadTrigger",
+    "display_name": "Gumroad Trigger",
+    "description": "Handle Gumroad events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_gumroadTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_gumroadTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.helpScoutTrigger",
+    "display_name": "Help Scout Trigger",
+    "description": "Starts the workflow when Help Scout events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_helpScoutTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_helpScoutTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.hubspotTrigger",
+    "display_name": "HubSpot Trigger",
+    "description": "Starts the workflow when HubSpot events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_hubspotTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_hubspotTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.interval",
+    "display_name": "Interval",
+    "description": "Triggers the workflow in a given interval",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_interval.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_interval.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.invoiceNinjaTrigger",
+    "display_name": "Invoice Ninja Trigger",
+    "description": "Starts the workflow when Invoice Ninja events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_invoiceNinjaTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_invoiceNinjaTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.jiraTrigger",
+    "display_name": "Jira Trigger",
+    "description": "Starts the workflow when Jira events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_jiraTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_jiraTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.jotFormTrigger",
+    "display_name": "JotForm Trigger",
+    "description": "Handle JotForm events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_jotFormTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_jotFormTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.kafkaTrigger",
+    "display_name": "Kafka Trigger",
+    "description": "Consume messages from a Kafka topic",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_kafkaTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_kafkaTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.keapTrigger",
+    "display_name": "Keap Trigger",
+    "description": "Starts the workflow when Infusionsoft events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_keapTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_keapTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.koBoToolboxTrigger",
+    "display_name": "KoBoToolbox Trigger",
+    "description": "Process KoBoToolbox submissions",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_koBoToolboxTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_koBoToolboxTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.lemlistTrigger",
+    "display_name": "Lemlist Trigger",
+    "description": "Handle Lemlist events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_lemlistTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_lemlistTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.linearTrigger",
+    "display_name": "Linear Trigger",
+    "description": "Starts the workflow when Linear events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_linearTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_linearTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.localFileTrigger",
+    "display_name": "Local File Trigger",
+    "description": "Triggers a workflow on file system changes",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_localFileTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_localFileTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.loneScaleTrigger",
+    "display_name": "LoneScale Trigger",
+    "description": "Trigger LoneScale Workflow",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_loneScaleTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_loneScaleTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mailchimpTrigger",
+    "display_name": "Mailchimp Trigger",
+    "description": "Handle Mailchimp events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailchimpTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mailchimpTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mailerLiteTrigger",
+    "display_name": "MailerLite Trigger",
+    "description": "Starts the workflow when MailerLite events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailerLiteTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mailerLiteTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mailjetTrigger",
+    "display_name": "Mailjet Trigger",
+    "description": "Handle Mailjet events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailjetTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mailjetTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.manualTrigger",
+    "display_name": "Manual Trigger",
+    "description": "Runs the flow on clicking a button in n8n",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_manualTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_manualTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mauticTrigger",
+    "display_name": "Mautic Trigger",
+    "description": "Handle Mautic events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mauticTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mauticTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.microsoftOneDriveTrigger",
+    "display_name": "Microsoft OneDrive Trigger",
+    "description": "Trigger for Microsoft OneDrive API.",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_microsoftOneDriveTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_microsoftOneDriveTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.microsoftOutlookTrigger",
+    "display_name": "Microsoft Outlook Trigger",
+    "description": "Fetches emails from Microsoft Outlook and starts the workflow on specified polling intervals.",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_microsoftOutlookTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_microsoftOutlookTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.microsoftTeamsTrigger",
+    "display_name": "Microsoft Teams Trigger",
+    "description": "Triggers workflows in n8n based on events from Microsoft Teams, such as new messages or team updates, using specified configurations.",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_microsoftTeamsTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_microsoftTeamsTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.mqttTrigger",
+    "display_name": "MQTT Trigger",
+    "description": "Listens to MQTT events",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mqttTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_mqttTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.n8nTrigger",
+    "display_name": "n8n Trigger",
+    "description": "Handle events and perform actions on your n8n instance",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_n8nTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_n8nTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.netlifyTrigger",
+    "display_name": "Netlify Trigger",
+    "description": "Handle netlify events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_netlifyTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_netlifyTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.notionTrigger",
+    "display_name": "Notion Trigger",
+    "description": "Starts the workflow when Notion events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_notionTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_notionTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.onfleetTrigger",
+    "display_name": "Onfleet Trigger",
+    "description": "Starts the workflow when Onfleet events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_onfleetTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_onfleetTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.payPalTrigger",
+    "display_name": "PayPal Trigger",
+    "description": "Handle PayPal events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_payPalTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_payPalTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.pipedriveTrigger",
+    "display_name": "Pipedrive Trigger",
+    "description": "Starts the workflow when Pipedrive events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_pipedriveTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_pipedriveTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.postgresTrigger",
+    "display_name": "Postgres Trigger",
+    "description": "Listens to Postgres messages",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_postgresTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_postgresTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.postmarkTrigger",
+    "display_name": "Postmark Trigger",
+    "description": "Starts the workflow when Postmark events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_postmarkTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_postmarkTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.pushcutTrigger",
+    "display_name": "Pushcut Trigger",
+    "description": "Starts the workflow when Pushcut events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_pushcutTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_pushcutTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.rabbitmqTrigger",
+    "display_name": "RabbitMQ Trigger",
+    "description": "Listens to RabbitMQ messages",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_rabbitmqTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_rabbitmqTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.redisTrigger",
+    "display_name": "Redis Trigger",
+    "description": "Subscribe to redis channel",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_redisTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_redisTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.rssFeedReadTrigger",
+    "display_name": "RSS Feed Trigger",
+    "description": "Starts a workflow when an RSS feed is updated",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_rssFeedReadTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_rssFeedReadTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.salesforceTrigger",
+    "display_name": "Salesforce Trigger",
+    "description": "Fetches data from Salesforce and starts the workflow on specified polling intervals.",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_salesforceTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_salesforceTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.scheduleTrigger",
+    "display_name": "Schedule Trigger",
+    "description": "Triggers the workflow on a given schedule",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_scheduleTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_scheduleTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.seaTableTrigger",
+    "display_name": "SeaTable Trigger",
+    "description": "Starts the workflow when SeaTable events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_seaTableTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_seaTableTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.sendInBlueTrigger",
+    "display_name": "Brevo Trigger",
+    "description": "Starts the workflow when Brevo events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_sendInBlueTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_sendInBlueTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.shopifyTrigger",
+    "display_name": "Shopify Trigger",
+    "description": "Handle Shopify events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_shopifyTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_shopifyTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.simulateTrigger",
+    "display_name": "Simulate Trigger",
+    "description": "Simulate a trigger node",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_simulateTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_simulateTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.slackTrigger",
+    "display_name": "Slack Trigger",
+    "description": "Handle Slack events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_slackTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_slackTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.sseTrigger",
+    "display_name": "SSE Trigger",
+    "description": "Triggers the workflow when Server-Sent Events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_sseTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_sseTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.stravaTrigger",
+    "display_name": "Strava Trigger",
+    "description": "Starts the workflow when Strava events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_stravaTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_stravaTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.stripeTrigger",
+    "display_name": "Stripe Trigger",
+    "description": "Handle Stripe events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_stripeTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_stripeTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.surveyMonkeyTrigger",
+    "display_name": "SurveyMonkey Trigger",
+    "description": "Starts the workflow when Survey Monkey events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_surveyMonkeyTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_surveyMonkeyTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.taigaTrigger",
+    "display_name": "Taiga Trigger",
+    "description": "Handle Taiga events via webhook",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_taigaTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_taigaTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.telegramTrigger",
+    "display_name": "Telegram Trigger",
+    "description": "Starts the workflow on a Telegram update",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_telegramTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_telegramTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.theHiveProjectTrigger",
+    "display_name": "TheHive 5 Trigger",
+    "description": "Starts the workflow when TheHive events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_theHiveProjectTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_theHiveProjectTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.theHiveTrigger",
+    "display_name": "TheHive Trigger",
+    "description": "Starts the workflow when TheHive events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_theHiveTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_theHiveTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.togglTrigger",
+    "display_name": "Toggl Trigger",
+    "description": "Starts the workflow when Toggl events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_togglTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_togglTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.trelloTrigger",
+    "display_name": "Trello Trigger",
+    "description": "Starts the workflow when Trello events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_trelloTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_trelloTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.twilioTrigger",
+    "display_name": "Twilio Trigger",
+    "description": "Starts the workflow on a Twilio update",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_twilioTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_twilioTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.typeformTrigger",
+    "display_name": "Typeform Trigger",
+    "description": "Starts the workflow on a Typeform form submission",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_typeformTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_typeformTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.venafiTlsProtectCloudTrigger",
+    "display_name": "Venafi TLS Protect Cloud Trigger",
+    "description": "Starts the workflow when Venafi events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_venafiTlsProtectCloudTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_venafiTlsProtectCloudTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.webflowTrigger",
+    "display_name": "Webflow Trigger",
+    "description": "Handle Webflow events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_webflowTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_webflowTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.webhook",
+    "display_name": "Webhook",
+    "description": "Starts the workflow when a webhook is called",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_webhook.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_webhook.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.whatsAppTrigger",
+    "display_name": "WhatsApp Trigger",
+    "description": "Handle WhatsApp events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_whatsAppTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_whatsAppTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.wiseTrigger",
+    "display_name": "Wise Trigger",
+    "description": "Handle Wise events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_wiseTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_wiseTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.wooCommerceTrigger",
+    "display_name": "WooCommerce Trigger",
+    "description": "Handle WooCommerce events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_wooCommerceTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_wooCommerceTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.workableTrigger",
+    "display_name": "Workable Trigger",
+    "description": "Starts the workflow when Workable events occur",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_workableTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_workableTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.workflowTrigger",
+    "display_name": "Workflow Trigger",
+    "description": "Triggers based on various lifecycle events, like when a workflow is activated",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_workflowTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_workflowTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.wufooTrigger",
+    "display_name": "Wufoo Trigger",
+    "description": "Handle Wufoo events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_wufooTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_wufooTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.zendeskTrigger",
+    "display_name": "Zendesk Trigger",
+    "description": "Handle Zendesk events via webhooks",
+    "category": "trigger",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_zendeskTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_zendeskTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.chatTrigger",
+    "display_name": "Chat Trigger",
+    "description": "Runs the workflow when an n8n generated webchat is submitted",
+    "category": "trigger",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_chatTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_chatTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.manualChatTrigger",
+    "display_name": "Manual Chat Trigger",
+    "description": "Runs the flow on new manual chat message",
+    "category": "trigger",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_manualChatTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_manualChatTrigger.json"
+    }
+  },
+  {
+    "node_type": "nodes-langchain.mcpTrigger",
+    "display_name": "MCP Server Trigger",
+    "description": "Expose n8n tools as an MCP Server endpoint",
+    "category": "trigger",
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "is_ai_tool": false,
+    "is_trigger": true,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_mcpTrigger.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_mcpTrigger.json"
+    }
+  }
+]

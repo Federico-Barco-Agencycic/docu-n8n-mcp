@@ -1,0 +1,85 @@
+{
+  "node_type": "nodes-base.executionData",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Execution Data",
+  "description": "Add execution data for search",
+  "category": "input",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Execution Data\ndescription: Documentation for the Execution Data node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: high\n---\n\n# Execution Data\n\nUse this node to save metadata for workflow executions. You can then search by this data in the **Executions** list.\n\nYou can retrieve custom execution data during workflow execution using the Code node. Refer to [Custom executions data](/workflows/executions/custom-executions-data.md) for more information.\n\n/// info | Feature availability\nAvailable on Pro and Enterprise plans.\n///\n\n## Operations\n\n* Save Execution Data for Search\n\n## Data to Save\n\nAdd a **Saved Field** for each key/value pair of metadata you'd like to save.\n\n## Limitations\n\nThe Execution Data node has the following restrictions when storing execution metadata:\n\n* `key`: limited to 50 characters\n* `value`: limited to 512 characters\n\nIf either the `key` or `value` exceed the above limitations, n8n truncates to their maximum length and outputs a log entry.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'execution-data') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Save important data using this node. It will be displayed on each execution for easy reference and you can filter by it.<br />Filtering is available on Pro and Enterprise plans. <a href='https://n8n.io/pricing/' target='_blank'>More Info</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "save",
+      "options": [
+        {
+          "name": "Save Highlight Data (for Search/review)",
+          "value": "save",
+          "action": "Save Highlight Data (for search/review)"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Data to Save",
+      "name": "dataToSave",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Values",
+          "name": "values",
+          "values": [
+            {
+              "displayName": "Key",
+              "name": "key",
+              "type": "string",
+              "default": "",
+              "placeholder": "e.g. myKey"
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": "",
+              "placeholder": "e.g. myValue"
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "save"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValueButtonText": "Add Saved Field",
+        "multipleValues": true
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "save",
+      "name": "Save Highlight Data (for Search/review)"
+    }
+  ],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

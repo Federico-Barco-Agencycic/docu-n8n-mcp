@@ -1,0 +1,86 @@
+{
+  "node_type": "nodes-langchain.vectorStoreMongoDBAtlas",
+  "display_name": "MongoDB Atlas Vector Store",
+  "description": "Work with your data in MongoDB Atlas Vector Store",
+  "category": "transform",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1.3",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "toolName",
+      "displayName": "Name",
+      "type": "string",
+      "description": "Name of the vector store",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "toolDescription",
+      "displayName": "Description",
+      "type": "string",
+      "description": "Explain to the LLM what this tool does, a good, specific description would allow LLMs to produce expected results much more often",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "mongoCollection",
+      "displayName": "MongoDB Collection",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "embedding",
+      "displayName": "Embedding",
+      "type": "string",
+      "description": "The field with the embedding array",
+      "required": true,
+      "default": "embedding"
+    },
+    {
+      "name": "metadata_field",
+      "displayName": "Metadata Field",
+      "type": "string",
+      "description": "The text field of the raw data",
+      "required": true,
+      "default": "text"
+    },
+    {
+      "name": "vectorIndexName",
+      "displayName": "Vector Index Name",
+      "type": "string",
+      "description": "The name of the vector index",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "prompt",
+      "displayName": "Prompt",
+      "type": "string",
+      "description": "Search prompt to retrieve matching documents from the vector store using similarity-based ranking",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "id",
+      "displayName": "ID",
+      "type": "string",
+      "description": "ID of an embedding entry",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-langchain_vectorStoreMongoDBAtlas.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-langchain.vectorStoreMongoDBAtlas"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

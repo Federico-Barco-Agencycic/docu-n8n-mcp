@@ -1,0 +1,123 @@
+{
+  "node_type": "nodes-base.twist",
+  "display_name": "Twist",
+  "description": "Consume Twist API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "messageConversation"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "workspaceId",
+      "displayName": "Workspace Name or ID",
+      "type": "options",
+      "description": "The ID of the workspace. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "name",
+      "displayName": "Name",
+      "type": "string",
+      "description": "The name of the channel",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "channelId",
+      "displayName": "Channel ID",
+      "type": "string",
+      "description": "The ID of the channel",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "workspaceId",
+      "displayName": "Workspace Name or ID",
+      "type": "options",
+      "description": "The ID of the workspace. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "channelId",
+      "displayName": "Channel ID",
+      "type": "string",
+      "description": "The ID of the channel",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "threadId",
+      "displayName": "Thread ID",
+      "type": "string",
+      "description": "The ID of the thread",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "content",
+      "displayName": "Content",
+      "type": "string",
+      "description": "The content of the comment",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "archive",
+      "name": "Archive",
+      "description": "Archive a channel"
+    },
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Initiates a public or private channel-based conversation"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a channel"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get information about a channel"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many channels"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_twist.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.twist"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

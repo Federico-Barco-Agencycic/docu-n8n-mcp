@@ -1,0 +1,142 @@
+{
+  "node_type": "nodes-base.awsIam",
+  "display_name": "AWS IAM",
+  "description": "Interacts with Amazon IAM",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "user"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "getAll"
+    },
+    {
+      "name": "user",
+      "displayName": "User",
+      "type": "resourceLocator",
+      "description": "Select the user you want to add to the group",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "group",
+      "displayName": "Group",
+      "type": "resourceLocator",
+      "description": "Select the group you want to add the user to",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "userName",
+      "displayName": "User Name",
+      "type": "string",
+      "description": "The username of the new user to create",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "user",
+      "displayName": "User",
+      "type": "resourceLocator",
+      "description": "Select the user you want to delete",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "user",
+      "displayName": "User",
+      "type": "resourceLocator",
+      "description": "Select the user you want to retrieve",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "user",
+      "displayName": "User",
+      "type": "resourceLocator",
+      "description": "Select the user you want to update",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "userName",
+      "displayName": "User Name",
+      "type": "string",
+      "description": "The new name of the user",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "user",
+      "displayName": "User",
+      "type": "resourceLocator",
+      "description": "Select the user you want to remove from the group",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "addToGroup",
+      "name": "Add to Group",
+      "description": "Add an existing user to a group"
+    },
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a new user"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a user"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Retrieve a user"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Retrieve a list of users"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_awsIam.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.awsIam"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

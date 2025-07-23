@@ -1,0 +1,1136 @@
+{
+  "node_type": "nodes-base.lemlist",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Lemlist",
+  "description": "Consume the Lemlist API",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "2",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Lemlist node documentation\ndescription: Learn how to use the Lemlist node in n8n. Follow technical documentation to integrate Lemlist node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Lemlist node\n\nUse the Lemlist node to automate work in Lemlist, and integrate Lemlist with other applications. n8n has built-in support for a wide range of Lemlist features, including getting activities, teams and campaigns, as well as creating, updating, and deleting leads. \n\nOn this page, you'll find a list of operations the Lemlist node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Lemlist credentials](/integrations/builtin/credentials/lemlist.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n<!-- vale from-write-good.Weasel = NO -->\n<!-- vale from-write-good.TooWordy = NO -->\n* Activity\n    * Get Many: Get many activities\n* Campaign\n    * Get Many: Get many campaigns\n    * Get Stats: Get campaign stats\n* Enrichment\n\t* Get: Fetches a previously completed enrichment\n\t* Enrich Lead: Enrich a lead using an email or LinkedIn URL\n\t* Enrich Person: Enrich a person using an email or LinkedIn URL\n* Lead\n    * Create: Create a new lead\n    * Delete: Delete an existing lead\n    * Get: Get an existing lead\n    * Unsubscribe: Unsubscribe an existing lead\n* Team\n    * Get: Get an existing team\n\t* Get Credits: Get an existing team's credits\n* Unsubscribe\n    * Add: Add an email to an unsubscribe list\n    * Delete: Delete an email from an unsubscribe list\n    * Get Many: Get many unsubscribed emails\n<!-- vale from-write-good.TooWordy = YES -->\n<!-- vale from-write-good.Weasel = YES -->\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'lemlist') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "activity",
+      "options": [
+        {
+          "name": "Activity",
+          "value": "activity"
+        },
+        {
+          "name": "Campaign",
+          "value": "campaign"
+        },
+        {
+          "name": "Enrichment",
+          "value": "enrich"
+        },
+        {
+          "name": "Lead",
+          "value": "lead"
+        },
+        {
+          "name": "Team",
+          "value": "team"
+        },
+        {
+          "name": "Unsubscribe",
+          "value": "unsubscribe"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "action": "Get many activities"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "activity"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "activity"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 5,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "activity"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 1000
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Campaign Name or ID",
+          "name": "campaignId",
+          "type": "options",
+          "default": "",
+          "typeOptions": {
+            "loadOptionsMethod": "getCampaigns"
+          },
+          "description": "ID of the campaign to retrieve activity for. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Is First",
+          "name": "isFirst",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Lead ID",
+          "name": "leadId",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Type",
+          "name": "type",
+          "type": "options",
+          "default": "emailsOpened",
+          "description": "Type of activity to retrieve",
+          "options": [
+            {
+              "name": "Aircall Created",
+              "value": "aircallCreated"
+            },
+            {
+              "name": "Aircall Done",
+              "value": "aircallDone"
+            },
+            {
+              "name": "Aircall Ended",
+              "value": "aircallEnded"
+            },
+            {
+              "name": "Aircall Interested",
+              "value": "aircallInterested"
+            },
+            {
+              "name": "Aircall Not Interested",
+              "value": "aircallNotInterested"
+            },
+            {
+              "name": "Api Done",
+              "value": "apiDone"
+            },
+            {
+              "name": "Api Failed",
+              "value": "apiFailed"
+            },
+            {
+              "name": "Api Interested",
+              "value": "apiInterested"
+            },
+            {
+              "name": "Api Not Interested",
+              "value": "apiNotInterested"
+            },
+            {
+              "name": "Attracted",
+              "value": "attracted"
+            },
+            {
+              "name": "Connection Issue",
+              "value": "connectionIssue"
+            },
+            {
+              "name": "Contacted",
+              "value": "contacted"
+            },
+            {
+              "name": "Custom Domain Errors",
+              "value": "customDomainErrors"
+            },
+            {
+              "name": "Emails Bounced",
+              "value": "emailsBounced"
+            },
+            {
+              "name": "Emails Clicked",
+              "value": "emailsClicked"
+            },
+            {
+              "name": "Emails Failed",
+              "value": "emailsFailed"
+            },
+            {
+              "name": "Emails Interested",
+              "value": "emailsInterested"
+            },
+            {
+              "name": "Emails Not Interested",
+              "value": "emailsNotInterested"
+            },
+            {
+              "name": "Emails Opened",
+              "value": "emailsOpened"
+            },
+            {
+              "name": "Emails Replied",
+              "value": "emailsReplied"
+            },
+            {
+              "name": "Emails Send Failed",
+              "value": "emailsSendFailed"
+            },
+            {
+              "name": "Emails Sent",
+              "value": "emailsSent"
+            },
+            {
+              "name": "Emails Unsubscribed",
+              "value": "emailsUnsubscribed"
+            },
+            {
+              "name": "Hooked",
+              "value": "hooked"
+            },
+            {
+              "name": "Interested",
+              "value": "interested"
+            },
+            {
+              "name": "Lemwarm Paused",
+              "value": "lemwarmPaused"
+            },
+            {
+              "name": "LinkedIn Interested",
+              "value": "linkedinInterested"
+            },
+            {
+              "name": "LinkedIn Invite Accepted",
+              "value": "linkedinInviteAccepted"
+            },
+            {
+              "name": "LinkedIn Invite Done",
+              "value": "linkedinInviteDone"
+            },
+            {
+              "name": "LinkedIn Invite Failed",
+              "value": "linkedinInviteFailed"
+            },
+            {
+              "name": "LinkedIn Not Interested",
+              "value": "linkedinNotInterested"
+            },
+            {
+              "name": "LinkedIn Replied",
+              "value": "linkedinReplied"
+            },
+            {
+              "name": "LinkedIn Send Failed",
+              "value": "linkedinSendFailed"
+            },
+            {
+              "name": "LinkedIn Sent",
+              "value": "linkedinSent"
+            },
+            {
+              "name": "LinkedIn Visit Done",
+              "value": "linkedinVisitDone"
+            },
+            {
+              "name": "LinkedIn Visit Failed",
+              "value": "linkedinVisitFailed"
+            },
+            {
+              "name": "LinkedIn Voice Note Done",
+              "value": "linkedinVoiceNoteDone"
+            },
+            {
+              "name": "LinkedIn Voice Note Failed",
+              "value": "linkedinVoiceNoteFailed"
+            },
+            {
+              "name": "Manual Interested",
+              "value": "manualInterested"
+            },
+            {
+              "name": "Manual Not Interested",
+              "value": "manualNotInterested"
+            },
+            {
+              "name": "Not Interested",
+              "value": "notInterested"
+            },
+            {
+              "name": "Opportunities Done",
+              "value": "opportunitiesDone"
+            },
+            {
+              "name": "Paused",
+              "value": "paused"
+            },
+            {
+              "name": "Resumed",
+              "value": "resumed"
+            },
+            {
+              "name": "Send Limit Reached",
+              "value": "sendLimitReached"
+            },
+            {
+              "name": "Skipped",
+              "value": "skipped"
+            },
+            {
+              "name": "Warmed",
+              "value": "warmed"
+            }
+          ]
+        },
+        {
+          "displayName": "Version",
+          "name": "version",
+          "type": "string",
+          "default": "v2"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "activity"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "action": "Get many campaigns"
+        },
+        {
+          "name": "Get Stats",
+          "value": "getStats",
+          "action": "Get campaign stats"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 5,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 1000
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Version",
+          "name": "version",
+          "type": "string",
+          "default": "v2"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Campaign Name or ID",
+      "name": "campaignId",
+      "type": "options",
+      "default": [],
+      "description": "ID of the campaign to get stats for. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "getStats"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getCampaigns"
+      }
+    },
+    {
+      "displayName": "Start Date",
+      "name": "startDate",
+      "type": "dateTime",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "getStats"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "End Date",
+      "name": "endDate",
+      "type": "dateTime",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "getStats"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Timezone",
+      "name": "timezone",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "getStats"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "action": "Fetches a previously completed enrichment"
+        },
+        {
+          "name": "Enrich Lead",
+          "value": "enrichLead",
+          "action": "Enrich a lead using an email or LinkedIn URL"
+        },
+        {
+          "name": "Enrich Person",
+          "value": "enrichPerson",
+          "action": "Enrich a person using an email or LinkedIn URL"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "enrich"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Enrichment ID",
+      "name": "enrichId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the enrichment to retrieve",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "enrich"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Lead ID",
+      "name": "leadId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "enrich"
+          ],
+          "operation": [
+            "enrichLead"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Find Email",
+      "name": "findEmail",
+      "type": "boolean",
+      "default": false,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "enrich"
+          ],
+          "operation": [
+            "enrichLead",
+            "enrichPerson"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Verify Email",
+      "name": "verifyEmail",
+      "type": "boolean",
+      "default": false,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "enrich"
+          ],
+          "operation": [
+            "enrichLead",
+            "enrichPerson"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "LinkedIn Enrichment",
+      "name": "linkedinEnrichment",
+      "type": "boolean",
+      "default": false,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "enrich"
+          ],
+          "operation": [
+            "enrichLead",
+            "enrichPerson"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Find Phone",
+      "name": "findPhone",
+      "type": "boolean",
+      "default": false,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "enrich"
+          ],
+          "operation": [
+            "enrichLead",
+            "enrichPerson"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Email",
+          "name": "email",
+          "type": "string",
+          "placeholder": "name@email.com",
+          "default": ""
+        },
+        {
+          "displayName": "First Name",
+          "name": "firstName",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Last Name",
+          "name": "lastName",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "LinkedIn Url",
+          "name": "linkedinUrl",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Company Name",
+          "name": "companyName",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Company Domain",
+          "name": "companyDomain",
+          "type": "string",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "enrich"
+          ],
+          "operation": [
+            "enrichPerson"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "action": "Create a lead"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "action": "Delete a lead"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "action": "Get a lead"
+        },
+        {
+          "name": "Unsubscribe",
+          "value": "unsubscribe",
+          "action": "Unsubscribe a lead"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "lead"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Campaign Name or ID",
+      "name": "campaignId",
+      "type": "options",
+      "default": [],
+      "description": "ID of the campaign to create the lead under. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "lead"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getCampaigns"
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "Email of the lead to create",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "lead"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Company Name",
+          "name": "companyName",
+          "type": "string",
+          "default": "",
+          "description": "Company name of the lead to create"
+        },
+        {
+          "displayName": "Company Domain",
+          "name": "companyDomain",
+          "type": "string",
+          "default": "",
+          "description": "Company domain of the lead to create"
+        },
+        {
+          "displayName": "Deduplicate",
+          "name": "deduplicate",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to do not insert if this email is already present in another campaign"
+        },
+        {
+          "displayName": "Find Email",
+          "name": "findEmail",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to find verified email"
+        },
+        {
+          "displayName": "Find Phone",
+          "name": "findPhone",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to find phone number"
+        },
+        {
+          "displayName": "First Name",
+          "name": "firstName",
+          "type": "string",
+          "default": "",
+          "description": "First name of the lead to create"
+        },
+        {
+          "displayName": "Icebreaker",
+          "name": "icebreaker",
+          "type": "string",
+          "default": "",
+          "description": "Icebreaker of the lead to create"
+        },
+        {
+          "displayName": "Job Title",
+          "name": "jobTitle",
+          "type": "string",
+          "default": "",
+          "description": "Job title of the lead to create"
+        },
+        {
+          "displayName": "Last Name",
+          "name": "lastName",
+          "type": "string",
+          "default": "",
+          "description": "Last name of the lead to create"
+        },
+        {
+          "displayName": "LinkedIn Enrichment",
+          "name": "linkedinEnrichment",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to run the LinkedIn enrichment"
+        },
+        {
+          "displayName": "LinkedIn URL",
+          "name": "linkedinUrl",
+          "type": "string",
+          "default": "",
+          "description": "LinkedIn URL of the lead to create"
+        },
+        {
+          "displayName": "Phone",
+          "name": "phone",
+          "type": "string",
+          "default": "",
+          "description": "Phone number of the lead to create"
+        },
+        {
+          "displayName": "Picture URL",
+          "name": "picture",
+          "type": "string",
+          "default": "",
+          "description": "Picture URL of the lead to create"
+        },
+        {
+          "displayName": "Verify Email",
+          "name": "verifyEmail",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to verify existing email (debounce)"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "lead"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Campaign Name or ID",
+      "name": "campaignId",
+      "type": "options",
+      "default": [],
+      "description": "ID of the campaign to remove the lead from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "lead"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getCampaigns"
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "Email of the lead to delete",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "lead"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "Email of the lead to retrieve",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "lead"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Campaign Name or ID",
+      "name": "campaignId",
+      "type": "options",
+      "default": [],
+      "description": "ID of the campaign to unsubscribe the lead from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "lead"
+          ],
+          "operation": [
+            "unsubscribe"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getCampaigns"
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "Email of the lead to unsubscribe",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "lead"
+          ],
+          "operation": [
+            "unsubscribe"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "action": "Get a team"
+        },
+        {
+          "name": "Get Credits",
+          "value": "getCredits",
+          "action": "Get team credits"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "team"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "add",
+      "options": [
+        {
+          "name": "Add",
+          "value": "add",
+          "action": "Add an email to an unsubscribe list"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "action": "Delete an email from an unsubscribe list"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "action": "Get many unsubscribed emails"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "unsubscribe"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "Email to add to the unsubscribes",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "unsubscribe"
+          ],
+          "operation": [
+            "add"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "Email to delete from the unsubscribes",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "unsubscribe"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "unsubscribe"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 5,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "unsubscribe"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 1000
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "getAll",
+      "name": "Get Many"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "lemlistApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

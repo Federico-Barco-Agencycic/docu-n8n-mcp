@@ -1,0 +1,84 @@
+{
+  "node_type": "nodes-base.getResponse",
+  "display_name": "GetResponse",
+  "description": "Consume GetResponse API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "contact"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "get"
+    },
+    {
+      "name": "contactId",
+      "displayName": "Contact ID",
+      "type": "string",
+      "description": "ID of contact to delete",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "contactId",
+      "displayName": "Contact ID",
+      "type": "string",
+      "description": "Unique identifier for a particular contact",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "contactId",
+      "displayName": "Contact ID",
+      "type": "string",
+      "description": "Unique identifier for a particular contact",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a new contact"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a contact"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a contact"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many contacts"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update contact properties"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_getResponse.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.getResponse"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

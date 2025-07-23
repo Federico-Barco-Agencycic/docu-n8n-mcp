@@ -1,0 +1,28 @@
+{
+  "node_type": "nodes-base.sseTrigger",
+  "display_name": "SSE Trigger",
+  "description": "Triggers the workflow when Server-Sent Events occur",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "url",
+      "displayName": "URL",
+      "type": "string",
+      "description": "The URL to receive the SSE from",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_sseTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.sseTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

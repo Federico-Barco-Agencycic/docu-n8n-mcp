@@ -1,0 +1,55 @@
+{
+  "node_type": "nodes-base.microsoftOneDriveTrigger",
+  "display_name": "Microsoft OneDrive Trigger",
+  "description": "Trigger for Microsoft OneDrive API.",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "fileId",
+      "displayName": "File",
+      "type": "resourceLocator",
+      "description": "The file to operate on. The 'By URL' option only accepts URLs that start with 'https://onedrive.live.com'.",
+      "required": true,
+      "default": {
+        "mode": "id",
+        "value": ""
+      }
+    },
+    {
+      "name": "folderId",
+      "displayName": "Folder",
+      "type": "resourceLocator",
+      "description": "The folder to operate on. The 'By URL' option only accepts URLs that start with 'https://onedrive.live.com'.",
+      "required": true,
+      "default": {
+        "mode": "id",
+        "value": "",
+        "cachedResultName": ""
+      }
+    },
+    {
+      "name": "folderId",
+      "displayName": "Folder",
+      "type": "resourceLocator",
+      "description": "The folder to operate on. The 'By URL' option only accepts URLs that start with 'https://onedrive.live.com'.",
+      "required": true,
+      "default": {
+        "mode": "id",
+        "value": "",
+        "cachedResultName": ""
+      }
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_microsoftOneDriveTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.microsoftOneDriveTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

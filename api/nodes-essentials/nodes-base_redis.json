@@ -1,0 +1,125 @@
+{
+  "node_type": "nodes-base.redis",
+  "display_name": "Redis",
+  "description": "Get, send and update data in Redis",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "info"
+    },
+    {
+      "name": "key",
+      "displayName": "Key",
+      "type": "string",
+      "description": "Name of the key to delete from Redis",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "propertyName",
+      "displayName": "Name",
+      "type": "string",
+      "description": "Name of the property to write received data to. Supports dot-notation. Example: \"data.person[0].name\".",
+      "required": true,
+      "default": "propertyName"
+    },
+    {
+      "name": "key",
+      "displayName": "Key",
+      "type": "string",
+      "description": "Name of the key to get from Redis",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "key",
+      "displayName": "Key",
+      "type": "string",
+      "description": "Name of the key to increment",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "keyPattern",
+      "displayName": "Key Pattern",
+      "type": "string",
+      "description": "The key pattern for the keys to return",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "key",
+      "displayName": "Key",
+      "type": "string",
+      "description": "Name of the key to set in Redis",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "channel",
+      "displayName": "Channel",
+      "type": "string",
+      "description": "Channel name",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "messageData",
+      "displayName": "Data",
+      "type": "string",
+      "description": "Data to publish",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "list",
+      "displayName": "List",
+      "type": "string",
+      "description": "Name of the list in Redis",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a key from Redis"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get the value of a key from Redis"
+    },
+    {
+      "operation": "incr",
+      "name": "Increment",
+      "description": "Atomically increments a key by 1. Creates the key if it does not exist."
+    },
+    {
+      "operation": "info",
+      "name": "Info",
+      "description": "Returns generic information about the Redis instance"
+    },
+    {
+      "operation": "keys",
+      "name": "Keys",
+      "description": "Returns all the keys matching a pattern"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_redis.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.redis"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

@@ -1,0 +1,36 @@
+{
+  "node_type": "nodes-base.xml",
+  "display_name": "XML",
+  "description": "Convert data from and to XML",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "dataPropertyName",
+      "displayName": "Property Name",
+      "type": "string",
+      "description": "Name of the property to which to contains the converted XML data",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "dataPropertyName",
+      "displayName": "Property Name",
+      "type": "string",
+      "description": "Name of the property which contains the XML data to convert",
+      "required": true,
+      "default": "data"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_xml.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.xml"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

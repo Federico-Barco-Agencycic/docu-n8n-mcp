@@ -1,0 +1,123 @@
+{
+  "node_type": "nodes-base.freshworksCrm",
+  "display_name": "Freshworks CRM",
+  "description": "Consume the Freshworks CRM API",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "account"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "name",
+      "displayName": "Name",
+      "type": "string",
+      "description": "Name of the account",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "accountId",
+      "displayName": "Account ID",
+      "type": "string",
+      "description": "ID of the account to delete",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "accountId",
+      "displayName": "Account ID",
+      "type": "string",
+      "description": "ID of the account to retrieve",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "view",
+      "displayName": "View Name or ID",
+      "type": "options",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "accountId",
+      "displayName": "Account ID",
+      "type": "string",
+      "description": "ID of the account to update",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "title",
+      "displayName": "Title",
+      "type": "string",
+      "description": "Title of the appointment",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "fromDate",
+      "displayName": "Start Date",
+      "type": "dateTime",
+      "description": "Timestamp that denotes the start of appointment. Start date if this is an all-day appointment.",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create an account"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete an account"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Retrieve an account"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Retrieve many accounts"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update an account"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_freshworksCrm.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.freshworksCrm"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

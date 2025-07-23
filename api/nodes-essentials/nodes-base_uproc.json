@@ -1,0 +1,100 @@
+{
+  "node_type": "nodes-base.uproc",
+  "display_name": "uProc",
+  "description": "Consume uProc API",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "credit_card",
+      "displayName": "Credit card",
+      "type": "string",
+      "description": "The \"Credit card\" value to use as a parameter for this Operation",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "address",
+      "displayName": "Address",
+      "type": "string",
+      "description": "The \"Address\" value to use as a parameter for this Operation",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "coordinates",
+      "displayName": "Coordinates",
+      "type": "string",
+      "description": "The \"Coordinates\" value to use as a parameter for this Operation",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "date",
+      "displayName": "Date",
+      "type": "string",
+      "description": "The \"Date\" value to use as a parameter for this Operation",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "years1",
+      "displayName": "Years1",
+      "type": "number",
+      "description": "The \"Years1\" value to use as a parameter for this Operation",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "years2",
+      "displayName": "Years2",
+      "type": "number",
+      "description": "The \"Years2\" value to use as a parameter for this Operation",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "years",
+      "displayName": "Years",
+      "type": "number",
+      "description": "The \"Years\" value to use as a parameter for this Operation",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "ean",
+      "displayName": "Ean",
+      "type": "string",
+      "description": "The \"Ean\" value to use as a parameter for this Operation",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "asin",
+      "displayName": "Asin",
+      "type": "string",
+      "description": "The \"Asin\" value to use as a parameter for this Operation",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "text",
+      "displayName": "Text",
+      "type": "string",
+      "description": "The \"Text\" value to use as a parameter for this Operation",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_uproc.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.uproc"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

@@ -1,0 +1,28 @@
+{
+  "node_type": "nodes-base.splitOut",
+  "display_name": "Split Out",
+  "description": "Turn a list inside item(s) into separate items",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "fieldToSplitOut",
+      "displayName": "Fields To Split Out",
+      "type": "string",
+      "description": "The name of the input fields to break out into separate items. Separate multiple field names by commas. For binary data, use $binary.",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_splitOut.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.splitOut"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

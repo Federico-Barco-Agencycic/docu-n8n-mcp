@@ -1,0 +1,111 @@
+{
+  "node_type": "nodes-base.oneSimpleApi",
+  "display_name": "One Simple API",
+  "description": "A toolbox of no-code utilities",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": true,
+      "default": "website"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "pdf"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "instagramProfile"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "exchangeRate"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "validateEmail"
+    },
+    {
+      "name": "link",
+      "displayName": "Webpage URL",
+      "type": "string",
+      "description": "Link to webpage to convert",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "download",
+      "displayName": "Download PDF?",
+      "type": "boolean",
+      "description": "Whether to download the PDF or return a link to it",
+      "required": true,
+      "default": false
+    },
+    {
+      "name": "output",
+      "displayName": "Put Output In Field",
+      "type": "string",
+      "description": "The name of the output field to put the binary file data in",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "message",
+      "displayName": "QR Content",
+      "type": "string",
+      "description": "The text that should be turned into a QR code - like a website URL",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "download",
+      "displayName": "Download Image?",
+      "type": "boolean",
+      "description": "Whether to download the QR code or return a link to it",
+      "required": true,
+      "default": false
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "pdf",
+      "name": "Generate PDF",
+      "description": "Generate a PDF from a webpage"
+    },
+    {
+      "operation": "seo",
+      "name": "Get SEO Data",
+      "description": "Get SEO information from website"
+    },
+    {
+      "operation": "screenshot",
+      "name": "Take Screenshot",
+      "description": "Create a screenshot from a webpage"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_oneSimpleApi.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.oneSimpleApi"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

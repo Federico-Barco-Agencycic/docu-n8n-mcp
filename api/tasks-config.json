@@ -1,0 +1,79 @@
+{
+  "available_tasks": {
+    "HTTP/API": [
+      "get_api_data",
+      "post_json_request",
+      "call_api_with_auth"
+    ],
+    "Webhooks": [
+      "receive_webhook",
+      "webhook_with_response"
+    ],
+    "Database": [
+      "query_postgres",
+      "insert_postgres_data",
+      "query_mongodb"
+    ],
+    "AI/LangChain": [
+      "chat_with_ai",
+      "ai_agent_workflow",
+      "text_analysis"
+    ],
+    "Data Processing": [
+      "transform_data",
+      "filter_data",
+      "merge_data"
+    ],
+    "Communication": [
+      "send_slack_message",
+      "send_email",
+      "send_teams_message"
+    ]
+  },
+  "task_configurations": {
+    "get_api_data": {
+      "node_type": "nodes-base.httpRequest",
+      "configuration": {
+        "method": "GET",
+        "url": "{{ $json.api_url }}",
+        "options": {}
+      },
+      "example_url": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_httpRequest.json"
+    },
+    "post_json_request": {
+      "node_type": "nodes-base.httpRequest",
+      "configuration": {
+        "method": "POST",
+        "url": "{{ $json.api_url }}",
+        "sendBody": true,
+        "bodyContentType": "json",
+        "jsonBody": "{{ $json.data }}"
+      },
+      "example_url": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_httpRequest.json"
+    },
+    "receive_webhook": {
+      "node_type": "nodes-base.webhook",
+      "configuration": {
+        "httpMethod": "POST",
+        "path": "webhook-endpoint",
+        "responseMode": "onReceived"
+      },
+      "example_url": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_webhook.json"
+    },
+    "send_slack_message": {
+      "node_type": "nodes-base.slack",
+      "configuration": {
+        "operation": "postMessage",
+        "channel": "{{ $json.channel }}",
+        "text": "{{ $json.message }}"
+      },
+      "example_url": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_slack.json"
+    }
+  },
+  "api_info": {
+    "base_url": "https://federico-barco-agencycic.github.io/docu-n8n-mcp",
+    "node_details_pattern": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/{node_type}.json",
+    "node_essentials_pattern": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/{node_type}.json"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

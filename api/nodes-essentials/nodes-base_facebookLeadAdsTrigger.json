@@ -1,0 +1,49 @@
+{
+  "node_type": "nodes-base.facebookLeadAdsTrigger",
+  "display_name": "Facebook Lead Ads Trigger",
+  "description": "Handle Facebook Lead Ads events via webhooks",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "event",
+      "displayName": "Event",
+      "type": "options",
+      "required": true,
+      "default": "newLead"
+    },
+    {
+      "name": "page",
+      "displayName": "Page",
+      "type": "resourceLocator",
+      "description": "The page linked to the form for retrieving new leads",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "form",
+      "displayName": "Form",
+      "type": "resourceLocator",
+      "description": "The form to monitor for fetching lead details upon submission",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_facebookLeadAdsTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.facebookLeadAdsTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

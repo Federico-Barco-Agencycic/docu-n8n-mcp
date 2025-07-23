@@ -1,0 +1,121 @@
+{
+  "node_type": "nodes-base.convertToFile",
+  "display_name": "Convert to File",
+  "description": "Convert JSON data to binary data",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1.1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "csv"
+    },
+    {
+      "name": "binaryPropertyName",
+      "displayName": "Put Output File in Field",
+      "type": "string",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "sourceProperty",
+      "displayName": "Base64 Input Field",
+      "type": "string",
+      "description": "The name of the input field that contains the base64 string to convert to a file. Use dot-notation for deep fields (e.g. 'level1.level2.currentKey').",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "binaryPropertyName",
+      "displayName": "Put Output File in Field",
+      "type": "string",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "sourceProperty",
+      "displayName": "Text Input Field",
+      "type": "string",
+      "description": "The name of the input field that contains a string to convert to a file. Use dot-notation for deep fields (e.g. 'level1.level2.currentKey').",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "binaryPropertyName",
+      "displayName": "Put Output File in Field",
+      "type": "string",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "binaryPropertyName",
+      "displayName": "Put Output File in Field",
+      "type": "string",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "start",
+      "displayName": "Start",
+      "type": "dateTime",
+      "description": "Date and time at which the event begins. (For all-day events, the time will be ignored.).",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "end",
+      "displayName": "End",
+      "type": "dateTime",
+      "description": "Date and time at which the event ends. (For all-day events, the time will be ignored.).",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "binaryPropertyName",
+      "displayName": "Put Output File in Field",
+      "type": "string",
+      "description": "The field that your iCalendar file will be available under in the output",
+      "required": true,
+      "default": "data"
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "csv",
+      "name": "Convert to CSV",
+      "description": "Transform input data into a CSV file"
+    },
+    {
+      "operation": "html",
+      "name": "Convert to HTML",
+      "description": "Transform input data into a table in an HTML file"
+    },
+    {
+      "operation": "iCal",
+      "name": "Convert to ICS",
+      "description": "Converts each input item to an ICS event file"
+    },
+    {
+      "operation": "toJson",
+      "name": "Convert to JSON",
+      "description": "Transform input data into a single or multiple JSON files"
+    },
+    {
+      "operation": "ods",
+      "name": "Convert to ODS",
+      "description": "Transform input data into an ODS file"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_convertToFile.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.convertToFile"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

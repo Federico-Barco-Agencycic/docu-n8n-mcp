@@ -1,0 +1,119 @@
+{
+  "node_type": "nodes-base.getResponseTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "GetResponse Trigger",
+  "description": "Starts the workflow when GetResponse events occur",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 1,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: GetResponse Trigger node documentation\ndescription: Learn how to use the GetResponse Trigger node in n8n. Follow technical documentation to integrate GetResponse Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# GetResponse Trigger node\n\n[GetResponse](https://www.getresponse.com/){:target=_blank .external-link} is an online platform that offers email marketing software, landing page creator, webinar hosting, and much more.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/getresponse.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [GetResponse Trigger integrations](https://n8n.io/integrations/getresponse-trigger/){:target=_blank .external-link} page.\n///\n\n## Events\n\n- Receive notifications when a customer is subscribed to a list\n- Receive notifications when a customer is unsubscribed from a list\n- Receive notifications when an email is opened\n- Receive notifications when an email is clicked\n- Receive notifications when a survey is submitted\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "apiKey",
+      "options": [
+        {
+          "name": "API Key",
+          "value": "apiKey"
+        },
+        {
+          "name": "OAuth2",
+          "value": "oAuth2"
+        }
+      ]
+    },
+    {
+      "displayName": "Events",
+      "name": "events",
+      "type": "multiOptions",
+      "default": [],
+      "options": [
+        {
+          "name": "Customer Subscribed",
+          "value": "subscribe",
+          "description": "Receive notifications when a customer is subscribed to a list"
+        },
+        {
+          "name": "Customer Unsubscribed",
+          "value": "unsubscribe",
+          "description": "Receive notifications when a customer is unsubscribed from a list"
+        },
+        {
+          "name": "Email Clicked",
+          "value": "click",
+          "description": "Receive notifications when a email is clicked"
+        },
+        {
+          "name": "Email Opened",
+          "value": "open",
+          "description": "Receive notifications when a email is opened"
+        },
+        {
+          "name": "Survey Submitted",
+          "value": "survey",
+          "description": "Receive notifications when a survey is submitted"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "List Names or IDs",
+      "name": "listIds",
+      "type": "multiOptions",
+      "default": [],
+      "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "typeOptions": {
+        "loadOptionsMethod": "getLists"
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Delete Current Subscription",
+          "name": "delete",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to delete the current subscription"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "getResponseApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "apiKey"
+          ]
+        }
+      }
+    },
+    {
+      "name": "getResponseOAuth2Api",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

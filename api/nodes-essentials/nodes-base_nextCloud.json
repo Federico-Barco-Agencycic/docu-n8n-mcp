@@ -1,0 +1,122 @@
+{
+  "node_type": "nodes-base.nextCloud",
+  "display_name": "Nextcloud",
+  "description": "Access data on Nextcloud",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "file"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "upload"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "path",
+      "displayName": "From Path",
+      "type": "string",
+      "description": "The path of file or folder to copy. The path should start with \"/\".",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "toPath",
+      "displayName": "To Path",
+      "type": "string",
+      "description": "The destination path of file or folder. The path should start with \"/\".",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "path",
+      "displayName": "Delete Path",
+      "type": "string",
+      "description": "The path to delete. Can be a single file or a whole folder. The path should start with \"/\".",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "path",
+      "displayName": "From Path",
+      "type": "string",
+      "description": "The path of file or folder to move. The path should start with \"/\".",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "toPath",
+      "displayName": "To Path",
+      "type": "string",
+      "description": "The new path of file or folder. The path should start with \"/\".",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "path",
+      "displayName": "File Path",
+      "type": "string",
+      "description": "The file path of the file to download. Has to contain the full path. The path should start with \"/\".",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "copy",
+      "name": "Copy",
+      "description": "Copy a file"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a file"
+    },
+    {
+      "operation": "download",
+      "name": "Download",
+      "description": "Download a file"
+    },
+    {
+      "operation": "move",
+      "name": "Move",
+      "description": "Move a file"
+    },
+    {
+      "operation": "share",
+      "name": "Share",
+      "description": "Share a file"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_nextCloud.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.nextCloud"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

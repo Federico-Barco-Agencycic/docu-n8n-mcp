@@ -1,0 +1,29 @@
+{
+  "node_type": "nodes-base.rssFeedReadTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "RSS Feed Trigger",
+  "description": "Starts a workflow when an RSS feed is updated",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: RSS Feed Trigger node documentation\ndescription: Learn how to use the RSS Feed Trigger node in n8n. Follow technical documentation to integrate RSS Feed Trigger node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# RSS Feed Trigger node\n\nThe RSS Feed Trigger node allows you to start an n8n workflow when a new RSS feed item has been published.\n\nOn this page, you'll find a list of operations the RSS Feed Trigger node supports, and links to more resources.\n\n## Node parameters\n\n* **Poll Times**: Select a poll **Mode** to set how often to trigger the poll. Your **Mode** selection will add or remove relevant fields. Refer to the sections below to configure the parameters for each mode type.\n* **Feed URL**: Enter the URL of the RSS feed to poll.\n\n--8<-- \"_snippets/integrations/builtin/poll-modes.md\"\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'rss-feed-trigger') ]]\n\n## Related resources\n\nn8n provides an app node for RSS Feeds. You can find the node docs [here](/integrations/builtin/core-nodes/n8n-nodes-base.rssfeedread.md).\n",
+  "properties_schema": [
+    {
+      "displayName": "Feed URL",
+      "name": "feedUrl",
+      "type": "string",
+      "default": "https://blog.n8n.io/rss/",
+      "description": "URL of the RSS feed to poll",
+      "required": true
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

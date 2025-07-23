@@ -1,0 +1,113 @@
+{
+  "node_type": "nodes-langchain.modelSelector",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "Model Selector",
+  "description": "Use this node to select one of the connected models to this node based on workflow data",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "Number of Inputs",
+      "name": "numberInputs",
+      "type": "options",
+      "default": 2,
+      "description": "The number of data inputs you want to merge. The node waits for all connected inputs to be executed.",
+      "options": [
+        {
+          "name": "2",
+          "value": 2
+        },
+        {
+          "name": "3",
+          "value": 3
+        },
+        {
+          "name": "4",
+          "value": 4
+        },
+        {
+          "name": "5",
+          "value": 5
+        },
+        {
+          "name": "6",
+          "value": 6
+        },
+        {
+          "name": "7",
+          "value": 7
+        },
+        {
+          "name": "8",
+          "value": 8
+        },
+        {
+          "name": "9",
+          "value": 9
+        },
+        {
+          "name": "10",
+          "value": 10
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Rules",
+      "name": "rules",
+      "type": "fixedCollection",
+      "default": {},
+      "description": "Rules to map workflow data to specific models",
+      "options": [
+        {
+          "displayName": "Rule",
+          "name": "rule",
+          "values": [
+            {
+              "displayName": "Model",
+              "name": "modelIndex",
+              "type": "options",
+              "description": "Choose model input from the list",
+              "default": 1,
+              "required": true,
+              "placeholder": "Choose model input from the list",
+              "typeOptions": {
+                "loadOptionsMethod": "getModels"
+              }
+            },
+            {
+              "displayName": "Conditions",
+              "name": "conditions",
+              "placeholder": "Add Condition",
+              "type": "filter",
+              "default": {},
+              "typeOptions": {
+                "filter": {
+                  "caseSensitive": true,
+                  "typeValidation": "strict",
+                  "version": 2
+                }
+              },
+              "description": "Conditions that must be met to select this model"
+            }
+          ]
+        }
+      ],
+      "typeOptions": {
+        "multipleValues": true,
+        "sortable": true
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

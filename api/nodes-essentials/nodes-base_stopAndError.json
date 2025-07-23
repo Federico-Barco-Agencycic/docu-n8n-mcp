@@ -1,0 +1,35 @@
+{
+  "node_type": "nodes-base.stopAndError",
+  "display_name": "Stop and Error",
+  "description": "Throw an error in the workflow",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "errorMessage",
+      "displayName": "Error Message",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "errorObject",
+      "displayName": "Error Object",
+      "type": "json",
+      "description": "Object containing error properties",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_stopAndError.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.stopAndError"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

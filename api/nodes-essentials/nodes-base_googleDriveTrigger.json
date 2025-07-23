@@ -1,0 +1,78 @@
+{
+  "node_type": "nodes-base.googleDriveTrigger",
+  "display_name": "Google Drive Trigger",
+  "description": "Starts the workflow when Google Drive events occur",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "triggerOn",
+      "displayName": "Trigger On",
+      "type": "options",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "fileToWatch",
+      "displayName": "File",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "event",
+      "displayName": "Watch For",
+      "type": "options",
+      "description": "When to trigger this node",
+      "required": true,
+      "default": "fileUpdated"
+    },
+    {
+      "name": "folderToWatch",
+      "displayName": "Folder",
+      "type": "resourceLocator",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "event",
+      "displayName": "Watch For",
+      "type": "options",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "driveToWatch",
+      "displayName": "Drive To Watch",
+      "type": "options",
+      "description": "The drive to monitor. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": "root"
+    },
+    {
+      "name": "event",
+      "displayName": "Watch For",
+      "type": "options",
+      "description": "When to trigger this node",
+      "required": true,
+      "default": "fileCreated"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleDriveTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.googleDriveTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

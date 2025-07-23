@@ -1,0 +1,226 @@
+{
+  "node_type": "nodes-langchain.toolCode",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "Code Tool",
+  "description": "Write a tool in JS or Python",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "1.3",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Custom Code Tool node documentation\ndescription: Learn how to use the Custom Code Tool node in n8n. Follow technical documentation to integrate Custom Code Tool node into your workflows.\ncontentType: [integration, reference]\npriority: high\n---\n\n# Custom Code Tool node\n\nUse the Custom Code Tool node to write code that an [agent](/glossary.md#ai-agent) can run.\n\nOn this page, you'll find the node parameters for the Custom Code Tool node and links to more resources.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\n## Node parameters\n\n### Description\n\nGive your custom code a description. This tells the agent when to use this tool. For example:\n\n> Call this tool to get a random color. The input should be a string with comma separated names of colors to exclude.\n\n### Language\n\nYou can use JavaScript or Python.\n\n### JavaScript / Python box\n\nWrite the code here.\n\nYou can access the tool input using `query`. For example, to take the input string and lowercase it:\n\n```js\nlet myString = query;\nreturn myString.toLowerCase();\n```\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'code-tool') ]]\n\n## Related resources\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/tools-link.md\"\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "This node must be connected to an AI agent. <a data-action='openSelectiveNodeCreator' data-action-parameter-creatorview='AI'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "See an example of a conversational agent with custom tool written in JavaScript <a href=\"/templates/1963\" target=\"_blank\">here</a>.",
+      "name": "noticeTemplateExample",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Name",
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Name",
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "description": "The name of the function to be called, could contain letters, numbers, and underscores only",
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1.1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Description",
+      "name": "description",
+      "type": "string",
+      "default": "",
+      "typeOptions": {
+        "rows": 3
+      }
+    },
+    {
+      "displayName": "Language",
+      "name": "language",
+      "type": "options",
+      "default": "javaScript",
+      "options": [
+        {
+          "name": "JavaScript",
+          "value": "javaScript"
+        },
+        {
+          "name": "Python (Beta)",
+          "value": "python"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "JavaScript",
+      "name": "jsCode",
+      "type": "string",
+      "default": "// Example: convert the incoming query to uppercase and return it\nreturn query.toUpperCase()",
+      "description": "E.g. Converts any text to uppercase",
+      "displayOptions": {
+        "show": {
+          "language": [
+            "javaScript"
+          ]
+        }
+      },
+      "typeOptions": {
+        "editor": "jsEditor"
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Python",
+      "name": "pythonCode",
+      "type": "string",
+      "default": "# Example: convert the incoming query to uppercase and return it\nreturn query.upper()",
+      "description": "E.g. Converts any text to uppercase",
+      "displayOptions": {
+        "show": {
+          "language": [
+            "python"
+          ]
+        }
+      },
+      "typeOptions": {
+        "editor": "codeNodeEditor",
+        "editorLanguage": "python"
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Specify Input Schema",
+      "name": "specifyInputSchema",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to specify the schema for the function. This would require the LLM to provide the input in the correct format and would validate it against the schema.",
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Schema Type",
+      "name": "schemaType",
+      "type": "options",
+      "default": "fromJson",
+      "description": "How to specify the schema for the function",
+      "options": [
+        {
+          "name": "Generate From JSON Example",
+          "value": "fromJson",
+          "description": "Generate a schema from an example JSON object"
+        },
+        {
+          "name": "Define using JSON Schema",
+          "value": "manual",
+          "description": "Define the JSON schema manually"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "specifyInputSchema": [
+            true
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "JSON Example",
+      "name": "jsonSchemaExample",
+      "type": "json",
+      "default": "{\n\t\"some_input\": \"some_value\"\n}",
+      "description": "Example JSON object to use to generate the schema",
+      "displayOptions": {
+        "show": {
+          "specifyInputSchema": [
+            true
+          ],
+          "schemaType": [
+            "fromJson"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 10
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "All properties will be required. To make them optional, use the 'JSON Schema' schema type instead",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "specifyInputSchema": [
+            true
+          ],
+          "@version": [
+            {
+              "_cnd": {
+                "gte": 1.3
+              }
+            }
+          ],
+          "schemaType": [
+            "fromJson"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Input Schema",
+      "name": "inputSchema",
+      "type": "json",
+      "default": "{\n\"type\": \"object\",\n\"properties\": {\n\t\"some_input\": {\n\t\t\"type\": \"string\",\n\t\t\"description\": \"Some input to the function\"\n\t\t}\n\t}\n}",
+      "description": "Schema to use for the function",
+      "displayOptions": {
+        "show": {
+          "specifyInputSchema": [
+            true
+          ],
+          "schemaType": [
+            "manual"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 10
+      },
+      "noDataExpression": true
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

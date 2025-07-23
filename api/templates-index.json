@@ -1,0 +1,57 @@
+{
+  "templates_summary": {
+    "total_templates": 399,
+    "by_category": {
+      "ai_automation": 45,
+      "data_sync": 67,
+      "webhook_processing": 52,
+      "email_automation": 38,
+      "slack_integration": 29,
+      "data_transformation": 83,
+      "file_processing": 31,
+      "scheduling": 24,
+      "api_integration": 72,
+      "database_operations": 28
+    }
+  },
+  "popular_templates": [
+    {
+      "id": 1001,
+      "name": "AI Customer Support Automation",
+      "description": "Automated customer support using AI agents",
+      "category": "ai_automation",
+      "nodes_used": [
+        "nodes-base.webhook",
+        "nodes-langchain.agent",
+        "nodes-base.slack"
+      ],
+      "views": 15420,
+      "node_urls": {
+        "webhook": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_webhook.json",
+        "agent": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-langchain_agent.json",
+        "slack": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_slack.json"
+      }
+    },
+    {
+      "id": 1002,
+      "name": "Slack to Google Sheets Sync",
+      "description": "Sync Slack messages to Google Sheets",
+      "category": "data_sync",
+      "nodes_used": [
+        "nodes-base.slackTrigger",
+        "nodes-base.googleSheets"
+      ],
+      "views": 12890,
+      "node_urls": {
+        "slackTrigger": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_slackTrigger.json",
+        "googleSheets": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_googleSheets.json"
+      }
+    }
+  ],
+  "api_info": {
+    "base_url": "https://federico-barco-agencycic.github.io/docu-n8n-mcp",
+    "search_nodes": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/search-index.json",
+    "node_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/{node_type}.json"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

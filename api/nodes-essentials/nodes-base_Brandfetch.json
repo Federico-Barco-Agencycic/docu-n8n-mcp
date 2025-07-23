@@ -1,0 +1,89 @@
+{
+  "node_type": "nodes-base.Brandfetch",
+  "display_name": "Brandfetch",
+  "description": "Consume Brandfetch API",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "logo"
+    },
+    {
+      "name": "domain",
+      "displayName": "Domain",
+      "type": "string",
+      "description": "The domain name of the company",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "download",
+      "displayName": "Download",
+      "type": "boolean",
+      "description": "Name of the binary property to which to write the data of the read file",
+      "required": true,
+      "default": false
+    },
+    {
+      "name": "imageTypes",
+      "displayName": "Image Type",
+      "type": "multiOptions",
+      "required": true,
+      "default": [
+        "logo",
+        "icon"
+      ]
+    },
+    {
+      "name": "imageFormats",
+      "displayName": "Image Format",
+      "type": "multiOptions",
+      "description": "The image format in which the logo should be returned as",
+      "required": true,
+      "default": [
+        "png"
+      ]
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "color",
+      "name": "Color",
+      "description": "Return a company's colors"
+    },
+    {
+      "operation": "company",
+      "name": "Company",
+      "description": "Return a company's data"
+    },
+    {
+      "operation": "font",
+      "name": "Font",
+      "description": "Return a company's fonts"
+    },
+    {
+      "operation": "industry",
+      "name": "Industry",
+      "description": "Return a company's industry"
+    },
+    {
+      "operation": "logo",
+      "name": "Logo",
+      "description": "Return a company's logo & icon"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_Brandfetch.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.Brandfetch"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

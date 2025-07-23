@@ -1,0 +1,124 @@
+{
+  "node_type": "nodes-base.salesforce",
+  "display_name": "Salesforce",
+  "description": "Consume Salesforce API",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "lead"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    },
+    {
+      "name": "externalId",
+      "displayName": "Match Against",
+      "type": "options",
+      "description": "The field to check to see if the lead already exists. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "externalIdValue",
+      "displayName": "Value to Match",
+      "type": "string",
+      "description": "If this value exists in the 'match against' field, update the lead. Otherwise create a new one.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "company",
+      "displayName": "Company",
+      "type": "string",
+      "description": "Company of the lead. If person account record types have been enabled, and if the value of Company is null, the lead converts to a person account.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "lastname",
+      "displayName": "Last Name",
+      "type": "string",
+      "description": "Required. Last name of the lead. Limited to 80 characters.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "leadId",
+      "displayName": "Lead ID",
+      "type": "string",
+      "description": "ID of Lead that needs to be fetched",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "leadId",
+      "displayName": "Lead ID",
+      "type": "string",
+      "description": "ID of Lead that needs to be fetched",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "leadId",
+      "displayName": "Lead ID",
+      "type": "string",
+      "description": "ID of Lead that needs to be fetched",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "leadId",
+      "displayName": "Lead ID",
+      "type": "string",
+      "description": "ID of contact that needs to be fetched",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "addToCampaign",
+      "name": "Add Lead To Campaign",
+      "description": "Add lead to a campaign"
+    },
+    {
+      "operation": "addNote",
+      "name": "Add Note",
+      "description": "Add note to a lead"
+    },
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a lead"
+    },
+    {
+      "operation": "upsert",
+      "name": "Create or Update",
+      "description": "Create a new lead, or update the current one if it already exists (upsert)"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a lead"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_salesforce.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.salesforce"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

@@ -1,0 +1,28 @@
+{
+  "node_type": "nodes-base.payPalTrigger",
+  "display_name": "PayPal Trigger",
+  "description": "Handle PayPal events via webhooks",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "events",
+      "displayName": "Event Names or IDs",
+      "type": "multiOptions",
+      "description": "The event to listen to. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": []
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_payPalTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.payPalTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

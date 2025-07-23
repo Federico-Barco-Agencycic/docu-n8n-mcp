@@ -1,0 +1,38 @@
+{
+  "node_type": "nodes-base.googleCalendarTrigger",
+  "display_name": "Google Calendar Trigger",
+  "description": "Starts the workflow when Google Calendar events occur",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "calendarId",
+      "displayName": "Calendar",
+      "type": "resourceLocator",
+      "description": "Google Calendar to operate on",
+      "required": true,
+      "default": {
+        "mode": "list",
+        "value": ""
+      }
+    },
+    {
+      "name": "triggerOn",
+      "displayName": "Trigger On",
+      "type": "options",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_googleCalendarTrigger.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.googleCalendarTrigger"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

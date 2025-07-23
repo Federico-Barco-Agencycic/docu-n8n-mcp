@@ -1,0 +1,624 @@
+{
+  "node_type": "nodes-base.formTrigger",
+  "package_name": "n8n-nodes-base",
+  "display_name": "n8n Form Trigger",
+  "description": "Generate webforms in n8n and pass their responses to the workflow",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 1,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "2.2",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: n8n Form Trigger node documentation\ndescription: Learn how to use the n8n Form Trigger node in n8n. Follow technical documentation to integrate n8n Form Trigger node into your workflows.\ncontentType: [integration, reference]\npriority: critical\n---\n\n# n8n Form Trigger node\n\nUse the n8n Form trigger to start a workflow when a user submits a form, taking the input data from the form. The node generates the form web page for you to use.\n\nYou can add more pages to continue the form with the [n8n Form](/integrations/builtin/core-nodes/n8n-nodes-base.form.md) node.\n\n## Build and test workflows\n\nWhile building or testing a workflow, use the **Test URL**. Using a test URL ensures that you can view the incoming data in the editor UI, which is useful for debugging. \n\nThere are two ways to test:\n\n- Select **Test Step**. n8n opens the form. When you submit the form, n8n runs the node, but not the rest of the workflow.\n- Select **Test Workflow**. n8n opens the form. When you submit the form, n8n runs the workflow.\n\n## Production workflows\n\nWhen your workflow is ready, switch to using the **Production URL**. You can then activate your workflow, and n8n runs it automatically when a user submits the form.\n\nWhen working with a production URL, ensure that you have saved and activated the workflow. Data flowing through the Form trigger isn't visible in the editor UI with the production URL.\n\n## Set default selections with query parameters\n\nYou can set the initial values for fields by using [query parameters](https://en.wikipedia.org/wiki/Query_string#Web_forms){:target=_blank .external-link} with the initial URL provided by the n8n Form Trigger. Every [page in the form](/integrations/builtin/core-nodes/n8n-nodes-base.form.md) receives the same query parameters sent to the n8n Form Trigger URL.\n\n/// note | Only for production\nQuery parameters are only available when using the form in production mode. n8n won't populate field values from query parameters in testing mode.\n///\n\n<!-- vale from-microsoft.Percentages = NO -->\nWhen using query parameters, [percent-encode](https://en.wikipedia.org/wiki/Percent-encoding){:target=_blank .external-link} any field names or values that use special characters. This ensures n8n uses the initial values for the given fields. You can use tools like [URL Encode/Decode](https://www.url-encode-decode.com/) to format your query parameters using percent-encoding.\n\nAs an example, imagine you have a form with the following properties:\n\n* Production URL: `https://my-account.n8n.cloud/form/my-form`\n* Fields:\n\t* `name`: `Jane Doe`\n\t* `email`: `jane.doe@example.com`\n\nWith query parameters and percent-encoding, you could use the following URL to set initial field values to the data above:\n\n```\nhttps://my-account.n8n.cloud/form/my-form?email=jane.doe%40example.com&name=Jane%20Doe\n```\n\nHere, percent-encoding replaces the at-symbol (`@`) with the string `%40` and the space character (` `) with the string `%20`. This will set the initial value for these fields no matter which page of the form they appear on.\n<!-- vale from-microsoft.Percentages = YES -->\n\n## Node parameters\n\nThese are the main node configuration fields:\n\n### Authentication\n\n- **Basic Auth**\n- **None**\n\n#### Using basic auth\n\nTo configure this credential, you'll need:\n\n- The **Username** you use to access the app or service your HTTP Request is targeting.\n- The **Password** that goes with that username.\n\n### Form URLs\n\nThe Form Trigger node has two URLs: **Test URL** and **Production URL**. n8n displays the URLs at the top of the node panel. Select **Test URL** or **Production URL** to toggle which URL n8n displays.\n\n![Screenshot of the form URLs](/_images/integrations/builtin/core-nodes/form-trigger/form-urls.png)\n\n- **Test URL**: n8n registers a test webhook when you select **Test Step** or **Test Workflow**, if the workflow isn't active. When you call the URL, n8n displays the data in the workflow.\n- **Production URL**: n8n registers a production webhook when you activate the workflow. When using the production URL, n8n doesn't display the data in the workflow. You can still view workflow data for a production execution. Select the **Executions** tab in the workflow, then select the workflow execution you want to view.\n\n### Form Path\n\nSet a custom slug for the form.\n\n### Form Title\n\nEnter the title for your form. n8n displays the **Form Title** as the webpage title and main `h1` title on the form.\n\n### Form Description\n\nEnter the description for your form. n8n displays the **Form Description** as a subtitle below the main `h1` title on the form. Use `\\n` or `<br>` to add a line break. \n\n### Form Elements\n\nCreate the question fields for your form. Select **Add Form Element** to add a new field.\n\nEvery field has the following settings:\n\n- **Field Label**: Enter the label that appears above the input field. \n- **Element Type**: Choose from **Custom HTML**, **Date**, **Dropdown List**, **Email**, **File**, **Hidden Field**, **Number**, **Password**, **Text**, or **Textarea**.\n\t- Select **Custom HTML** to insert arbitrary HTML.\n\t\t- You can include elements like links, images, video, and more. You can't include `<script>`, `<style>`, or `<input>` elements.\n\t\t- By default, Custom HTML fields aren't included in the node output. To include the Custom HTML content in the output, fill out the associated **Element Name** field.\n    - Select **Date** to include a date picker in the form. Refer to [Date and time with Luxon](/code/cookbook/luxon.md) for more information on formatting dates.\n\t- Select **Dropdown List** > **Add Field Option** to add multiple options. By default, the dropdown is single-choice. To make it multiple-choice, turn on **Multiple Choice**. \n\t- Select **Hidden Field** to include a form element without displaying it on the form. You can set a default value using the **Field Value** parameter or pass values for the field using [query parameters](#set-default-selections-with-query-parameters).\n- **Required Field**: Turn on to require users to complete this field on the form. \n\n### Respond When\n\nChoose when n8n sends a response to the form submission. You can respond when:\n\n- **Form Is Submitted**: Send a response to the user as soon as they submit the form.\n- **Workflow Finishes**: Use this if you want the workflow to complete its execution before you send a response to the user. If the workflow errors, it sends a response to the user telling them there was a problem submitting the form.\n\n## Node options\n\nSelect **Add Option** to view more configuration options: \n\n- **Append n8n Attribution**: Turn off to hide the **Form automated with n8n** attribute at the bottom of the form.\n- **Form Response**: Choose how to respond when the user submits the form. \n    - **Respond With** > **Form Submitted Text**: Show a message to the user.\n    - **Respond With** > **Redirect URL**: Send the user to a new page.\n- **Ignore Bots**: Turn on to ignore requests from bots like link previewers and web crawlers. \n- **Use Workflow Timezone**: Turn on to use the timezone in the [Workflow settings](/workflows/settings.md) instead of UTC (default). This affects the value of the `submittedAt` timestamp in the node output. \n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'n8n-form-trigger') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "none",
+      "options": [
+        {
+          "name": "Basic Auth",
+          "value": "basicAuth"
+        },
+        {
+          "name": "None",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "displayName": "Form Path",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "The final segment of the form's URL, both for test and production",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "@version": [
+            {
+              "_cnd": {
+                "lte": 2.1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Form Title",
+      "name": "formTitle",
+      "type": "string",
+      "default": "",
+      "description": "Shown at the top of the form",
+      "required": true
+    },
+    {
+      "displayName": "Form Description",
+      "name": "formDescription",
+      "type": "string",
+      "default": "",
+      "description": "Shown underneath the Form Title. Can be used to prompt the user on how to complete the form. Accepts HTML.",
+      "typeOptions": {
+        "rows": 2
+      }
+    },
+    {
+      "displayName": "Form Elements",
+      "name": "formFields",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Values",
+          "name": "values",
+          "values": [
+            {
+              "displayName": "Field Name",
+              "name": "fieldLabel",
+              "type": "string",
+              "default": "",
+              "placeholder": "e.g. What is your name?",
+              "description": "Label that appears above the input field",
+              "required": true,
+              "displayOptions": {
+                "hide": {
+                  "fieldType": [
+                    "hiddenField",
+                    "html"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Element Type",
+              "name": "fieldType",
+              "type": "options",
+              "default": "text",
+              "description": "The type of field to add to the form",
+              "options": [
+                {
+                  "name": "Custom HTML",
+                  "value": "html"
+                },
+                {
+                  "name": "Date",
+                  "value": "date"
+                },
+                {
+                  "name": "Dropdown List",
+                  "value": "dropdown"
+                },
+                {
+                  "name": "Email",
+                  "value": "email"
+                },
+                {
+                  "name": "File",
+                  "value": "file"
+                },
+                {
+                  "name": "Hidden Field",
+                  "value": "hiddenField"
+                },
+                {
+                  "name": "Number",
+                  "value": "number"
+                },
+                {
+                  "name": "Password",
+                  "value": "password"
+                },
+                {
+                  "name": "Text",
+                  "value": "text"
+                },
+                {
+                  "name": "Textarea",
+                  "value": "textarea"
+                }
+              ],
+              "required": true
+            },
+            {
+              "displayName": "Element Name",
+              "name": "elementName",
+              "type": "string",
+              "default": "",
+              "placeholder": "e.g. content-section",
+              "description": "Optional field. It can be used to include the html in the output.",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "html"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Placeholder",
+              "name": "placeholder",
+              "description": "Sample text to display inside the field",
+              "type": "string",
+              "default": "",
+              "displayOptions": {
+                "hide": {
+                  "fieldType": [
+                    "dropdown",
+                    "date",
+                    "file",
+                    "html",
+                    "hiddenField"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Field Name",
+              "name": "fieldName",
+              "description": "The name of the field, used in input attributes and referenced by the workflow",
+              "type": "string",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "hiddenField"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Field Value",
+              "name": "fieldValue",
+              "description": "Input value can be set here or will be passed as a query parameter via Field Name if no value is set",
+              "type": "string",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "hiddenField"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Field Options",
+              "name": "fieldOptions",
+              "placeholder": "Add Field Option",
+              "description": "List of options that can be selected from the dropdown",
+              "type": "fixedCollection",
+              "default": {
+                "values": [
+                  {
+                    "option": ""
+                  }
+                ]
+              },
+              "required": true,
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "dropdown"
+                  ]
+                }
+              },
+              "typeOptions": {
+                "multipleValues": true,
+                "sortable": true
+              },
+              "options": [
+                {
+                  "displayName": "Values",
+                  "name": "values",
+                  "values": [
+                    {
+                      "displayName": "Option",
+                      "name": "option",
+                      "type": "string",
+                      "default": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "displayName": "Multiple Choice",
+              "name": "multiselect",
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to allow the user to select multiple options from the dropdown list",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "dropdown"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "HTML",
+              "name": "html",
+              "typeOptions": {
+                "editor": "htmlEditor"
+              },
+              "type": "string",
+              "noDataExpression": true,
+              "default": "<!-- Your custom HTML here --->\n\n\n",
+              "description": "HTML elements to display on the form page",
+              "hint": "Does not accept <code>&lt;script&gt;</code>, <code>&lt;style&gt;</code> or <code>&lt;input&gt;</code> tags",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "html"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Multiple Files",
+              "name": "multipleFiles",
+              "type": "boolean",
+              "default": true,
+              "description": "Whether to allow the user to select multiple files from the file input or just one",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "file"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Accepted File Types",
+              "name": "acceptFileTypes",
+              "type": "string",
+              "default": "",
+              "description": "Comma-separated list of allowed file extensions",
+              "hint": "Leave empty to allow all file types",
+              "placeholder": "e.g. .jpg, .png",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "file"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "The displayed date is formatted based on the locale of the user's browser",
+              "name": "formatDate",
+              "type": "notice",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "date"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Required Field",
+              "name": "requiredField",
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to require the user to enter a value for this field before submitting the form",
+              "displayOptions": {
+                "hide": {
+                  "fieldType": [
+                    "html",
+                    "hiddenField"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "typeOptions": {
+        "multipleValues": true,
+        "sortable": true
+      }
+    },
+    {
+      "displayName": "Respond When",
+      "name": "responseMode",
+      "type": "options",
+      "default": "onReceived",
+      "description": "When to respond to the form submission",
+      "options": [
+        {
+          "name": "Form Is Submitted",
+          "value": "onReceived",
+          "description": "As soon as this node receives the form submission"
+        },
+        {
+          "name": "Workflow Finishes",
+          "value": "lastNode",
+          "description": "When the last node of the workflow is executed"
+        },
+        {
+          "name": "Using 'Respond to Webhook' Node",
+          "value": "responseNode",
+          "description": "When the 'Respond to Webhook' node is executed"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "@version": [
+            {
+              "_cnd": {
+                "lte": 2.1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Respond When",
+      "name": "responseMode",
+      "type": "options",
+      "default": "onReceived",
+      "description": "When to respond to the form submission",
+      "options": [
+        {
+          "name": "Form Is Submitted",
+          "value": "onReceived",
+          "description": "As soon as this node receives the form submission"
+        },
+        {
+          "name": "Workflow Finishes",
+          "value": "lastNode",
+          "description": "When the last node of the workflow is executed"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "@version": [
+            {
+              "_cnd": {
+                "gte": 2.2
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "In the 'Respond to Webhook' node, select 'Respond With JSON' and set the <strong>formSubmittedText</strong> key to display a custom response in the form, or the <strong>redirectURL</strong> key to redirect users to a URL",
+      "name": "formNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "responseMode": [
+            "responseNode"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Build multi-step forms by adding a form page later in your workflow",
+      "name": "addFormPage",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Append n8n Attribution",
+          "name": "appendAttribution",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to include the link “Form automated with n8n” at the bottom of the form"
+        },
+        {
+          "displayName": "Button Label",
+          "description": "The label of the submit button in the form",
+          "name": "buttonLabel",
+          "type": "string",
+          "default": "Submit"
+        },
+        {
+          "displayName": "Form Path",
+          "name": "path",
+          "type": "string",
+          "default": "",
+          "placeholder": "webhook",
+          "required": false,
+          "description": "The final segment of the form's URL, both for test and production",
+          "displayOptions": {
+            "show": {
+              "@version": [
+                {
+                  "_cnd": {
+                    "gte": 2.2
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Form Response",
+          "name": "respondWithOptions",
+          "type": "fixedCollection",
+          "placeholder": "Add option",
+          "default": {
+            "values": {
+              "respondWith": "text"
+            }
+          },
+          "options": [
+            {
+              "displayName": "Values",
+              "name": "values",
+              "values": [
+                {
+                  "displayName": "Respond With",
+                  "name": "respondWith",
+                  "type": "options",
+                  "default": "text",
+                  "options": [
+                    {
+                      "name": "Form Submitted Text",
+                      "value": "text",
+                      "description": "Show a response text to the user"
+                    },
+                    {
+                      "name": "Redirect URL",
+                      "value": "redirect",
+                      "description": "Redirect the user to a URL"
+                    }
+                  ]
+                },
+                {
+                  "displayName": "Text to Show",
+                  "name": "formSubmittedText",
+                  "description": "The text displayed to users after they fill the form. Leave it empty if don't want to show any additional text.",
+                  "type": "string",
+                  "default": "Your response has been recorded",
+                  "displayOptions": {
+                    "show": {
+                      "respondWith": [
+                        "text"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "displayName": "URL to Redirect to",
+                  "name": "redirectUrl",
+                  "description": "The URL to redirect users to after they fill the form. Must be a valid URL.",
+                  "type": "string",
+                  "default": "",
+                  "validateType": "url",
+                  "placeholder": "e.g. http://www.n8n.io",
+                  "displayOptions": {
+                    "show": {
+                      "respondWith": [
+                        "redirect"
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "displayOptions": {
+            "hide": {
+              "/responseMode": [
+                "responseNode"
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Ignore Bots",
+          "name": "ignoreBots",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to ignore requests from bots like link previewers and web crawlers"
+        },
+        {
+          "displayName": "Use Workflow Timezone",
+          "name": "useWorkflowTimezone",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to use the workflow timezone in 'submittedAt' field or UTC",
+          "displayOptions": {
+            "show": {
+              "@version": [
+                2
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Use Workflow Timezone",
+          "name": "useWorkflowTimezone",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to use the workflow timezone in 'submittedAt' field or UTC",
+          "displayOptions": {
+            "show": {
+              "@version": [
+                {
+                  "_cnd": {
+                    "gt": 2
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Custom Form Styling",
+          "name": "customCss",
+          "type": "string",
+          "typeOptions": {
+            "rows": 10,
+            "editor": "cssEditor"
+          },
+          "displayOptions": {
+            "show": {
+              "@version": [
+                {
+                  "_cnd": {
+                    "gt": 2
+                  }
+                }
+              ]
+            }
+          },
+          "default": ":root {\n\t--font-family: 'Open Sans', sans-serif;\n\t--font-weight-normal: 400;\n\t--font-weight-bold: 600;\n\t--font-size-body: 12px;\n\t--font-size-label: 14px;\n\t--font-size-test-notice: 12px;\n\t--font-size-input: 14px;\n\t--font-size-header: 20px;\n\t--font-size-paragraph: 14px;\n\t--font-size-link: 12px;\n\t--font-size-error: 12px;\n\t--font-size-html-h1: 28px;\n\t--font-size-html-h2: 20px;\n\t--font-size-html-h3: 16px;\n\t--font-size-html-h4: 14px;\n\t--font-size-html-h5: 12px;\n\t--font-size-html-h6: 10px;\n\t--font-size-subheader: 14px;\n\n\t/* Colors */\n\t--color-background: #fbfcfe;\n\t--color-test-notice-text: #e6a23d;\n\t--color-test-notice-bg: #fefaf6;\n\t--color-test-notice-border: #f6dcb7;\n\t--color-card-bg: #ffffff;\n\t--color-card-border: #dbdfe7;\n\t--color-card-shadow: rgba(99, 77, 255, 0.06);\n\t--color-link: #7e8186;\n\t--color-header: #525356;\n\t--color-label: #555555;\n\t--color-input-border: #dbdfe7;\n\t--color-input-text: #71747A;\n\t--color-focus-border: rgb(90, 76, 194);\n\t--color-submit-btn-bg: #ff6d5a;\n\t--color-submit-btn-text: #ffffff;\n\t--color-error: #ea1f30;\n\t--color-required: #ff6d5a;\n\t--color-clear-button-bg: #7e8186;\n\t--color-html-text: #555;\n\t--color-html-link: #ff6d5a;\n\t--color-header-subtext: #7e8186;\n\n\t/* Border Radii */\n\t--border-radius-card: 8px;\n\t--border-radius-input: 6px;\n\t--border-radius-clear-btn: 50%;\n\t--card-border-radius: 8px;\n\n\t/* Spacing */\n\t--padding-container-top: 24px;\n\t--padding-card: 24px;\n\t--padding-test-notice-vertical: 12px;\n\t--padding-test-notice-horizontal: 24px;\n\t--margin-bottom-card: 16px;\n\t--padding-form-input: 12px;\n\t--card-padding: 24px;\n\t--card-margin-bottom: 16px;\n\n\t/* Dimensions */\n\t--container-width: 448px;\n\t--submit-btn-height: 48px;\n\t--checkbox-size: 18px;\n\n\t/* Others */\n\t--box-shadow-card: 0px 4px 16px 0px var(--color-card-shadow);\n\t--opacity-placeholder: 0.5;\n}",
+          "description": "Override default styling of the public form interface with CSS"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "httpBasicAuth",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "basicAuth"
+          ]
+        }
+      }
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

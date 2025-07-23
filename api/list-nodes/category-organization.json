@@ -1,0 +1,62 @@
+[
+  {
+    "node_type": "nodes-base.noOp",
+    "display_name": "No Operation, do nothing",
+    "description": "No Operation",
+    "category": "organization",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_noOp.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_noOp.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.simulate",
+    "display_name": "Simulate",
+    "description": "Simulate a node",
+    "category": "organization",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_simulate.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_simulate.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.splitInBatches",
+    "display_name": "Split In Batches",
+    "description": "Split data into batches and iterate over each batch",
+    "category": "organization",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": false,
+    "is_trigger": false,
+    "is_webhook": false,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_splitInBatches.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_splitInBatches.json"
+    }
+  },
+  {
+    "node_type": "nodes-base.wait",
+    "display_name": "Wait",
+    "description": "Wait before continue with execution",
+    "category": "organization",
+    "package_name": "n8n-nodes-base",
+    "is_ai_tool": true,
+    "is_trigger": false,
+    "is_webhook": true,
+    "development_style": "programmatic",
+    "api_urls": {
+      "detailed": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_wait.json",
+      "essentials": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-essentials/nodes-base_wait.json"
+    }
+  }
+]

@@ -1,0 +1,124 @@
+{
+  "node_type": "nodes-base.coinGecko",
+  "display_name": "CoinGecko",
+  "description": "Consume CoinGecko API",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "coin"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "getAll"
+    },
+    {
+      "name": "searchBy",
+      "displayName": "Search By",
+      "type": "options",
+      "description": "Search by coin ID or contract address",
+      "required": true,
+      "default": "coinId"
+    },
+    {
+      "name": "coinId",
+      "displayName": "Coin Name or ID",
+      "type": "options",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "baseCurrency",
+      "displayName": "Base Currency Name or ID",
+      "type": "options",
+      "description": "The first currency in the pair. For BTC:ETH this is BTC. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "baseCurrency",
+      "displayName": "Base Currency Name or ID",
+      "type": "options",
+      "description": "The first currency in the pair. For BTC:ETH this is BTC. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "coinId",
+      "displayName": "Coin Name or ID",
+      "type": "options",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "baseCurrencies",
+      "displayName": "Base Currency Names or IDs",
+      "type": "multiOptions",
+      "description": "The first currency in the pair. For BTC:ETH this is BTC. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": []
+    },
+    {
+      "name": "platformId",
+      "displayName": "Platform ID",
+      "type": "options",
+      "description": "The ID of the platform issuing tokens",
+      "required": true,
+      "default": "ethereum"
+    },
+    {
+      "name": "contractAddress",
+      "displayName": "Contract Address",
+      "type": "string",
+      "description": "Token's contract address",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "candlestick",
+      "name": "Candlestick",
+      "description": "Get a candlestick open-high-low-close chart for the selected currency"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get current data for a coin"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many coins"
+    },
+    {
+      "operation": "history",
+      "name": "History",
+      "description": "Get historical data (name, price, market, stats) at a given date for a coin"
+    },
+    {
+      "operation": "market",
+      "name": "Market",
+      "description": "Get prices and market related data for all trading pairs that match the selected currency"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_coinGecko.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.coinGecko"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

@@ -1,0 +1,39 @@
+{
+  "node_type": "nodes-base.mailcheck",
+  "display_name": "Mailcheck",
+  "description": "Consume Mailcheck API",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "email"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "check"
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "check",
+      "name": "Check"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailcheck.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.mailcheck"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

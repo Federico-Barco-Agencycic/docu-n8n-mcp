@@ -1,0 +1,94 @@
+{
+  "name": "docu-n8n-mcp API",
+  "description": "Static JSON API for n8n Node Documentation with 17 MCP Tools",
+  "version": "1.0.0",
+  "base_url": "https://federico-barco-agencycic.github.io/docu-n8n-mcp",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "tools_count": 17,
+  "endpoints_count": 14,
+  "nodes_count": 526,
+  "tools": [
+    {
+      "name": "get_database_statistics",
+      "endpoint": "/api/database-statistics.json",
+      "description": "Complete ecosystem statistics"
+    },
+    {
+      "name": "search_nodes",
+      "endpoint": "/api/search-index.json",
+      "description": "Search nodes with keywords"
+    },
+    {
+      "name": "list_nodes",
+      "endpoint": "/api/list-nodes/category-{category}.json",
+      "description": "List nodes by category"
+    },
+    {
+      "name": "list_nodes",
+      "endpoint": "/api/list-nodes/package-{package}.json",
+      "description": "List nodes by package"
+    },
+    {
+      "name": "list_ai_tools",
+      "endpoint": "/api/list-nodes/ai-tools-only.json",
+      "description": "List AI-capable nodes"
+    },
+    {
+      "name": "get_node_info",
+      "endpoint": "/api/nodes-detailed/{node_type}.json",
+      "description": "Complete node schema and info"
+    },
+    {
+      "name": "get_node_essentials",
+      "endpoint": "/api/nodes-essentials/{node_type}.json",
+      "description": "Essential node properties only"
+    },
+    {
+      "name": "get_node_for_task",
+      "endpoint": "/api/tasks-config.json",
+      "description": "Pre-configured node setups"
+    },
+    {
+      "name": "list_tasks",
+      "endpoint": "/api/tasks-config.json",
+      "description": "Available task configurations"
+    },
+    {
+      "name": "search_node_properties",
+      "endpoint": "/api/properties-index.json",
+      "description": "Search properties across nodes"
+    },
+    {
+      "name": "list_ai_tools",
+      "endpoint": "/api/ai-tools-detailed.json",
+      "description": "Detailed AI tools information"
+    },
+    {
+      "name": "get_node_as_tool_info",
+      "endpoint": "/api/ai-tools-detailed.json",
+      "description": "How to use nodes as AI tools"
+    },
+    {
+      "name": "get_property_dependencies",
+      "endpoint": "/api/property-dependencies.json",
+      "description": "Property visibility dependencies"
+    },
+    {
+      "name": "templates",
+      "endpoint": "/api/templates-index.json",
+      "description": "Workflow templates and patterns"
+    }
+  ],
+  "categories": [
+    "output",
+    "transform",
+    "trigger",
+    "input",
+    "organization"
+  ],
+  "packages": [
+    "n8n-nodes-base",
+    "@n8n/n8n-nodes-langchain"
+  ],
+  "github_pages_ready": true
+}

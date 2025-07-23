@@ -1,0 +1,246 @@
+{
+  "node_type": "nodes-base.switch",
+  "package_name": "n8n-nodes-base",
+  "display_name": "Switch",
+  "description": "Route items depending on defined expression or rules",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "3.2",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Switch\ndescription: Documentation for the Switch node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: critical\n---\n\n# Switch\n\nUse the Switch node to route a workflow conditionally based on comparison operations. It's similar to the [IF](/integrations/builtin/core-nodes/n8n-nodes-base.if.md) node, but supports multiple output routes.\n\n## Node parameters\n\nSelect the **Mode** the node should use:\n\n* **Rules**: Select this mode to build a matching rule for each output.\n* **Expression**: Select this mode to write an expression to return the output index programmatically.\n\nNode configuration depends on the **Mode** you select.\n\n### Rules\n\nTo configure the node with this operation, use these parameters:\n\n* Create **Routing Rules** to define comparison conditions.\n    * Use the data type dropdown to select the data type and comparison operation type for your condition. For example, to create a rules for dates after a particular date, select **Date & Time > is after**.\n    * The fields and values to enter into the condition change based on the data type and comparison you select. Refer to [Available data type comparisons](#available-data-type-comparisons) for a full list of all comparisons by data type.\n* **Rename Output**: Turn this control on to rename the output field to put matching data into. Enter your desired **Output Name**.\n\nSelect **Add Routing Rule** to add more rules.\n\n#### Rule options\n\nYou can further configure the node with this operation using these **Options**:\n\n- **Fallback Output**: Choose how to route the workflow when an item doesn't match any of the rules or conditions.\n    - **None**: Ignore the item. This is the default behavior.\n    - **Extra Output**: Send items to an extra, separate output.\n    - **Output 0**: Send items to the same output as those matching the first rule.\n- **Ignore Case**: Set whether to ignore letter case when evaluating conditions (turned on) or enforce letter case (turned off).\n- **Less Strict Type Validation**: Set whether you want n8n to attempt to convert value types based on the operator you choose (turned on) or not (turned off).\n- **Send data to all matching outputs**: Set whether to send data to all outputs meeting conditions (turned on) or whether to send the data to the first output matching the conditions (turned off).\n\n### Expression\n\nTo configure the node with this operation, use these parameters:\n\n- **Number of Outputs**: Set how many outputs the node should have.\n- **Output Index**: Create an expression to calculate which input item should be routed to which output. The expression must return a number.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'switch') ]]\n\n## Related resources\n\nRefer to [Splitting with conditionals](/flow-logic/splitting.md) for more information on using conditionals to create complex logic in n8n.\n\n--8<-- \"_snippets/integrations/builtin/core-nodes/data-types.md\"\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Mode",
+      "name": "mode",
+      "type": "options",
+      "default": "rules",
+      "description": "How data should be routed",
+      "options": [
+        {
+          "name": "Rules",
+          "value": "rules",
+          "description": "Build a matching rule for each output"
+        },
+        {
+          "name": "Expression",
+          "value": "expression",
+          "description": "Write an expression to return the output index"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Number of Outputs",
+      "name": "numberOutputs",
+      "type": "number",
+      "default": 4,
+      "description": "How many outputs to create",
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "expression"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Output Index",
+      "name": "output",
+      "type": "number",
+      "default": "={{}}",
+      "description": "The output index to send the input item to. Use an expression to calculate which input item should be routed to which output. The expression must return a number.",
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "expression"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Routing Rules",
+      "name": "rules",
+      "type": "fixedCollection",
+      "default": {
+        "values": [
+          {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict"
+              },
+              "conditions": [
+                {
+                  "leftValue": "",
+                  "rightValue": "",
+                  "operator": {
+                    "type": "string",
+                    "operation": "equals"
+                  }
+                }
+              ],
+              "combinator": "and"
+            }
+          }
+        ]
+      },
+      "options": [
+        {
+          "name": "values",
+          "displayName": "Values",
+          "values": [
+            {
+              "displayName": "Conditions",
+              "name": "conditions",
+              "placeholder": "Add Condition",
+              "type": "filter",
+              "default": {},
+              "typeOptions": {
+                "multipleValues": false,
+                "filter": {
+                  "caseSensitive": "={{!$parameter.options.ignoreCase}}",
+                  "typeValidation": "={{ ($nodeVersion < 3.1 ? $parameter.options.looseTypeValidation :  $parameter.looseTypeValidation) ? \"loose\" : \"strict\" }}",
+                  "version": "={{ $nodeVersion >= 3.2 ? 2 : 1 }}"
+                }
+              }
+            },
+            {
+              "displayName": "Rename Output",
+              "name": "renameOutput",
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "displayName": "Output Name",
+              "name": "outputKey",
+              "type": "string",
+              "default": "",
+              "description": "The label of output to which to send data to if rule matches",
+              "displayOptions": {
+                "show": {
+                  "renameOutput": [
+                    true
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "rules"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true,
+        "sortable": true
+      }
+    },
+    {
+      "displayName": "Convert types where required",
+      "name": "looseTypeValidation",
+      "type": "boolean",
+      "default": false,
+      "description": "If the type of an expression doesn't match the type of the comparison, n8n will try to cast the expression to the required type. E.g. for booleans <code>\"false\"</code> or <code>0</code> will be cast to <code>false</code>",
+      "displayOptions": {
+        "show": {
+          "@version": [
+            {
+              "_cnd": {
+                "gte": 3.1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Fallback Output",
+          "name": "fallbackOutput",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsDependsOn": [
+              "rules.values",
+              "/rules",
+              "/rules.values"
+            ],
+            "loadOptionsMethod": "getFallbackOutputOptions"
+          },
+          "default": "none",
+          "description": "If no rule matches the item will be sent to this output, by default they will be ignored"
+        },
+        {
+          "displayName": "Ignore Case",
+          "description": "Whether to ignore letter case when evaluating conditions",
+          "name": "ignoreCase",
+          "type": "boolean",
+          "default": true
+        },
+        {
+          "displayName": "Convert types where required",
+          "description": "If the type of an expression doesn't match the type of the comparison, n8n will try to cast the expression to the required type. E.g. for booleans <code>\"false\"</code> or <code>0</code> will be cast to <code>false</code>",
+          "name": "looseTypeValidation",
+          "type": "boolean",
+          "default": true,
+          "displayOptions": {
+            "show": {
+              "@version": [
+                {
+                  "_cnd": {
+                    "lt": 3.1
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Rename Fallback Output",
+          "name": "renameFallbackOutput",
+          "type": "string",
+          "placeholder": "e.g. Fallback",
+          "default": "",
+          "displayOptions": {
+            "show": {
+              "fallbackOutput": [
+                "extra"
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Send data to all matching outputs",
+          "name": "allMatchingOutputs",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to send data to all outputs meeting conditions (and not just the first one)"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "rules"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,100 @@
+{
+  "node_type": "nodes-base.matrix",
+  "display_name": "Matrix",
+  "description": "Consume Matrix API",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "message"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "me"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "get"
+    },
+    {
+      "name": "roomId",
+      "displayName": "Room ID",
+      "type": "string",
+      "description": "The room related to the event",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "eventId",
+      "displayName": "Event ID",
+      "type": "string",
+      "description": "The room related to the event",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "upload"
+    },
+    {
+      "name": "roomId",
+      "displayName": "Room Name or ID",
+      "type": "options",
+      "description": "Room ID to post. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "binaryPropertyName",
+      "displayName": "Input Binary Field",
+      "type": "string",
+      "required": true,
+      "default": "data"
+    },
+    {
+      "name": "mediaType",
+      "displayName": "Media Type",
+      "type": "options",
+      "description": "Type of file being uploaded",
+      "required": true,
+      "default": "image"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "create"
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "me",
+      "name": "Me",
+      "description": "Get current user's account information"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_matrix.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.matrix"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

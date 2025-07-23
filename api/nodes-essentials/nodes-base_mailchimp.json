@@ -1,0 +1,121 @@
+{
+  "node_type": "nodes-base.mailchimp",
+  "display_name": "Mailchimp",
+  "description": "Consume Mailchimp API",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": true,
+      "default": "member"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": true,
+      "default": "create"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": true,
+      "default": "create"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": true,
+      "default": "getAll"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": true,
+      "default": "getAll"
+    },
+    {
+      "name": "list",
+      "displayName": "List Name or ID",
+      "type": "options",
+      "description": "List of lists. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "email",
+      "displayName": "Email",
+      "type": "string",
+      "description": "Email address for a subscriber",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "status",
+      "displayName": "Status",
+      "type": "options",
+      "description": "Subscriber's current status",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "list",
+      "displayName": "List Name or ID",
+      "type": "options",
+      "description": "List of lists. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "email",
+      "displayName": "Email",
+      "type": "string",
+      "description": "Member's email",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a new member on list"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a member on list"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a member on list"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many members on a list"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update a new member on list"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailchimp.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.mailchimp"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

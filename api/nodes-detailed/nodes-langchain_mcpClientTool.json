@@ -1,0 +1,157 @@
+{
+  "node_type": "nodes-langchain.mcpClientTool",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "display_name": "MCP Client Tool",
+  "description": "Connect tools from an MCP Server",
+  "category": "output",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "This node must be connected to an AI agent. <a data-action='openSelectiveNodeCreator' data-action-parameter-creatorview='AI'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "SSE Endpoint",
+      "name": "sseEndpoint",
+      "type": "string",
+      "default": "",
+      "description": "SSE Endpoint of your MCP server",
+      "required": true
+    },
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "none",
+      "description": "The way to authenticate with your SSE endpoint",
+      "options": [
+        {
+          "name": "Bearer Auth",
+          "value": "bearerAuth"
+        },
+        {
+          "name": "Header Auth",
+          "value": "headerAuth"
+        },
+        {
+          "name": "None",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "displayName": "Credentials",
+      "name": "credentials",
+      "type": "credentials",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "headerAuth",
+            "bearerAuth"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Tools to Include",
+      "name": "include",
+      "type": "options",
+      "default": "all",
+      "description": "How to select the tools you want to be exposed to the AI Agent",
+      "options": [
+        {
+          "name": "All",
+          "value": "all",
+          "description": "Also include all unchanged fields from the input"
+        },
+        {
+          "name": "Selected",
+          "value": "selected",
+          "description": "Also include the tools listed in the parameter \"Tools to Include\""
+        },
+        {
+          "name": "All Except",
+          "value": "except",
+          "description": "Exclude the tools listed in the parameter \"Tools to Exclude\""
+        }
+      ]
+    },
+    {
+      "displayName": "Tools to Include",
+      "name": "includeTools",
+      "type": "multiOptions",
+      "default": [],
+      "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "displayOptions": {
+        "show": {
+          "include": [
+            "selected"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getTools",
+        "loadOptionsDependsOn": [
+          "sseEndpoint"
+        ]
+      }
+    },
+    {
+      "displayName": "Tools to Exclude",
+      "name": "excludeTools",
+      "type": "multiOptions",
+      "default": [],
+      "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "displayOptions": {
+        "show": {
+          "include": [
+            "except"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getTools"
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "httpBearerAuth",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "bearerAuth"
+          ]
+        }
+      }
+    },
+    {
+      "name": "httpHeaderAuth",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "headerAuth"
+          ]
+        }
+      }
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

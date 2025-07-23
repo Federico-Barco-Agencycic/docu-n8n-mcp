@@ -1,0 +1,85 @@
+{
+  "node_type": "nodes-base.if",
+  "package_name": "n8n-nodes-base",
+  "display_name": "If",
+  "description": "Route items to different branches (true/false)",
+  "category": "transform",
+  "development_style": "programmatic",
+  "is_ai_tool": 0,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 1,
+  "version": "2.2",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: If\ndescription: Documentation for the If node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: critical\ntags:\n  - if\n  - if node\n  - If\n  - If node\nhide:\n  - tags\n---\n\n# If\n\nUse the If node to split a workflow conditionally based on comparison operations.\n\n## Add conditions\n\nCreate comparison **Conditions** for your If node.\n\n- Use the data type dropdown to select the data type and comparison operation type for your condition. For example, to filter for dates after a particular date, select **Date & Time > is after**.\n- The fields and values to enter into the condition change based on the data type and comparison you select. Refer to [Available data type comparisons](#available-data-type-comparisons) for a full list of all comparisons by data type.\n\nSelect **Add condition** to create more conditions.\n\n### Combining conditions\n\nYou can choose to keep data:\n\n* When it meets all conditions: Create two or more conditions and select **AND** in the dropdown between them.\n* When it meets any of the conditions: Create two or more conditions and select **OR** in the dropdown between them.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'if') ]]\n\n## Branch execution with If and Merge nodes\n\n--8<-- \"_snippets/integrations/builtin/core-nodes/merge/if-merge-branch-execution.md\"\n\n## Related resources\n\nRefer to [Splitting with conditionals](/flow-logic/splitting.md) for more information on using conditionals to create complex logic in n8n.\n\nIf you need more than two conditional outputs, use the [Switch node](/integrations/builtin/core-nodes/n8n-nodes-base.switch.md).\n\n--8<-- \"_snippets/integrations/builtin/core-nodes/data-types.md\"\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Conditions",
+      "name": "conditions",
+      "type": "filter",
+      "default": {},
+      "typeOptions": {
+        "filter": {
+          "caseSensitive": "={{!$parameter.options.ignoreCase}}",
+          "typeValidation": "={{ ($nodeVersion < 2.1 ? $parameter.options.looseTypeValidation :  $parameter.looseTypeValidation) ? \"loose\" : \"strict\" }}",
+          "version": "={{ $nodeVersion >= 2.2 ? 2 : 1 }}"
+        }
+      }
+    },
+    {
+      "displayName": "Convert types where required",
+      "name": "looseTypeValidation",
+      "type": "boolean",
+      "default": false,
+      "description": "If the type of an expression doesn't match the type of the comparison, n8n will try to cast the expression to the required type. E.g. for booleans <code>\"false\"</code> or <code>0</code> will be cast to <code>false</code>",
+      "displayOptions": {
+        "show": {
+          "@version": [
+            {
+              "_cnd": {
+                "gte": 2.1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Ignore Case",
+          "description": "Whether to ignore letter case when evaluating conditions",
+          "name": "ignoreCase",
+          "type": "boolean",
+          "default": true
+        },
+        {
+          "displayName": "Convert types where required",
+          "description": "If the type of an expression doesn't match the type of the comparison, n8n will try to cast the expression to the required type. E.g. for booleans <code>\"false\"</code> or <code>0</code> will be cast to <code>false</code>",
+          "name": "looseTypeValidation",
+          "type": "boolean",
+          "default": true,
+          "displayOptions": {
+            "show": {
+              "@version": [
+                {
+                  "_cnd": {
+                    "lt": 2.1
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,115 @@
+{
+  "node_type": "nodes-base.discourse",
+  "display_name": "Discourse",
+  "description": "Consume Discourse API",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "post"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "description": "Choose an operation",
+      "required": true,
+      "default": "create"
+    },
+    {
+      "name": "name",
+      "displayName": "Name",
+      "type": "string",
+      "description": "Name of the category",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "color",
+      "displayName": "Color",
+      "type": "color",
+      "description": "Color of the category",
+      "required": true,
+      "default": "0000FF"
+    },
+    {
+      "name": "textColor",
+      "displayName": "Text Color",
+      "type": "color",
+      "description": "Text color of the category",
+      "required": true,
+      "default": "0000FF"
+    },
+    {
+      "name": "categoryId",
+      "displayName": "Category ID",
+      "type": "string",
+      "description": "ID of the category",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "name",
+      "displayName": "Name",
+      "type": "string",
+      "description": "New name of the category",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "description": "Choose an operation",
+      "required": true,
+      "default": "create"
+    },
+    {
+      "name": "name",
+      "displayName": "Name",
+      "type": "string",
+      "description": "Name of the group",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "groupId",
+      "displayName": "Group ID",
+      "type": "string",
+      "description": "ID of the group to update",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a category"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many categories"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update a category"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_discourse.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.discourse"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

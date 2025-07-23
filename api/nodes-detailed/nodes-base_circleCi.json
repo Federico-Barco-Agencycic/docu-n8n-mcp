@@ -1,0 +1,255 @@
+{
+  "node_type": "nodes-base.circleCi",
+  "package_name": "n8n-nodes-base",
+  "display_name": "CircleCI",
+  "description": "Consume CircleCI API",
+  "category": "output",
+  "development_style": "programmatic",
+  "is_ai_tool": 1,
+  "is_trigger": 0,
+  "is_webhook": 0,
+  "is_versioned": 0,
+  "version": "1",
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: CircleCI node documentation\ndescription: Learn how to use the CircleCI node in n8n. Follow technical documentation to integrate CircleCI node into your workflows.\ncontentType: [integration, reference]\n---\n\n# CircleCI node\n\nUse the CircleCI node to automate work in CircleCI, and integrate CircleCI with other applications. n8n has built-in support for a wide range of CircleCI features, including getting and triggering pipelines.\n\nOn this page, you'll find a list of operations the CircleCI node supports and links to more resources.\n\n/// note | Credentials\nRefer to [CircleCI credentials](/integrations/builtin/credentials/circleci.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Pipeline\n    * Get a pipeline\n    * Get all pipelines\n    * Trigger a pipeline\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'circleci') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "pipeline",
+      "options": [
+        {
+          "name": "Pipeline",
+          "value": "pipeline"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a pipeline",
+          "action": "Get a pipeline"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many pipelines",
+          "action": "Get many pipelines"
+        },
+        {
+          "name": "Trigger",
+          "value": "trigger",
+          "description": "Trigger a pipeline",
+          "action": "Trigger a pipeline"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "pipeline"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Provider",
+      "name": "vcs",
+      "type": "options",
+      "default": "",
+      "description": "Source control system",
+      "options": [
+        {
+          "name": "Bitbucket",
+          "value": "bitbucket"
+        },
+        {
+          "name": "GitHub",
+          "value": "github"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get",
+            "getAll",
+            "trigger"
+          ],
+          "resource": [
+            "pipeline"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Project Slug",
+      "name": "projectSlug",
+      "type": "string",
+      "default": "",
+      "description": "Project slug in the form org-name/repo-name",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get",
+            "getAll",
+            "trigger"
+          ],
+          "resource": [
+            "pipeline"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Pipeline Number",
+      "name": "pipelineNumber",
+      "type": "number",
+      "default": 1,
+      "description": "The number of the pipeline",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "pipeline"
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "pipeline"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "pipeline"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 500
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Branch",
+          "name": "branch",
+          "type": "string",
+          "default": "",
+          "description": "The name of a vcs branch"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "pipeline"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Branch",
+          "name": "branch",
+          "type": "string",
+          "default": "",
+          "description": "The branch where the pipeline ran. The HEAD commit on this branch was used for the pipeline. Note that branch and tag are mutually exclusive."
+        },
+        {
+          "displayName": "Tag",
+          "name": "tag",
+          "type": "string",
+          "default": "",
+          "description": "The tag used by the pipeline. The commit that this tag points to was used for the pipeline. Note that branch and tag are mutually exclusive"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "pipeline"
+          ],
+          "operation": [
+            "trigger"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a pipeline"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many pipelines"
+    },
+    {
+      "operation": "trigger",
+      "name": "Trigger",
+      "description": "Trigger a pipeline"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "circleCiApi",
+      "required": true
+    }
+  ],
+  "updated_at": "2025-07-06 13:14:51",
+  "generated_at": "2025-07-23T03:58:15.685Z",
+  "api_version": "1.0.0"
+}

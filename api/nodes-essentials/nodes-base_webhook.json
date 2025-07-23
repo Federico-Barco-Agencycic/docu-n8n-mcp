@@ -1,0 +1,36 @@
+{
+  "node_type": "nodes-base.webhook",
+  "display_name": "Webhook",
+  "description": "Starts the workflow when a webhook is called",
+  "category": "trigger",
+  "package_name": "n8n-nodes-base",
+  "version": "2",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "path",
+      "displayName": "Path",
+      "type": "string",
+      "description": "The path to listen to, dynamic values could be specified by using ':', e.g. 'your-path/:dynamic-value'. If dynamic values are set 'webhookId' would be prepended to path.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "responseBinaryPropertyName",
+      "displayName": "Property Name",
+      "type": "string",
+      "description": "Name of the binary property to return",
+      "required": true,
+      "default": "data"
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_webhook.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.webhook"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

@@ -1,0 +1,28 @@
+{
+  "node_type": "nodes-base.rssFeedRead",
+  "display_name": "RSS Read",
+  "description": "Reads data from an RSS Feed",
+  "category": "input",
+  "package_name": "n8n-nodes-base",
+  "version": "1.2",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "url",
+      "displayName": "URL",
+      "type": "string",
+      "description": "URL of the RSS feed",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_rssFeedRead.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.rssFeedRead"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

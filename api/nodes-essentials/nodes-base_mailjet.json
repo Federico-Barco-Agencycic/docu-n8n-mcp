@@ -1,0 +1,108 @@
+{
+  "node_type": "nodes-base.mailjet",
+  "display_name": "Mailjet",
+  "description": "Consume Mailjet API",
+  "category": "output",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "resource",
+      "displayName": "Resource",
+      "type": "options",
+      "required": false,
+      "default": "email"
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "send"
+    },
+    {
+      "name": "fromEmail",
+      "displayName": "From Email",
+      "type": "string",
+      "description": "The title for the email",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "toEmail",
+      "displayName": "To Email",
+      "type": "string",
+      "description": "Email address of the recipient. Multiple ones can be separated by comma.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "fromEmail",
+      "displayName": "From Email",
+      "type": "string",
+      "description": "The title for the email",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "toEmail",
+      "displayName": "To Email",
+      "type": "string",
+      "description": "Email address of the recipient. Multiple ones can be separated by comma.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "templateId",
+      "displayName": "Template Name or ID",
+      "type": "options",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "operation",
+      "displayName": "Operation",
+      "type": "options",
+      "required": false,
+      "default": "send"
+    },
+    {
+      "name": "from",
+      "displayName": "From",
+      "type": "string",
+      "description": "Customizable sender name. Should be between 3 and 11 characters in length, only alphanumeric characters are allowed.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "to",
+      "displayName": "To",
+      "type": "string",
+      "description": "Message recipient. Should be between 3 and 15 characters in length. The number always starts with a plus sign followed by a country code, followed by the number. Phone numbers are expected to comply with the E.164 format.",
+      "required": true,
+      "default": ""
+    }
+  ],
+  "common_operations": [
+    {
+      "operation": "send",
+      "name": "Send",
+      "description": "Send a email"
+    },
+    {
+      "operation": "sendTemplate",
+      "name": "Send Template",
+      "description": "Send a email template"
+    }
+  ],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_mailjet.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.mailjet"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}

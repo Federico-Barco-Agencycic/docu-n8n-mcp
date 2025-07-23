@@ -1,0 +1,60 @@
+{
+  "node_type": "nodes-base.facebookGraphApi",
+  "display_name": "Facebook Graph API",
+  "description": "Interacts with Facebook using the Graph API",
+  "category": "transform",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "has_documentation": false,
+  "essential_properties": [
+    {
+      "name": "hostUrl",
+      "displayName": "Host URL",
+      "type": "options",
+      "description": "The Host URL of the request. Almost all requests are passed to the graph.facebook.com host URL. The single exception is video uploads, which use graph-video.facebook.com.",
+      "required": true,
+      "default": "graph.facebook.com"
+    },
+    {
+      "name": "httpRequestMethod",
+      "displayName": "HTTP Request Method",
+      "type": "options",
+      "description": "The HTTP Method to be used for the request",
+      "required": true,
+      "default": "GET"
+    },
+    {
+      "name": "graphApiVersion",
+      "displayName": "Graph API Version",
+      "type": "options",
+      "description": "The version of the Graph API to be used in the request",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "node",
+      "displayName": "Node",
+      "type": "string",
+      "description": "The node on which to operate. A node is an individual object with a unique ID. For example, there are many User node objects, each with a unique ID representing a person on Facebook.",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "sendBinaryData",
+      "displayName": "Send Binary File",
+      "type": "boolean",
+      "description": "Whether binary data should be sent as body",
+      "required": true,
+      "default": false
+    }
+  ],
+  "common_operations": [],
+  "api_urls": {
+    "full_details": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/nodes-detailed/nodes-base_facebookGraphApi.json",
+    "search_properties": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api/properties-index.json#nodes-base.facebookGraphApi"
+  },
+  "generated_at": "2025-07-23T03:58:15.685Z"
+}
