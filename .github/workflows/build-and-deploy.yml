@@ -2,7 +2,7 @@ name: Build and Deploy Static API
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   schedule:
     # Run daily at 2 AM UTC to catch any updates
     - cron: '0 2 * * *'
