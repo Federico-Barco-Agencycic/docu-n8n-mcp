@@ -1,0 +1,27 @@
+{
+  "node_type": "nodes-base.manualTrigger",
+  "display_name": "Manual Trigger",
+  "description": "Runs the flow on clicking a button in n8n",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": false,
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "This node is where the workflow execution starts (when you click the ‘test’ button on the canvas).<br><br> <a data-action=\"showNodeCreator\">Explore other ways to trigger your workflow</a> (e.g on a schedule, or a webhook)",
+      "name": "notice",
+      "type": "notice",
+      "default": ""
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:21.972Z",
+  "api_version": "1.0.0"
+}

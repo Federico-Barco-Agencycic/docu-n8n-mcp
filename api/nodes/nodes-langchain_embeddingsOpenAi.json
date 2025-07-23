@@ -1,0 +1,220 @@
+{
+  "node_type": "nodes-langchain.embeddingsOpenAi",
+  "display_name": "Embeddings OpenAI",
+  "description": "Use Embeddings OpenAI",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1.2",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Embeddings OpenAI node documentation\ndescription: Learn how to use the Embeddings OpenAI node in n8n. Follow technical documentation to integrate Embeddings OpenAI node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Embeddings OpenAI node\n\nUse the Embeddings OpenAI node to generate [embeddings](/glossary.md#ai-embedding) for a given text.\n\nOn this page, you'll find the node parameters for the Embeddings OpenAI node, and links to more resources.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/openai.md).\n///\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\n\n## Node options\n\n* **Model**: Select the model to use for generating embeddings.\n* **Base URL**: Enter the URL to send the request to. Use this if you are using a self-hosted OpenAI-like model. \n* **Batch Size**: Enter the maximum number of documents to send in each request.\n* **Strip New Lines**: Select whether to remove new line characters from input text (turned on) or not (turned off). n8n enables this by default.\n* **Timeout**: Enter the maximum amount of time a request can take in seconds. Set to `-1` for no timeout.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'embeddings-openai') ]]\n\n## Related resources\n\nRefer to [LangChains's OpenAI embeddings documentation](https://js.langchain.com/docs/integrations/text_embedding/openai/){:target=_blank .external-link} for more information about the service.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "This node must be connected to a vector store. <a data-action='openSelectiveNodeCreator' data-action-parameter-connectiontype='ai_vectorStore'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "Model",
+      "name": "model",
+      "type": "options",
+      "default": "text-embedding-ada-002",
+      "description": "The model which will generate the embeddings. <a href=\"https://platform.openai.com/docs/models/overview\">Learn more</a>.",
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptions": {
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "={{ $parameter.options?.baseURL?.split(\"/\").slice(-1).pop() || $credentials?.url?.split(\"/\").slice(-1).pop() || \"v1\" }}/models"
+            },
+            "output": {
+              "postReceive": [
+                {
+                  "type": "rootProperty",
+                  "properties": {
+                    "property": "data"
+                  }
+                },
+                {
+                  "type": "filter",
+                  "properties": {
+                    "pass": "={{ $responseItem.id.includes('embed') }}"
+                  }
+                },
+                {
+                  "type": "setKeyValue",
+                  "properties": {
+                    "name": "={{$responseItem.id}}",
+                    "value": "={{$responseItem.id}}"
+                  }
+                },
+                {
+                  "type": "sort",
+                  "properties": {
+                    "key": "name"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "displayName": "Model",
+      "name": "model",
+      "type": "options",
+      "default": "text-embedding-3-small",
+      "description": "The model which will generate the embeddings. <a href=\"https://platform.openai.com/docs/models/overview\">Learn more</a>.",
+      "displayOptions": {
+        "hide": {
+          "@version": [
+            1
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptions": {
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "={{ $parameter.options?.baseURL?.split(\"/\").slice(-1).pop() || $credentials?.url?.split(\"/\").slice(-1).pop() || \"v1\" }}/models"
+            },
+            "output": {
+              "postReceive": [
+                {
+                  "type": "rootProperty",
+                  "properties": {
+                    "property": "data"
+                  }
+                },
+                {
+                  "type": "filter",
+                  "properties": {
+                    "pass": "={{ $responseItem.id.includes('embed') }}"
+                  }
+                },
+                {
+                  "type": "setKeyValue",
+                  "properties": {
+                    "name": "={{$responseItem.id}}",
+                    "value": "={{$responseItem.id}}"
+                  }
+                },
+                {
+                  "type": "sort",
+                  "properties": {
+                    "key": "name"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "description": "Additional options to add",
+      "options": [
+        {
+          "displayName": "Dimensions",
+          "name": "dimensions",
+          "description": "The number of dimensions the resulting output embeddings should have. Only supported in text-embedding-3 and later models.",
+          "type": "options",
+          "options": [
+            {
+              "name": "256",
+              "value": 256
+            },
+            {
+              "name": "512",
+              "value": 512
+            },
+            {
+              "name": "1024",
+              "value": 1024
+            },
+            {
+              "name": "1536",
+              "value": 1536
+            },
+            {
+              "name": "3072",
+              "value": 3072
+            }
+          ]
+        },
+        {
+          "displayName": "Base URL",
+          "name": "baseURL",
+          "default": "https://api.openai.com/v1",
+          "description": "Override the default base URL for the API",
+          "type": "string",
+          "displayOptions": {
+            "hide": {
+              "@version": [
+                {
+                  "_cnd": {
+                    "gte": 1.2
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Batch Size",
+          "name": "batchSize",
+          "default": 512,
+          "typeOptions": {
+            "maxValue": 2048
+          },
+          "description": "Maximum number of documents to send in each request",
+          "type": "number"
+        },
+        {
+          "displayName": "Strip New Lines",
+          "name": "stripNewLines",
+          "default": true,
+          "description": "Whether to strip new lines from the input text",
+          "type": "boolean"
+        },
+        {
+          "displayName": "Timeout",
+          "name": "timeout",
+          "default": -1,
+          "description": "Maximum amount of time a request is allowed to take in seconds. Set to -1 for no timeout.",
+          "type": "number"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "openAiApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.257Z",
+  "api_version": "1.0.0"
+}

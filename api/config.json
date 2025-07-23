@@ -1,0 +1,15 @@
+{
+  "name": "docu-n8n-mcp",
+  "title": "n8n Nodes Documentation API",
+  "description": "Static JSON API for n8n node documentation and metadata",
+  "base_url": "https://federico-barco-agencycic.github.io/docu-n8n-mcp",
+  "api_base": "https://federico-barco-agencycic.github.io/docu-n8n-mcp/api",
+  "total_nodes": 526,
+  "generated_at": "2025-07-23T02:24:22.314Z",
+  "version": "1.0.0",
+  "cors_enabled": true,
+  "formats": [
+    "json"
+  ],
+  "compression": false
+}

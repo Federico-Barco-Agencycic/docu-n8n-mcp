@@ -1,0 +1,91 @@
+{
+  "node_type": "nodes-base.mailgun",
+  "display_name": "Mailgun",
+  "description": "Sends an email via Mailgun",
+  "category": "output",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Mailgun node documentation\ndescription: Learn how to use the Mailgun node in n8n. Follow technical documentation to integrate Mailgun node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Mailgun node\n\nUse the Mailgun node to automate work in Mailgun, and integrate Mailgun with other applications. n8n has built-in support for sending emails with Mailgun. \n\nOn this page, you'll find a list of operations the Mailgun node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Mailgun credentials](/integrations/builtin/credentials/mailgun.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n- Send an email\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'mailgun') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "From Email",
+      "name": "fromEmail",
+      "type": "string",
+      "default": "",
+      "description": "Email address of the sender optional with name",
+      "required": true
+    },
+    {
+      "displayName": "To Email",
+      "name": "toEmail",
+      "type": "string",
+      "default": "",
+      "description": "Email address of the recipient. Multiple ones can be separated by comma.",
+      "required": true
+    },
+    {
+      "displayName": "Cc Email",
+      "name": "ccEmail",
+      "type": "string",
+      "default": "",
+      "description": "Cc Email address of the recipient. Multiple ones can be separated by comma."
+    },
+    {
+      "displayName": "Bcc Email",
+      "name": "bccEmail",
+      "type": "string",
+      "default": "",
+      "description": "Bcc Email address of the recipient. Multiple ones can be separated by comma."
+    },
+    {
+      "displayName": "Subject",
+      "name": "subject",
+      "type": "string",
+      "default": "",
+      "description": "Subject line of the email"
+    },
+    {
+      "displayName": "Text",
+      "name": "text",
+      "type": "string",
+      "default": "",
+      "description": "Plain text message of email",
+      "typeOptions": {
+        "rows": 5
+      }
+    },
+    {
+      "displayName": "HTML",
+      "name": "html",
+      "type": "string",
+      "default": "",
+      "description": "HTML text message of email",
+      "typeOptions": {
+        "rows": 5,
+        "editor": "htmlEditor"
+      }
+    },
+    {
+      "displayName": "Attachments",
+      "name": "attachments",
+      "type": "string",
+      "default": "",
+      "description": "Name of the binary properties which contain data which should be added to email as attachment. Multiple ones can be comma-separated."
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "mailgunApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.969Z",
+  "api_version": "1.0.0"
+}

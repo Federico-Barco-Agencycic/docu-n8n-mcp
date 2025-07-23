@@ -1,0 +1,270 @@
+{
+  "node_type": "nodes-base.humanticAi",
+  "display_name": "Humantic AI",
+  "description": "Consume Humantic AI API",
+  "category": "output",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Humantic AI node documentation\ndescription: Learn how to use the Humantic AI node in n8n. Follow technical documentation to integrate Humantic AI node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Humantic AI node\n\nUse the Humantic AI node to automate work in Humantic AI, and integrate Humantic AI with other applications. n8n has built-in support for a wide range of Humantic AI features, including creating, retrieving, and updating profiles. \n\nOn this page, you'll find a list of operations the Humantic AI node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Humantic AI credentials](/integrations/builtin/credentials/humanticai.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Profile\n    * Create a profile\n    * Retrieve a profile\n    * Update a profile\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'humantic-ai') ]]\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "profile",
+      "options": [
+        {
+          "name": "Profile",
+          "value": "profile"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a profile",
+          "action": "Create a profile"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Retrieve a profile",
+          "action": "Get a profile"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a profile",
+          "action": "Update a profile"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "profile"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "User ID",
+      "name": "userId",
+      "type": "string",
+      "default": "",
+      "description": "The LinkedIn profile URL or email ID for creating a Humantic profile. If you are sending the resume, this should be a unique string.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "profile"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Send Resume",
+      "name": "sendResume",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to send a resume for a resume based analysis",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "profile"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Input Binary Field",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "profile"
+          ],
+          "sendResume": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "User ID",
+      "name": "userId",
+      "type": "string",
+      "default": "",
+      "description": "This value is the same as the User ID that was provided when the analysis was created. This could be a LinkedIn URL, email ID, or a unique string in case of resume based analysis.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "profile"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Persona",
+          "name": "persona",
+          "type": "multiOptions",
+          "options": [
+            {
+              "name": "Sales",
+              "value": "sales"
+            },
+            {
+              "name": "Hiring",
+              "value": "hiring"
+            }
+          ],
+          "default": [],
+          "description": "Fetch the Humantic profile of the user for a particular persona type. Multiple persona values can be supported using comma as a delimiter."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "profile"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "User ID",
+      "name": "userId",
+      "type": "string",
+      "default": "",
+      "description": "This value is the same as the User ID that was provided when the analysis was created. Currently only supported for profiles created using LinkedIn URL.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "profile"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Send Resume",
+      "name": "sendResume",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to send a resume for a resume of the user",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "profile"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Text",
+      "name": "text",
+      "type": "string",
+      "default": "",
+      "description": "Additional text written by the user",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "profile"
+          ],
+          "sendResume": [
+            false
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Input Binary Field",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "profile"
+          ],
+          "sendResume": [
+            true
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a profile"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Retrieve a profile"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update a profile"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "humanticAiApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.931Z",
+  "api_version": "1.0.0"
+}

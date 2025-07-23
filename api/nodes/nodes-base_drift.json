@@ -1,0 +1,289 @@
+{
+  "node_type": "nodes-base.drift",
+  "display_name": "Drift",
+  "description": "Consume Drift API",
+  "category": "output",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Drift node documentation\ndescription: Learn how to use the Drift node in n8n. Follow technical documentation to integrate Drift node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Drift node\n\nUse the Drift node to automate work in Drift, and integrate Drift with other applications. n8n has built-in support for a wide range of Drift features, including creating, updating, deleting, and getting contacts. \n\nOn this page, you'll find a list of operations the Drift node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Drift credentials](/integrations/builtin/credentials/drift.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Contact\n    * Create a contact\n    * Get custom attributes\n    * Delete a contact\n    * Get a contact\n    * Update a contact\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'drift') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "accessToken",
+      "options": [
+        {
+          "name": "Access Token",
+          "value": "accessToken"
+        },
+        {
+          "name": "OAuth2",
+          "value": "oAuth2"
+        }
+      ]
+    },
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "contact",
+      "options": [
+        {
+          "name": "Contact",
+          "value": "contact"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a contact",
+          "action": "Create a contact"
+        },
+        {
+          "name": "Custom Attributes",
+          "value": "getCustomAttributes",
+          "description": "Get custom attributes",
+          "action": "Get custom attributes for a contact"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a contact",
+          "action": "Delete a contact"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a contact",
+          "action": "Get a contact"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a contact",
+          "action": "Update a contact"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "contact"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "The email of the contact",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "contact"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Name",
+          "name": "name",
+          "type": "string",
+          "default": "",
+          "description": "The name of the contact"
+        },
+        {
+          "displayName": "Phone",
+          "name": "phone",
+          "type": "string",
+          "default": "",
+          "description": "The phone number associated with the contact"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "contact"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Contact ID",
+      "name": "contactId",
+      "type": "string",
+      "default": "",
+      "description": "Unique identifier for the contact",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "contact"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Email",
+          "name": "email",
+          "type": "string",
+          "placeholder": "name@email.com",
+          "default": "",
+          "description": "The email of the contact"
+        },
+        {
+          "displayName": "Name",
+          "name": "name",
+          "type": "string",
+          "default": "",
+          "description": "The name of the contact"
+        },
+        {
+          "displayName": "Phone",
+          "name": "phone",
+          "type": "string",
+          "default": "",
+          "description": "The phone number associated with the contact"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "contact"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Contact ID",
+      "name": "contactId",
+      "type": "string",
+      "default": "",
+      "description": "Unique identifier for the contact",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "contact"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Contact ID",
+      "name": "contactId",
+      "type": "string",
+      "default": "",
+      "description": "Unique identifier for the contact",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "contact"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a contact"
+    },
+    {
+      "operation": "getCustomAttributes",
+      "name": "Custom Attributes",
+      "description": "Get custom attributes"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a contact"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a contact"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update a contact"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "driftApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "accessToken"
+          ]
+        }
+      }
+    },
+    {
+      "name": "driftOAuth2Api",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.812Z",
+  "api_version": "1.0.0"
+}

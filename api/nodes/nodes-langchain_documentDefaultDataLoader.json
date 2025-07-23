@@ -1,0 +1,318 @@
+{
+  "node_type": "nodes-langchain.documentDefaultDataLoader",
+  "display_name": "Default Data Loader",
+  "description": "Load data from previous step in the workflow",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1.1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Default Data Loader node documentation\ndescription: Learn how to use the Default Data Loader node in n8n. Follow technical documentation to integrate Default Data Loader node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Default Data Loader node\n\nUse the Default Data Loader node to load binary data files or JSON data for [vector stores](/glossary.md#ai-vector-store) or summarization.\n\nOn this page, you'll find a list of parameters the Default Data Loader node supports, and links to more resources.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\n## Node parameters\n\n* **Text Splitting**: Choose from:\n\t* **Simple**: Uses the [Recursive Character Text Splitter](/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.textsplitterrecursivecharactertextsplitter.md) with a chunk size of 1000 and an overlap of 200.\n\t* **Custom**: Allows you to connect a text splitter of your choice.\n* **Type of Data**: Select **Binary** or **JSON**.\n* **Mode**: Choose from:\n\t* **Load All Input Data**: Use all the node's input data.\n\t* **Load Specific Data**: Use [expressions](/code/expressions.md) to define the data you want to load. You can add text as well as expressions. This means you can create a custom document from a mix of text and expressions.\n* **Data Format**: Displays when you set **Type of Data** to **Binary**. Select the file MIME type for your binary data. Set to **Automatically Detect by MIME Type** if you want n8n to set the data format for you. If you set a specific data format and the incoming file MIME type doesn't match it, the node errors. If you use **Automatically Detect by MIME Type**, the node falls back to text format if it can't match the file MIME type to a supported data format.\n\n## Node options\n\n* **Metadata**: Set the metadata that should accompany the document in the vector store. This is what you match to using the **Metadata Filter** option when retrieving data using the vector store nodes.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'default-data-loader') ]]\n\n## Related resources\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-doc-loaders-link.md\"\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "This will load data from a previous step in the workflow. <a href=\"/templates/1962\" target=\"_blank\">Example</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Type of Data",
+      "name": "dataType",
+      "type": "options",
+      "default": "json",
+      "options": [
+        {
+          "name": "JSON",
+          "value": "json",
+          "description": "Process JSON data from previous step in the workflow"
+        },
+        {
+          "name": "Binary",
+          "value": "binary",
+          "description": "Process binary data from previous step in the workflow"
+        }
+      ],
+      "required": true,
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Mode",
+      "name": "jsonMode",
+      "type": "options",
+      "default": "allInputData",
+      "options": [
+        {
+          "name": "Load All Input Data",
+          "value": "allInputData",
+          "description": "Use all JSON data that flows into the parent agent or chain"
+        },
+        {
+          "name": "Load Specific Data",
+          "value": "expressionData",
+          "description": "Load a subset of data, and/or data from any previous step in the workflow"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "dataType": [
+            "json"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Mode",
+      "name": "binaryMode",
+      "type": "options",
+      "default": "allInputData",
+      "options": [
+        {
+          "name": "Load All Input Data",
+          "value": "allInputData",
+          "description": "Use all Binary data that flows into the parent agent or chain"
+        },
+        {
+          "name": "Load Specific Data",
+          "value": "specificField",
+          "description": "Load data from a specific field in the parent agent or chain"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "dataType": [
+            "binary"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Data Format",
+      "name": "loader",
+      "type": "options",
+      "default": "auto",
+      "options": [
+        {
+          "name": "Automatically Detect by Mime Type",
+          "value": "auto",
+          "description": "Uses the mime type to detect the format"
+        },
+        {
+          "name": "CSV",
+          "value": "csvLoader",
+          "description": "Load CSV files"
+        },
+        {
+          "name": "Docx",
+          "value": "docxLoader",
+          "description": "Load Docx documents"
+        },
+        {
+          "name": "EPub",
+          "value": "epubLoader",
+          "description": "Load EPub files"
+        },
+        {
+          "name": "JSON",
+          "value": "jsonLoader",
+          "description": "Load JSON files"
+        },
+        {
+          "name": "PDF",
+          "value": "pdfLoader",
+          "description": "Load PDF documents"
+        },
+        {
+          "name": "Text",
+          "value": "textLoader",
+          "description": "Load plain text files"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "dataType": [
+            "binary"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Data",
+      "name": "jsonData",
+      "type": "string",
+      "default": "",
+      "description": "Drag and drop fields from the input pane, or use an expression",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "dataType": [
+            "json"
+          ],
+          "jsonMode": [
+            "expressionData"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 6
+      }
+    },
+    {
+      "displayName": "Input Data Field Name",
+      "name": "binaryDataKey",
+      "type": "string",
+      "default": "data",
+      "description": "The name of the field in the agent or chain’s input that contains the binary file to be processed",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "dataType": [
+            "binary"
+          ]
+        },
+        "hide": {
+          "binaryMode": [
+            "allInputData"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Text Splitting",
+      "name": "textSplittingMode",
+      "type": "options",
+      "default": "simple",
+      "options": [
+        {
+          "name": "Simple",
+          "value": "simple",
+          "description": "Splits every 1000 characters with a 200 character overlap"
+        },
+        {
+          "name": "Custom",
+          "value": "custom",
+          "description": "Connect a custom text-splitting sub-node"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1.1
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "JSON Pointers",
+          "name": "pointers",
+          "type": "string",
+          "default": "",
+          "description": "Pointers to extract from JSON, e.g. \"/text\" or \"/text, /meta/title\"",
+          "displayOptions": {
+            "show": {
+              "/loader": [
+                "jsonLoader",
+                "auto"
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "CSV Separator",
+          "name": "separator",
+          "type": "string",
+          "description": "Separator to use for CSV",
+          "default": ",",
+          "displayOptions": {
+            "show": {
+              "/loader": [
+                "csvLoader",
+                "auto"
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "CSV Column",
+          "name": "column",
+          "type": "string",
+          "default": "",
+          "description": "Column to extract from CSV",
+          "displayOptions": {
+            "show": {
+              "/loader": [
+                "csvLoader",
+                "auto"
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Split Pages in PDF",
+          "description": "Whether to split PDF pages into separate documents",
+          "name": "splitPages",
+          "type": "boolean",
+          "default": true,
+          "displayOptions": {
+            "show": {
+              "/loader": [
+                "pdfLoader",
+                "auto"
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Metadata",
+          "name": "metadata",
+          "type": "fixedCollection",
+          "description": "Metadata to add to each document. Could be used for filtering during retrieval",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "placeholder": "Add property",
+          "options": [
+            {
+              "name": "metadataValues",
+              "displayName": "Fields to Set",
+              "values": [
+                {
+                  "displayName": "Name",
+                  "name": "name",
+                  "type": "string",
+                  "default": "",
+                  "required": true
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.250Z",
+  "api_version": "1.0.0"
+}

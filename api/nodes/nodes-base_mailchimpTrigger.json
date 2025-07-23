@@ -1,0 +1,137 @@
+{
+  "node_type": "nodes-base.mailchimpTrigger",
+  "display_name": "Mailchimp Trigger",
+  "description": "Handle Mailchimp events via webhooks",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Mailchimp Trigger node documentation\ndescription: Learn how to use the Mailchimp Trigger node in n8n. Follow technical documentation to integrate Mailchimp Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Mailchimp Trigger node\n\n[Mailchimp](https://mailchimp.com/){:target=_blank .external-link} is an integrated marketing platform that allows business owners to automate their email campaigns and track user engagement.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/mailchimp.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Mailchimp Trigger integrations](https://n8n.io/integrations/mailchimp-trigger/){:target=_blank .external-link} page.\n///\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "apiKey",
+      "options": [
+        {
+          "name": "API Key",
+          "value": "apiKey"
+        },
+        {
+          "name": "OAuth2",
+          "value": "oAuth2"
+        }
+      ]
+    },
+    {
+      "displayName": "List Name or ID",
+      "name": "list",
+      "type": "options",
+      "default": "",
+      "description": "The list that is gonna fire the event. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "typeOptions": {
+        "loadOptionsMethod": "getLists"
+      }
+    },
+    {
+      "displayName": "Events",
+      "name": "events",
+      "type": "multiOptions",
+      "default": [],
+      "description": "The events that can trigger the webhook and whether they are enabled",
+      "options": [
+        {
+          "name": "Campaign Sent",
+          "value": "campaign",
+          "description": "Whether the webhook is triggered when a campaign is sent or cancelled"
+        },
+        {
+          "name": "Cleaned",
+          "value": "cleaned",
+          "description": "Whether the webhook is triggered when a subscriber's email address is cleaned from the list"
+        },
+        {
+          "name": "Email Address Updated",
+          "value": "upemail",
+          "description": "Whether the webhook is triggered when a subscriber's email address is changed"
+        },
+        {
+          "name": "Profile Updated",
+          "value": "profile",
+          "description": "Whether the webhook is triggered when a subscriber's profile is updated"
+        },
+        {
+          "name": "Subscribe",
+          "value": "subscribe",
+          "description": "Whether the webhook is triggered when a list subscriber is added"
+        },
+        {
+          "name": "Unsubscribe",
+          "value": "unsubscribe",
+          "description": "Whether the webhook is triggered when a list member unsubscribes"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "Sources",
+      "name": "sources",
+      "type": "multiOptions",
+      "default": [],
+      "description": "The possible sources of any events that can trigger the webhook and whether they are enabled",
+      "options": [
+        {
+          "name": "User",
+          "value": "user",
+          "description": "Whether the webhook is triggered by subscriber-initiated actions"
+        },
+        {
+          "name": "Admin",
+          "value": "admin",
+          "description": "Whether the webhook is triggered by admin-initiated actions in the web interface"
+        },
+        {
+          "name": "API",
+          "value": "api",
+          "description": "Whether the webhook is triggered by actions initiated via the API"
+        }
+      ],
+      "required": true
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "mailchimpApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "apiKey"
+          ]
+        }
+      }
+    },
+    {
+      "name": "mailchimpOAuth2Api",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.968Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,79 @@
+{
+  "node_type": "nodes-base.asanaTrigger",
+  "display_name": "Asana Trigger",
+  "description": "Starts the workflow when Asana events occur.",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Asana Trigger node documentation\ndescription: Learn how to use the Asana Trigger node in n8n. Follow technical documentation to integrate Asana Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Asana Trigger node\n\n[Asana](https://asana.com/){:target=_blank .external-link} is a web and mobile application designed to help teams organize, track, and manage their work.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/asana.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Asana Trigger integrations](https://n8n.io/integrations/asana-trigger/){:target=_blank .external-link} page.\n///\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "accessToken",
+      "options": [
+        {
+          "name": "Access Token",
+          "value": "accessToken"
+        },
+        {
+          "name": "OAuth2",
+          "value": "oAuth2"
+        }
+      ]
+    },
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "string",
+      "default": "",
+      "description": "The resource ID to subscribe to. The resource can be a task or project.",
+      "required": true
+    },
+    {
+      "displayName": "Workspace Name or ID",
+      "name": "workspace",
+      "type": "options",
+      "default": "",
+      "description": "The workspace ID the resource is registered under. This is only required if you want to allow overriding existing webhooks. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "typeOptions": {
+        "loadOptionsMethod": "getWorkspaces"
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "asanaApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "accessToken"
+          ]
+        }
+      }
+    },
+    {
+      "name": "asanaOAuth2Api",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.732Z",
+  "api_version": "1.0.0"
+}

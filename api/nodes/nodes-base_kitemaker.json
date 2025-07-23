@@ -1,0 +1,574 @@
+{
+  "node_type": "nodes-base.kitemaker",
+  "display_name": "Kitemaker",
+  "description": "Consume the Kitemaker GraphQL API",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Kitemaker node documentation\ndescription: Learn how to use the Kitemaker node in n8n. Follow technical documentation to integrate Kitemaker node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Kitemaker node\n\nUse the Kitemaker node to automate work in Kitemaker, and integrate Kitemaker with other applications. n8n has built-in support for a wide range of Kitemaker features, including retrieving data on organizations, spaces and users, as well as creating, getting, and updating work items. \n\nOn this page, you'll find a list of operations the Kitemaker node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Kitemaker credentials](/integrations/builtin/credentials/kitemaker.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Organization\n    * Retrieve data on the logged-in user's organization.\n* Space\n    * Retrieve data on all the spaces in the logged-in user's organization.\n* User\n    * Retrieve data on all the users in the logged-in user's organization.\n* Work Item\n    * Create\n    * Get\n    * Get All\n    * Update\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'kitemaker') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "workItem",
+      "options": [
+        {
+          "name": "Organization",
+          "value": "organization"
+        },
+        {
+          "name": "Space",
+          "value": "space"
+        },
+        {
+          "name": "User",
+          "value": "user"
+        },
+        {
+          "name": "Work Item",
+          "value": "workItem"
+        }
+      ],
+      "required": true,
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Retrieve data on the logged-in user's organization",
+          "action": "Get the logged-in user's organization"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "organization"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Retrieve data on many spaces in the logged-in user's organization",
+          "action": "Get many spaces"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "space"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "space"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 5,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "space"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 1000
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Retrieve data on many users in the logged-in user's organization",
+          "action": "Get many users"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 5,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 1000
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "action": "Create a work item"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "action": "Get a work item"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "action": "Get many work items"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "action": "Update a work item"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workItem"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Title",
+      "name": "title",
+      "type": "string",
+      "default": "",
+      "description": "Title of the work item to create",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workItem"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Space Name or ID",
+      "name": "spaceId",
+      "type": "options",
+      "default": [],
+      "description": "ID of the space to retrieve the work items from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workItem"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getSpaces"
+      }
+    },
+    {
+      "displayName": "Status Name or ID",
+      "name": "statusId",
+      "type": "options",
+      "default": [],
+      "description": "ID of the status to set on the item to create. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workItem"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "spaceId"
+        ],
+        "loadOptionsMethod": "getStatuses"
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Description",
+          "name": "description",
+          "type": "string",
+          "default": "",
+          "description": "Description of the item to create. Markdown supported."
+        },
+        {
+          "displayName": "Effort",
+          "name": "effort",
+          "type": "options",
+          "default": "SMALL",
+          "description": "Effort to set for the item to create",
+          "options": [
+            {
+              "name": "Small",
+              "value": "SMALL"
+            },
+            {
+              "name": "Medium",
+              "value": "MEDIUM"
+            },
+            {
+              "name": "Large",
+              "value": "LARGE"
+            }
+          ]
+        },
+        {
+          "displayName": "Impact",
+          "name": "impact",
+          "type": "options",
+          "default": "SMALL",
+          "description": "Impact to set for the item to create",
+          "options": [
+            {
+              "name": "Small",
+              "value": "SMALL"
+            },
+            {
+              "name": "Medium",
+              "value": "MEDIUM"
+            },
+            {
+              "name": "Large",
+              "value": "LARGE"
+            }
+          ]
+        },
+        {
+          "displayName": "Label Names or IDs",
+          "name": "labelIds",
+          "type": "multiOptions",
+          "typeOptions": {
+            "loadOptionsMethod": "getLabels"
+          },
+          "default": [],
+          "description": "ID of the label to set on the item to create. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Member Names or IDs",
+          "name": "memberIds",
+          "type": "multiOptions",
+          "typeOptions": {
+            "loadOptionsMethod": "getUsers"
+          },
+          "default": [],
+          "description": "ID of the user to assign to the item to create. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workItem"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Work Item ID",
+      "name": "workItemId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the work item to retrieve",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workItem"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Space Name or ID",
+      "name": "spaceId",
+      "type": "options",
+      "default": [],
+      "description": "ID of the space to retrieve the work items from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workItem"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getSpaces"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workItem"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 5,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workItem"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 1000
+      }
+    },
+    {
+      "displayName": "Work Item ID",
+      "name": "workItemId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the work item to update",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workItem"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Description",
+          "name": "description",
+          "type": "string",
+          "default": "",
+          "description": "Description of the item to update. Markdown supported."
+        },
+        {
+          "displayName": "Effort",
+          "name": "effort",
+          "type": "options",
+          "default": "SMALL",
+          "description": "Effort to set for the item to update",
+          "options": [
+            {
+              "name": "Small",
+              "value": "SMALL"
+            },
+            {
+              "name": "Medium",
+              "value": "MEDIUM"
+            },
+            {
+              "name": "Large",
+              "value": "LARGE"
+            }
+          ]
+        },
+        {
+          "displayName": "Impact",
+          "name": "impact",
+          "type": "options",
+          "default": "SMALL",
+          "description": "Impact to set for the item to update",
+          "options": [
+            {
+              "name": "Small",
+              "value": "SMALL"
+            },
+            {
+              "name": "Medium",
+              "value": "MEDIUM"
+            },
+            {
+              "name": "Large",
+              "value": "LARGE"
+            }
+          ]
+        },
+        {
+          "displayName": "Status Name or ID",
+          "name": "statusId",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsMethod": "getStatuses"
+          },
+          "default": [],
+          "description": "ID of the status to set on the item to update. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Title",
+          "name": "title",
+          "type": "string",
+          "default": "",
+          "description": "Title to set for the work item to update"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workItem"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Retrieve data on the logged-in user's organization"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "kitemakerApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.949Z",
+  "api_version": "1.0.0"
+}

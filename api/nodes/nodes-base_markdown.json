@@ -1,0 +1,498 @@
+{
+  "node_type": "nodes-base.markdown",
+  "display_name": "Markdown",
+  "description": "Convert data between Markdown and HTML",
+  "category": "output",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Markdown\ndescription: Documentation for the Markdown node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Markdown\n\nThe Markdown node converts between Markdown and HTML formats.\n\n## Operations\n\nThis node's operations are **Modes**:\n\n* **Markdown to HTML**: Use this mode to convert from Markdown to HTML.\n* **HTML to Markdown**: Use this mode to convert from HTML to Markdown.\n\n## Node parameters\n\n* **HTML** or **Markdown**: Enter the data you want to convert. The field name changes based on which **Mode** you select.\n* **Destination Key**: Enter the field you want to put the output in. Specify nested fields using dots, for example `level1.level2.newKey`.\n\n## Node options\n\nThe node's **Options** depend on the **Mode** selected.\n\n/// note | Test out the options\nSome of the options depend on each other or can interact. We recommend testing out options to confirm the effects are what you want.\n///\n\n### Markdown to HTML options\n\n| Option | Description | Default |\n| ------ | ----------- | ------- |\n| **Add Blank To Links** | Whether to open links a new window (enabled) or not (disabled). | Disabled |\n| **Automatic Linking To URLs** | Whether to automatically link to URLs (enabled) or not (disabled). If enabled, n8n converts any string that it identifies as a URL to a link. | Disabled |\n| **Backslash Escapes HTML Tags** | Whether to allow backslash escaping of HTML tags (enabled) or not (disabled). When enabled, n8n escapes any `<` or `>` prefaced with `\\`. For example, `\\<div\\>` renders as `&lt;div&gt;`.  | Disabled |\n| **Complete HTML Document** | Whether to output a complete HTML document (enabled) or an HTML fragment (disabled). A complete HTML document includes the `<DOCTYPE HTML>` declaration, `<html>` and `<body>` tags, and the `<head>` element.  | Disabled |\n| **Customized Header ID** | Whether to support custom heading IDs (enabled) or not (disabled). When enabled, you can add custom heading IDs using `{header ID here}` after the heading text. | Disabled |\n| **Emoji Support** | Whether to support emojis (enabled) or not (disabled). | Disabled. |\n| **Encode Emails** | Whether to transform ASCII character emails into their equivalent decimal entities (enabled) or not (disabled). | Enabled | \n| **Exclude Trailing Punctuation From URLs** | Whether to exclude trailing punctuation from automatically linked URLs (enabled) or not (disabled). For use with **Automatic Linking To URLs**. | Disabled |\n| **GitHub Code Blocks** | Whether to enable GitHub Flavored Markdown code blocks (enabled) or not (disabled). | Enabled |\n| **GitHub Compatible Header IDs** | Whether to generate GitHub Flavored Markdown heading IDs (enabled) or not (disabled). GitHub Flavored Markdown generates heading IDs with `-` in place of spaces and removes non-alphanumeric characters. | Disabled |\n| **GitHub Mention Link** | Change the link used with **GitHub Mentions**.  | Disabled |\n| **GitHub Mentions** | Whether to support tagging GitHub users with `@` (enabled) or not (disabled). When enabled, n8n replaces `@name` with `https://github.com/name`. | Disabled |\n| **GitHub Task Lists** | Whether to support GitHub Flavored Markdown task lists (enabled) or not (disabled). | Disabled |\n| **Header Level Start** | Number. Set the start level for headers. For example, changing this field to `2` causes n8n to treat `#` as `<h2>`, `##` as `<h3>`, and so on. | 1 |\n| **Mandatory Space Before Header** | Whether to make a space between `#` and heading text required (enabled) or not (disabled). When enabled, n8n renders a heading written as `##Some header text` literally (it doesn't turn it into a heading element) | Disabled |\n| **Middle Word Asterisks** | Whether n8n should treat asterisks in words as Markdown (disabled) or render them as literal asterisks (enabled). | Disabled |\n| **Middle Word Underscores** | Whether n8n should treat underscores in words as Markdown (disabled) or render them as literal underscores (enabled). | Disabled |\n| **No Header ID** | Disable automatic generation of header IDs (enabled). | Disabled |\n| **Parse Image Dimensions** | Support setting maximum image dimensions in Markdown syntax (enabled). | Disabled |\n| **Prefix Header ID** | Define a prefix to add to header IDs. | None |\n| **Raw Header ID** | Whether to remove spaces, `'`, and `\"` from header IDs, including prefixes, replacing them with `-` (enabled) or not (disabled). | Disabled |\n| **Raw Prefix Header ID** | Whether to prevent n8n from modifying header prefixes (enabled) or not (disabled) | Disabled |\n| **Simple Line Breaks** | Whether to create line breaks without a double space at the end of a line (enabled) or not (disabled). | Disabled |\n| **Smart Indentation Fix** | Whether to try to smartly fix indentation problems related to ES6 template strings in indented code blocks (enabled) or not (disabled). | Disabled |\n| **Spaces Indented Sublists** | Whether to remove the requirement to indent sublists four spaces (enabled) or not (disabled). | Disabled |\n| **Split Adjacent Blockquotes** | Whether to split adjacent blockquote blocks (enabled) or not (disabled). If you don't enable this, n8n treats quotes (indicated by `>` at the start of the line) on separate lines as a single blockquote, even when separated by an empty line.  | Disabled |\n| **Strikethrough** | Whether to support strikethrough syntax (enabled) or not (disabled). When enabled, you can add a ~~strikethrough~~ effect using `~~` around the word or phrase. | Disabled |\n| **Tables Header ID** | Whether to add an ID to table header tags (enabled) or not (disabled). | Disabled |\n| **Tables Support** | Whether to support tables (enabled) or not (disabled). | Disabled |\n\n### HTML to Markdown options\n\n| Option | Description | Default |\n| ------ | ----------- | ------- |\n| **Bullet Marker** | Specify the character to use for unordered lists. | * |\n| **Code Block Fence** | Specify the characters to use for code blocks. | ``` |\n| **Emphasis Delimiter** | Specify the character `<em>`. | _ |\n| **Global Escape Pattern** | Overrides the default character escape settings. You may want to use Text Replacement Pattern instead. | None |\n| **Ignored Elements** | Ignore given HTML elements, and their children. | None |\n| **Keep Images With Data** | Whether to keep images with data (enabled) or not (disabled). Support files up to 1MB. | Disabled |\n| **Line Start Escape Pattern** | Overrides the default character escape settings. You may want to use Text Replacement Pattern instead. | None |\n| **Max Consecutive New Lines** | Number. Specify the maximum number of consecutive new lines allowed. | 3 |\n| **Place URLs At The Bottom** | Whether to place URLs at the bottom of the page and format using link reference definitions (enabled) or not (disabled). | Disabled |\n| **Strong Delimiter** | Specify the characters for `<strong>`. | ** |\n| **Style For Code Block** | Specify the styling for code blocks. Options are **Fence** and **Indented**. | Fence |\n| **Text Replacement Pattern** | Define a text replacement pattern using regex. | None |\n| **Treat As Blocks** | Specify HTML elements to treat as blocks (surround with blank lines) | None |\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'markdown') ]]\n\n## Parsers\n\nn8n uses the following parsers:\n\n* To convert from HTML to Markdown: [node-html-markdown](https://www.npmjs.com/package/node-html-markdown){:target=_blank .external-link}.\n* To convert from Markdown to HTML: [Showdown](https://www.npmjs.com/package/showdown){:target=_blank .external-link}. Some options allow you to extend your Markdown with [GitHub Flavored Markdown](https://github.github.com/gfm/){:target=_blank .external-link}.\n\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Mode",
+      "name": "mode",
+      "type": "options",
+      "default": "htmlToMarkdown",
+      "options": [
+        {
+          "name": "Markdown to HTML",
+          "value": "markdownToHtml",
+          "description": "Convert data from Markdown to HTML"
+        },
+        {
+          "name": "HTML to Markdown",
+          "value": "htmlToMarkdown",
+          "description": "Convert data from HTML to Markdown"
+        }
+      ]
+    },
+    {
+      "displayName": "HTML",
+      "name": "html",
+      "type": "string",
+      "default": "",
+      "description": "The HTML to be converted to markdown",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "htmlToMarkdown"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Markdown",
+      "name": "markdown",
+      "type": "string",
+      "default": "",
+      "description": "The Markdown to be converted to html",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "markdownToHtml"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Destination Key",
+      "name": "destinationKey",
+      "type": "string",
+      "default": "data",
+      "description": "The field to put the output in. Specify nested fields using dots, e.g.\"level1.level2.newKey\".",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "markdownToHtml",
+            "htmlToMarkdown"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Bullet Marker",
+          "name": "bulletMarker",
+          "type": "string",
+          "default": "*",
+          "description": "Specify bullet marker, default *"
+        },
+        {
+          "displayName": "Code Block Fence",
+          "name": "codeFence",
+          "type": "string",
+          "default": "```",
+          "description": "Specify code block fence, default ```"
+        },
+        {
+          "displayName": "Emphasis Delimiter",
+          "name": "emDelimiter",
+          "type": "string",
+          "default": "_",
+          "description": "Specify emphasis delimiter, default _"
+        },
+        {
+          "displayName": "Global Escape Pattern",
+          "name": "globalEscape",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": false
+          },
+          "default": {},
+          "description": "Setting this will override the default escape settings, you might want to use textReplace option instead",
+          "options": [
+            {
+              "name": "value",
+              "displayName": "Value",
+              "values": [
+                {
+                  "displayName": "Pattern",
+                  "name": "pattern",
+                  "type": "string",
+                  "default": "",
+                  "description": "RegEx for pattern"
+                },
+                {
+                  "displayName": "Replacement",
+                  "name": "replacement",
+                  "type": "string",
+                  "default": "",
+                  "description": "String replacement"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Ignored Elements",
+          "name": "ignore",
+          "type": "string",
+          "default": "",
+          "description": "Supplied elements will be ignored (ignores inner text does not parse children)",
+          "placeholder": "e.g. h1, p ...",
+          "hint": "Comma separated elements"
+        },
+        {
+          "displayName": "Keep Images With Data",
+          "name": "keepDataImages",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to keep images with data: URI (Note: These can be up to 1MB each), e.g. &lt;img src=\"data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSK......0o/\"&gt;"
+        },
+        {
+          "displayName": "Line Start Escape Pattern",
+          "name": "lineStartEscape",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": false
+          },
+          "default": {},
+          "description": "Setting this will override the default escape settings, you might want to use textReplace option instead",
+          "options": [
+            {
+              "name": "value",
+              "displayName": "Value",
+              "values": [
+                {
+                  "displayName": "Pattern",
+                  "name": "pattern",
+                  "type": "string",
+                  "default": "",
+                  "description": "RegEx for pattern"
+                },
+                {
+                  "displayName": "Replacement",
+                  "name": "replacement",
+                  "type": "string",
+                  "default": "",
+                  "description": "String replacement"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Max Consecutive New Lines",
+          "name": "maxConsecutiveNewlines",
+          "type": "number",
+          "default": 3,
+          "description": "Specify max consecutive new lines allowed"
+        },
+        {
+          "displayName": "Place URLs At The Bottom",
+          "name": "useLinkReferenceDefinitions",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to Place URLS at the bottom and format links using link reference definitions"
+        },
+        {
+          "displayName": "Strong Delimiter",
+          "name": "strongDelimiter",
+          "type": "string",
+          "default": "**",
+          "description": "Specify strong delimiter, default **"
+        },
+        {
+          "displayName": "Style For Code Block",
+          "name": "codeBlockStyle",
+          "type": "options",
+          "default": "fence",
+          "description": "Specify style for code block, default \"fence\"",
+          "options": [
+            {
+              "name": "Fence",
+              "value": "fence"
+            },
+            {
+              "name": "Indented",
+              "value": "indented"
+            }
+          ]
+        },
+        {
+          "displayName": "Text Replacement Pattern",
+          "name": "textReplace",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": [],
+          "description": "User-defined text replacement pattern (Replaces matching text retrieved from nodes)",
+          "options": [
+            {
+              "name": "values",
+              "displayName": "Values",
+              "values": [
+                {
+                  "displayName": "Pattern",
+                  "name": "pattern",
+                  "type": "string",
+                  "default": "",
+                  "description": "RegEx for pattern"
+                },
+                {
+                  "displayName": "Replacement",
+                  "name": "replacement",
+                  "type": "string",
+                  "default": "",
+                  "description": "String replacement"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Treat As Blocks",
+          "name": "blockElements",
+          "type": "string",
+          "default": "",
+          "description": "Supplied elements will be treated as blocks (surrounded with blank lines)",
+          "placeholder": "e.g. p, div, ...",
+          "hint": "Comma separated elements"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "htmlToMarkdown"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Add Blank To Links",
+          "name": "openLinksInNewWindow",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to open all links in new windows (by adding the attribute target=\"_blank\" to <a> tags)"
+        },
+        {
+          "displayName": "Automatic Linking to URLs",
+          "name": "simplifiedAutoLink",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to enable automatic linking to URLs"
+        },
+        {
+          "displayName": "Backslash Escapes HTML Tags",
+          "name": "backslashEscapesHTMLTags",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to support for HTML Tag escaping ex: &lt;div&gt;foo&lt;/div&gt;"
+        },
+        {
+          "displayName": "Complete HTML Document",
+          "name": "completeHTMLDocument",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to output a complete html document, including &lt;html&gt;, &lt;head&gt; and &lt;body&gt; tags instead of an HTML fragment"
+        },
+        {
+          "displayName": "Customized Header ID",
+          "name": "customizedHeaderId",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to use text in curly braces as header ID"
+        },
+        {
+          "displayName": "Emoji Support",
+          "name": "emoji",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to enable emoji support. Ex: this is a :smile: emoji For more info on available emojis, see https://github.com/showdownjs/showdown/wiki/Emojis."
+        },
+        {
+          "displayName": "Encode Emails",
+          "name": "encodeEmails",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to enable e-mail addresses encoding through the use of Character Entities, transforming ASCII e-mail addresses into its equivalent decimal entities"
+        },
+        {
+          "displayName": "Exclude Trailing Punctuation From URLs",
+          "name": "excludeTrailingPunctuationFromURLs",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to exclude trailing punctuation from autolinking URLs. Punctuation excluded: . ! ? ( ). Only applies if simplifiedAutoLink option is set to true."
+        },
+        {
+          "displayName": "GitHub Code Blocks",
+          "name": "ghCodeBlocks",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to enable support for GFM code block style"
+        },
+        {
+          "displayName": "GitHub Compatible Header IDs",
+          "name": "ghCompatibleHeaderId",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to generate header IDs compatible with github style (spaces are replaced with dashes and a bunch of non alphanumeric chars are removed)"
+        },
+        {
+          "displayName": "GitHub Mention Link",
+          "name": "ghMentionsLink",
+          "type": "string",
+          "default": "https://github.com/{u}",
+          "description": "Whether to change the link generated by @mentions. Showdown will replace {u} with the username. Only applies if ghMentions option is enabled."
+        },
+        {
+          "displayName": "GitHub Mentions",
+          "name": "ghMentions",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to enable github @mentions, which link to the username mentioned"
+        },
+        {
+          "displayName": "GitHub Task Lists",
+          "name": "tasklists",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to enable support for GFM tasklists"
+        },
+        {
+          "displayName": "Header Level Start",
+          "name": "headerLevelStart",
+          "type": "number",
+          "default": 1,
+          "description": "Whether to set the header starting level"
+        },
+        {
+          "displayName": "Mandatory Space Before Header",
+          "name": "requireSpaceBeforeHeadingText",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to make adding a space between # and the header text mandatory"
+        },
+        {
+          "displayName": "Middle Word Asterisks",
+          "name": "literalMidWordAsterisks",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to stop showdown from interpreting asterisks in the middle of words as <em> and <strong> and instead treat them as literal asterisks"
+        },
+        {
+          "displayName": "Middle Word Underscores",
+          "name": "literalMidWordUnderscores",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to stop showdown from interpreting underscores in the middle of words as <em> and <strong> and instead treat them as literal underscores"
+        },
+        {
+          "displayName": "No Header ID",
+          "name": "noHeaderId",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to disable the automatic generation of header IDs"
+        },
+        {
+          "displayName": "Parse Image Dimensions",
+          "name": "parseImgDimensions",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to enable support for setting image dimensions from within markdown syntax"
+        },
+        {
+          "displayName": "Prefix Header ID",
+          "name": "prefixHeaderId",
+          "type": "string",
+          "default": "section",
+          "description": "Add a prefix to the generated header IDs"
+        },
+        {
+          "displayName": "Raw Header ID",
+          "name": "rawHeaderId",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to remove only spaces, ' and \" from generated header IDs (including prefixes), replacing them with dashes (-)"
+        },
+        {
+          "displayName": "Raw Prefix Header ID",
+          "name": "rawPrefixHeaderId",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to prevent showdown from modifying the prefix"
+        },
+        {
+          "displayName": "Simple Line Breaks",
+          "name": "simpleLineBreaks",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to parse line breaks as &lt;br&gt;, like GitHub does, without needing 2 spaces at the end of the line"
+        },
+        {
+          "displayName": "Smart Indentation Fix",
+          "name": "smartIndentationFix",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to try to smartly fix indentation problems related to es6 template strings in the midst of indented code"
+        },
+        {
+          "displayName": "Spaces Indented Sublists",
+          "name": "disableForced4SpacesIndentedSublists",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to disable the requirement of indenting sublists by 4 spaces for them to be nested, effectively reverting to the old behavior where 2 or 3 spaces were enough"
+        },
+        {
+          "displayName": "Split Adjacent Blockquotes",
+          "name": "splitAdjacentBlockquotes",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to split adjacent blockquote blocks"
+        },
+        {
+          "displayName": "Strikethrough",
+          "name": "strikethrough",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to enable support for strikethrough syntax"
+        },
+        {
+          "displayName": "Tables Header ID",
+          "name": "tablesHeaderId",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to add an ID property to table headers tags"
+        },
+        {
+          "displayName": "Tables Support",
+          "name": "tables",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to enable support for tables syntax"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "markdownToHtml"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:21.972Z",
+  "api_version": "1.0.0"
+}

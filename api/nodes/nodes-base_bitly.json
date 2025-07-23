@@ -1,0 +1,388 @@
+{
+  "node_type": "nodes-base.bitly",
+  "display_name": "Bitly",
+  "description": "Consume Bitly API",
+  "category": "output",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Bitly node documentation\ndescription: Learn how to use the Bitly node in n8n. Follow technical documentation to integrate Bitly node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Bitly node\n\nUse the Bitly node to automate work in Bitly, and integrate Bitly with other applications. n8n has built-in support for a wide range of Bitly features, including creating, getting, and updating links.\n\nOn this page, you'll find a list of operations the Bitly node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Bitly credentials](/integrations/builtin/credentials/bitly.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Link\n    * Create a link\n    * Get a link\n    * Update a link\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'bitly') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "accessToken",
+      "options": [
+        {
+          "name": "Access Token",
+          "value": "accessToken"
+        },
+        {
+          "name": "OAuth2",
+          "value": "oAuth2"
+        }
+      ]
+    },
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "link",
+      "options": [
+        {
+          "name": "Link",
+          "value": "link"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a link",
+          "action": "Create a link"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a link",
+          "action": "Get a link"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a link",
+          "action": "Update a link"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "link"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Long URL",
+      "name": "longUrl",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "link"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Domain",
+          "name": "domain",
+          "type": "string",
+          "default": "bit.ly"
+        },
+        {
+          "displayName": "Group Name or ID",
+          "name": "group",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "default": "",
+          "typeOptions": {
+            "loadOptionsMethod": "getGroups"
+          }
+        },
+        {
+          "displayName": "Tag Names or IDs",
+          "name": "tags",
+          "type": "multiOptions",
+          "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "default": [],
+          "typeOptions": {
+            "loadOptionsMethod": "getTags",
+            "loadOptionsDependsOn": [
+              "group"
+            ]
+          }
+        },
+        {
+          "displayName": "Title",
+          "name": "title",
+          "type": "string",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "link"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Deeplinks",
+      "name": "deeplink",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "name": "deeplinkUi",
+          "displayName": "Deep Link",
+          "values": [
+            {
+              "displayName": "App ID",
+              "name": "appId",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "App URI Path",
+              "name": "appUriPath",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Install Type",
+              "name": "installType",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Install URL",
+              "name": "installUrl",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "link"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Bitlink",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "link"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Archived",
+          "name": "archived",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Group Name or ID",
+          "name": "group",
+          "type": "options",
+          "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "default": "",
+          "typeOptions": {
+            "loadOptionsMethod": "getGroups"
+          }
+        },
+        {
+          "displayName": "Long URL",
+          "name": "longUrl",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Tag Names or IDs",
+          "name": "tags",
+          "type": "multiOptions",
+          "description": "Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+          "default": [],
+          "typeOptions": {
+            "loadOptionsMethod": "getTags",
+            "loadOptionsDependsOn": [
+              "group"
+            ]
+          }
+        },
+        {
+          "displayName": "Title",
+          "name": "title",
+          "type": "string",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "link"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Deeplinks",
+      "name": "deeplink",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "name": "deeplinkUi",
+          "displayName": "Deep Link",
+          "values": [
+            {
+              "displayName": "App ID",
+              "name": "appId",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "App URI Path",
+              "name": "appUriPath",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Install Type",
+              "name": "installType",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Install URL",
+              "name": "installUrl",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "link"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Bitlink",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "link"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a link"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a link"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update a link"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "bitlyApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "accessToken"
+          ]
+        }
+      }
+    },
+    {
+      "name": "bitlyOAuth2Api",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.763Z",
+  "api_version": "1.0.0"
+}

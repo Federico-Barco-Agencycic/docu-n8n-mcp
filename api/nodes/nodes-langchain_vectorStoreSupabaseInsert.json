@@ -1,0 +1,56 @@
+{
+  "node_type": "nodes-langchain.vectorStoreSupabaseInsert",
+  "display_name": "Supabase: Insert",
+  "description": "Insert data into Supabase Vector Store index [https://supabase.com/docs/guides/ai/langchain]",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": false,
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "Please refer to the <a href=\"https://supabase.com/docs/guides/ai/langchain\" target=\"_blank\">Supabase documentation</a> for more information on how to setup your database as a Vector Store.",
+      "name": "setupNotice",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Table Name",
+      "name": "tableName",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "required": true
+    },
+    {
+      "displayName": "Query Name",
+      "name": "queryName",
+      "type": "string",
+      "default": "match_documents",
+      "description": "Name of the query to use for matching documents",
+      "required": true
+    },
+    {
+      "displayName": "Specify the document to load in the document loader sub-node",
+      "name": "notice",
+      "type": "notice",
+      "default": ""
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "supabaseApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.301Z",
+  "api_version": "1.0.0"
+}

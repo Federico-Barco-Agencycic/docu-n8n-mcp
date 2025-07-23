@@ -1,0 +1,136 @@
+{
+  "node_type": "nodes-base.calTrigger",
+  "display_name": "Cal.com Trigger",
+  "description": "Handle Cal.com events via webhooks",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "2",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Cal Trigger node documentation\ndescription: Learn how to use the Cal Trigger node in n8n. Follow technical documentation to integrate Cal Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Cal Trigger node\n\n[Cal](https://cal.com/) is the event-juggling scheduler for everyone. Focus on meeting, not making meetings.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/cal.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Cal Trigger integrations](https://n8n.io/integrations/cal-trigger/){:target=_blank .external-link} page.\n///\n\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Events",
+      "name": "events",
+      "type": "multiOptions",
+      "default": [],
+      "options": [
+        {
+          "name": "Booking Cancelled",
+          "value": "BOOKING_CANCELLED",
+          "description": "Receive notifications when a Cal event is canceled"
+        },
+        {
+          "name": "Booking Created",
+          "value": "BOOKING_CREATED",
+          "description": "Receive notifications when a new Cal event is created"
+        },
+        {
+          "name": "Booking Rescheduled",
+          "value": "BOOKING_RESCHEDULED",
+          "description": "Receive notifications when a Cal event is rescheduled"
+        },
+        {
+          "name": "Meeting Ended",
+          "value": "MEETING_ENDED",
+          "description": "Receive notifications when a Cal event or meeting has ended"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "API Version",
+      "name": "version",
+      "type": "options",
+      "default": 1,
+      "options": [
+        {
+          "name": "Before v2.0",
+          "value": 1
+        },
+        {
+          "name": "v2.0 Onwards",
+          "value": 2
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "API Version",
+      "name": "version",
+      "type": "options",
+      "default": 2,
+      "options": [
+        {
+          "name": "Before v2.0",
+          "value": 1
+        },
+        {
+          "name": "v2.0 Onwards",
+          "value": 2
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "@version": [
+            2
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "App ID",
+          "name": "appId",
+          "type": "string",
+          "description": "The ID of the App to monitor",
+          "default": ""
+        },
+        {
+          "displayName": "EventType Name or ID",
+          "name": "eventTypeId",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsMethod": "getEventTypes"
+          },
+          "description": "The EventType to monitor. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+          "default": ""
+        },
+        {
+          "displayName": "Payload Template",
+          "name": "payloadTemplate",
+          "type": "string",
+          "description": "Template to customize the webhook payload",
+          "default": "",
+          "typeOptions": {
+            "rows": 4
+          }
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "calApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.767Z",
+  "api_version": "1.0.0"
+}

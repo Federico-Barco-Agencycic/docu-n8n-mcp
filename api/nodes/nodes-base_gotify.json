@@ -1,0 +1,225 @@
+{
+  "node_type": "nodes-base.gotify",
+  "display_name": "Gotify",
+  "description": "Consume Gotify API",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Gotify node documentation\ndescription: Learn how to use the Gotify node in n8n. Follow technical documentation to integrate Gotify node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Gotify node\n\nUse the Gotify node to automate work in Gotify, and integrate Gotify with other applications. n8n has built-in support for a wide range of Gotify features, including creating, deleting, and getting messages. \n\nOn this page, you'll find a list of operations the Gotify node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Gotify credentials](/integrations/builtin/credentials/gotify.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n* Message\n    * Create\n    * Delete\n    * Get All\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'gotify') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "message",
+      "options": [
+        {
+          "name": "Message",
+          "value": "message"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "action": "Create a message"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "action": "Delete a message"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "action": "Get many messages"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "message"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Message",
+      "name": "message",
+      "type": "string",
+      "default": "",
+      "description": "The message to send, If using Markdown add the Content Type option",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "message"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Priority",
+          "name": "priority",
+          "type": "number",
+          "default": 1,
+          "description": "The priority of the message"
+        },
+        {
+          "displayName": "Title",
+          "name": "title",
+          "type": "string",
+          "default": "",
+          "description": "The title of the message"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "message"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Content Type",
+          "name": "contentType",
+          "type": "options",
+          "default": "text/plain",
+          "description": "The message content type",
+          "options": [
+            {
+              "name": "Plain",
+              "value": "text/plain"
+            },
+            {
+              "name": "Markdown",
+              "value": "text/markdown"
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "message"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Message ID",
+      "name": "messageId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "message"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "message"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 20,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "message"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "gotifyApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.899Z",
+  "api_version": "1.0.0"
+}

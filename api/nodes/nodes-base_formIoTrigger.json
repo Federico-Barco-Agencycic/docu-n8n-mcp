@@ -1,0 +1,75 @@
+{
+  "node_type": "nodes-base.formIoTrigger",
+  "display_name": "Form.io Trigger",
+  "description": "Handle form.io events via webhooks",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Form.io Trigger node documentation\ndescription: Learn how to use the Form.io Trigger node in n8n. Follow technical documentation to integrate Form.io Trigger node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Form.io Trigger node\n\n[Form.io](https://www.form.io/){:target=_blank .external-link} is an enterprise class combined form and API data management platform for building complex form-based business process applications.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/formiotrigger.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Form.io Trigger integrations](https://n8n.io/integrations/formio-trigger/){:target=_blank .external-link} page.\n///\n",
+  "properties_schema": [
+    {
+      "displayName": "Project Name or ID",
+      "name": "projectId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "typeOptions": {
+        "loadOptionsMethod": "getProjects"
+      }
+    },
+    {
+      "displayName": "Form Name or ID",
+      "name": "formId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "projectId"
+        ],
+        "loadOptionsMethod": "getForms"
+      }
+    },
+    {
+      "displayName": "Trigger Events",
+      "name": "events",
+      "type": "multiOptions",
+      "default": [],
+      "options": [
+        {
+          "name": "Submission Created",
+          "value": "create"
+        },
+        {
+          "name": "Submission Updated",
+          "value": "update"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "Simplify",
+      "name": "simple",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return a simplified version of the response instead of the raw data"
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "formIoApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.839Z",
+  "api_version": "1.0.0"
+}

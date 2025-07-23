@@ -1,0 +1,319 @@
+{
+  "node_type": "nodes-base.quickChart",
+  "display_name": "QuickChart",
+  "description": "Create a chart via QuickChart",
+  "category": "output",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: QuickChart node documentation\ndescription: Learn how to use the QuickChart node in n8n. Follow technical documentation to integrate QuickChart node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# QuickChart node\n\nUse the QuickChart node to automate work in QuickChart, and integrate QuickChart with other applications. n8n has built-in support for a wide range of QuickChart chart types, including bar, doughnut, line, pie, and polar charts.\n\nOn this page, you'll find a list of operations the QuickChart node supports and links to more resources.\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\nCreate a chart by selecting the chart type:\n\n* Chart Type\n\t* Bar Chart\n\t* Doughnut Chart\n\t* Line Chart\n\t* Pie Chart\n\t* Polar Chart\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'quickchart') ]]\n\n## Related resources\n\nRefer to [QuickChart's API documentation](https://quickchart.io/documentation/){:target=_blank .external-link} for more information about the service.\n",
+  "properties_schema": [
+    {
+      "displayName": "Chart Type",
+      "name": "chartType",
+      "type": "options",
+      "default": "bar",
+      "description": "The type of chart to create",
+      "options": [
+        {
+          "name": "Bar Chart",
+          "value": "bar"
+        },
+        {
+          "name": "Doughnut Chart",
+          "value": "doughnut"
+        },
+        {
+          "name": "Line Chart",
+          "value": "line"
+        },
+        {
+          "name": "Pie Chart",
+          "value": "pie"
+        },
+        {
+          "name": "Polar Chart",
+          "value": "polarArea"
+        }
+      ]
+    },
+    {
+      "displayName": "Add Labels",
+      "name": "labelsMode",
+      "type": "options",
+      "default": "manually",
+      "options": [
+        {
+          "name": "Manually",
+          "value": "manually"
+        },
+        {
+          "name": "From Array",
+          "value": "array"
+        }
+      ]
+    },
+    {
+      "displayName": "Labels",
+      "name": "labelsUi",
+      "type": "fixedCollection",
+      "default": {},
+      "description": "Labels to use in the chart",
+      "options": [
+        {
+          "name": "labelsValues",
+          "displayName": "Labels",
+          "values": [
+            {
+              "displayName": "Label",
+              "name": "label",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "labelsMode": [
+            "manually"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true,
+        "sortable": true
+      }
+    },
+    {
+      "displayName": "Labels Array",
+      "name": "labelsArray",
+      "type": "string",
+      "default": "",
+      "description": "The array of labels to be used in the chart",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "labelsMode": [
+            "array"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Data",
+      "name": "data",
+      "type": "json",
+      "default": "",
+      "description": "Data to use for the dataset, documentation and examples <a href=\"https://quickchart.io/documentation/chart-types/\" target=\"_blank\">here</a>",
+      "required": true
+    },
+    {
+      "displayName": "Put Output In Field",
+      "name": "output",
+      "type": "string",
+      "default": "data",
+      "description": "The binary data will be displayed in the Output panel on the right, under the Binary tab",
+      "required": true
+    },
+    {
+      "displayName": "Chart Options",
+      "name": "chartOptions",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Background Color",
+          "name": "backgroundColor",
+          "type": "color",
+          "typeOptions": {
+            "showAlpha": true
+          },
+          "default": "",
+          "description": "Background color of the chart"
+        },
+        {
+          "displayName": "Device Pixel Ratio",
+          "name": "devicePixelRatio",
+          "type": "number",
+          "default": 2,
+          "typeOptions": {
+            "minValue": 1,
+            "maxValue": 2
+          },
+          "description": "Pixel ratio of the chart"
+        },
+        {
+          "displayName": "Format",
+          "name": "format",
+          "type": "options",
+          "default": "png",
+          "description": "File format of the resulting chart",
+          "options": [
+            {
+              "name": "PNG",
+              "value": "png"
+            },
+            {
+              "name": "PDF",
+              "value": "pdf"
+            },
+            {
+              "name": "SVG",
+              "value": "svg"
+            },
+            {
+              "name": "WebP",
+              "value": "webp"
+            }
+          ]
+        },
+        {
+          "displayName": "Height",
+          "name": "height",
+          "type": "number",
+          "default": 300,
+          "description": "Height of the chart"
+        },
+        {
+          "displayName": "Horizontal",
+          "name": "horizontal",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the chart should use its Y axis horizontal",
+          "displayOptions": {
+            "show": {
+              "/chartType": [
+                "bar",
+                "boxplot",
+                "violin"
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Width",
+          "name": "width",
+          "type": "number",
+          "default": 500,
+          "description": "Width of the chart"
+        }
+      ]
+    },
+    {
+      "displayName": "Dataset Options",
+      "name": "datasetOptions",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Background Color",
+          "name": "backgroundColor",
+          "type": "color",
+          "default": "",
+          "typeOptions": {
+            "showAlpha": true
+          },
+          "description": "Color used for the background the dataset (area of a line graph, fill of a bar chart, etc.)"
+        },
+        {
+          "displayName": "Border Color",
+          "name": "borderColor",
+          "type": "color",
+          "typeOptions": {
+            "showAlpha": true
+          },
+          "default": "",
+          "description": "Color used for lines of the dataset"
+        },
+        {
+          "displayName": "Fill",
+          "name": "fill",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to fill area of the dataset",
+          "displayOptions": {
+            "show": {
+              "/chartType": [
+                "line"
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Label",
+          "name": "label",
+          "type": "string",
+          "default": "",
+          "description": "The label of the dataset"
+        },
+        {
+          "displayName": "Point Style",
+          "name": "pointStyle",
+          "type": "options",
+          "default": "circle",
+          "description": "Style to use for points of the dataset",
+          "options": [
+            {
+              "name": "Circle",
+              "value": "circle"
+            },
+            {
+              "name": "Cross",
+              "value": "cross"
+            },
+            {
+              "name": "CrossRot",
+              "value": "crossRot"
+            },
+            {
+              "name": "Dash",
+              "value": "dash"
+            },
+            {
+              "name": "Line",
+              "value": "line"
+            },
+            {
+              "name": "Rect",
+              "value": "rect"
+            },
+            {
+              "name": "Rect Rot",
+              "value": "rectRot"
+            },
+            {
+              "name": "Rect Rounded",
+              "value": "rectRounded"
+            },
+            {
+              "name": "Star",
+              "value": "star"
+            },
+            {
+              "name": "Triangle",
+              "value": "triangle"
+            }
+          ],
+          "displayOptions": {
+            "show": {
+              "/chartType": [
+                "line"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.075Z",
+  "api_version": "1.0.0"
+}

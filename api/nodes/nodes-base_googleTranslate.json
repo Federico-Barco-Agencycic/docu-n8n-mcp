@@ -1,0 +1,164 @@
+{
+  "node_type": "nodes-base.googleTranslate",
+  "display_name": "Google Translate",
+  "description": "Translate data using Google Translate",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "2",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Google Translate node documentation\ndescription: Learn how to use the Google Translate node in n8n. Follow technical documentation to integrate Google Translate node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Google Translate node\n\nUse the Google Translate node to automate work in Google Translate, and integrate Google Translate with other applications. n8n has built-in support for a wide range of Google Translate features, including translating languages.\n\nOn this page, you'll find a list of operations the Google Translate node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Google Translate credentials](/integrations/builtin/credentials/google/index.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n* Language\n    * Translate data\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'google-translate') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "serviceAccount",
+      "options": [
+        {
+          "name": "Service Account",
+          "value": "serviceAccount"
+        },
+        {
+          "name": "OAuth2",
+          "value": "oAuth2"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "oAuth2",
+      "options": [
+        {
+          "name": "OAuth2 (recommended)",
+          "value": "oAuth2"
+        },
+        {
+          "name": "Service Account",
+          "value": "serviceAccount"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "@version": [
+            2
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "language",
+      "options": [
+        {
+          "name": "Language",
+          "value": "language"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "translate",
+      "options": [
+        {
+          "name": "Translate",
+          "value": "translate",
+          "description": "Translate data",
+          "action": "Translate a language"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "language"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Text",
+      "name": "text",
+      "type": "string",
+      "default": "",
+      "description": "The input text to translate",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "translate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Translate To",
+      "name": "translateTo",
+      "type": "options",
+      "default": "",
+      "description": "The language to use for translation of the input text, set to one of the language codes listed in <a href=\"https://cloud.google.com/translate/docs/languages\">Language Support</a>. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "translate"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getLanguages"
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "translate",
+      "name": "Translate",
+      "description": "Translate data"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "googleApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "serviceAccount"
+          ]
+        }
+      }
+    },
+    {
+      "name": "googleTranslateOAuth2Api",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.899Z",
+  "api_version": "1.0.0"
+}

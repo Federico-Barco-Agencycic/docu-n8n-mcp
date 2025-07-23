@@ -1,0 +1,70 @@
+{
+  "node_type": "nodes-base.stopAndError",
+  "display_name": "Stop and Error",
+  "description": "Throw an error in the workflow",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Stop And Error\ndescription: Documentation for the Stop And Error node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: high\n---\n\n# Stop And Error\n\nUse the Stop And Error node to display custom error messages, cause executions to fail under certain conditions, and send custom error information to error workflows.\n\n## Operations\n\n* Error Message\n* Error Object\n\n## Node parameters\n\nBoth operations include one node parameter, the **Error Type**. Use this parameter to select the type of error to throw. Choose between the two operations: **Error Message** and **Error Object**.\n\nThe other parameters depend on which operation you select.\n\n### Error Message parameters\n\nThe Error Message Error Type adds one parameter, the **Error Message** field. Enter the message you'd like to throw.\n\n### Error Object parameters\n\nThe Error Object Error Type adds one parameter, the **Error Object**. Enter a JSON object that contains the error properties you'd like to throw.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'stop-and-error') ]]\n\n## Related resources\n\nYou can use the Stop And Error node with the [Error trigger](/integrations/builtin/core-nodes/n8n-nodes-base.errortrigger.md) node.\n\nRead more about [Error workflows](/flow-logic/error-handling.md) in n8n workflows.\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Error Type",
+      "name": "errorType",
+      "type": "options",
+      "default": "errorMessage",
+      "description": "Type of error to throw",
+      "options": [
+        {
+          "name": "Error Message",
+          "value": "errorMessage"
+        },
+        {
+          "name": "Error Object",
+          "value": "errorObject"
+        }
+      ]
+    },
+    {
+      "displayName": "Error Message",
+      "name": "errorMessage",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "errorType": [
+            "errorMessage"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Error Object",
+      "name": "errorObject",
+      "type": "json",
+      "default": "",
+      "description": "Object containing error properties",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "errorType": [
+            "errorObject"
+          ]
+        }
+      },
+      "typeOptions": {
+        "alwaysOpenEditWindow": true
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.155Z",
+  "api_version": "1.0.0"
+}

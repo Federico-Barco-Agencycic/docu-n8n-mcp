@@ -1,0 +1,252 @@
+{
+  "node_type": "nodes-base.compression",
+  "display_name": "Compression",
+  "description": "Compress and decompress files",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1.1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Compression\ndescription: Documentation for the Compression node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Compression\n\nUse the Compression node to compress and decompress files. Supports Zip and Gzip formats.\n\n## Node parameters\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\nThe node parameters depend on which **Operation** you select. Choose to:\n\n* **Compress**: Create a compressed file from your input data.\n* **Decompress**: Decompress an existing compressed file.\n\nRefer to the sections below for parameters specific to each **Operation**.\n\n### Compress\n\n- **Input Binary Field(s)**: Enter the name of the fields in the input data that contain the binary files you want to compress. To compress more than one file, use a comma-separated list.\n- **Output Format**: Choose whether to format the compressed output as **Zip** or **Gzip**.\n- **File Name**: Enter the name of the zip file the node creates.\n- **Put Output File in Field**: Enter the name of the field in the output data to contain the file.\n\n### Decompress\n\n- **Put Output File in Field**: Enter the name of the fields in the input data that contain the binary files you want to decompress. To decompress more than one file, use a comma-separated list.\n- **Output Prefix**: Enter a prefix to add to the output file name.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'compression') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "decompress",
+      "options": [
+        {
+          "name": "Compress",
+          "value": "compress",
+          "action": "Compress file(s)",
+          "description": "Compress files into a zip or gzip archive"
+        },
+        {
+          "name": "Decompress",
+          "value": "decompress",
+          "action": "Decompress file(s)",
+          "description": "Decompress zip or gzip archives"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Input Binary Field(s)",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "description": "To process more than one file, use a comma-separated list of the binary fields names",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "compress"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Input Binary Field(s)",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "description": "To process more than one file, use a comma-separated list of the binary fields names",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "decompress"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Output Format",
+      "name": "outputFormat",
+      "type": "options",
+      "default": "",
+      "description": "Format of the output",
+      "options": [
+        {
+          "name": "Gzip",
+          "value": "gzip"
+        },
+        {
+          "name": "Zip",
+          "value": "zip"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "compress"
+          ],
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Output Format",
+      "name": "outputFormat",
+      "type": "options",
+      "default": "zip",
+      "description": "Format of the output",
+      "options": [
+        {
+          "name": "Gzip",
+          "value": "gzip"
+        },
+        {
+          "name": "Zip",
+          "value": "zip"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "compress"
+          ]
+        },
+        "hide": {
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File Name",
+      "name": "fileName",
+      "type": "string",
+      "default": "",
+      "description": "Name of the output file",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "compress"
+          ],
+          "outputFormat": [
+            "zip"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Put Output File in Field",
+      "name": "binaryPropertyOutput",
+      "type": "string",
+      "default": "data",
+      "displayOptions": {
+        "show": {
+          "outputFormat": [
+            "zip"
+          ],
+          "operation": [
+            "compress"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File Name",
+      "name": "fileName",
+      "type": "string",
+      "default": "",
+      "description": "Name of the output file",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "compress"
+          ],
+          "outputFormat": [
+            "gzip"
+          ]
+        },
+        "hide": {
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Put Output File in Field",
+      "name": "binaryPropertyOutput",
+      "type": "string",
+      "default": "data",
+      "displayOptions": {
+        "show": {
+          "outputFormat": [
+            "gzip"
+          ],
+          "operation": [
+            "compress"
+          ]
+        },
+        "hide": {
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Output File Prefix",
+      "name": "outputPrefix",
+      "type": "string",
+      "default": "data",
+      "description": "Prefix to add to the gzip file",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "compress"
+          ],
+          "outputFormat": [
+            "gzip"
+          ],
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Output Prefix",
+      "name": "outputPrefix",
+      "type": "string",
+      "default": "file_",
+      "description": "Prefix to add to the decompressed files",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "decompress"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "compress",
+      "name": "Compress",
+      "description": "Compress files into a zip or gzip archive"
+    },
+    {
+      "operation": "decompress",
+      "name": "Decompress",
+      "description": "Decompress zip or gzip archives"
+    }
+  ],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:21.790Z",
+  "api_version": "1.0.0"
+}

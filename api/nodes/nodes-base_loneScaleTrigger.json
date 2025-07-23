@@ -1,0 +1,38 @@
+{
+  "node_type": "nodes-base.loneScaleTrigger",
+  "display_name": "LoneScale Trigger",
+  "description": "Trigger LoneScale Workflow",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: LoneScale Trigger node documentation\ndescription: Learn how to use the LoneScale Trigger node in n8n. Follow technical documentation to integrate LoneScale Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# LoneScale Trigger node\n\nUse the LoneScale Trigger node to respond to workflow events in [LoneScale](https://www.lonescale.com/){:target=_blank .external-link} and integrate LoneScale with other applications.\n\nOn this page, you'll find a list of operations the LoneScale node supports, and links to more resources.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/lonescale.md).\n///\n\n/// note | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [LoneScale Trigger integrations](https://n8n.io/integrations/lonescale-trigger/){:target=_blank .external-link} page.\n///\n\n## Events\n\n- On new LoneScale event\n\n## Related resources\n\nn8n provides an app node for LoneScale. You can find the node docs [here](/integrations/builtin/app-nodes/n8n-nodes-base.lonescale.md).\n\nView [example workflows and related content](https://n8n.io/integrations/lonescale-trigger/){:target=_blank .external-link} on n8n's website.\n",
+  "properties_schema": [
+    {
+      "displayName": "Workflow Name",
+      "name": "workflow",
+      "type": "options",
+      "default": "",
+      "description": "Select one workflow. Choose from the list",
+      "required": true,
+      "typeOptions": {
+        "loadOptionsMethod": "getWorkflows"
+      },
+      "noDataExpression": true
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "loneScaleApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.959Z",
+  "api_version": "1.0.0"
+}

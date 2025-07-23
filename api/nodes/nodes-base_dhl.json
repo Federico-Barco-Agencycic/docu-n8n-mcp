@@ -1,0 +1,88 @@
+{
+  "node_type": "nodes-base.dhl",
+  "display_name": "DHL",
+  "description": "Consume DHL API",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: DHL node documentation\ndescription: Learn how to use the DHL node in n8n. Follow technical documentation to integrate DHL node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# DHL node\n\nUse the DHL node to automate work in DHL, and integrate DHL with other applications. n8n has built-in support for a wide range of DHL features, including tracking shipment. \n\nOn this page, you'll find a list of operations the DHL node supports and links to more resources.\n\n/// note | Credentials\nRefer to [DHL credentials](/integrations/builtin/credentials/dhl.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n* Shipment\n    * Get Tracking Details\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'dhl') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "hidden",
+      "default": "shipment",
+      "options": [
+        {
+          "name": "Shipment",
+          "value": "shipment"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Get Tracking Details",
+          "value": "get",
+          "action": "Get tracking details for a shipment"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "shipment"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Tracking Number",
+      "name": "trackingNumber",
+      "type": "string",
+      "default": "",
+      "required": true
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Recipient's Postal Code",
+          "name": "recipientPostalCode",
+          "type": "string",
+          "default": "",
+          "description": "DHL will return more detailed information on the shipment when you provide the Recipient's Postal Code - it acts as a verification step"
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "operation": "get",
+      "name": "Get Tracking Details"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "dhlApi",
+      "required": true,
+      "testedBy": "dhlApiCredentialTest"
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.806Z",
+  "api_version": "1.0.0"
+}

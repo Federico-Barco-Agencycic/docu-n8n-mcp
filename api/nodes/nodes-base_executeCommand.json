@@ -1,0 +1,39 @@
+{
+  "node_type": "nodes-base.executeCommand",
+  "display_name": "Execute Command",
+  "description": "Executes a command on the host",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Execute Command\ndescription: Documentation for the Execute Command node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: high\n---\n\n# Execute Command\n\nThe Execute Command node runs shell commands on the host machine that runs n8n.\n\n/// note | Which shell runs the command?\nThis node executes the command in the default shell of the host machine. For example, `cmd` on Windows and `zsh` on macOS.\n\nIf you run n8n with Docker, your command will run in the n8n container and not the Docker host.\n///\n\n/// note | Not available on Cloud\nThis node isn't available on n8n Cloud.\n///\n\n## Node parameters\n\nConfigure the node using the following parameters.\n\n### Execute Once\n\nChoose whether you want the node to execute only once (turned on) or once for every item it receives as input (turned off).\n\n### Command\n\nEnter the command to execute on the host machine. Refer to sections below for examples of running [multiple commands](#run-multiple-commands) and [cURL commands](#run-curl-command).\n\n#### Run multiple commands\n\nUse one of two methods to run multiple commands in one Execute Command node:\n\n* Enter each command on one line separated by `&&`. For example, you can combine the change directory (cd) command with the list (ls) command using `&&`.\n\n    ```bash\n    cd bin && ls\n    ```\n\n* Enter each command on a separate line. For example, you can write the list (ls) command on a new line after the change directory (cd) command.\n\n    ```bash\n    cd bin\n    ls\n    ```\n\n#### Run cURL command\n\nYou can also use the [HTTP Request](/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/index.md) node to make a cURL request.\n\nIf you want to run the curl command in the Execute Command node, you will have to build a Docker image based on the existing n8n image. The default n8n Docker image uses Alpine Linux. You will have to install the curl package.\n\n1. Create a file named `Dockerfile`.\n2. Add the below code snippet to the Dockerfile.\n\n    ```shell\n    FROM docker.n8n.io/n8nio/n8n\n    USER root\n    RUN apk --update add curl\n    USER node\n    ```\n\n3. In the same folder, execute the command below to build the Docker image.\n\n    ```shell\n    docker build -t n8n-curl\n    ```\n\n4. Replace the Docker image you used before. For example, replace `docker.n8n.io/n8nio/n8n` with `n8n-curl`.\n5. Run the newly created Docker image. You'll now be able to execute ssh using the Execute Command Node.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'execute-command') ]]\n\n## Common issues\n\nFor common questions or issues and suggested solutions, refer to [Common Issues](/integrations/builtin/core-nodes/n8n-nodes-base.executecommand/common-issues.md).\n",
+  "properties_schema": [
+    {
+      "displayName": "Execute Once",
+      "name": "executeOnce",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to execute only once instead of once for each entry"
+    },
+    {
+      "displayName": "Command",
+      "name": "command",
+      "type": "string",
+      "default": "",
+      "description": "The command to execute",
+      "required": true,
+      "typeOptions": {
+        "rows": 5
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:21.827Z",
+  "api_version": "1.0.0"
+}

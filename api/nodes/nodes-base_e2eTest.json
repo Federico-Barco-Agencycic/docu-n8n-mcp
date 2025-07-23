@@ -1,0 +1,138 @@
+{
+  "node_type": "nodes-base.e2eTest",
+  "display_name": "E2E Test",
+  "description": "Dummy node used for e2e testing",
+  "category": "output",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": false,
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "remoteOptions",
+      "options": [
+        {
+          "name": "Remote Options",
+          "value": "remoteOptions"
+        },
+        {
+          "name": "Resource Locator",
+          "value": "resourceLocator"
+        },
+        {
+          "name": "Resource Mapping Component",
+          "value": "resourceMapper"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Field ID",
+      "name": "fieldId",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "displayName": "Remote Options Name or ID",
+      "name": "remoteOptions",
+      "type": "options",
+      "default": [],
+      "description": "Remote options to load. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "remoteOptions"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "fieldId"
+        ],
+        "loadOptionsMethod": "getOptions"
+      }
+    },
+    {
+      "displayName": "Resource Locator",
+      "name": "rlc",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "resourceLocator"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Resource Mapping Component",
+      "name": "resourceMapper",
+      "type": "resourceMapper",
+      "default": {
+        "mappingMode": "defineBelow",
+        "value": null
+      },
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "resourceMapper"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "fieldId"
+        ],
+        "resourceMapper": {
+          "resourceMapperMethod": "getMappingColumns",
+          "mode": "upsert",
+          "fieldWords": {
+            "singular": "column",
+            "plural": "columns"
+          },
+          "addAllFields": true,
+          "multiKeyMatch": false
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Other Non Important Field",
+      "name": "otherField",
+      "type": "string",
+      "default": ""
+    }
+  ],
+  "operations": [
+    {
+      "operation": "remoteOptions",
+      "name": "Remote Options"
+    },
+    {
+      "operation": "resourceLocator",
+      "name": "Resource Locator"
+    },
+    {
+      "operation": "resourceMapper",
+      "name": "Resource Mapping Component"
+    }
+  ],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:21.814Z",
+  "api_version": "1.0.0"
+}

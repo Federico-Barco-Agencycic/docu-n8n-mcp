@@ -1,0 +1,277 @@
+{
+  "node_type": "nodes-langchain.openAiAssistant",
+  "display_name": "OpenAI Assistant",
+  "description": "Utilizes Assistant API from Open AI.",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1.1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": false,
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "mode",
+      "type": "options",
+      "default": "existing",
+      "options": [
+        {
+          "name": "Use New Assistant",
+          "value": "new"
+        },
+        {
+          "name": "Use Existing Assistant",
+          "value": "existing"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Name",
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "/mode": [
+            "new"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Instructions",
+      "name": "instructions",
+      "type": "string",
+      "default": "",
+      "description": "How the Assistant and model should behave or respond",
+      "displayOptions": {
+        "show": {
+          "/mode": [
+            "new"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 5
+      }
+    },
+    {
+      "displayName": "Model",
+      "name": "model",
+      "type": "options",
+      "default": "gpt-3.5-turbo-1106",
+      "description": "The model which will be used to power the assistant. <a href=\"https://beta.openai.com/docs/models/overview\">Learn more</a>. The Retrieval tool requires gpt-3.5-turbo-1106 and gpt-4-1106-preview models.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "/mode": [
+            "new"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptions": {
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "={{ $parameter.options?.baseURL?.split(\"/\").slice(-1).pop() || \"v1\"  }}/models"
+            },
+            "output": {
+              "postReceive": [
+                {
+                  "type": "rootProperty",
+                  "properties": {
+                    "property": "data"
+                  }
+                },
+                {
+                  "type": "filter",
+                  "properties": {
+                    "pass": "={{ $responseItem.id.startsWith('gpt-') && !$responseItem.id.includes('instruct') }}"
+                  }
+                },
+                {
+                  "type": "setKeyValue",
+                  "properties": {
+                    "name": "={{$responseItem.id}}",
+                    "value": "={{$responseItem.id}}"
+                  }
+                },
+                {
+                  "type": "sort",
+                  "properties": {
+                    "key": "name"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "displayName": "Assistant",
+      "name": "assistantId",
+      "type": "options",
+      "default": "",
+      "description": "The assistant to use. <a href=\"https://beta.openai.com/docs/assistants/overview\">Learn more</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "/mode": [
+            "existing"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptions": {
+          "routing": {
+            "request": {
+              "method": "GET",
+              "headers": {
+                "OpenAI-Beta": "assistants=v1"
+              },
+              "url": "={{ $parameter.options?.baseURL?.split(\"/\").slice(-1).pop() || \"v1\"  }}/assistants"
+            },
+            "output": {
+              "postReceive": [
+                {
+                  "type": "rootProperty",
+                  "properties": {
+                    "property": "data"
+                  }
+                },
+                {
+                  "type": "setKeyValue",
+                  "properties": {
+                    "name": "={{$responseItem.name}}",
+                    "value": "={{$responseItem.id}}",
+                    "description": "={{$responseItem.model}}"
+                  }
+                },
+                {
+                  "type": "sort",
+                  "properties": {
+                    "key": "name"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Text",
+      "name": "text",
+      "type": "string",
+      "default": "={{ $json.chat_input }}",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Text",
+      "name": "text",
+      "type": "string",
+      "default": "={{ $json.chatInput }}",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1.1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "OpenAI Tools",
+      "name": "nativeTools",
+      "type": "multiOptions",
+      "default": [],
+      "options": [
+        {
+          "name": "Code Interpreter",
+          "value": "code_interpreter"
+        },
+        {
+          "name": "Knowledge Retrieval",
+          "value": "retrieval"
+        }
+      ]
+    },
+    {
+      "displayName": "Connect your own custom tools to this node on the canvas",
+      "name": "noticeTools",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Upload files for retrieval using the <a href=\"https://platform.openai.com/playground\" target=\"_blank\">OpenAI website<a/>",
+      "name": "noticeTools",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "/nativeTools": [
+            "retrieval"
+          ]
+        }
+      },
+      "typeOptions": {
+        "noticeTheme": "info"
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "description": "Additional options to add",
+      "options": [
+        {
+          "displayName": "Base URL",
+          "name": "baseURL",
+          "default": "https://api.openai.com/v1",
+          "description": "Override the default base URL for the API",
+          "type": "string"
+        },
+        {
+          "displayName": "Max Retries",
+          "name": "maxRetries",
+          "default": 2,
+          "description": "Maximum number of retries to attempt",
+          "type": "number"
+        },
+        {
+          "displayName": "Timeout",
+          "name": "timeout",
+          "default": 10000,
+          "description": "Maximum amount of time a request is allowed to take in milliseconds",
+          "type": "number"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "openAiApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.278Z",
+  "api_version": "1.0.0"
+}

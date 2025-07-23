@@ -1,0 +1,182 @@
+{
+  "node_type": "nodes-base.deepL",
+  "display_name": "DeepL",
+  "description": "Translate data using DeepL",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: DeepL node documentation\ndescription: Learn how to use the DeepL node in n8n. Follow technical documentation to integrate DeepL node into your workflows.\ncontentType: [integration, reference]\n---\n\n# DeepL node\n\nUse the DeepL node to automate work in DeepL, and integrate DeepL with other applications. n8n has built-in support for a wide range of DeepL features, including translating languages.\n\nOn this page, you'll find a list of operations the DeepL node supports and links to more resources.\n\n/// note | Credentials\nRefer to [DeepL credentials](/integrations/builtin/credentials/deepl.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n* Language\n    * Translate data\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'deepl') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "language",
+      "options": [
+        {
+          "name": "Language",
+          "value": "language"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "translate",
+      "options": [
+        {
+          "name": "Translate",
+          "value": "translate",
+          "description": "Translate data",
+          "action": "Translate a language"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "language"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Text",
+      "name": "text",
+      "type": "string",
+      "default": "",
+      "description": "Input text to translate",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "translate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Target Language Name or ID",
+      "name": "translateTo",
+      "type": "options",
+      "default": "",
+      "description": "Language to translate to. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "translate"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getLanguages"
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Source Language Name or ID",
+          "name": "sourceLang",
+          "type": "options",
+          "default": "",
+          "description": "Language to translate from. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+          "typeOptions": {
+            "loadOptionsMethod": "getLanguages"
+          }
+        },
+        {
+          "displayName": "Split Sentences",
+          "name": "splitSentences",
+          "type": "options",
+          "default": "1",
+          "description": "How the translation engine should split sentences",
+          "options": [
+            {
+              "name": "Interpunction Only",
+              "value": "nonewlines",
+              "description": "Split text on interpunction only, ignoring newlines"
+            },
+            {
+              "name": "No Splitting",
+              "value": "0",
+              "description": "Treat all text as a single sentence"
+            },
+            {
+              "name": "On Punctuation and Newlines",
+              "value": "1",
+              "description": "Split text on interpunction and newlines"
+            }
+          ]
+        },
+        {
+          "displayName": "Preserve Formatting",
+          "name": "preserveFormatting",
+          "type": "options",
+          "default": "0",
+          "description": "Whether the translation engine should respect the original formatting, even if it would usually correct some aspects",
+          "options": [
+            {
+              "name": "Apply Corrections",
+              "value": "0",
+              "description": "Fix punctuation at the beginning and end of sentences and fixes lower/upper caseing at the beginning"
+            },
+            {
+              "name": "Do Not Correct",
+              "value": "1",
+              "description": "Keep text as similar as possible to the original"
+            }
+          ]
+        },
+        {
+          "displayName": "Formality",
+          "name": "formality",
+          "type": "options",
+          "default": "default",
+          "description": "How formal or informal the target text should be. May not be supported with all languages.",
+          "options": [
+            {
+              "name": "Formal",
+              "value": "more"
+            },
+            {
+              "name": "Informal",
+              "value": "less"
+            },
+            {
+              "name": "Neutral",
+              "value": "default"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "operation": "translate",
+      "name": "Translate",
+      "description": "Translate data"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "deepLApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.805Z",
+  "api_version": "1.0.0"
+}

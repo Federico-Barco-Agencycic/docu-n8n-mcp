@@ -1,0 +1,204 @@
+{
+  "node_type": "nodes-base.microsoftSql",
+  "display_name": "Microsoft SQL",
+  "description": "Get, add and update data in Microsoft SQL",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1.1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Microsoft SQL node documentation\ndescription: Learn how to use the Microsoft SQL node in n8n. Follow technical documentation to integrate Microsoft SQL node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Microsoft SQL node\n\nUse the Microsoft SQL node to automate work in Microsoft SQL, and integrate Microsoft SQL with other applications. n8n has built-in support for a wide range of Microsoft SQL features, including executing SQL queries, and inserting rows into the database. \n\nOn this page, you'll find a list of operations the Microsoft SQL node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Microsoft SQL credentials](/integrations/builtin/credentials/microsoftsql.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n* Execute an SQL query\n* Insert rows in database\n* Update rows in database\n* Delete rows in database\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'microsoft-sql') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "insert",
+      "options": [
+        {
+          "name": "Execute Query",
+          "value": "executeQuery",
+          "description": "Execute an SQL query",
+          "action": "Execute a SQL query"
+        },
+        {
+          "name": "Insert",
+          "value": "insert",
+          "description": "Insert rows in database",
+          "action": "Insert rows in database"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update rows in database",
+          "action": "Update rows in database"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete rows in database",
+          "action": "Delete rows in database"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Query",
+      "name": "query",
+      "type": "string",
+      "default": "",
+      "description": "The SQL query to execute",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "executeQuery"
+          ]
+        }
+      },
+      "typeOptions": {
+        "editor": "sqlEditor",
+        "sqlDialect": "MSSQL"
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Table",
+      "name": "table",
+      "type": "string",
+      "default": "",
+      "description": "Name of the table in which to insert data to",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "insert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Columns",
+      "name": "columns",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of the properties which should used as columns for the new rows",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "insert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Table",
+      "name": "table",
+      "type": "string",
+      "default": "",
+      "description": "Name of the table in which to update data in",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Key",
+      "name": "updateKey",
+      "type": "string",
+      "default": "id",
+      "description": "Name of the property which decides which rows in the database should be updated. Normally that would be \"id\".",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Columns",
+      "name": "columns",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of the properties which should used as columns for rows to update",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Table",
+      "name": "table",
+      "type": "string",
+      "default": "",
+      "description": "Name of the table in which to delete data",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Delete Key",
+      "name": "deleteKey",
+      "type": "string",
+      "default": "id",
+      "description": "Name of the property which decides which rows in the database should be deleted. Normally that would be \"id\".",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "executeQuery",
+      "name": "Execute Query",
+      "description": "Execute an SQL query"
+    },
+    {
+      "operation": "insert",
+      "name": "Insert",
+      "description": "Insert rows in database"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update rows in database"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete rows in database"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "microsoftSql",
+      "required": true,
+      "testedBy": "microsoftSqlConnectionTest"
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.000Z",
+  "api_version": "1.0.0"
+}

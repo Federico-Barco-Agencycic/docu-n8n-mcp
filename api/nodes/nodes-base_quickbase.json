@@ -1,0 +1,975 @@
+{
+  "node_type": "nodes-base.quickbase",
+  "display_name": "Quick Base",
+  "description": "Integrate with the Quick Base RESTful API",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Quick Base node documentation\ndescription: Learn how to use the Quick Base node in n8n. Follow technical documentation to integrate Quick Base node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Quick Base node\n\nUse the Quick Base node to automate work in Quick Base, and integrate Quick Base with other applications. n8n has built-in support for a wide range of Quick Base features, including creating, updating, deleting, and getting records, as well as getting fields, and downloading files. \n\nOn this page, you'll find a list of operations the Quick Base node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Quick Base credentials](/integrations/builtin/credentials/quickbase.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Field\n    * Get all fields\n* File\n    * Delete a file\n    * Download a file\n* Record\n    * Create a record\n    * Delete a record\n    * Get all records\n    * Update a record\n    * Upsert a record\n* Report\n    * Get a report\n    * Run a report\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'quick-base') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "record",
+      "options": [
+        {
+          "name": "Field",
+          "value": "field"
+        },
+        {
+          "name": "File",
+          "value": "file"
+        },
+        {
+          "name": "Record",
+          "value": "record"
+        },
+        {
+          "name": "Report",
+          "value": "report"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many fields",
+          "action": "Get many fields"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "field"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Table ID",
+      "name": "tableId",
+      "type": "string",
+      "default": "",
+      "description": "The table identifier",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "field"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "field"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "field"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Include Field Perms",
+          "name": "includeFieldPerms",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to get back the custom permissions for the field(s)"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "field"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "download",
+      "options": [
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a file",
+          "action": "Delete a file"
+        },
+        {
+          "name": "Download",
+          "value": "download",
+          "description": "Download a file",
+          "action": "Download a file"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Table ID",
+      "name": "tableId",
+      "type": "string",
+      "default": "",
+      "description": "The table identifier",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file"
+          ],
+          "operation": [
+            "download",
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Record ID",
+      "name": "recordId",
+      "type": "string",
+      "default": "",
+      "description": "The unique identifier of the record",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file"
+          ],
+          "operation": [
+            "download",
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Field ID",
+      "name": "fieldId",
+      "type": "string",
+      "default": "",
+      "description": "The unique identifier of the field",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file"
+          ],
+          "operation": [
+            "download",
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Version Number",
+      "name": "versionNumber",
+      "type": "number",
+      "default": 1,
+      "description": "The file attachment version number",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file"
+          ],
+          "operation": [
+            "download",
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Input Binary Field",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file"
+          ],
+          "operation": [
+            "download"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a record",
+          "action": "Create a record"
+        },
+        {
+          "name": "Create or Update",
+          "value": "upsert",
+          "description": "Create a new record, or update the current one if it already exists (upsert)",
+          "action": "Create or update a record"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a record",
+          "action": "Delete a record"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many records",
+          "action": "Get many records"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a record",
+          "action": "Update a record"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Table ID",
+      "name": "tableId",
+      "type": "string",
+      "default": "",
+      "description": "The table identifier",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Columns",
+      "name": "columns",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of the properties which should used as columns for the new rows",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Simplify",
+      "name": "simple",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return a simplified version of the response instead of the raw data",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Return Field Names or IDs",
+          "name": "fields",
+          "type": "multiOptions",
+          "typeOptions": {
+            "loadOptionsMethod": "getTableFields",
+            "loadOptionsDependsOn": [
+              "tableId"
+            ]
+          },
+          "default": [],
+          "description": "Specify an array of field IDs that will return data for any updates or added record. Record ID (FID 3) is always returned if any field ID is requested. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Use Field IDs",
+          "name": "useFieldIDs",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to use Field IDs instead of Field Names in Columns"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Table ID",
+      "name": "tableId",
+      "type": "string",
+      "default": "",
+      "description": "The table identifier",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Where",
+      "name": "where",
+      "type": "string",
+      "default": "",
+      "description": "The filter to delete records. To delete all records specify a filter that will include all records, for example {3.GT.0} where 3 is the ID of the Record ID field.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Table ID",
+      "name": "tableId",
+      "type": "string",
+      "default": "",
+      "description": "The table identifier",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Select",
+          "name": "select",
+          "type": "multiOptions",
+          "typeOptions": {
+            "loadOptionsMethod": "getTableFields"
+          },
+          "default": [],
+          "description": "An array of field IDs for the fields that should be returned in the response. If empty, the default columns on the table will be returned. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Sort By",
+          "name": "sortByUi",
+          "placeholder": "Add Sort By",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "name": "sortByValues",
+              "displayName": "Sort By",
+              "values": [
+                {
+                  "displayName": "Field Name or ID",
+                  "name": "fieldId",
+                  "type": "options",
+                  "typeOptions": {
+                    "loadOptionsMethod": "getTableFields"
+                  },
+                  "default": "",
+                  "description": "The unique identifier of a field in a table. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+                },
+                {
+                  "displayName": "Order",
+                  "name": "order",
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "ASC",
+                      "value": "ASC"
+                    },
+                    {
+                      "name": "DESC",
+                      "value": "DESC"
+                    }
+                  ],
+                  "default": "ASC"
+                }
+              ]
+            }
+          ],
+          "description": "By default, queries will be sorted by the given sort fields or the default sort if the query does not provide any. Set to false to avoid sorting when the order of the data returned is not important. Returning data without sorting can improve performance."
+        },
+        {
+          "displayName": "Where",
+          "name": "where",
+          "type": "string",
+          "default": "",
+          "description": "The filter, using the <a href=\"https://help.quickbase.com/api-guide/componentsquery.html\">Quick Base query language</a>, which determines the records to return"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Table ID",
+      "name": "tableId",
+      "type": "string",
+      "default": "",
+      "description": "The table identifier",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Columns",
+      "name": "columns",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of the properties which should used as columns for the new rows",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Key",
+      "name": "updateKey",
+      "type": "string",
+      "default": "",
+      "description": "Update can use the key field on the table, or any other supported unique field",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Simplify",
+      "name": "simple",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return a simplified version of the response instead of the raw data",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Field Names or IDs",
+          "name": "fields",
+          "type": "multiOptions",
+          "typeOptions": {
+            "loadOptionsMethod": "getTableFields",
+            "loadOptionsDependsOn": [
+              "tableId"
+            ]
+          },
+          "default": [],
+          "description": "Specify an array of field IDs that will return data for any updates or added record. Record ID (FID 3) is always returned if any field ID is requested. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Use Field IDs",
+          "name": "useFieldIDs",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to use Field IDs instead of Field Names in Columns"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Table ID",
+      "name": "tableId",
+      "type": "string",
+      "default": "",
+      "description": "The table identifier",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "upsert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Columns",
+      "name": "columns",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of the properties which should used as columns for the new rows",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "upsert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Key",
+      "name": "updateKey",
+      "type": "string",
+      "default": "",
+      "description": "Update can use the key field on the table, or any other supported unique field",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "upsert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Merge Field Name or ID",
+      "name": "mergeFieldId",
+      "type": "options",
+      "default": "",
+      "description": "<p>You're updating records in a Quick Base table with data from an external file. In order for a merge like this to work, Quick Base needs a way to match records in the source data with corresponding records in the destination table.</p><p>You make this possible by choosing the field in the app table that holds unique matching values. This is called a merge field.</p>. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "upsert"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getUniqueTableFields"
+      }
+    },
+    {
+      "displayName": "Simplify",
+      "name": "simple",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return a simplified version of the response instead of the raw data",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "upsert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Field Names or IDs",
+          "name": "fields",
+          "type": "multiOptions",
+          "typeOptions": {
+            "loadOptionsMethod": "getTableFields",
+            "loadOptionsDependsOn": [
+              "tableId"
+            ]
+          },
+          "default": [],
+          "description": "Specify an array of field IDs that will return data for any updates or added record. Record ID (FID 3) is always returned if any field ID is requested. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Use Field IDs",
+          "name": "useFieldIDs",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to use Field IDs instead of Field Names in Columns"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "record"
+          ],
+          "operation": [
+            "upsert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a report",
+          "action": "Get a report"
+        },
+        {
+          "name": "Run",
+          "value": "run",
+          "description": "Run a report",
+          "action": "Run a report"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Table ID",
+      "name": "tableId",
+      "type": "string",
+      "default": "",
+      "description": "The table identifier",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Report ID",
+      "name": "reportId",
+      "type": "string",
+      "default": "",
+      "description": "The identifier of the report, unique to the table",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Table ID",
+      "name": "tableId",
+      "type": "string",
+      "default": "",
+      "description": "The table identifier",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "run"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Report ID",
+      "name": "reportId",
+      "type": "string",
+      "default": "",
+      "description": "The identifier of the report, unique to the table",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "run"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "run"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "run"
+          ]
+        },
+        "hide": {
+          "returnAll": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many fields"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "quickbaseApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.088Z",
+  "api_version": "1.0.0"
+}

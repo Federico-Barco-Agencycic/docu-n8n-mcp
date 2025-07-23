@@ -1,0 +1,488 @@
+{
+  "node_type": "nodes-base.html",
+  "display_name": "HTML",
+  "description": "Work with HTML",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1.2",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: HTML\ndescription: Documentation for the HTML node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: high\n---\n\n# HTML\n\nThe HTML node provides operations to help you work with HTML in n8n.\n\n/// note | HTML Extract node\nThe HTML node replaces the HTML Extract node from version 0.213.0 on. If you're using an older version of n8n, you can still view the [HTML Extract node documentation](https://github.com/n8n-io/n8n-docs/blob/86fe33b681621e618e3adcab9a27e8605dbc23ad/docs/integrations/builtin/core-nodes/n8n-nodes-base.htmlextract.md){:target=_blank .external-link}.\n///\n/// warning | Cross-site scripting\nWhen using the HTML node to generate an HTML template you can introduce [XSS (cross-site scripting)](https://owasp.org/www-community/attacks/xss/){:target=_blank .external-link}. This is a security risk. Be careful with un-trusted inputs.\n///\n\n## Operations\n\n* [**Generate HTML template**](#generate-html-template): Use this operation to create an HTML template. This allows you to take data from your workflow and output it as HTML.\n* [**Extract HTML content**](#extract-html-content): Extract contents from an HTML-formatted source. The source can be in JSON or a binary file (`.html`).\n* [**Convert to HTML Table**](#convert-to-html-table): Convert content to an HTML table.\n\nThe node parameters and options depend on the operation you select. Refer to the sections below for more details on configuring each operation.\n\n## Generate HTML template\n\nCreate an HTML template. This allows you to take data from your workflow and output it as HTML. \n\nYou can include:\n\n* Standard HTML\n* CSS in `<style>` tags.\n* JavaScript in `<script>` tags. n8n doesn't execute the JavaScript.\n* Expressions, wrapped in `{{}}`.\n\nYou can use [Expressions](/code/expressions.md) in the template, including n8n's [Built-in methods and variables](/code/builtin/overview.md). \n\n## Extract HTML Content\n\nExtract contents from an HTML-formatted source. The source can be in JSON or a binary file (`.html`).\n\nUse these parameters:\n\n### Source Data\n\nSelect the source type for your HTML content. Choose between:\n\n* **JSON**: If you select this source data, enter the **JSON Property**: the name of the input containing the HTML you want to extract. The property can contain a string or an array of strings.\n* **Binary**: If you select this source data, enter the **Input Binary Field**: the name of the input containing the HTML you want to extract. The property can contain a string or an array of strings.\n\n### Extraction Values\n\n- **Key**: Enter the key to save the extracted value under.\n- **CSS Selector**: Enter the CSS selector to search for.\n- **Return Value**: Select the type of data to return. Choose from:\n\t- **Attribute**: Return an attribute value like `class` from an element.\n\t\t- If you select this option, enter the name of the **Attribute** to return the value of.\n\t- **HTML**: Return the HTML that the element contains.\n\t- **Text**: Return the text content of the element.\n\t\t- If you choose this option, you can also enter a comma-separated list of selectors to skip in the **Skip Selectors**.\n\t- **Value**: Return the value of an input, select, or text area.\n- **Return Array**: Choose whether to return multiple extraction values as an array (turned on) or as a single string (turned off).\n\n### Extract HTML Content options\n\nYou can also configure this operation with these options:\n\n* **Trim Values**: Controls whether to remove all spaces and newlines from the beginning and end of the values (turned on) or leaves them (turned off).\n* **Clean Up Text**: Controls whether to remove leading whitespaces, trailing whitespaces, and line breaks (newlines) and condense multiple consecutive whitespaces into a single space (turned on) or to leave them as-is (turned off).\n\n## Convert to HTML Table\n\nThis operation expects data from another node. It has no parameters. It includes these options:\n\n* **Capitalize Headers**: Controls whether to capitalize the table's headers (turned on) or not (turned off).\n* **Custom Styling**: Controls whether to use custom styling (turned on) or not (turned off).\n* **Caption**: Enter a caption to add to the table.\n* **Table Attributes**: Enter any attributes to apply to the `<table>`, such as style attributes.\n* **Header Attributes**: Enter any attributes to apply to the table's headers `<th>`.\n* **Row Attributes**: Enter any attributes to apply to the table's rows `<tr>`.\n* **Cell Attributes**: Enter any attributes to apply to the table's cells `<td>`.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'html') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "generateHtmlTemplate",
+      "options": [
+        {
+          "name": "Generate HTML Template",
+          "value": "generateHtmlTemplate",
+          "action": "Generate HTML template"
+        },
+        {
+          "name": "Extract HTML Content",
+          "value": "extractHtmlContent",
+          "action": "Extract HTML Content"
+        },
+        {
+          "name": "Convert to HTML Table",
+          "value": "convertToHtmlTable",
+          "action": "Convert to HTML Table"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "HTML Template",
+      "name": "html",
+      "type": "string",
+      "default": "<!DOCTYPE html>\n\n<html>\n<head>\n  <meta charset=\"UTF-8\" />\n  <title>My HTML document</title>\n</head>\n<body>\n  <div class=\"container\">\n    <h1>This is an H1 heading</h1>\n    <h2>This is an H2 heading</h2>\n    <p>This is a paragraph</p>\n  </div>\n</body>\n</html>\n\n<style>\n.container {\n  background-color: #ffffff;\n  text-align: center;\n  padding: 16px;\n  border-radius: 8px;\n}\n\nh1 {\n  color: #ff6d5a;\n  font-size: 24px;\n  font-weight: bold;\n  padding: 8px;\n}\n\nh2 {\n  color: #909399;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 8px;\n}\n</style>\n\n<script>\nconsole.log(\"Hello World!\");\n</script>",
+      "description": "HTML template to render",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "generateHtmlTemplate"
+          ]
+        }
+      },
+      "typeOptions": {
+        "editor": "htmlEditor"
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "<b>Tips</b>: Type ctrl+space for completions. Use <code>{{ }}</code> for expressions and <code>&lt;style&gt;</code> tags for CSS. JS in <code>&lt;script&gt;</code> tags is included but not executed in n8n.",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "generateHtmlTemplate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Source Data",
+      "name": "sourceData",
+      "type": "options",
+      "default": "json",
+      "description": "If HTML should be read from binary or JSON data",
+      "options": [
+        {
+          "name": "Binary",
+          "value": "binary"
+        },
+        {
+          "name": "JSON",
+          "value": "json"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "extractHtmlContent"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Input Binary Field",
+      "name": "dataPropertyName",
+      "type": "string",
+      "default": "data",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "extractHtmlContent"
+          ],
+          "sourceData": [
+            "binary"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "JSON Property",
+      "name": "dataPropertyName",
+      "type": "string",
+      "default": "data",
+      "description": "Name of the JSON property in which the HTML to extract the data from can be found. The property can either contain a string or an array of strings.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "extractHtmlContent"
+          ],
+          "sourceData": [
+            "json"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Extraction Values",
+      "name": "extractionValues",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "name": "values",
+          "displayName": "Values",
+          "values": [
+            {
+              "displayName": "Key",
+              "name": "key",
+              "type": "string",
+              "default": "",
+              "description": "The key under which the extracted value should be saved"
+            },
+            {
+              "displayName": "CSS Selector",
+              "name": "cssSelector",
+              "type": "string",
+              "default": "",
+              "placeholder": ".price",
+              "description": "The CSS selector to use"
+            },
+            {
+              "displayName": "Return Value",
+              "name": "returnValue",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Attribute",
+                  "value": "attribute",
+                  "description": "Get an attribute value like \"class\" from an element"
+                },
+                {
+                  "name": "HTML",
+                  "value": "html",
+                  "description": "Get the HTML the element contains"
+                },
+                {
+                  "name": "Text",
+                  "value": "text",
+                  "description": "Get only the text content of the element"
+                },
+                {
+                  "name": "Value",
+                  "value": "value",
+                  "description": "Get value of an input, select or textarea"
+                }
+              ],
+              "default": "text",
+              "description": "What kind of data should be returned"
+            },
+            {
+              "displayName": "Attribute",
+              "name": "attribute",
+              "type": "string",
+              "displayOptions": {
+                "show": {
+                  "returnValue": [
+                    "attribute"
+                  ]
+                }
+              },
+              "default": "",
+              "placeholder": "class",
+              "description": "The name of the attribute to return the value off"
+            },
+            {
+              "displayName": "Skip Selectors",
+              "name": "skipSelectors",
+              "type": "string",
+              "displayOptions": {
+                "show": {
+                  "returnValue": [
+                    "text"
+                  ],
+                  "@version": [
+                    {
+                      "_cnd": {
+                        "gt": 1.1
+                      }
+                    }
+                  ]
+                }
+              },
+              "default": "",
+              "placeholder": "e.g. img, .className, #ItemId",
+              "description": "Comma-separated list of selectors to skip in the text extraction"
+            },
+            {
+              "displayName": "Return Array",
+              "name": "returnArray",
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to return the values as an array so if multiple ones get found they also get returned separately. If not set all will be returned as a single string."
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "extractHtmlContent"
+          ],
+          "@version": [
+            1
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Extraction Values",
+      "name": "extractionValues",
+      "type": "fixedCollection",
+      "default": {
+        "values": [
+          {
+            "key": "",
+            "cssSelector": "",
+            "returnValue": "text",
+            "returnArray": false
+          }
+        ]
+      },
+      "options": [
+        {
+          "name": "values",
+          "displayName": "Values",
+          "values": [
+            {
+              "displayName": "Key",
+              "name": "key",
+              "type": "string",
+              "default": "",
+              "description": "The key under which the extracted value should be saved"
+            },
+            {
+              "displayName": "CSS Selector",
+              "name": "cssSelector",
+              "type": "string",
+              "default": "",
+              "placeholder": ".price",
+              "description": "The CSS selector to use"
+            },
+            {
+              "displayName": "Return Value",
+              "name": "returnValue",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Attribute",
+                  "value": "attribute",
+                  "description": "Get an attribute value like \"class\" from an element"
+                },
+                {
+                  "name": "HTML",
+                  "value": "html",
+                  "description": "Get the HTML the element contains"
+                },
+                {
+                  "name": "Text",
+                  "value": "text",
+                  "description": "Get only the text content of the element"
+                },
+                {
+                  "name": "Value",
+                  "value": "value",
+                  "description": "Get value of an input, select or textarea"
+                }
+              ],
+              "default": "text",
+              "description": "What kind of data should be returned"
+            },
+            {
+              "displayName": "Attribute",
+              "name": "attribute",
+              "type": "string",
+              "displayOptions": {
+                "show": {
+                  "returnValue": [
+                    "attribute"
+                  ]
+                }
+              },
+              "default": "",
+              "placeholder": "class",
+              "description": "The name of the attribute to return the value off"
+            },
+            {
+              "displayName": "Skip Selectors",
+              "name": "skipSelectors",
+              "type": "string",
+              "displayOptions": {
+                "show": {
+                  "returnValue": [
+                    "text"
+                  ],
+                  "@version": [
+                    {
+                      "_cnd": {
+                        "gt": 1.1
+                      }
+                    }
+                  ]
+                }
+              },
+              "default": "",
+              "placeholder": "e.g. img, .className, #ItemId",
+              "description": "Comma-separated list of selectors to skip in the text extraction"
+            },
+            {
+              "displayName": "Return Array",
+              "name": "returnArray",
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to return the values as an array so if multiple ones get found they also get returned separately. If not set all will be returned as a single string."
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "extractHtmlContent"
+          ],
+          "@version": [
+            {
+              "_cnd": {
+                "gt": 1
+              }
+            }
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Trim Values",
+          "name": "trimValues",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to remove automatically all spaces and newlines from the beginning and end of the values"
+        },
+        {
+          "displayName": "Clean Up Text",
+          "name": "cleanUpText",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to remove leading and trailing whitespaces, line breaks (newlines) and condense multiple consecutive whitespaces into a single space"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "extractHtmlContent"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Capitalize Headers",
+          "name": "capitalize",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to capitalize the headers"
+        },
+        {
+          "displayName": "Custom Styling",
+          "name": "customStyling",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to use custom styling"
+        },
+        {
+          "displayName": "Caption",
+          "name": "caption",
+          "type": "string",
+          "default": "",
+          "description": "Caption to add to the table"
+        },
+        {
+          "displayName": "Table Attributes",
+          "name": "tableAttributes",
+          "type": "string",
+          "default": "",
+          "description": "Attributes to attach to the table",
+          "placeholder": "e.g. style=\"padding:10px\""
+        },
+        {
+          "displayName": "Header Attributes",
+          "name": "headerAttributes",
+          "type": "string",
+          "default": "",
+          "description": "Attributes to attach to the table header",
+          "placeholder": "e.g. style=\"padding:10px\""
+        },
+        {
+          "displayName": "Row Attributes",
+          "name": "rowAttributes",
+          "type": "string",
+          "default": "",
+          "description": "Attributes to attach to the table row",
+          "placeholder": "e.g. style=\"padding:10px\""
+        },
+        {
+          "displayName": "Cell Attributes",
+          "name": "cellAttributes",
+          "type": "string",
+          "default": "",
+          "description": "Attributes to attach to the table cell",
+          "placeholder": "e.g. style=\"padding:10px\""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "convertToHtmlTable"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "generateHtmlTemplate",
+      "name": "Generate HTML Template"
+    },
+    {
+      "operation": "extractHtmlContent",
+      "name": "Extract HTML Content"
+    },
+    {
+      "operation": "convertToHtmlTable",
+      "name": "Convert to HTML Table"
+    }
+  ],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:21.924Z",
+  "api_version": "1.0.0"
+}

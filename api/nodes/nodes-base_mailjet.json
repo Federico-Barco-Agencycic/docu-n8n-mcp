@@ -1,0 +1,647 @@
+{
+  "node_type": "nodes-base.mailjet",
+  "display_name": "Mailjet",
+  "description": "Consume Mailjet API",
+  "category": "output",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Mailjet node documentation\ndescription: Learn how to use the Mailjet node in n8n. Follow technical documentation to integrate Mailjet node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Mailjet node\n\nUse the Mailjet node to automate work in Mailjet, and integrate Mailjet with other applications. n8n has built-in support for a wide range of Mailjet features, including sending emails, and SMS. \n\nOn this page, you'll find a list of operations the Mailjet node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Mailjet credentials](/integrations/builtin/credentials/mailjet.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Email\n    * Send an email\n    * Send an email template\n* SMS\n    * Send an SMS\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'mailjet') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "email",
+      "options": [
+        {
+          "name": "Email",
+          "value": "email"
+        },
+        {
+          "name": "SMS",
+          "value": "sms"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "send",
+      "options": [
+        {
+          "name": "Send",
+          "value": "send",
+          "description": "Send a email",
+          "action": "Send an email"
+        },
+        {
+          "name": "Send Template",
+          "value": "sendTemplate",
+          "description": "Send a email template",
+          "action": "Send an email template"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "From Email",
+      "name": "fromEmail",
+      "type": "string",
+      "default": "",
+      "description": "The title for the email",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ],
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "To Email",
+      "name": "toEmail",
+      "type": "string",
+      "default": "",
+      "description": "Email address of the recipient. Multiple ones can be separated by comma.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ],
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Subject",
+      "name": "subject",
+      "type": "string",
+      "default": "",
+      "description": "Subject line of the email"
+    },
+    {
+      "displayName": "Text",
+      "name": "text",
+      "type": "string",
+      "default": "",
+      "description": "Plain text message of email",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ],
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "HTML",
+      "name": "html",
+      "type": "string",
+      "default": "",
+      "description": "HTML text message of email",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ],
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "JSON Parameters",
+      "name": "jsonParameters",
+      "type": "boolean",
+      "default": false,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ],
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Bcc Email",
+          "name": "bccEmail",
+          "type": "string",
+          "description": "Bcc Email address of the recipient. Multiple ones can be separated by comma.",
+          "default": ""
+        },
+        {
+          "displayName": "Cc Addresses",
+          "name": "ccAddresses",
+          "type": "string",
+          "description": "Cc Email address of the recipient. Multiple ones can be separated by comma.",
+          "default": ""
+        },
+        {
+          "displayName": "From Name",
+          "name": "fromName",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Priority",
+          "name": "priority",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "displayName": "Reply To",
+          "name": "replyTo",
+          "type": "string",
+          "description": "The reply-to email address. Multiple ones can be separated by comma.",
+          "default": ""
+        },
+        {
+          "displayName": "Template Language",
+          "name": "templateLanguage",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Track Clicks",
+          "name": "trackClicks",
+          "type": "options",
+          "options": [
+            {
+              "name": "Account Default",
+              "value": "account_default",
+              "description": "Use the values specified in the Mailjet account"
+            },
+            {
+              "name": "Disabled",
+              "value": "disabled",
+              "description": "Disable tracking for this message"
+            },
+            {
+              "name": "Enabled",
+              "value": "enabled",
+              "description": "Enable tracking for this message"
+            }
+          ],
+          "description": "Enable or disable open tracking on this message",
+          "default": "account_default"
+        },
+        {
+          "displayName": "Track Opens",
+          "name": "trackOpens",
+          "type": "options",
+          "options": [
+            {
+              "name": "Account Default",
+              "value": "account_default",
+              "description": "Use the values specified in the Mailjet account"
+            },
+            {
+              "name": "Disabled",
+              "value": "disabled",
+              "description": "Disable tracking for this message"
+            },
+            {
+              "name": "Enabled",
+              "value": "enabled",
+              "description": "Enable tracking for this message"
+            }
+          ],
+          "description": "Enable or disable open tracking on this message",
+          "default": "account_default"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ],
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Variables (JSON)",
+      "name": "variablesJson",
+      "type": "string",
+      "default": "",
+      "description": "HTML text message of email",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ],
+          "operation": [
+            "send"
+          ],
+          "jsonParameters": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Variables",
+      "name": "variablesUi",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "name": "variablesValues",
+          "displayName": "Variable",
+          "values": [
+            {
+              "displayName": "Name",
+              "name": "name",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ],
+          "operation": [
+            "send"
+          ],
+          "jsonParameters": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "From Email",
+      "name": "fromEmail",
+      "type": "string",
+      "default": "",
+      "description": "The title for the email",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ],
+          "operation": [
+            "sendTemplate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "To Email",
+      "name": "toEmail",
+      "type": "string",
+      "default": "",
+      "description": "Email address of the recipient. Multiple ones can be separated by comma.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ],
+          "operation": [
+            "sendTemplate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Template Name or ID",
+      "name": "templateId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ],
+          "operation": [
+            "sendTemplate"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getTemplates"
+      }
+    },
+    {
+      "displayName": "JSON Parameters",
+      "name": "jsonParameters",
+      "type": "boolean",
+      "default": false,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ],
+          "operation": [
+            "sendTemplate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Bcc Email",
+          "name": "bccEmail",
+          "type": "string",
+          "description": "BCC Recipients of the email separated by ,",
+          "default": ""
+        },
+        {
+          "displayName": "Cc Email",
+          "name": "ccEmail",
+          "type": "string",
+          "description": "Cc recipients of the email separated by ,",
+          "default": ""
+        },
+        {
+          "displayName": "From Name",
+          "name": "fromName",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Priority",
+          "name": "priority",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "displayName": "Reply To",
+          "name": "replyTo",
+          "type": "string",
+          "description": "The reply-to email address. Multiple ones can be separated by comma.",
+          "default": ""
+        },
+        {
+          "displayName": "Subject",
+          "name": "subject",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Template Language",
+          "name": "templateLanguage",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Track Clicks",
+          "name": "trackClicks",
+          "type": "string",
+          "description": "Enable or disable open tracking on this message",
+          "default": ""
+        },
+        {
+          "displayName": "Track Opens",
+          "name": "trackOpens",
+          "type": "string",
+          "description": "Enable or disable open tracking on this message",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ],
+          "operation": [
+            "sendTemplate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Variables",
+      "name": "variablesUi",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "name": "variablesValues",
+          "displayName": "Variable",
+          "values": [
+            {
+              "displayName": "Name",
+              "name": "name",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ],
+          "operation": [
+            "sendTemplate"
+          ],
+          "jsonParameters": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Variables (JSON)",
+      "name": "variablesJson",
+      "type": "string",
+      "default": "",
+      "description": "HTML text message of email",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ],
+          "operation": [
+            "sendTemplate"
+          ],
+          "jsonParameters": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "send",
+      "options": [
+        {
+          "name": "Send",
+          "value": "send",
+          "description": "Send a sms",
+          "action": "Send an SMS"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "sms"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "From",
+      "name": "from",
+      "type": "string",
+      "default": "",
+      "description": "Customizable sender name. Should be between 3 and 11 characters in length, only alphanumeric characters are allowed.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "sms"
+          ],
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "To",
+      "name": "to",
+      "type": "string",
+      "default": "",
+      "description": "Message recipient. Should be between 3 and 15 characters in length. The number always starts with a plus sign followed by a country code, followed by the number. Phone numbers are expected to comply with the E.164 format.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "sms"
+          ],
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Text",
+      "name": "text",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "sms"
+          ],
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "send",
+      "name": "Send",
+      "description": "Send a email"
+    },
+    {
+      "operation": "sendTemplate",
+      "name": "Send Template",
+      "description": "Send a email template"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "mailjetEmailApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "email"
+          ]
+        }
+      }
+    },
+    {
+      "name": "mailjetSmsApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "sms"
+          ]
+        }
+      }
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.970Z",
+  "api_version": "1.0.0"
+}

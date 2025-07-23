@@ -1,0 +1,42 @@
+{
+  "node_type": "nodes-langchain.textSplitterTokenSplitter",
+  "display_name": "Token Splitter",
+  "description": "Split text into chunks by tokens",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Token Splitter node documentation\ndescription: Learn how to use the Token Splitter node in n8n. Follow technical documentation to integrate Token Splitter node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Token Splitter node\n\nThe Token Splitter node splits a raw text string by first converting the text into BPE tokens, then splits these tokens into chunks and converts the tokens within a single chunk back into text.\n\nOn this page, you'll find the node parameters for the Token Splitter node, and links to more resources.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\n## Node parameters\n\n* **Chunk Size**: Enter the number of characters in each chunk.\n* **Chunk Overlap**: Enter how much overlap to have between chunks.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'token-splitter') ]]\n\n## Related resources\n\nRefer to [LangChain's token documentation](https://js.langchain.com/docs/concepts/tokens/){:target=_blank .external-link} and [LangChain's text splitter documentation](https://js.langchain.com/docs/concepts/text_splitters/){:target=_blank .external-link} for more information about the service.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "This node must be connected to a document loader. <a data-action='openSelectiveNodeCreator' data-action-parameter-connectiontype='ai_document'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "Chunk Size",
+      "name": "chunkSize",
+      "type": "number",
+      "default": 1000
+    },
+    {
+      "displayName": "Chunk Overlap",
+      "name": "chunkOverlap",
+      "type": "number",
+      "default": 0
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.284Z",
+  "api_version": "1.0.0"
+}

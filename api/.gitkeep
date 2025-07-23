@@ -1,0 +1,5 @@
+# This file ensures the api directory is tracked by git
+# even when empty. It will be populated by GitHub Actions.
+
+# The api/ directory contains the generated static JSON API files
+# These files are built automatically from the n8n-mcp database

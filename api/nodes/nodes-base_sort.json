@@ -1,0 +1,136 @@
+{
+  "node_type": "nodes-base.sort",
+  "display_name": "Sort",
+  "description": "Change items order",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Sort\ndescription: Documentation for the Sort node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Sort\n\nUse the Sort node to organize lists of items in a desired ordering, or generate a random selection.\n\n/// note | Array sort behavior\nThe Sort operation uses the default JavaScript operation where the elements to be sorted are converted into strings and their values compared. Refer to [Mozilla's guide to Array sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort){:target=_blank .external-link} to learn more.\n///\n\n## Node parameters\n\nConfigure this node using the **Type** parameter.\n\nUse the dropdown to select how you want to input the sorting from these options.\n\n### Simple\n\nPerforms an ascending or descending sort using the selected fields.\n\nWhen you select this **Type**:\n\n* Use the **Add Field To Sort By** button to input the **Field Name**.\n* Select whether to use **Ascending** or **Descending** order.\n\n#### Simple options\n\nWhen you select **Simple** as the **Type**, you have the option to **Disable Dot Notation**. By default, n8n enables dot notation to reference child fields in the format `parent.child`. Use this option to disable dot notation (turned on) or to continue using dot (turned off).\n\n### Random\n\nCreates a random order in the list.\n\n### Code\n\nInput custom JavaScript code to perform the sort operation. This is a good option if a simple sort won't meet your needs.\n\nEnter your custom JavaScript code in the **Code** input field.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'sort') ]]\n\n## Related resources\n\n--8<-- \"_snippets/integrations/builtin/core-nodes/data-transformation-actions/data-section-link.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Type",
+      "name": "type",
+      "type": "options",
+      "default": "simple",
+      "description": "The type of sorting to perform",
+      "options": [
+        {
+          "name": "Simple",
+          "value": "simple"
+        },
+        {
+          "name": "Random",
+          "value": "random"
+        },
+        {
+          "name": "Code",
+          "value": "code"
+        }
+      ]
+    },
+    {
+      "displayName": "Fields To Sort By",
+      "name": "sortFieldsUi",
+      "type": "fixedCollection",
+      "default": {},
+      "description": "The fields of the input items to sort by",
+      "options": [
+        {
+          "displayName": "",
+          "name": "sortField",
+          "values": [
+            {
+              "displayName": "Field Name",
+              "name": "fieldName",
+              "type": "string",
+              "required": true,
+              "default": "",
+              "description": "The field to sort by",
+              "placeholder": "e.g. id",
+              "hint": " Enter the field name as text",
+              "requiresDataPath": "single"
+            },
+            {
+              "displayName": "Order",
+              "name": "order",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Ascending",
+                  "value": "ascending"
+                },
+                {
+                  "name": "Descending",
+                  "value": "descending"
+                }
+              ],
+              "default": "ascending",
+              "description": "The order to sort by"
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "type": [
+            "simple"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Code",
+      "name": "code",
+      "type": "string",
+      "default": "// The two items to compare are in the variables a and b\n\t// Access the fields in a.json and b.json\n\t// Return -1 if a should go before b\n\t// Return 1 if b should go before a\n\t// Return 0 if there's no difference\n\n\tfieldName = 'myField';\n\n\tif (a.json[fieldName] < b.json[fieldName]) {\n\treturn -1;\n\t}\n\tif (a.json[fieldName] > b.json[fieldName]) {\n\treturn 1;\n\t}\n\treturn 0;",
+      "description": "Javascript code to determine the order of any two items",
+      "displayOptions": {
+        "show": {
+          "type": [
+            "code"
+          ]
+        }
+      },
+      "typeOptions": {
+        "alwaysOpenEditWindow": true,
+        "editor": "jsEditor",
+        "rows": 10
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Disable Dot Notation",
+          "name": "disableDotNotation",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to disallow referencing child fields using `parent.child` in the field name"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "type": [
+            "simple"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.148Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,92 @@
+{
+  "node_type": "nodes-base.stravaTrigger",
+  "display_name": "Strava Trigger",
+  "description": "Starts the workflow when Strava events occur",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Strava Trigger node documentation\ndescription: Learn how to use the Strava Trigger node in n8n. Follow technical documentation to integrate Strava Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Strava Trigger node\n\n[Strava](https://www.strava.com/){:target=_blank .external-link} is an internet service for tracking human exercise which incorporates social network features.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/strava.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Strava Trigger integrations](https://n8n.io/integrations/strava-trigger/){:target=_blank .external-link} page.\n///\n\n## Events\n\n- **\\[All\\]**\n    - \\[All\\]\n    - Created\n    - Deleted\n    - Updated\n- **Activity**\n    - \\[All\\]\n    - Created\n    - Deleted\n    - Updated\n- **Athlete**\n    - \\[All\\]\n    - Created\n    - Deleted\n    - Updated\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Object",
+      "name": "object",
+      "type": "options",
+      "default": "*",
+      "options": [
+        {
+          "name": "[All]",
+          "value": "*"
+        },
+        {
+          "name": "Activity",
+          "value": "activity"
+        },
+        {
+          "name": "Athlete",
+          "value": "athlete"
+        }
+      ]
+    },
+    {
+      "displayName": "Event",
+      "name": "event",
+      "type": "options",
+      "default": "*",
+      "options": [
+        {
+          "name": "[All]",
+          "value": "*"
+        },
+        {
+          "name": "Created",
+          "value": "create"
+        },
+        {
+          "name": "Deleted",
+          "value": "delete"
+        },
+        {
+          "name": "Updated",
+          "value": "update"
+        }
+      ]
+    },
+    {
+      "displayName": "Resolve Data",
+      "name": "resolveData",
+      "type": "boolean",
+      "default": true,
+      "description": "By default the webhook-data only contain the Object ID. If this option gets activated, it will resolve the data automatically."
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Delete If Exist",
+          "name": "deleteIfExist",
+          "type": "boolean",
+          "default": false,
+          "description": "Strava allows just one subscription at all times. If you want to delete the current subscription to make room for a new subscription with the current parameters, set this parameter to true. Keep in mind this is a destructive operation."
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "stravaOAuth2Api",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.158Z",
+  "api_version": "1.0.0"
+}

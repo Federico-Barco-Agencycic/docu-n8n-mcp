@@ -1,0 +1,118 @@
+{
+  "node_type": "nodes-base.amqpTrigger",
+  "display_name": "AMQP Trigger",
+  "description": "Listens to AMQP 1.0 Messages",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: AMQP Trigger node documentation\ndescription: Learn how to use the AMQP Trigger node in n8n. Follow technical documentation to integrate AMQP Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# AMQP Trigger node\n\n[AMQP](https://www.amqp.org/){:target=_blank .external-link} is an open standard application layer protocol for message-oriented middleware. The defining features of AMQP are message orientation, queuing, routing, reliability and security. This node supports AMQP 1.0 compatible message brokers.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/amqp.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [AMQP integrations](https://n8n.io/integrations/amqp-trigger/){:target=_blank .external-link} page.\n///\n",
+  "properties_schema": [
+    {
+      "displayName": "Queue / Topic",
+      "name": "sink",
+      "type": "string",
+      "default": "",
+      "description": "Name of the queue of topic to listen to"
+    },
+    {
+      "displayName": "Clientname",
+      "name": "clientname",
+      "type": "string",
+      "default": "",
+      "description": "Leave empty for non-durable topic subscriptions or queues"
+    },
+    {
+      "displayName": "Subscription",
+      "name": "subscription",
+      "type": "string",
+      "default": "",
+      "description": "Leave empty for non-durable topic subscriptions or queues"
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Container ID",
+          "name": "containerId",
+          "type": "string",
+          "default": "",
+          "description": "Will be used to pass to the RHEA Backend as container_id"
+        },
+        {
+          "displayName": "Convert Body To String",
+          "name": "jsonConvertByteArrayToString",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to convert JSON Body content ([\"body\"][\"content\"]) from Byte Array to string. Needed for Azure Service Bus."
+        },
+        {
+          "displayName": "JSON Parse Body",
+          "name": "jsonParseBody",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to parse the body to an object"
+        },
+        {
+          "displayName": "Messages per Cicle",
+          "name": "pullMessagesNumber",
+          "type": "number",
+          "default": 100,
+          "description": "Number of messages to pull from the bus for every cicle"
+        },
+        {
+          "displayName": "Only Body",
+          "name": "onlyBody",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to return only the body property"
+        },
+        {
+          "displayName": "Parallel Processing",
+          "name": "parallelProcessing",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to process messages in parallel"
+        },
+        {
+          "displayName": "Reconnect",
+          "name": "reconnect",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to automatically reconnect if disconnected"
+        },
+        {
+          "displayName": "Reconnect Limit",
+          "name": "reconnectLimit",
+          "type": "number",
+          "default": 50,
+          "description": "Maximum number of reconnect attempts"
+        },
+        {
+          "displayName": "Sleep Time",
+          "name": "sleepTime",
+          "type": "number",
+          "default": 10,
+          "description": "Milliseconds to sleep after every cicle"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "amqp",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.728Z",
+  "api_version": "1.0.0"
+}

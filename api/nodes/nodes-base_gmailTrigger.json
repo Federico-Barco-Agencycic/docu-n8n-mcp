@@ -1,0 +1,178 @@
+{
+  "node_type": "nodes-base.gmailTrigger",
+  "display_name": "Gmail Trigger",
+  "description": "Fetches emails from Gmail and starts the workflow on specified polling intervals.",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1.2",
+  "is_ai_tool": true,
+  "is_trigger": true,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Gmail Trigger node documentation\ndescription: Learn how to use the Gmail Trigger node in n8n. Follow technical documentation to integrate Gmail Trigger node into your workflows.\ncontentType: [integration, reference]\npriority: high\n---\n\n# Gmail Trigger node\n\n[Gmail](https://www.gmail.com){:target=_blank .external-link} is an email service developed by Google. The Gmail Trigger node can start a workflow based on events in Gmail.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/google/index.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Gmail Trigger integrations](https://n8n.io/integrations/gmail-trigger/){:target=_blank .external-link} page.\n///\n\n## Events\n\n* **Message Received**: The node triggers for new messages at the selected **Poll Time**.\n\n## Node parameters\n\nConfigure the node with these parameters:\n\n* **Credential to connect with**: Select or create a new Google credential to use for the trigger. Refer to [Google credentials](/integrations/builtin/credentials/google/index.md) for more information on setting up a new credential.\n* **Poll Times**: Select a poll **Mode** to set how often to trigger the poll. Your **Mode** selection will add or remove relevant fields. Refer to [Poll Mode options](/integrations/builtin/trigger-nodes/n8n-nodes-base.gmailtrigger/poll-mode-options.md) to configure the parameters for each mode type.\n* **Simplify**: Choose whether to return a simplified version of the response (turned on, default) or the raw data (turned off).\n    * The simplified version returns email message IDs, labels, and email headers, including: From, To, CC, BCC, and Subject.\n\n## Node filters\n\nUse these filters to further refine the node's behavior:\n\n* **Include Spam and Trash**: Select whether the node should trigger on new messages in the Spam and Trash folders (turned on) or not (turned off).\n* **Label Names or IDs**: Only trigger on messages with the selected labels added to them. Select the Label names you want to apply or enter an expression to specify IDs. The dropdown populates based on the **Credential** you selected.\n* **Search**: Enter Gmail search refine filters, like `from:`, to trigger the node on the filtered conditions only. Refer to [Refine searches in Gmail](https://support.google.com/mail/answer/7190?hl=en){:target=_blank .external-link} for more information.\n* **Read Status**: Choose whether to receive **Unread and read emails**, **Unread emails only** (default), or **Read emails only**.\n* **Sender**: Enter an email or a part of a sender name to trigger only on messages from that sender.\n\n## Related resources\n\nn8n provides an app node for Gmail. You can find the node docs [here](/integrations/builtin/app-nodes/n8n-nodes-base.gmail/index.md).\n\nView [example workflows and related content](https://n8n.io/integrations/gmail-trigger/){:target=_blank .external-link} on n8n's website.\n\nRefer to [Google's Gmail API documentation](https://developers.google.com/gmail/api/guides){:target=_blank .external-link} for details about their API.\n\n## Common issues\n\nFor common questions or issues and suggested solutions, refer to [Common issues](/integrations/builtin/trigger-nodes/n8n-nodes-base.gmailtrigger/common-issues.md).\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "oAuth2",
+      "options": [
+        {
+          "name": "OAuth2 (recommended)",
+          "value": "oAuth2"
+        },
+        {
+          "name": "Service Account",
+          "value": "serviceAccount"
+        }
+      ]
+    },
+    {
+      "displayName": "Event",
+      "name": "event",
+      "type": "options",
+      "default": "messageReceived",
+      "options": [
+        {
+          "name": "Message Received",
+          "value": "messageReceived"
+        }
+      ]
+    },
+    {
+      "displayName": "Simplify",
+      "name": "simple",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return a simplified version of the response instead of the raw data"
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Include Spam and Trash",
+          "name": "includeSpamTrash",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include messages from SPAM and TRASH in the results"
+        },
+        {
+          "displayName": "Include Drafts",
+          "name": "includeDrafts",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include email drafts in the results"
+        },
+        {
+          "displayName": "Label Names or IDs",
+          "name": "labelIds",
+          "type": "multiOptions",
+          "typeOptions": {
+            "loadOptionsMethod": "getLabels"
+          },
+          "default": [],
+          "description": "Only return messages with labels that match all of the specified label IDs. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Search",
+          "name": "q",
+          "type": "string",
+          "default": "",
+          "placeholder": "has:attachment",
+          "hint": "Use the same format as in the Gmail search box. <a href=\"https://support.google.com/mail/answer/7190?hl=en\">More info</a>.",
+          "description": "Only return messages matching the specified query"
+        },
+        {
+          "displayName": "Read Status",
+          "name": "readStatus",
+          "type": "options",
+          "default": "unread",
+          "hint": "Filter emails by whether they have been read or not",
+          "options": [
+            {
+              "name": "Unread and read emails",
+              "value": "both"
+            },
+            {
+              "name": "Unread emails only",
+              "value": "unread"
+            },
+            {
+              "name": "Read emails only",
+              "value": "read"
+            }
+          ]
+        },
+        {
+          "displayName": "Sender",
+          "name": "sender",
+          "type": "string",
+          "default": "",
+          "description": "Sender name or email to filter by",
+          "hint": "Enter an email or part of a sender name"
+        }
+      ]
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Attachment Prefix",
+          "name": "dataPropertyAttachmentsPrefixName",
+          "type": "string",
+          "default": "attachment_",
+          "description": "Prefix for name of the binary property to which to write the attachment. An index starting with 0 will be added. So if name is 'attachment_' the first attachment is saved to 'attachment_0'."
+        },
+        {
+          "displayName": "Download Attachments",
+          "name": "downloadAttachments",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the email's attachments will be downloaded"
+        }
+      ],
+      "displayOptions": {
+        "hide": {
+          "simple": [
+            true
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "googleApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "serviceAccount"
+          ]
+        }
+      }
+    },
+    {
+      "name": "gmailOAuth2",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.869Z",
+  "api_version": "1.0.0"
+}

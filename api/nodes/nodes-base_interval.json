@@ -1,0 +1,58 @@
+{
+  "node_type": "nodes-base.interval",
+  "display_name": "Interval",
+  "description": "Triggers the workflow in a given interval",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": false,
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "This workflow will run on the schedule you define here once you <a data-key=\"activate\">activate</a> it.<br><br>For testing, you can also trigger it manually: by going back to the canvas and clicking 'execute workflow'",
+      "name": "notice",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Interval",
+      "name": "interval",
+      "type": "number",
+      "default": 1,
+      "description": "Interval value",
+      "typeOptions": {
+        "minValue": 1
+      }
+    },
+    {
+      "displayName": "Unit",
+      "name": "unit",
+      "type": "options",
+      "default": "seconds",
+      "description": "Unit of the interval value",
+      "options": [
+        {
+          "name": "Seconds",
+          "value": "seconds"
+        },
+        {
+          "name": "Minutes",
+          "value": "minutes"
+        },
+        {
+          "name": "Hours",
+          "value": "hours"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:21.935Z",
+  "api_version": "1.0.0"
+}

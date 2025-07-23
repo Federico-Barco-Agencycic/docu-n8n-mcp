@@ -1,0 +1,383 @@
+{
+  "node_type": "nodes-base.philipsHue",
+  "display_name": "Philips Hue",
+  "description": "Consume Philips Hue API",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Philips Hue node documentation\ndescription: Learn how to use the Philips Hue node in n8n. Follow technical documentation to integrate Philips Hue node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Philips Hue node\n\nUse the Philips Hue node to automate work in Philips Hue, and integrate Philips Hue with other applications. n8n has built-in support for a wide range of Philips Hue features, including deleting, retrieving, and updating lights. \n\nOn this page, you'll find a list of operations the Philips Hue node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Philips Hue credentials](/integrations/builtin/credentials/philipshue.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Light\n    * Delete a light\n    * Retrieve a light\n    * Retrieve all lights\n    * Update a light\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'philips-hue') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "light",
+      "options": [
+        {
+          "name": "Light",
+          "value": "light"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "update",
+      "options": [
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a light",
+          "action": "Delete a light"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Retrieve a light",
+          "action": "Get a light"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Retrieve many lights",
+          "action": "Get many lights"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a light",
+          "action": "Update a light"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "light"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Light ID",
+      "name": "lightId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "delete"
+          ],
+          "resource": [
+            "light"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "light"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "light"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 500
+      }
+    },
+    {
+      "displayName": "Light ID",
+      "name": "lightId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "light"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Light Name or ID",
+      "name": "lightId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "light"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getLights"
+      }
+    },
+    {
+      "displayName": "On",
+      "name": "on",
+      "type": "boolean",
+      "default": true,
+      "description": "On/Off state of the light",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "light"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Alert Effect",
+          "name": "alert",
+          "type": "options",
+          "options": [
+            {
+              "name": "None",
+              "value": "none",
+              "description": "The light is not performing an alert effect"
+            },
+            {
+              "name": "Select",
+              "value": "select",
+              "description": "The light is performing one breathe cycle"
+            },
+            {
+              "name": "LSelect",
+              "value": "lselect",
+              "description": "The light is performing breathe cycles for 15 seconds or until an \"alert\": \"none\" command is received"
+            }
+          ],
+          "default": "",
+          "description": "The alert effect, is a temporary change to the bulb’s state"
+        },
+        {
+          "displayName": "Brightness",
+          "name": "bri",
+          "type": "number",
+          "typeOptions": {
+            "minValue": 1,
+            "maxValue": 254
+          },
+          "default": 100,
+          "description": "The brightness value to set the light to. Brightness is a scale from 1 (the minimum the light is capable of) to 254 (the maximum)."
+        },
+        {
+          "displayName": "Brightness Increments",
+          "name": "bri_inc",
+          "type": "number",
+          "typeOptions": {
+            "minValue": -254,
+            "maxValue": 254
+          },
+          "default": 0,
+          "description": "Increments or decrements the value of the brightness. This value is ignored if the Brightness attribute is provided."
+        },
+        {
+          "displayName": "Color Temperature",
+          "name": "ct",
+          "type": "number",
+          "default": 0,
+          "description": "The Mired color temperature of the light. 2012 connected lights are capable of 153 (6500K) to 500 (2000K)."
+        },
+        {
+          "displayName": "Color Temperature Increments",
+          "name": "ct_inc",
+          "type": "number",
+          "typeOptions": {
+            "minValue": -65534,
+            "maxValue": 65534
+          },
+          "default": 0,
+          "description": "Increments or decrements the value of the ct. ct_inc is ignored if the ct attribute is provided."
+        },
+        {
+          "displayName": "Coordinates",
+          "name": "xy",
+          "type": "string",
+          "default": "",
+          "placeholder": "0.64394,0.33069",
+          "description": "The x and y coordinates of a color in CIE color space. The first entry is the x coordinate and the second entry is the y coordinate. Both x and y are between 0 and 1"
+        },
+        {
+          "displayName": "Coordinates Increments",
+          "name": "xy_inc",
+          "type": "string",
+          "default": "",
+          "placeholder": "0.5,0.5",
+          "description": "Increments or decrements the value of the xy. This value is ignored if the Coordinates attribute is provided. Any ongoing color transition is stopped. Max value [0.5, 0.5]"
+        },
+        {
+          "displayName": "Dynamic Effect",
+          "name": "effect",
+          "type": "options",
+          "options": [
+            {
+              "name": "None",
+              "value": "none"
+            },
+            {
+              "name": "Color Loop",
+              "value": "colorloop"
+            }
+          ],
+          "default": "",
+          "description": "The dynamic effect of the light"
+        },
+        {
+          "displayName": "Hue",
+          "name": "hue",
+          "type": "number",
+          "typeOptions": {
+            "minValue": 0,
+            "maxValue": 65535
+          },
+          "default": 0,
+          "description": "The hue value to set light to.The hue value is a wrapping value between 0 and 65535. Both 0 and 65535 are red, 25500 is green and 46920 is blue."
+        },
+        {
+          "displayName": "Hue Increments",
+          "name": "hue_inc",
+          "type": "number",
+          "typeOptions": {
+            "minValue": -65534,
+            "maxValue": 65534
+          },
+          "default": 0,
+          "description": "Increments or decrements the value of the hue. Hue Increments is ignored if the Hue attribute is provided."
+        },
+        {
+          "displayName": "Saturation",
+          "name": "sat",
+          "type": "number",
+          "typeOptions": {
+            "minValue": 0,
+            "maxValue": 254
+          },
+          "default": 0,
+          "description": "Saturation of the light. 254 is the most saturated (colored) and 0 is the least saturated (white)."
+        },
+        {
+          "displayName": "Saturation Increments",
+          "name": "sat_inc",
+          "type": "number",
+          "typeOptions": {
+            "minValue": -254,
+            "maxValue": 254
+          },
+          "default": 0,
+          "description": "Increments or decrements the value of the sat. This value is ignored if the Saturation attribute is provided."
+        },
+        {
+          "displayName": "Transition Time",
+          "name": "transitiontime",
+          "type": "number",
+          "typeOptions": {
+            "minVale": 1
+          },
+          "default": 4,
+          "description": "The duration in seconds of the transition from the light’s current state to the new state"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "light"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a light"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Retrieve a light"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Retrieve many lights"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update a light"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "philipsHueOAuth2Api",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.060Z",
+  "api_version": "1.0.0"
+}

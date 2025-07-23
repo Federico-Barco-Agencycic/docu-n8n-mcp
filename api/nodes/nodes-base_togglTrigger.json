@@ -1,0 +1,39 @@
+{
+  "node_type": "nodes-base.togglTrigger",
+  "display_name": "Toggl Trigger",
+  "description": "Starts the workflow when Toggl events occur",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Toggl Trigger node documentation\ndescription: Learn how to use the Toggl Trigger node in n8n. Follow technical documentation to integrate Toggl Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Toggl Trigger node\n\n[Toggl](https://toggl.com/){:target=_blank .external-link} is a time tracking app that offers online time tracking and reporting services through their website along with mobile and desktop applications.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/toggl.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Toggl Trigger integrations](https://n8n.io/integrations/toggl-trigger/){:target=_blank .external-link} page.\n///\n",
+  "properties_schema": [
+    {
+      "displayName": "Event",
+      "name": "event",
+      "type": "options",
+      "default": "newTimeEntry",
+      "options": [
+        {
+          "name": "New Time Entry",
+          "value": "newTimeEntry"
+        }
+      ],
+      "required": true
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "togglApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.182Z",
+  "api_version": "1.0.0"
+}

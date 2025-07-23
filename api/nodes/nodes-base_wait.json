@@ -1,0 +1,1301 @@
+{
+  "node_type": "nodes-base.wait",
+  "display_name": "Wait",
+  "description": "Wait before continue with execution",
+  "category": "organization",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1.1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": true,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Wait\ndescription: Documentation for the Wait node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: critical\n---\n\n# Wait\n\nUse the Wait node pause your workflow's execution. When the workflow pauses it offloads the execution data to the database. When the resume condition is met, the workflow reloads the data and the execution continues.\n\n## Operations\n\nThe Wait node can **Resume** on the following conditions:\n\n* [**After Time Interval**](#after-time-interval): The node waits for a certain amount of time.\n* [**At Specified Time**](#at-specified-time): The node waits until a specific time.\n* [**On Webhook Call**](#on-webhook-call): The node waits until it receives an HTTP call.\n* [**On Form Submitted**](#on-form-submitted): The node waits until it receives a form submission.\n\nRefer to the more detailed sections below for more detailed instructions.\n\n### After Time Interval\n\nWait for a certain amount of time.\n\nThis parameter includes two more fields:\n\n* **Wait Amount**: Enter the amount of time to wait.\n* **Wait Unit**: Select the unit of measure for the **Wait Amount**. Choose from:\n\t* **Seconds**\n\t* **Minutes**\n\t* **Hours**\n\t* **Days**\n\nRefer to [Time-based operations](#time-based-operations) for more detail on how these intervals work and the timezone used.\n\n### At Specified Time\n\nWait until a specific date and time to continue. Use the date and time picker to set the **Date and Time**.\n\nRefer to [Time-based operations](#time-based-operations) for more detail on the timezone used.\n\n### On Webhook Call\n\nThis parameter enables your workflows to resume when the Wait node receives an HTTP call.\n\nThe webhook URL that resumes the execution when called is generated at runtime. The Wait node provides the `$execution.resumeUrl` variable so that you can reference and send the yet-to-be-generated URL wherever needed, for example to a third-party service or in an email. \n\nWhen the workflow executes, the Wait node generates the resume URL and the webhook(s) in your workflow using the `$execution.resumeUrl`. This generated URL is unique to each execution, so your workflow can contain multiple Wait nodes and as the webhook URL is called it will resume each Wait node sequentially.\n\nFor this **Resume** style, set more parameters listed below.\n\n#### Authentication\n\nSelect if and how incoming resume-webhook-requests to `$execution.resumeUrl` should be authenticated. Options include:\n\n* **Basic Auth**: Use basic authentication. Select or enter a new **Credential for Basic Auth** to use.\n* **Header Auth**: Use header authentication. Select or enter a new **Credential for Header Auth** to use.\n* **JWT Auth**: Use JWT authentication. Select or enter a new **Credential for JWT Auth** to use.\n* **None**: Don't use authentication.\n\n/// note | Auth reference\nRefer to the [Webhook node | Authentication documentation](/integrations/builtin/core-nodes/n8n-nodes-base.webhook/index.md#supported-authentication-methods) for more information on each auth type.\n///\n\n#### HTTP Method\n\nSelect the HTTP method the webhook should use. Refer to the [Webhook node | HTTP Method documentation](/integrations/builtin/core-nodes/n8n-nodes-base.webhook/index.md#http-method) for more information.\n\n#### Response Code\n\nEnter the Response Code the webhook should return. You can use common codes or enter a custom code.\n\n#### Respond\n\nSet when and how to respond to the webhook from these options:\n\n* **Immediately**: Respond as soon as the node executes.\n* **When Last Node Finishes**: Return the response code and the data output from the last node executed in the workflow. If you select this option, also set:\n\t* **Response Data**: Select what data should be returned and what format to use. Options include:\n\t\t* **All Entries**: Returns all the entries of the last node in an array.\n\t\t* **First Entry JSON**: Return the JSON data of the first entry of the last node in a JSON object.\n\t\t* **First Entry Binary**: Return the binary data of the first entry of the last node in a binary file.\n\t\t* **No Response Body**: Return with no body.\n* **Using 'Respond to Webhook' Node**: Respond as defined in the [Respond to Webhook](/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook.md) node.\n\n#### Limit Wait Time\n\nSet whether the workflow will automatically resume execution after a specific limit type (turned on) or not (turned off). If turned on, also set:\n\n* **Limit Type**: Select what type of limit to enforce from these options:\n\t* **After Time Interval**: Wait for a certain amount of time.\n\t\t* Enter the limit's **Amount** of time.\n\t\t* Select the limit's **Unit** of time.\n\t* **At Specified Time**: Wait until a specific date and time to resume.\n\t\t* **Max Date and Time**: Use the date and time picker to set the specified time the node should resume.\n\n#### On Webhook Call options\n\n* **Binary Property**: Enter the name of the binary property to write the data of the received file to. This option's only relevant if binary data is received.\n* **Ignore Bots**: Set whether to ignore requests from bots like link previewers and web crawlers (turned on) or not (turned off).\n* **IP(s) Whitelist**: Enter IP addresses here to limit who (or what) can invoke the webhook URL. Enter a comma-separated list of allowed IP addresses. Access from IPs outside the whitelist throws a 403 error. If left blank, all IP addresses can invoke the webhook URL.\n* **No Response Body**: Set whether n8n should send a body in the response (turned off) or prevent n8n from sending a body in the response (turned on).\n* **Raw Body**: Set whether to return the body in a raw format like JSON or XML (turned on) or not (turned off).\n* **Response Data**: Enter any custom data you want to send in the response.\n* **Response Headers**: Send more headers in the webhook response. Refer to [MDN Web Docs | Response header](https://developer.mozilla.org/en-US/docs/Glossary/Response_header){:target=_blank .external-link} to learn more about response headers.\n* **Webhook Suffix**: Enter a suffix to append to the resume URL. This is useful for creating unique webhook URLs for each Wait node when a workflow contains multiple Wait nodes. Note that the generated `$resumeWebhookUrl` won't automatically include this suffix, you must manually append it to the webhook URL before exposing it.\n\n#### On Webhook Call limitations\n\nThere are some limitations to keep in mind when using On Webhook Call:\n\n* Partial executions of your workflow changes the `$resumeWebhookUrl`, so be sure that the node sending this URL to your desired third-party runs in the same execution as the Wait node.\n\n### On Form Submitted\n\nWait for a form submission before continuing. Set up these parameters:\n\n#### Form Title\n\nEnter the title to display at the top of the form.\n\n#### Form Description\n\nEnter a form description to display beneath the title. This description can help prompt the user on how to complete the form.\n\n#### Form Fields\n\nSet up each field you want to appear on your form using these parameters:\n\n* **Field Label**: Enter the field label you want to appear in the form.\n* **Field Type**: Select the type of field to display in the form. Choose from:\n\t* **Date**\n\t* **Dropdown List**: Enter each dropdown options in the **Field Options**.\n\t\t* **Multiple Choice**: Select whether the user can select a single dropdown option (turned off) or multiple dropdown options (turned on)\n\t* **Number**\n\t* **Password**\n\t* **Text**\n\t* **Textarea**\n* **Required Field**: Set whether the user must complete this field in order to submit the form (turned on) or if the user can submit the form without completing it (turned off).\n\n#### Respond When\n\nSet when to respond to the form submission. Choose from:\n\n* **Form Is Submitted**: Respond as soon as this node receives the form submission.\n* **Workflow Finishes**: Respond when the last node of this workflow finishes.\n* **Using 'Respond to Webhook' Node**: Respond when the [Respond to Webhook](/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook.md) node executes.\n\n#### Limit Wait Time\n\nSet whether the workflow will automatically resume execution after a specific limit type (turned on) or not (turned off).\n\nIf turned on, also set:\n* **Limit Type**: Select what type of limit to enforce from these options:\n\t* **After Time Interval**: Wait for a certain amount of time.\n\t\t* Enter the limit's **Amount** of time.\n\t\t* Select the limit's **Unit** of time.\n\t* **At Specified Time**: Wait until a specific date and time to resume.\n\t\t* **Max Date and Time**: Use the date and time picker to set the specified time the node should resume.\n\n#### On Form Response options\n\n* **Form Response**: Choose how and what you want the form to **Respond With** from these options:\n\t* **Form Submitted Text**: The form displays whatever text is entered in **Text to Show** after a user fills out the form. Use this option if you want to display a confirmation message.\n\t* **Redirect URL**: The form will redirect the user to the **URL to Redirect to** after they fill out the form. This must be a valid URL.\n* **Webhook Suffix**: Enter a suffix to append to the resume URL. This is useful for creating unique webhook URLs for each Wait node when a workflow contains multiple Wait nodes. Note that the generated `$resumeWebhookUrl` won't automatically include this suffix, you must manually append it to the webhook URL before exposing it.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'wait') ]]\n\n## Time-based operations\n\nFor the time-based resume operations, note that:\n\n* For wait times less than 65 seconds, the workflow doesn't offload execution data to the database. Instead, the process continues to run and the execution resumes after the specified interval passes.\n* The n8n server time is always used regardless of the timezone setting. Workflow timezone settings, and any changes made to them, don't affect the Wait node interval or specified time. \n",
+  "properties_schema": [
+    {
+      "displayName": "Resume",
+      "name": "resume",
+      "type": "options",
+      "default": "timeInterval",
+      "description": "Determines the waiting mode to use before the workflow continues",
+      "options": [
+        {
+          "name": "After Time Interval",
+          "value": "timeInterval",
+          "description": "Waits for a certain amount of time"
+        },
+        {
+          "name": "At Specified Time",
+          "value": "specificTime",
+          "description": "Waits until a specific date and time to continue"
+        },
+        {
+          "name": "On Webhook Call",
+          "value": "webhook",
+          "description": "Waits for a webhook call before continuing"
+        },
+        {
+          "name": "On Form Submitted",
+          "value": "form",
+          "description": "Waits for a form submission before continuing"
+        }
+      ]
+    },
+    {
+      "displayName": "Authentication",
+      "name": "incomingAuthentication",
+      "type": "options",
+      "default": "none",
+      "description": "If and how incoming resume-webhook-requests to $execution.resumeFormUrl should be authenticated for additional security",
+      "options": [
+        {
+          "name": "Basic Auth",
+          "value": "basicAuth"
+        },
+        {
+          "name": "None",
+          "value": "none"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "form"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Authentication",
+      "name": "incomingAuthentication",
+      "type": "options",
+      "default": "none",
+      "description": "If and how incoming resume-webhook-requests to $execution.resumeUrl should be authenticated for additional security",
+      "options": [
+        {
+          "name": "Basic Auth",
+          "value": "basicAuth"
+        },
+        {
+          "name": "Header Auth",
+          "value": "headerAuth"
+        },
+        {
+          "name": "JWT Auth",
+          "value": "jwtAuth"
+        },
+        {
+          "name": "None",
+          "value": "none"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "webhook"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Date and Time",
+      "name": "dateTime",
+      "type": "dateTime",
+      "default": "",
+      "description": "The date and time to wait for before continuing",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "specificTime"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Wait Amount",
+      "name": "amount",
+      "type": "number",
+      "default": 1,
+      "description": "The time to wait",
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "timeInterval"
+          ],
+          "@version": [
+            1
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 0,
+        "numberPrecision": 2
+      }
+    },
+    {
+      "displayName": "Wait Amount",
+      "name": "amount",
+      "type": "number",
+      "default": 5,
+      "description": "The time to wait",
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "timeInterval"
+          ]
+        },
+        "hide": {
+          "@version": [
+            1
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 0,
+        "numberPrecision": 2
+      }
+    },
+    {
+      "displayName": "Wait Unit",
+      "name": "unit",
+      "type": "options",
+      "default": "hours",
+      "description": "The time unit of the Wait Amount value",
+      "options": [
+        {
+          "name": "Seconds",
+          "value": "seconds"
+        },
+        {
+          "name": "Minutes",
+          "value": "minutes"
+        },
+        {
+          "name": "Hours",
+          "value": "hours"
+        },
+        {
+          "name": "Days",
+          "value": "days"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "timeInterval"
+          ],
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Wait Unit",
+      "name": "unit",
+      "type": "options",
+      "default": "seconds",
+      "description": "The time unit of the Wait Amount value",
+      "options": [
+        {
+          "name": "Seconds",
+          "value": "seconds"
+        },
+        {
+          "name": "Minutes",
+          "value": "minutes"
+        },
+        {
+          "name": "Hours",
+          "value": "hours"
+        },
+        {
+          "name": "Days",
+          "value": "days"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "timeInterval"
+          ]
+        },
+        "hide": {
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "The webhook URL will be generated at run time. It can be referenced with the <strong>$execution.resumeUrl</strong> variable. Send it somewhere before getting to this node. <a href=\"https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.wait/?utm_source=n8n_app&utm_medium=node_settings_modal-credential_link&utm_campaign=n8n-nodes-base.wait\" target=\"_blank\">More info</a>",
+      "name": "webhookNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "webhook"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "The form url will be generated at run time. It can be referenced with the <strong>$execution.resumeFormUrl</strong> variable. Send it somewhere before getting to this node. <a href=\"https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.wait/?utm_source=n8n_app&utm_medium=node_settings_modal-credential_link&utm_campaign=n8n-nodes-base.wait\" target=\"_blank\">More info</a>",
+      "name": "formNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "form"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Form Title",
+      "name": "formTitle",
+      "type": "string",
+      "default": "",
+      "description": "Shown at the top of the form",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "form"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Form Description",
+      "name": "formDescription",
+      "type": "string",
+      "default": "",
+      "description": "Shown underneath the Form Title. Can be used to prompt the user on how to complete the form. Accepts HTML.",
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "form"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 2
+      }
+    },
+    {
+      "displayName": "Form Elements",
+      "name": "formFields",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Values",
+          "name": "values",
+          "values": [
+            {
+              "displayName": "Field Name",
+              "name": "fieldLabel",
+              "type": "string",
+              "default": "",
+              "placeholder": "e.g. What is your name?",
+              "description": "Label that appears above the input field",
+              "required": true,
+              "displayOptions": {
+                "hide": {
+                  "fieldType": [
+                    "hiddenField",
+                    "html"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Element Type",
+              "name": "fieldType",
+              "type": "options",
+              "default": "text",
+              "description": "The type of field to add to the form",
+              "options": [
+                {
+                  "name": "Custom HTML",
+                  "value": "html"
+                },
+                {
+                  "name": "Date",
+                  "value": "date"
+                },
+                {
+                  "name": "Dropdown List",
+                  "value": "dropdown"
+                },
+                {
+                  "name": "Email",
+                  "value": "email"
+                },
+                {
+                  "name": "File",
+                  "value": "file"
+                },
+                {
+                  "name": "Hidden Field",
+                  "value": "hiddenField"
+                },
+                {
+                  "name": "Number",
+                  "value": "number"
+                },
+                {
+                  "name": "Password",
+                  "value": "password"
+                },
+                {
+                  "name": "Text",
+                  "value": "text"
+                },
+                {
+                  "name": "Textarea",
+                  "value": "textarea"
+                }
+              ],
+              "required": true
+            },
+            {
+              "displayName": "Element Name",
+              "name": "elementName",
+              "type": "string",
+              "default": "",
+              "placeholder": "e.g. content-section",
+              "description": "Optional field. It can be used to include the html in the output.",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "html"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Placeholder",
+              "name": "placeholder",
+              "description": "Sample text to display inside the field",
+              "type": "string",
+              "default": "",
+              "displayOptions": {
+                "hide": {
+                  "fieldType": [
+                    "dropdown",
+                    "date",
+                    "file",
+                    "html",
+                    "hiddenField"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Field Name",
+              "name": "fieldName",
+              "description": "The name of the field, used in input attributes and referenced by the workflow",
+              "type": "string",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "hiddenField"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Field Value",
+              "name": "fieldValue",
+              "description": "Input value can be set here or will be passed as a query parameter via Field Name if no value is set",
+              "type": "string",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "hiddenField"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Field Options",
+              "name": "fieldOptions",
+              "placeholder": "Add Field Option",
+              "description": "List of options that can be selected from the dropdown",
+              "type": "fixedCollection",
+              "default": {
+                "values": [
+                  {
+                    "option": ""
+                  }
+                ]
+              },
+              "required": true,
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "dropdown"
+                  ]
+                }
+              },
+              "typeOptions": {
+                "multipleValues": true,
+                "sortable": true
+              },
+              "options": [
+                {
+                  "displayName": "Values",
+                  "name": "values",
+                  "values": [
+                    {
+                      "displayName": "Option",
+                      "name": "option",
+                      "type": "string",
+                      "default": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "displayName": "Multiple Choice",
+              "name": "multiselect",
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to allow the user to select multiple options from the dropdown list",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "dropdown"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "HTML",
+              "name": "html",
+              "typeOptions": {
+                "editor": "htmlEditor"
+              },
+              "type": "string",
+              "noDataExpression": true,
+              "default": "<!-- Your custom HTML here --->\n\n\n",
+              "description": "HTML elements to display on the form page",
+              "hint": "Does not accept <code>&lt;script&gt;</code>, <code>&lt;style&gt;</code> or <code>&lt;input&gt;</code> tags",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "html"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Multiple Files",
+              "name": "multipleFiles",
+              "type": "boolean",
+              "default": true,
+              "description": "Whether to allow the user to select multiple files from the file input or just one",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "file"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Accepted File Types",
+              "name": "acceptFileTypes",
+              "type": "string",
+              "default": "",
+              "description": "Comma-separated list of allowed file extensions",
+              "hint": "Leave empty to allow all file types",
+              "placeholder": "e.g. .jpg, .png",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "file"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "The displayed date is formatted based on the locale of the user's browser",
+              "name": "formatDate",
+              "type": "notice",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "date"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Required Field",
+              "name": "requiredField",
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to require the user to enter a value for this field before submitting the form",
+              "displayOptions": {
+                "hide": {
+                  "fieldType": [
+                    "html",
+                    "hiddenField"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "form"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true,
+        "sortable": true
+      }
+    },
+    {
+      "displayName": "Respond When",
+      "name": "responseMode",
+      "type": "options",
+      "default": "onReceived",
+      "description": "When to respond to the form submission",
+      "options": [
+        {
+          "name": "Form Is Submitted",
+          "value": "onReceived",
+          "description": "As soon as this node receives the form submission"
+        },
+        {
+          "name": "Workflow Finishes",
+          "value": "lastNode",
+          "description": "When the last node of the workflow is executed"
+        },
+        {
+          "name": "Using 'Respond to Webhook' Node",
+          "value": "responseNode",
+          "description": "When the 'Respond to Webhook' node is executed"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "form"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "HTTP Method",
+      "name": "httpMethod",
+      "type": "options",
+      "default": "GET",
+      "description": "The HTTP method of the Webhook call",
+      "options": [
+        {
+          "name": "DELETE",
+          "value": "DELETE"
+        },
+        {
+          "name": "GET",
+          "value": "GET"
+        },
+        {
+          "name": "HEAD",
+          "value": "HEAD"
+        },
+        {
+          "name": "PATCH",
+          "value": "PATCH"
+        },
+        {
+          "name": "POST",
+          "value": "POST"
+        },
+        {
+          "name": "PUT",
+          "value": "PUT"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "webhook"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Response Code",
+      "name": "responseCode",
+      "type": "number",
+      "default": 200,
+      "description": "The HTTP Response code to return",
+      "displayOptions": {
+        "hide": {
+          "responseMode": [
+            "responseNode"
+          ]
+        },
+        "show": {
+          "resume": [
+            "webhook"
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 100,
+        "maxValue": 599
+      }
+    },
+    {
+      "displayName": "Respond",
+      "name": "responseMode",
+      "type": "options",
+      "default": "onReceived",
+      "description": "When and how to respond to the webhook",
+      "options": [
+        {
+          "name": "Immediately",
+          "value": "onReceived",
+          "description": "As soon as this node executes"
+        },
+        {
+          "name": "When Last Node Finishes",
+          "value": "lastNode",
+          "description": "Returns data of the last-executed node"
+        },
+        {
+          "name": "Using 'Respond to Webhook' Node",
+          "value": "responseNode",
+          "description": "Response defined in that node"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "webhook"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Response Data",
+      "name": "responseData",
+      "type": "options",
+      "default": "firstEntryJson",
+      "description": "What data should be returned. If it should return all items as an array or only the first item as object.",
+      "options": [
+        {
+          "name": "All Entries",
+          "value": "allEntries",
+          "description": "Returns all the entries of the last node. Always returns an array."
+        },
+        {
+          "name": "First Entry JSON",
+          "value": "firstEntryJson",
+          "description": "Returns the JSON data of the first entry of the last node. Always returns a JSON object."
+        },
+        {
+          "name": "First Entry Binary",
+          "value": "firstEntryBinary",
+          "description": "Returns the binary data of the first entry of the last node. Always returns a binary file."
+        },
+        {
+          "name": "No Response Body",
+          "value": "noData",
+          "description": "Returns without a body"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "responseMode": [
+            "lastNode"
+          ],
+          "resume": [
+            "webhook"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Property Name",
+      "name": "responseBinaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "description": "Name of the binary property to return",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "responseData": [
+            "firstEntryBinary"
+          ],
+          "resume": [
+            "webhook"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit Wait Time",
+      "name": "limitWaitTime",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to limit the time this node should wait for a user response before execution resumes",
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "webhook",
+            "form"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit Type",
+      "name": "limitType",
+      "type": "options",
+      "default": "afterTimeInterval",
+      "description": "Sets the condition for the execution to resume. Can be a specified date or after some time.",
+      "options": [
+        {
+          "name": "After Time Interval",
+          "description": "Waits for a certain amount of time",
+          "value": "afterTimeInterval"
+        },
+        {
+          "name": "At Specified Time",
+          "description": "Waits until the set date and time to continue",
+          "value": "atSpecifiedTime"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "limitWaitTime": [
+            true
+          ],
+          "resume": [
+            "webhook",
+            "form"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Amount",
+      "name": "resumeAmount",
+      "type": "number",
+      "default": 1,
+      "description": "The time to wait",
+      "displayOptions": {
+        "show": {
+          "limitType": [
+            "afterTimeInterval"
+          ],
+          "limitWaitTime": [
+            true
+          ],
+          "resume": [
+            "webhook",
+            "form"
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 0,
+        "numberPrecision": 2
+      }
+    },
+    {
+      "displayName": "Unit",
+      "name": "resumeUnit",
+      "type": "options",
+      "default": "hours",
+      "description": "Unit of the interval value",
+      "options": [
+        {
+          "name": "Seconds",
+          "value": "seconds"
+        },
+        {
+          "name": "Minutes",
+          "value": "minutes"
+        },
+        {
+          "name": "Hours",
+          "value": "hours"
+        },
+        {
+          "name": "Days",
+          "value": "days"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "limitType": [
+            "afterTimeInterval"
+          ],
+          "limitWaitTime": [
+            true
+          ],
+          "resume": [
+            "webhook",
+            "form"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Max Date and Time",
+      "name": "maxDateAndTime",
+      "type": "dateTime",
+      "default": "",
+      "description": "Continue execution after the specified date and time",
+      "displayOptions": {
+        "show": {
+          "limitType": [
+            "atSpecifiedTime"
+          ],
+          "limitWaitTime": [
+            true
+          ],
+          "resume": [
+            "webhook",
+            "form"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Binary File",
+          "name": "binaryData",
+          "type": "boolean",
+          "displayOptions": {
+            "show": {
+              "/httpMethod": [
+                "PATCH",
+                "PUT",
+                "POST"
+              ],
+              "@version": [
+                1
+              ]
+            }
+          },
+          "default": false,
+          "description": "Whether the webhook will receive binary data"
+        },
+        {
+          "displayName": "Put Output File in Field",
+          "name": "binaryPropertyName",
+          "type": "string",
+          "default": "data",
+          "displayOptions": {
+            "show": {
+              "binaryData": [
+                true
+              ],
+              "@version": [
+                1
+              ]
+            }
+          },
+          "hint": "The name of the output binary field to put the file in",
+          "description": "If the data gets received via \"Form-Data Multipart\" it will be the prefix and a number starting with 0 will be attached to it"
+        },
+        {
+          "displayName": "Field Name for Binary Data",
+          "name": "binaryPropertyName",
+          "type": "string",
+          "default": "data",
+          "displayOptions": {
+            "hide": {
+              "@version": [
+                1
+              ]
+            }
+          },
+          "description": "The name of the output field to put any binary file data in. Only relevant if binary data is received."
+        },
+        {
+          "displayName": "Ignore Bots",
+          "name": "ignoreBots",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to ignore requests from bots like link previewers and web crawlers"
+        },
+        {
+          "displayName": "IP(s) Whitelist",
+          "name": "ipWhitelist",
+          "type": "string",
+          "placeholder": "e.g. 127.0.0.1",
+          "default": "",
+          "description": "Comma-separated list of allowed IP addresses. Leave empty to allow all IPs."
+        },
+        {
+          "displayName": "No Response Body",
+          "name": "noResponseBody",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to send any body in the response",
+          "displayOptions": {
+            "hide": {
+              "rawBody": [
+                true
+              ]
+            },
+            "show": {
+              "/responseMode": [
+                "onReceived"
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Raw Body",
+          "name": "rawBody",
+          "type": "boolean",
+          "displayOptions": {
+            "show": {
+              "@version": [
+                1
+              ]
+            },
+            "hide": {
+              "binaryData": [
+                true
+              ],
+              "noResponseBody": [
+                true
+              ]
+            }
+          },
+          "default": false,
+          "description": "Raw body (binary)"
+        },
+        {
+          "displayName": "Raw Body",
+          "name": "rawBody",
+          "type": "boolean",
+          "displayOptions": {
+            "hide": {
+              "noResponseBody": [
+                true
+              ],
+              "@version": [
+                1
+              ]
+            }
+          },
+          "default": false,
+          "description": "Whether to return the raw body"
+        },
+        {
+          "displayName": "Response Data",
+          "name": "responseData",
+          "type": "string",
+          "displayOptions": {
+            "show": {
+              "/responseMode": [
+                "onReceived"
+              ]
+            },
+            "hide": {
+              "noResponseBody": [
+                true
+              ]
+            }
+          },
+          "default": "",
+          "placeholder": "success",
+          "description": "Custom response data to send"
+        },
+        {
+          "displayName": "Response Content-Type",
+          "name": "responseContentType",
+          "type": "string",
+          "displayOptions": {
+            "show": {
+              "/responseData": [
+                "firstEntryJson"
+              ],
+              "/responseMode": [
+                "lastNode"
+              ]
+            }
+          },
+          "default": "",
+          "placeholder": "application/xml",
+          "description": "Set a custom content-type to return if another one as the \"application/json\" should be returned"
+        },
+        {
+          "displayName": "Response Headers",
+          "name": "responseHeaders",
+          "placeholder": "Add Response Header",
+          "description": "Add headers to the webhook response",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "name": "entries",
+              "displayName": "Entries",
+              "values": [
+                {
+                  "displayName": "Name",
+                  "name": "name",
+                  "type": "string",
+                  "default": "",
+                  "description": "Name of the header"
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": "",
+                  "description": "Value of the header"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Property Name",
+          "name": "responsePropertyName",
+          "type": "string",
+          "displayOptions": {
+            "show": {
+              "/responseData": [
+                "firstEntryJson"
+              ],
+              "/responseMode": [
+                "lastNode"
+              ]
+            }
+          },
+          "default": "data",
+          "description": "Name of the property to return the data of instead of the whole JSON"
+        },
+        {
+          "displayName": "Webhook Suffix",
+          "name": "webhookSuffix",
+          "type": "string",
+          "default": "",
+          "placeholder": "webhook",
+          "noDataExpression": true,
+          "description": "This suffix path will be appended to the restart URL. Helpful when using multiple wait nodes."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "webhook"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Append n8n Attribution",
+          "name": "appendAttribution",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to include the link “Form automated with n8n” at the bottom of the form"
+        },
+        {
+          "displayName": "Form Response",
+          "name": "respondWithOptions",
+          "type": "fixedCollection",
+          "placeholder": "Add option",
+          "default": {
+            "values": {
+              "respondWith": "text"
+            }
+          },
+          "options": [
+            {
+              "displayName": "Values",
+              "name": "values",
+              "values": [
+                {
+                  "displayName": "Respond With",
+                  "name": "respondWith",
+                  "type": "options",
+                  "default": "text",
+                  "options": [
+                    {
+                      "name": "Form Submitted Text",
+                      "value": "text",
+                      "description": "Show a response text to the user"
+                    },
+                    {
+                      "name": "Redirect URL",
+                      "value": "redirect",
+                      "description": "Redirect the user to a URL"
+                    }
+                  ]
+                },
+                {
+                  "displayName": "Text to Show",
+                  "name": "formSubmittedText",
+                  "description": "The text displayed to users after they fill the form. Leave it empty if don't want to show any additional text.",
+                  "type": "string",
+                  "default": "Your response has been recorded",
+                  "displayOptions": {
+                    "show": {
+                      "respondWith": [
+                        "text"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "displayName": "URL to Redirect to",
+                  "name": "redirectUrl",
+                  "description": "The URL to redirect users to after they fill the form. Must be a valid URL.",
+                  "type": "string",
+                  "default": "",
+                  "validateType": "url",
+                  "placeholder": "e.g. http://www.n8n.io",
+                  "displayOptions": {
+                    "show": {
+                      "respondWith": [
+                        "redirect"
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Webhook Suffix",
+          "name": "webhookSuffix",
+          "type": "string",
+          "default": "",
+          "placeholder": "webhook",
+          "noDataExpression": true,
+          "description": "This suffix path will be appended to the restart URL. Helpful when using multiple wait nodes."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "form"
+          ]
+        },
+        "hide": {
+          "responseMode": [
+            "responseNode"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Append n8n Attribution",
+          "name": "appendAttribution",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to include the link “Form automated with n8n” at the bottom of the form"
+        },
+        {
+          "displayName": "Webhook Suffix",
+          "name": "webhookSuffix",
+          "type": "string",
+          "default": "",
+          "placeholder": "webhook",
+          "noDataExpression": true,
+          "description": "This suffix path will be appended to the restart URL. Helpful when using multiple wait nodes."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resume": [
+            "form"
+          ]
+        },
+        "hide": {
+          "responseMode": [
+            "onReceived",
+            "lastNode"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "httpBasicAuth",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "incomingAuthentication": [
+            "basicAuth"
+          ]
+        }
+      }
+    },
+    {
+      "name": "httpHeaderAuth",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "incomingAuthentication": [
+            "headerAuth"
+          ]
+        }
+      }
+    },
+    {
+      "name": "jwtAuth",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "incomingAuthentication": [
+            "jwtAuth"
+          ]
+        }
+      }
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.207Z",
+  "api_version": "1.0.0"
+}

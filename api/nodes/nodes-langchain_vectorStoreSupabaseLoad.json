@@ -1,0 +1,84 @@
+{
+  "node_type": "nodes-langchain.vectorStoreSupabaseLoad",
+  "display_name": "Supabase: Load",
+  "description": "Load data from Supabase Vector Store index",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": false,
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "Table Name",
+      "name": "tableName",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "required": true
+    },
+    {
+      "displayName": "Query Name",
+      "name": "queryName",
+      "type": "string",
+      "default": "match_documents",
+      "description": "Name of the query to use for matching documents",
+      "required": true
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Metadata Filter",
+          "name": "metadata",
+          "type": "fixedCollection",
+          "description": "Metadata to filter the document by",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "placeholder": "Add filter field",
+          "options": [
+            {
+              "name": "metadataValues",
+              "displayName": "Fields to Set",
+              "values": [
+                {
+                  "displayName": "Name",
+                  "name": "name",
+                  "type": "string",
+                  "default": "",
+                  "required": true
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "supabaseApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.301Z",
+  "api_version": "1.0.0"
+}

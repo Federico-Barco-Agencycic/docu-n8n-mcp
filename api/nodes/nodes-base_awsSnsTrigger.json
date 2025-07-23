@@ -1,0 +1,36 @@
+{
+  "node_type": "nodes-base.awsSnsTrigger",
+  "display_name": "AWS SNS Trigger",
+  "description": "Handle AWS SNS events via webhooks",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: AWS SNS Trigger node documentation\ndescription: Learn how to use the AWS SNS Trigger node in n8n. Follow technical documentation to integrate AWS SNS Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# AWS SNS Trigger node\n\n[AWS SNS](https://aws.amazon.com/sns/){:target=_blank .external-link} is a notification service provided as part of Amazon Web Services. It provides a low-cost infrastructure for the mass delivery of messages, predominantly to mobile users.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/aws.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [AWS SNS Trigger integrations](https://n8n.io/integrations/aws-sns-trigger/){:target=_blank .external-link} page.\n///\n",
+  "properties_schema": [
+    {
+      "displayName": "Topic",
+      "name": "topic",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "required": true
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "aws",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.750Z",
+  "api_version": "1.0.0"
+}

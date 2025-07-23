@@ -1,0 +1,37 @@
+{
+  "node_type": "nodes-base.readBinaryFiles",
+  "display_name": "Read Binary Files",
+  "description": "Reads binary files from disk",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": false,
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "File Selector",
+      "name": "fileSelector",
+      "type": "string",
+      "default": "",
+      "description": "Pattern for files to read",
+      "required": true
+    },
+    {
+      "displayName": "Property Name",
+      "name": "dataPropertyName",
+      "type": "string",
+      "default": "data",
+      "description": "Name of the binary property to which to write the data of the read files",
+      "required": true
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.097Z",
+  "api_version": "1.0.0"
+}

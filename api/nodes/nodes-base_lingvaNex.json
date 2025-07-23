@@ -1,0 +1,118 @@
+{
+  "node_type": "nodes-base.lingvaNex",
+  "display_name": "LingvaNex",
+  "description": "Consume LingvaNex API",
+  "category": "output",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: LingvaNex node documentation\ndescription: Learn how to use the LingvaNex node in n8n. Follow technical documentation to integrate LingvaNex node into your workflows.\ncontentType: [integration, reference]\n---\n\n# LingvaNex node\n\nUse the LingvaNex node to automate work in LingvaNex, and integrate LingvaNex with other applications. n8n has built-in support for translating data with LingvaNex.\n\nOn this page, you'll find a list of operations the LingvaNex node supports and links to more resources.\n\n/// note | Credentials\nRefer to [LingvaNex credentials](/integrations/builtin/credentials/lingvanex.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n- Translate data\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'lingvanex') ]]\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "translate",
+      "options": [
+        {
+          "name": "Translate",
+          "value": "translate",
+          "description": "Translate data",
+          "action": "Translate data"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Text",
+      "name": "text",
+      "type": "string",
+      "default": "",
+      "description": "The input text to translate",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "translate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Translate To",
+      "name": "translateTo",
+      "type": "options",
+      "default": "",
+      "description": "The language to use for translation of the input text, set to one of the language codes listed in <a href=\"https://cloud.google.com/translate/docs/languages\">Language Support</a>. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "translate"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getLanguages"
+      }
+    },
+    {
+      "displayName": "Additional Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "From",
+          "name": "from",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsMethod": "getLanguages"
+          },
+          "default": "",
+          "description": "The language code in the format “language code_code of the country”. If this parameter is not present, the auto-detect language mode is enabled. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Platform",
+          "name": "platform",
+          "type": "string",
+          "default": "api"
+        },
+        {
+          "displayName": "Translate Mode",
+          "name": "translateMode",
+          "type": "string",
+          "default": "",
+          "description": "Describe the input text format. Possible value is \"html\" for translating and preserving html structure. If value is not specified or is other than \"html\" than plain text is translating."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "translate"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "translate",
+      "name": "Translate",
+      "description": "Translate data"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "lingvaNexApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.956Z",
+  "api_version": "1.0.0"
+}

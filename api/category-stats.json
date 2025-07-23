@@ -1,0 +1,37 @@
+[
+  {
+    "category": "transform",
+    "total_nodes": 208,
+    "ai_tools": 102,
+    "triggers": 0,
+    "webhooks": 1
+  },
+  {
+    "category": "trigger",
+    "total_nodes": 108,
+    "ai_tools": 8,
+    "triggers": 108,
+    "webhooks": 72
+  },
+  {
+    "category": "input",
+    "total_nodes": 107,
+    "ai_tools": 80,
+    "triggers": 0,
+    "webhooks": 3
+  },
+  {
+    "category": "output",
+    "total_nodes": 99,
+    "ai_tools": 72,
+    "triggers": 0,
+    "webhooks": 2
+  },
+  {
+    "category": "organization",
+    "total_nodes": 4,
+    "ai_tools": 1,
+    "triggers": 0,
+    "webhooks": 1
+  }
+]

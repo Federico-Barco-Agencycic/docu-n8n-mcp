@@ -1,0 +1,27 @@
+{
+  "node_type": "nodes-base.start",
+  "display_name": "Start",
+  "description": "Starts the workflow execution from this node",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": false,
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "This node is where a manual workflow execution starts. To make one, go back to the canvas and click ‘execute workflow’",
+      "name": "notice",
+      "type": "notice",
+      "default": ""
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.154Z",
+  "api_version": "1.0.0"
+}

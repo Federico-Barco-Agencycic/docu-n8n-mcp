@@ -1,0 +1,207 @@
+{
+  "node_type": "nodes-base.awsComprehend",
+  "display_name": "AWS Comprehend",
+  "description": "Sends data to Amazon Comprehend",
+  "category": "output",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: AWS Comprehend node documentation\ndescription: Learn how to use the AWS Comprehend node in n8n. Follow technical documentation to integrate AWS Comprehend node into your workflows.\ncontentType: [integration, reference]\n---\n\n# AWS Comprehend node\n\nUse the AWS Comprehend node to automate work in AWS Comprehend, and integrate AWS Comprehend with other applications. n8n has built-in support for a wide range of AWS Comprehend features, including identifying and analyzing texts.\n\nOn this page, you'll find a list of operations the AWS Comprehend node supports and links to more resources.\n\n/// note | Credentials\nRefer to [AWS Comprehend credentials](/integrations/builtin/credentials/aws.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n**Text**\n\n- Identify the dominant language\n- Analyse the sentiment of the text\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'aws-comprehend') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "text",
+      "description": "The resource to perform",
+      "options": [
+        {
+          "name": "Text",
+          "value": "text"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "detectDominantLanguage",
+      "options": [
+        {
+          "name": "Detect Dominant Language",
+          "value": "detectDominantLanguage",
+          "description": "Identify the dominant language",
+          "action": "Identify the dominant language"
+        },
+        {
+          "name": "Detect Entities",
+          "value": "detectEntities",
+          "description": "Inspects text for named entities, and returns information about them",
+          "action": "Inspect text for named entities, and returns information about them"
+        },
+        {
+          "name": "Detect Sentiment",
+          "value": "detectSentiment",
+          "description": "Analyse the sentiment of the text",
+          "action": "Analyze the sentiment of the text"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Language Code",
+      "name": "languageCode",
+      "type": "options",
+      "default": "en",
+      "description": "The language code for text",
+      "options": [
+        {
+          "name": "Arabic",
+          "value": "ar"
+        },
+        {
+          "name": "Chinese",
+          "value": "zh"
+        },
+        {
+          "name": "Chinese (T)",
+          "value": "zh-TW"
+        },
+        {
+          "name": "English",
+          "value": "en"
+        },
+        {
+          "name": "French",
+          "value": "fr"
+        },
+        {
+          "name": "German",
+          "value": "de"
+        },
+        {
+          "name": "Hindi",
+          "value": "hi"
+        },
+        {
+          "name": "Italian",
+          "value": "it"
+        },
+        {
+          "name": "Japanese",
+          "value": "ja"
+        },
+        {
+          "name": "Korean",
+          "value": "ko"
+        },
+        {
+          "name": "Portuguese",
+          "value": "pt"
+        },
+        {
+          "name": "Spanish",
+          "value": "es"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "text"
+          ],
+          "operation": [
+            "detectSentiment",
+            "detectEntities"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Text",
+      "name": "text",
+      "type": "string",
+      "default": "",
+      "description": "The text to send",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "text"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Simplify",
+      "name": "simple",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return a simplified version of the response instead of the raw data",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "text"
+          ],
+          "operation": [
+            "detectDominantLanguage"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Endpoint Arn",
+          "name": "endpointArn",
+          "type": "string",
+          "default": "",
+          "description": "The Amazon Resource Name of an endpoint that is associated with a custom entity recognition model"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "text"
+          ],
+          "operation": [
+            "detectEntities"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "detectDominantLanguage",
+      "name": "Detect Dominant Language",
+      "description": "Identify the dominant language"
+    },
+    {
+      "operation": "detectEntities",
+      "name": "Detect Entities",
+      "description": "Inspects text for named entities, and returns information about them"
+    },
+    {
+      "operation": "detectSentiment",
+      "name": "Detect Sentiment",
+      "description": "Analyse the sentiment of the text"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "aws",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.739Z",
+  "api_version": "1.0.0"
+}

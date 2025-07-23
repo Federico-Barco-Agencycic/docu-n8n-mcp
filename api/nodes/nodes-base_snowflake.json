@@ -1,0 +1,161 @@
+{
+  "node_type": "nodes-base.snowflake",
+  "display_name": "Snowflake",
+  "description": "Get, add and update data in Snowflake",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Snowflake node documentation\ndescription: Learn how to use the Snowflake node in n8n. Follow technical documentation to integrate Snowflake node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Snowflake node\n\nUse the Snowflake node to automate work in Snowflake, and integrate Snowflake with other applications. n8n has built-in support for a wide range of Snowflake features, including executing SQL queries, and inserting rows in a database. \n\nOn this page, you'll find a list of operations the Snowflake node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Snowflake credentials](/integrations/builtin/credentials/snowflake.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Execute an SQL query.\n* Insert rows in database.\n* Update rows in database.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'snowflake') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "insert",
+      "options": [
+        {
+          "name": "Execute Query",
+          "value": "executeQuery",
+          "description": "Execute an SQL query",
+          "action": "Execute a SQL query"
+        },
+        {
+          "name": "Insert",
+          "value": "insert",
+          "description": "Insert rows in database",
+          "action": "Insert rows in database"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update rows in database",
+          "action": "Update rows in database"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Query",
+      "name": "query",
+      "type": "string",
+      "default": "",
+      "description": "The SQL query to execute",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "executeQuery"
+          ]
+        }
+      },
+      "typeOptions": {
+        "editor": "sqlEditor"
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Table",
+      "name": "table",
+      "type": "string",
+      "default": "",
+      "description": "Name of the table in which to insert data to",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "insert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Columns",
+      "name": "columns",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of the properties which should used as columns for the new rows",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "insert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Table",
+      "name": "table",
+      "type": "string",
+      "default": "",
+      "description": "Name of the table in which to update data in",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Key",
+      "name": "updateKey",
+      "type": "string",
+      "default": "id",
+      "description": "Name of the property which decides which rows in the database should be updated. Normally that would be \"id\".",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Columns",
+      "name": "columns",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of the properties which should used as columns for rows to update",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "executeQuery",
+      "name": "Execute Query",
+      "description": "Execute an SQL query"
+    },
+    {
+      "operation": "insert",
+      "name": "Insert",
+      "description": "Insert rows in database"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update rows in database"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "snowflake",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.147Z",
+  "api_version": "1.0.0"
+}

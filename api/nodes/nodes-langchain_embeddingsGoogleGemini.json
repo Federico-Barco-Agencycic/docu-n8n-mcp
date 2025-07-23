@@ -1,0 +1,88 @@
+{
+  "node_type": "nodes-langchain.embeddingsGoogleGemini",
+  "display_name": "Embeddings Google Gemini",
+  "description": "Use Google Gemini Embeddings",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Embeddings Google Gemini node documentation\ndescription: Learn how to use the Embeddings Google Gemini node in n8n. Follow technical documentation to integrate Embeddings Google Gemini node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Embeddings Google Gemini node\n\nUse the Embeddings Google Gemini node to generate [embeddings](/glossary.md#ai-embedding) for a given text.\n\nOn this page, you'll find the node parameters for the Embeddings Google Gemini node, and links to more resources.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/googleai.md).\n///\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\n## Node parameters\n\n* **Model**: Select the model to use to generate the embedding.\n\nLearn more about available models in [Google Gemini's models documentation](https://ai.google.dev/models/gemini){:target=_blank .external-link}.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'embeddings-google-gemini') ]]\n\n## Related resources\n\nRefer to [Langchain's Google Generative AI embeddings documentation](https://js.langchain.com/docs/integrations/text_embedding/google_generativeai){:target=_blank .external-link} for more information about the service.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "This node must be connected to a vector store. <a data-action='openSelectiveNodeCreator' data-action-parameter-connectiontype='ai_vectorStore'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "Each model is using different dimensional density for embeddings. Please make sure to use the same dimensionality for your vector store. The default model is using 768-dimensional embeddings.",
+      "name": "notice",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Model",
+      "name": "modelName",
+      "type": "options",
+      "default": "models/text-embedding-004",
+      "description": "The model which will generate the embeddings. <a href=\"https://developers.generativeai.google/api/rest/generativelanguage/models/list\">Learn more</a>.",
+      "typeOptions": {
+        "loadOptions": {
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "/v1beta/models"
+            },
+            "output": {
+              "postReceive": [
+                {
+                  "type": "rootProperty",
+                  "properties": {
+                    "property": "models"
+                  }
+                },
+                {
+                  "type": "filter",
+                  "properties": {
+                    "pass": "={{ $responseItem.name.includes('embedding') }}"
+                  }
+                },
+                {
+                  "type": "setKeyValue",
+                  "properties": {
+                    "name": "={{$responseItem.name}}",
+                    "value": "={{$responseItem.name}}",
+                    "description": "={{$responseItem.description}}"
+                  }
+                },
+                {
+                  "type": "sort",
+                  "properties": {
+                    "key": "name"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "googlePalmApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.253Z",
+  "api_version": "1.0.0"
+}

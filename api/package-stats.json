@@ -1,0 +1,18 @@
+[
+  {
+    "package_name": "n8n-nodes-base",
+    "total_nodes": 435,
+    "ai_tools": 246,
+    "triggers": 105,
+    "webhooks": 77,
+    "categories": 5
+  },
+  {
+    "package_name": "@n8n/n8n-nodes-langchain",
+    "total_nodes": 91,
+    "ai_tools": 17,
+    "triggers": 3,
+    "webhooks": 2,
+    "categories": 3
+  }
+]

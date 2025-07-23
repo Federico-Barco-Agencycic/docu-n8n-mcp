@@ -1,0 +1,82 @@
+{
+  "node_type": "nodes-base.n8nTrainingCustomerDatastore",
+  "display_name": "Customer Datastore (n8n training)",
+  "description": "Dummy node used for n8n training",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Customer Datastore (n8n Training) node documentation\ndescription: Learn how to use the Customer Datastore (n8n Training) node in n8n. Follow technical documentation to integrate Customer Datastore (n8n Training) node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Customer Datastore (n8n Training) node\n\nUse this node only for the n8n new user onboarding tutorial. It provides dummy data for testing purposes and has no further functionality.\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getOnePerson",
+      "options": [
+        {
+          "name": "Get One Person",
+          "value": "getOnePerson"
+        },
+        {
+          "name": "Get All People",
+          "value": "getAllPeople"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAllPeople"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 5,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAllPeople"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 10
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "getOnePerson",
+      "name": "Get One Person"
+    },
+    {
+      "operation": "getAllPeople",
+      "name": "Get All People"
+    }
+  ],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.020Z",
+  "api_version": "1.0.0"
+}

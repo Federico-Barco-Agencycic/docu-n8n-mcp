@@ -1,0 +1,119 @@
+{
+  "node_type": "nodes-base.onfleetTrigger",
+  "display_name": "Onfleet Trigger",
+  "description": "Starts the workflow when Onfleet events occur",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Onfleet Trigger node documentation\ndescription: Learn how to use the Onfleet Trigger node in n8n. Follow technical documentation to integrate Onfleet Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Onfleet Trigger node\n\n[Onfleet](https://onfleet.com/){:target=_blank .external-link} is a logistics platform offering a last-mile delivery solution.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/onfleet.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Onfleet Trigger integrations](https://n8n.io/integrations/onfleet-trigger/){:target=_blank .external-link} page.\n///\n\n## Events\n\nTrigger a workflow on:\n\n* SMS recipient opt out\n* SMS recipient response missed\n* Task arrival\n* Task assigned\n* Task cloned\n* Task completed\n* Task created\n* Task delayed\n* Task ETA\n* Task failed\n* Task started\n* Task unassigned\n* Task updated\n* Worker created\n* Worker deleted\n* Worker duty\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Trigger On",
+      "name": "triggerOn",
+      "type": "options",
+      "default": [],
+      "options": [
+        {
+          "name": "SMS Recipient Opt Out",
+          "value": "SMSRecipientOptOut"
+        },
+        {
+          "name": "SMS Recipient Response Missed",
+          "value": "smsRecipientResponseMissed"
+        },
+        {
+          "name": "Task Arrival",
+          "value": "taskArrival"
+        },
+        {
+          "name": "Task Assigned",
+          "value": "taskAssigned"
+        },
+        {
+          "name": "Task Cloned",
+          "value": "taskCloned"
+        },
+        {
+          "name": "Task Completed",
+          "value": "taskCompleted"
+        },
+        {
+          "name": "Task Created",
+          "value": "taskCreated"
+        },
+        {
+          "name": "Task Delayed",
+          "value": "taskDelayed"
+        },
+        {
+          "name": "Task Deleted",
+          "value": "taskDeleted"
+        },
+        {
+          "name": "Task ETA",
+          "value": "taskEta"
+        },
+        {
+          "name": "Task Failed",
+          "value": "taskFailed"
+        },
+        {
+          "name": "Task Started",
+          "value": "taskStarted"
+        },
+        {
+          "name": "Task Unassigned",
+          "value": "taskUnassigned"
+        },
+        {
+          "name": "Task Updated",
+          "value": "taskUpdated"
+        },
+        {
+          "name": "Worker Created",
+          "value": "workerCreated"
+        },
+        {
+          "name": "Worker Deleted",
+          "value": "workerDeleted"
+        },
+        {
+          "name": "Worker Duty",
+          "value": "workerDuty"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Name",
+          "name": "name",
+          "type": "string",
+          "default": "",
+          "description": "A name for the webhook for identification"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "onfleetApi",
+      "required": true,
+      "testedBy": "onfleetApiTest"
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.045Z",
+  "api_version": "1.0.0"
+}

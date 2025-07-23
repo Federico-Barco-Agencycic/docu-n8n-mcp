@@ -1,0 +1,44 @@
+{
+  "node_type": "nodes-base.rssFeedRead",
+  "display_name": "RSS Read",
+  "description": "Reads data from an RSS Feed",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1.2",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: RSS Read\ndescription: Documentation for the RSS Read node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# RSS Read\n\nUse the RSS Read node to read data from RSS feeds published on the internet.\n\n## Node parameters\n\n- **URL**: Enter the URL for the RSS publication you want to read.\n\n## Node options\n\n* **Ignore SSL Issues**: Choose whether n8n should ignore SSL/TLS verification (turned on) or not (turned off).\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'rss-read') ]]\n\n## Related resources\n\nn8n provides a trigger node for RSS Read. You can find the trigger node docs [here](/integrations/builtin/core-nodes/n8n-nodes-base.rssfeedreadtrigger.md).\n\n",
+  "properties_schema": [
+    {
+      "displayName": "URL",
+      "name": "url",
+      "type": "string",
+      "default": "",
+      "description": "URL of the RSS feed",
+      "required": true
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Ignore SSL Issues (Insecure)",
+          "name": "ignoreSSL",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to ignore SSL/TLS certificate issues or not"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.108Z",
+  "api_version": "1.0.0"
+}

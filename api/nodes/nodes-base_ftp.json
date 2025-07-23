@@ -1,0 +1,351 @@
+{
+  "node_type": "nodes-base.ftp",
+  "display_name": "FTP",
+  "description": "Transfer files via FTP or SFTP",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: FTP\ndescription: Documentation for the FTP node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# FTP\n\nThe FTP node is useful to access and upload files to an FTP or SFTP server.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/ftp.md).\n///\n\nTo connect to an SFTP server, use an SFTP credential. Refer to [FTP credentials](/integrations/builtin/credentials/ftp.md) for more information.\n\n## Operations\n\n- [**Delete**](#delete) a file or folder\n- [**Download**](#download) a file\n- [**List**](#list) folder content\n- [**Rename**](#rename) or move a file or folder\n- [**Upload**](#upload) a file\n\n/// note | Uploading files\nTo attach a file for upload, you'll need to use an extra node such as the [Read/Write Files from Disk](/integrations/builtin/core-nodes/n8n-nodes-base.readwritefile.md) node or the [HTTP Request](/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/index.md) node to pass the file as a data property.\n///\n\n## Delete\n\nThis operation includes one parameter: **Path**. Enter the remote path that you would like to connect to.\n\n### Delete options\n\nThe delete operation adds one new option: **Folder**. If you turn this option on, the node can delete both folders and files. This configuration also displays one more option:\n\n- **Recursive**: If you turn this option on and you delete a folder or directory, the node will delete all files and directories within the target directory.\n\n## Download\n\nConfigure this operation with these parameters:\n\n* **Path**: Enter the remote path that you would like to connect to.\n* **Put Output File in Field**: Enter the name of the output binary field to put the file in.\n\n## List\n\nConfigure this operation with these parameters:\n\n* **Path**: Enter the remote path that you would like to connect to.\n* **Recursive**: Select whether to return an object representing all directories / objects recursively found within the FTP/SFTP server (turned on) or not (turned off).\n\n## Rename\n\nConfigure this operation with these parameters:\n\n- **Old Path**: Enter the existing path of the file you'd like to rename in this field.\n- **New Path**: Enter the new path for the renamed file in this field.\n\n### Rename options\n\nThis operation adds one new option: **Create Directories**. If you turn this option on, the node will recursively create the destination directory when renaming an existing file or folder.\n\n## Upload\n\nConfigure this operation with these parameters:\n\n* **Path**: Enter the remote path that you would like to connect to.\n* **Binary File**: Select whether you'll upload a binary file (turned on) or enter text content to be uploaded (turned off). Other parameters depend on your selection in this field.\n    * **Input Binary Field**: Displayed if you turn on **Binary File**. Enter the name of the input binary field that contains the file you'll upload in this field.\n    * **File Content**: Displayed if you turn off **Binary File** Enter the text content of the file you'll upload in this field.\n\n/// note | Uploading files\nTo attach a file for upload, you'll need to use an extra node such as the [Read/Write Files from Disk](/integrations/builtin/core-nodes/n8n-nodes-base.readwritefile.md) node or the [HTTP Request](/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/index.md) node to pass the file as a data property.\n///\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'ftp') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Protocol",
+      "name": "protocol",
+      "type": "options",
+      "default": "ftp",
+      "description": "File transfer protocol",
+      "options": [
+        {
+          "name": "FTP",
+          "value": "ftp"
+        },
+        {
+          "name": "SFTP",
+          "value": "sftp"
+        }
+      ]
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "download",
+      "options": [
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a file/folder",
+          "action": "Delete a file or folder"
+        },
+        {
+          "name": "Download",
+          "value": "download",
+          "description": "Download a file",
+          "action": "Download a file"
+        },
+        {
+          "name": "List",
+          "value": "list",
+          "description": "List folder content",
+          "action": "List folder content"
+        },
+        {
+          "name": "Rename",
+          "value": "rename",
+          "description": "Rename/move oldPath to newPath",
+          "action": "Rename / move a file or folder"
+        },
+        {
+          "name": "Upload",
+          "value": "upload",
+          "description": "Upload a file",
+          "action": "Upload a file"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Path",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "The file path of the file to delete. Has to contain the full path.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Folder",
+          "name": "folder",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether folders can be deleted"
+        },
+        {
+          "displayName": "Recursive",
+          "displayOptions": {
+            "show": {
+              "folder": [
+                true
+              ]
+            }
+          },
+          "name": "recursive",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to remove all files and directories in target directory"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Path",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "The file path of the file to download. Has to contain the full path.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "download"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Put Output File in Field",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "download"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Old Path",
+      "name": "oldPath",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "rename"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "New Path",
+      "name": "newPath",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "rename"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Create Directories",
+          "name": "createDirectories",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to recursively create destination directory when renaming an existing file or folder"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "rename"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Path",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "The file path of the file to upload. Has to contain the full path.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "upload"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Binary File",
+      "name": "binaryData",
+      "type": "boolean",
+      "default": true,
+      "description": "The text content of the file to upload",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "upload"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Input Binary Field",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "upload"
+          ],
+          "binaryData": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File Content",
+      "name": "fileContent",
+      "type": "string",
+      "default": "",
+      "description": "The text content of the file to upload",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "upload"
+          ],
+          "binaryData": [
+            false
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Path",
+      "name": "path",
+      "type": "string",
+      "default": "/",
+      "description": "Path of directory to list contents of",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Recursive",
+      "name": "recursive",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return object representing all directories / objects recursively found within SFTP server",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "list"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a file/folder"
+    },
+    {
+      "operation": "download",
+      "name": "Download",
+      "description": "Download a file"
+    },
+    {
+      "operation": "list",
+      "name": "List",
+      "description": "List folder content"
+    },
+    {
+      "operation": "rename",
+      "name": "Rename",
+      "description": "Rename/move oldPath to newPath"
+    },
+    {
+      "operation": "upload",
+      "name": "Upload",
+      "description": "Upload a file"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "ftp",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "protocol": [
+            "ftp"
+          ]
+        }
+      },
+      "testedBy": "ftpConnectionTest"
+    },
+    {
+      "name": "sftp",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "protocol": [
+            "sftp"
+          ]
+        }
+      },
+      "testedBy": "sftpConnectionTest"
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.853Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,148 @@
+{
+  "node_type": "nodes-base.googleFirebaseRealtimeDatabase",
+  "display_name": "Google Cloud Realtime Database",
+  "description": "Interact with Google Firebase - Realtime Database API",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": false,
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "Project Name or ID",
+      "name": "projectId",
+      "type": "options",
+      "default": "",
+      "description": "As displayed in firebase console URL. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "typeOptions": {
+        "loadOptionsMethod": "getProjects"
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Write data to a database",
+          "action": "Write data to a database"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete data from a database",
+          "action": "Delete data from a database"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a record from a database",
+          "action": "Get a record from a database"
+        },
+        {
+          "name": "Push",
+          "value": "push",
+          "description": "Append to a list of data",
+          "action": "Append to a list of data"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update item on a database",
+          "action": "Update item in a database"
+        }
+      ],
+      "required": true,
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Object Path",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "Object path on database. Do not append .json.",
+      "required": true,
+      "displayOptions": {
+        "hide": {
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Object Path",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "Object path on database. Do not append .json.",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Columns / Attributes",
+      "name": "attributes",
+      "type": "string",
+      "default": "",
+      "description": "Attributes to save",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create",
+            "push",
+            "update"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Write data to a database"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete data from a database"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a record from a database"
+    },
+    {
+      "operation": "push",
+      "name": "Push",
+      "description": "Append to a list of data"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update item on a database"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "googleFirebaseRealtimeDatabaseOAuth2Api"
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.892Z",
+  "api_version": "1.0.0"
+}

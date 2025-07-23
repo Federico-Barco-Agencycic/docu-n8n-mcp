@@ -1,0 +1,33 @@
+{
+  "node_type": "nodes-base.pushcutTrigger",
+  "display_name": "Pushcut Trigger",
+  "description": "Starts the workflow when Pushcut events occur",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Pushcut Trigger node documentation\ndescription: Learn how to use the Pushcut Trigger node in n8n. Follow technical documentation to integrate Pushcut Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Pushcut Trigger node\n\n[Pushcut](https://pushcut.io){:target=_blank .external-link} is an app for iOS that lets you create smart notifications to kick off shortcuts, URLs, and online automation.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/pushcut.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Pushcut Trigger integrations](https://n8n.io/integrations/pushcut-trigger/){:target=_blank .external-link} page.\n///\n\n## Configure a Pushcut action\n\nFollow these steps to configure your Pushcut Trigger node with your Pushcut app.\n\n1. In your Pushcut app, select a notification from the **Notifications** screen.\n2. Select the **Add Action** button.\n3. Enter an action name in the **Label** field.\n4. Select the **Server** tab.\n5. Select the **Integration** tab.\n6. Select **Integration Trigger**.\n7. In n8n, enter a name for the action and select **Execute step**.\n8. Select this action under the **Select Integration Trigger** screen in your Pushcut app.\n9. Select **Done** in the top right to save the action.\n",
+  "properties_schema": [
+    {
+      "displayName": "Action Name",
+      "name": "actionName",
+      "type": "string",
+      "default": "",
+      "description": "Choose any name you would like. It will show up as a server action in the app."
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "pushcutApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.073Z",
+  "api_version": "1.0.0"
+}

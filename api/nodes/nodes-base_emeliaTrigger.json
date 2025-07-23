@@ -1,0 +1,71 @@
+{
+  "node_type": "nodes-base.emeliaTrigger",
+  "display_name": "Emelia Trigger",
+  "description": "Handle Emelia campaign activity events via webhooks",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Emelia Trigger node documentation\ndescription: Learn how to use the Emelia Trigger node in n8n. Follow technical documentation to integrate Emelia Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Emelia Trigger node\n\n[Emelia](https://emelia.io){:target=_blank .external-link} is a cold-mailing tool.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/emelia.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Emelia Trigger integrations](https://n8n.io/integrations/emelia-trigger/){:target=_blank .external-link} page.\n///\n\n## Events\n\n- Email Bounced\n- Email Opened\n- Email Replied\n- Email Sent\n- Link Clicked\n- Unsubscribed Contact\n\n\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Campaign Name or ID",
+      "name": "campaignId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "typeOptions": {
+        "loadOptionsMethod": "getCampaigns"
+      }
+    },
+    {
+      "displayName": "Events",
+      "name": "events",
+      "type": "multiOptions",
+      "default": [],
+      "options": [
+        {
+          "name": "Email Bounced",
+          "value": "bounced"
+        },
+        {
+          "name": "Email Opened",
+          "value": "opened"
+        },
+        {
+          "name": "Email Replied",
+          "value": "replied"
+        },
+        {
+          "name": "Email Sent",
+          "value": "sent"
+        },
+        {
+          "name": "Link Clicked",
+          "value": "clicked"
+        },
+        {
+          "name": "Unsubscribed Contact",
+          "value": "unsubscribed"
+        }
+      ],
+      "required": true
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "emeliaApi",
+      "required": true,
+      "testedBy": "emeliaApiTest"
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.823Z",
+  "api_version": "1.0.0"
+}

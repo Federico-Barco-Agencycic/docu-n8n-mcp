@@ -1,0 +1,301 @@
+{
+  "node_type": "nodes-base.summarize",
+  "display_name": "Summarize",
+  "description": "Sum, count, max, etc. across items",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1.1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Summarize\ndescription: Documentation for the Summarize node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: high\n---\n\n# Summarize\n\nUse the Summarize node to aggregate items together, in a manner similar to Excel pivot tables.\n\n## Node parameters\n\n### Fields to Summarize\n\nUse these fields to define how you want to summarize your input data.\n\n* **Aggregation**: Select the aggregation method to use on a given field. Options include:\n\t* **Append**: Append \n\t\t* If you select this option, decide whether you want to **Include Empty Values** or not.\n\t* **Average**: Calculate the numeric average of your input data.\n\t* **Concatenate**: Combine together values in your input data.\n\t\t* If you select this option, decide whether you want to **Include Empty Values** or not.\n\t\t* **Separator**: Select the separator you want to insert between concatenated values.\n\t* **Count**: Count the total number of values in your input data.\n\t* **Count Unique**: Count the number of unique values in your input data.\n\t* **Max**: Find the highest numeric value in your input data.\n\t* **Min**: Find the lowest numeric value in your input data.\n\t* **Sum**: Add together the numeric values in your input data.\n* **Field**: Enter the name of the field you want to perform the aggregation on.\n\n### Fields to Split By\n\nEnter the name of the input fields that you want to split the summary by (similar to a group by statement). This allows you to get separate summaries based on values in other fields.\n\nFor example, if our input data contains columns for `Sales Rep` and `Deal Amount` and we're performing a **Sum** on the `Deal Amount` field, we could split by `Sales Rep` to get a **Sum** total for each Sales Rep.\n\nTo enter multiple fields to split by, enter a comma-separated list.\n\n## Node options\n\n### Continue if Field Not Found\n\nBy default, if a **Field to Summarize** isn't in any items, the node throws an error. Use this option to continue and return a single empty item (turned on) instead or keep the default error behavior (turned off).\n\n### Disable Dot Notation\n\nBy default, n8n enables dot notation to reference child fields in the format `parent.child`. Use this option to disable dot notation (turned on) or to continue using dot (turned off).\n\n### Output Format\n\nSelect the format for your output format. This option is recommended if you're using **Fields to Split By**\n\n* **Each Split in a Separate Item**: Use this option to generate a separate output item for each split out field.\n* **All Splits in a Single Item**: Use this option to generate a single item that lists the split out fields.\n\n## Ignore items without valid fields to group by\n\nSet whether to ignore input items that don't contain the **Fields to Split By** (turned on) or not (turned off).\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'summarize') ]]\n\n## Related resources\n\n--8<-- \"_snippets/integrations/builtin/core-nodes/data-transformation-actions/data-section-link.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Fields to Summarize",
+      "name": "fieldsToSummarize",
+      "type": "fixedCollection",
+      "default": {
+        "values": [
+          {
+            "aggregation": "count",
+            "field": ""
+          }
+        ]
+      },
+      "options": [
+        {
+          "displayName": "",
+          "name": "values",
+          "values": [
+            {
+              "displayName": "Aggregation",
+              "name": "aggregation",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Append",
+                  "value": "append"
+                },
+                {
+                  "name": "Average",
+                  "value": "average"
+                },
+                {
+                  "name": "Concatenate",
+                  "value": "concatenate"
+                },
+                {
+                  "name": "Count",
+                  "value": "count"
+                },
+                {
+                  "name": "Count Unique",
+                  "value": "countUnique"
+                },
+                {
+                  "name": "Max",
+                  "value": "max"
+                },
+                {
+                  "name": "Min",
+                  "value": "min"
+                },
+                {
+                  "name": "Sum",
+                  "value": "sum"
+                }
+              ],
+              "default": "count",
+              "description": "How to combine the values of the field you want to summarize"
+            },
+            {
+              "displayName": "Field",
+              "name": "field",
+              "type": "string",
+              "default": "",
+              "description": "The name of an input field that you want to summarize",
+              "placeholder": "e.g. cost",
+              "hint": " Enter the field name as text",
+              "displayOptions": {
+                "hide": {
+                  "aggregation": [
+                    "average",
+                    "sum",
+                    "countUnique",
+                    "count",
+                    "max",
+                    "min"
+                  ]
+                }
+              },
+              "requiresDataPath": "single"
+            },
+            {
+              "displayName": "Field",
+              "name": "field",
+              "type": "string",
+              "default": "",
+              "description": "The name of an input field that you want to summarize. The field should contain numerical values; null, undefined, empty strings would be ignored.",
+              "placeholder": "e.g. cost",
+              "hint": " Enter the field name as text",
+              "displayOptions": {
+                "show": {
+                  "aggregation": [
+                    "average",
+                    "sum"
+                  ]
+                }
+              },
+              "requiresDataPath": "single"
+            },
+            {
+              "displayName": "Field",
+              "name": "field",
+              "type": "string",
+              "default": "",
+              "description": "The name of an input field that you want to summarize; null, undefined, empty strings would be ignored",
+              "placeholder": "e.g. cost",
+              "hint": " Enter the field name as text",
+              "displayOptions": {
+                "show": {
+                  "aggregation": [
+                    "countUnique",
+                    "count",
+                    "max",
+                    "min"
+                  ]
+                }
+              },
+              "requiresDataPath": "single"
+            },
+            {
+              "displayName": "Include Empty Values",
+              "name": "includeEmpty",
+              "type": "boolean",
+              "default": false,
+              "displayOptions": {
+                "show": {
+                  "aggregation": [
+                    "append",
+                    "concatenate",
+                    "count",
+                    "countUnique"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Separator",
+              "name": "separateBy",
+              "type": "options",
+              "default": ",",
+              "options": [
+                {
+                  "name": "Comma",
+                  "value": ","
+                },
+                {
+                  "name": "Comma and Space",
+                  "value": ", "
+                },
+                {
+                  "name": "New Line",
+                  "value": "\n"
+                },
+                {
+                  "name": "None",
+                  "value": ""
+                },
+                {
+                  "name": "Space",
+                  "value": " "
+                },
+                {
+                  "name": "Other",
+                  "value": "other"
+                }
+              ],
+              "hint": "What to insert between values",
+              "displayOptions": {
+                "show": {
+                  "aggregation": [
+                    "concatenate"
+                  ]
+                }
+              }
+            },
+            {
+              "displayName": "Custom Separator",
+              "name": "customSeparator",
+              "type": "string",
+              "default": "",
+              "displayOptions": {
+                "show": {
+                  "aggregation": [
+                    "concatenate"
+                  ],
+                  "separateBy": [
+                    "other"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Fields to Split By",
+      "name": "fieldsToSplitBy",
+      "type": "string",
+      "default": "",
+      "description": "The name of the input fields that you want to split the summary by",
+      "displayOptions": {
+        "hide": {
+          "/options.outputFormat": [
+            "singleItem"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Fields to Group By",
+      "name": "fieldsToSplitBy",
+      "type": "string",
+      "default": "",
+      "description": "The name of the input fields that you want to split the summary by",
+      "displayOptions": {
+        "show": {
+          "/options.outputFormat": [
+            "singleItem"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Continue if Field Not Found",
+          "name": "continueIfFieldNotFound",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to continue if field to summarize can't be found in any items and return single empty item, otherwise an error would be thrown",
+          "displayOptions": {
+            "hide": {
+              "@version": [
+                {
+                  "_cnd": {
+                    "gte": 1.1
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Disable Dot Notation",
+          "name": "disableDotNotation",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to disallow referencing child fields using `parent.child` in the field name"
+        },
+        {
+          "displayName": "Output Format",
+          "name": "outputFormat",
+          "type": "options",
+          "default": "separateItems",
+          "options": [
+            {
+              "name": "Each Split in a Separate Item",
+              "value": "separateItems"
+            },
+            {
+              "name": "All Splits in a Single Item",
+              "value": "singleItem"
+            }
+          ]
+        },
+        {
+          "displayName": "Ignore items without valid fields to group by",
+          "name": "skipEmptySplitFields",
+          "type": "boolean",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.162Z",
+  "api_version": "1.0.0"
+}

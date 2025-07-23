@@ -1,0 +1,28 @@
+{
+  "node_type": "nodes-langchain.vectorStoreInMemoryLoad",
+  "display_name": "In Memory Vector Store Load",
+  "description": "Load embedded data from an in-memory vector store",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": false,
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "Memory Key",
+      "name": "memoryKey",
+      "type": "string",
+      "default": "vector_store_key",
+      "description": "The key to use to store the vector memory in the workflow data. The key will be prefixed with the workflow ID to avoid collisions."
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.294Z",
+  "api_version": "1.0.0"
+}

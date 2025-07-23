@@ -1,0 +1,20 @@
+{
+  "node_type": "nodes-langchain.retrieverContextualCompression",
+  "display_name": "Contextual Compression Retriever",
+  "description": "Enhances document similarity search by contextual compression.",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Contextual Compression Retriever node documentation\ndescription: Learn how to use the Contextual Compression Retriever node in n8n. Follow technical documentation to integrate Contextual Compression Retriever node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Contextual Compression Retriever node\n\nThe Contextual Compression Retriever node improves the answers returned from [vector store](/glossary.md#ai-vector-store) document similarity searches by taking into account the context from the query.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution.md\"\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'contextual-compression-retriever') ]]\n\n## Related resources\n\nRefer to [LangChain's contextual compression retriever documentation](https://js.langchain.com/docs/how_to/contextual_compression/){:target=_blank .external-link} for more information about the service.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.281Z",
+  "api_version": "1.0.0"
+}

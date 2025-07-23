@@ -1,0 +1,2052 @@
+{
+  "node_type": "nodes-base.github",
+  "display_name": "GitHub",
+  "description": "Consume GitHub API",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1.1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": true,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: GitHub node documentation\ndescription: Learn how to use the GitHub node in n8n. Follow technical documentation to integrate GitHub node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# GitHub node\n\nUse the GitHub node to automate work in GitHub, and integrate GitHub with other applications. n8n has built-in support for a wide range of GitHub features, including creating, updating, deleting, and editing files, repositories, issues, releases, and users. \n\nOn this page, you'll find a list of operations the GitHub node supports and links to more resources.\n\n/// note | Credentials\nRefer to [GitHub credentials](/integrations/builtin/credentials/github.md) for guidance on setting up authentication. \n///\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/ai-tools.md\"\n\n## Operations\n\n* File\n\t* Create\n\t* Delete\n\t* Edit\n\t* Get\n\t* List\n* Issue\n\t* Create\n\t* Create Comment\n\t* Edit\n\t* Get\n\t* Lock\n* Organization\n\t* Get Repositories\n* Release\n\t* Create\n\t* Delete\n\t* Get\n\t* Get Many\n\t* Update\n* Repository\n    * Get\n\t* Get Issues\n\t* Get License\n\t* Get Profile\n\t* Get Pull Requests\n\t* List Popular Paths\n\t* List Referrers\n* Review\n\t* Create\n\t* Get\n\t* Get Many\n\t* Update\n* User\n    * Get Repositories\n    * Invite\n* Workflow\n\t* Disable\n\t* Dispatch\n\t* Enable\n\t* Get\n\t* Get Usage\n\t* List\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'github') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "accessToken",
+      "options": [
+        {
+          "name": "Access Token",
+          "value": "accessToken"
+        },
+        {
+          "name": "OAuth2",
+          "value": "oAuth2"
+        }
+      ]
+    },
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "issue",
+      "options": [
+        {
+          "name": "File",
+          "value": "file"
+        },
+        {
+          "name": "Issue",
+          "value": "issue"
+        },
+        {
+          "name": "Organization",
+          "value": "organization"
+        },
+        {
+          "name": "Release",
+          "value": "release"
+        },
+        {
+          "name": "Repository",
+          "value": "repository"
+        },
+        {
+          "name": "Review",
+          "value": "review"
+        },
+        {
+          "name": "User",
+          "value": "user"
+        },
+        {
+          "name": "Workflow",
+          "value": "workflow"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getRepositories",
+      "options": [
+        {
+          "name": "Get Repositories",
+          "value": "getRepositories",
+          "description": "Returns all repositories of an organization",
+          "action": "Get repositories for an organization"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "organization"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a new issue",
+          "action": "Create an issue"
+        },
+        {
+          "name": "Create Comment",
+          "value": "createComment",
+          "description": "Create a new comment on an issue",
+          "action": "Create a comment on an issue"
+        },
+        {
+          "name": "Edit",
+          "value": "edit",
+          "description": "Edit an issue",
+          "action": "Edit an issue"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get the data of a single issue",
+          "action": "Get an issue"
+        },
+        {
+          "name": "Lock",
+          "value": "lock",
+          "description": "Lock an issue",
+          "action": "Lock an issue"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "issue"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a new file in repository",
+          "action": "Create a file"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a file in repository",
+          "action": "Delete a file"
+        },
+        {
+          "name": "Edit",
+          "value": "edit",
+          "description": "Edit a file in repository",
+          "action": "Edit a file"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get the data of a single file",
+          "action": "Get a file"
+        },
+        {
+          "name": "List",
+          "value": "list",
+          "description": "List contents of a folder",
+          "action": "List files"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getIssues",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get the data of a single repository",
+          "action": "Get a repository"
+        },
+        {
+          "name": "Get Issues",
+          "value": "getIssues",
+          "description": "Returns issues of a repository",
+          "action": "Get issues of a repository"
+        },
+        {
+          "name": "Get License",
+          "value": "getLicense",
+          "description": "Returns the contents of the repository's license file, if one is detected",
+          "action": "Get the license of a repository"
+        },
+        {
+          "name": "Get Profile",
+          "value": "getProfile",
+          "description": "Get the community profile of a repository with metrics, health score, description, license, etc",
+          "action": "Get the profile of a repository"
+        },
+        {
+          "name": "Get Pull Requests",
+          "value": "getPullRequests",
+          "description": "Returns pull requests of a repository",
+          "action": "Get pull requests of a repository"
+        },
+        {
+          "name": "List Popular Paths",
+          "value": "listPopularPaths",
+          "description": "Get the top 10 popular content paths over the last 14 days",
+          "action": "List popular paths in a repository"
+        },
+        {
+          "name": "List Referrers",
+          "value": "listReferrers",
+          "description": "Get the top 10 referrering domains over the last 14 days",
+          "action": "List the top referrers of a repository"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "repository"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getRepositories",
+      "options": [
+        {
+          "name": "Get Repositories",
+          "value": "getRepositories",
+          "description": "Returns the repositories of a user",
+          "action": "Get a user's repositories"
+        },
+        {
+          "name": "Invite",
+          "value": "invite",
+          "description": "Invites a user to an organization",
+          "action": "Invite a user"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Creates a new release",
+          "action": "Create a release"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a release",
+          "action": "Delete a release"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a release",
+          "action": "Get a release"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many repository releases",
+          "action": "Get many releases"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a release",
+          "action": "Update a release"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "release"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Creates a new review",
+          "action": "Create a review"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a review for a pull request",
+          "action": "Get a review"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many reviews for a pull request",
+          "action": "Get many reviews"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a review",
+          "action": "Update a review"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "review"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "dispatch",
+      "options": [
+        {
+          "name": "Disable",
+          "value": "disable",
+          "description": "Disable a workflow",
+          "action": "Disable a workflow"
+        },
+        {
+          "name": "Dispatch",
+          "value": "dispatch",
+          "description": "Dispatch a workflow event",
+          "action": "Dispatch a workflow event"
+        },
+        {
+          "name": "Dispatch and Wait for Completion",
+          "value": "dispatchAndWait",
+          "description": "Dispatch a workflow event and wait for a webhook to be called before proceeding",
+          "action": "Dispatch a workflow event and wait for completion"
+        },
+        {
+          "name": "Enable",
+          "value": "enable",
+          "description": "Enable a workflow",
+          "action": "Enable a workflow"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a workflow",
+          "action": "Get a workflow"
+        },
+        {
+          "name": "Get Usage",
+          "value": "getUsage",
+          "description": "Get the usage of a workflow",
+          "action": "Get the usage of a workflow"
+        },
+        {
+          "name": "List",
+          "value": "list",
+          "description": "List workflows",
+          "action": "List workflows"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Your execution will pause until a webhook is called. This URL will be generated at runtime and passed to your Github workflow as a resumeUrl input.",
+      "name": "webhookNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ],
+          "operation": [
+            "dispatchAndWait"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Repository Owner",
+      "name": "owner",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "required": true,
+      "displayOptions": {
+        "hide": {
+          "operation": [
+            "invite"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Repository Name",
+      "name": "repository",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "required": true,
+      "displayOptions": {
+        "hide": {
+          "resource": [
+            "user",
+            "organization"
+          ],
+          "operation": [
+            "getRepositories"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Workflow",
+      "name": "workflowId",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "description": "The workflow to dispatch",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ],
+          "operation": [
+            "disable",
+            "dispatch",
+            "dispatchAndWait",
+            "get",
+            "getUsage",
+            "enable"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Ref",
+      "name": "ref",
+      "type": "string",
+      "default": "main",
+      "description": "The git reference for the workflow dispatch (branch or tag name)",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ],
+          "operation": [
+            "dispatch",
+            "dispatchAndWait"
+          ],
+          "@version": [
+            {
+              "_cnd": {
+                "lte": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Ref",
+      "name": "ref",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "description": "The git reference for the workflow dispatch (branch, tag, or commit SHA)",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ],
+          "operation": [
+            "dispatch",
+            "dispatchAndWait"
+          ],
+          "@version": [
+            {
+              "_cnd": {
+                "gte": 1.1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Inputs",
+      "name": "inputs",
+      "type": "json",
+      "default": "{}",
+      "description": "JSON object with input parameters for the workflow",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "workflow"
+          ],
+          "operation": [
+            "dispatch",
+            "dispatchAndWait"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File Path",
+      "name": "filePath",
+      "type": "string",
+      "default": "",
+      "description": "The file path of the file. Has to contain the full path.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file"
+          ]
+        },
+        "hide": {
+          "operation": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Path",
+      "name": "filePath",
+      "type": "string",
+      "default": "",
+      "description": "The path of the folder to list",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "file"
+          ],
+          "operation": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Binary File",
+      "name": "binaryData",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the data to upload should be taken from binary field",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create",
+            "edit"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "File Content",
+      "name": "fileContent",
+      "type": "string",
+      "default": "",
+      "description": "The text content of the file",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "binaryData": [
+            false
+          ],
+          "operation": [
+            "create",
+            "edit"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Input Binary Field",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "binaryData": [
+            true
+          ],
+          "operation": [
+            "create",
+            "edit"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Commit Message",
+      "name": "commitMessage",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create",
+            "delete",
+            "edit"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Parameters",
+      "name": "additionalParameters",
+      "type": "fixedCollection",
+      "default": {},
+      "description": "Additional fields to add",
+      "options": [
+        {
+          "name": "author",
+          "displayName": "Author",
+          "values": [
+            {
+              "displayName": "Name",
+              "name": "name",
+              "type": "string",
+              "default": "",
+              "description": "The name of the author of the commit"
+            },
+            {
+              "displayName": "Email",
+              "name": "email",
+              "type": "string",
+              "placeholder": "name@email.com",
+              "default": "",
+              "description": "The email of the author of the commit"
+            }
+          ]
+        },
+        {
+          "name": "branch",
+          "displayName": "Branch",
+          "values": [
+            {
+              "displayName": "Branch",
+              "name": "branch",
+              "type": "string",
+              "default": "",
+              "description": "The branch to commit to. If not set the repository’s default branch (usually master) is used."
+            }
+          ]
+        },
+        {
+          "name": "committer",
+          "displayName": "Committer",
+          "values": [
+            {
+              "displayName": "Name",
+              "name": "name",
+              "type": "string",
+              "default": "",
+              "description": "The name of the committer of the commit"
+            },
+            {
+              "displayName": "Email",
+              "name": "email",
+              "type": "string",
+              "placeholder": "name@email.com",
+              "default": "",
+              "description": "The email of the committer of the commit"
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create",
+            "delete",
+            "edit"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "As Binary Property",
+      "name": "asBinaryProperty",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to set the data of the file as binary property instead of returning the raw API response",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Put Output File in Field",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "asBinaryProperty": [
+            true
+          ],
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Parameters",
+      "name": "additionalParameters",
+      "type": "collection",
+      "default": {},
+      "description": "Additional fields to add",
+      "options": [
+        {
+          "displayName": "Reference",
+          "name": "reference",
+          "type": "string",
+          "default": "",
+          "placeholder": "master",
+          "description": "The name of the commit/branch/tag. Default: the repository’s default branch (usually master)."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "file"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Title",
+      "name": "title",
+      "type": "string",
+      "default": "",
+      "description": "The title of the issue",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "issue"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Body",
+      "name": "body",
+      "type": "string",
+      "default": "",
+      "description": "The body of the issue",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "issue"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 5
+      }
+    },
+    {
+      "displayName": "Labels",
+      "name": "labels",
+      "type": "collection",
+      "default": {
+        "label": ""
+      },
+      "options": [
+        {
+          "displayName": "Label",
+          "name": "label",
+          "type": "string",
+          "default": "",
+          "description": "Label to add to issue"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "issue"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true,
+        "multipleValueButtonText": "Add Label"
+      }
+    },
+    {
+      "displayName": "Assignees",
+      "name": "assignees",
+      "type": "collection",
+      "default": {
+        "assignee": ""
+      },
+      "options": [
+        {
+          "displayName": "Assignee",
+          "name": "assignee",
+          "type": "string",
+          "default": "",
+          "description": "User to assign issue too"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "issue"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true,
+        "multipleValueButtonText": "Add Assignee"
+      }
+    },
+    {
+      "displayName": "Issue Number",
+      "name": "issueNumber",
+      "type": "number",
+      "default": 0,
+      "description": "The number of the issue on which to create the comment on",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "createComment"
+          ],
+          "resource": [
+            "issue"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Body",
+      "name": "body",
+      "type": "string",
+      "default": "",
+      "description": "The body of the comment",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "createComment"
+          ],
+          "resource": [
+            "issue"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 5
+      }
+    },
+    {
+      "displayName": "Issue Number",
+      "name": "issueNumber",
+      "type": "number",
+      "default": 0,
+      "description": "The number of the issue edit",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "edit"
+          ],
+          "resource": [
+            "issue"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Edit Fields",
+      "name": "editFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Assignees",
+          "name": "assignees",
+          "type": "collection",
+          "typeOptions": {
+            "multipleValues": true,
+            "multipleValueButtonText": "Add Assignee"
+          },
+          "default": {
+            "assignee": ""
+          },
+          "options": [
+            {
+              "displayName": "Assignees",
+              "name": "assignee",
+              "type": "string",
+              "default": "",
+              "description": "User to assign issue to"
+            }
+          ]
+        },
+        {
+          "displayName": "Body",
+          "name": "body",
+          "type": "string",
+          "typeOptions": {
+            "rows": 5
+          },
+          "default": "",
+          "description": "The body of the issue"
+        },
+        {
+          "displayName": "Labels",
+          "name": "labels",
+          "type": "collection",
+          "typeOptions": {
+            "multipleValues": true,
+            "multipleValueButtonText": "Add Label"
+          },
+          "default": {
+            "label": ""
+          },
+          "options": [
+            {
+              "displayName": "Label",
+              "name": "label",
+              "type": "string",
+              "default": "",
+              "description": "Label to add to issue"
+            }
+          ]
+        },
+        {
+          "displayName": "State",
+          "name": "state",
+          "type": "options",
+          "options": [
+            {
+              "name": "Closed",
+              "value": "closed",
+              "description": "Set the state to \"closed\""
+            },
+            {
+              "name": "Open",
+              "value": "open",
+              "description": "Set the state to \"open\""
+            }
+          ],
+          "default": "open",
+          "description": "The state to set"
+        },
+        {
+          "displayName": "State Reason",
+          "name": "state_reason",
+          "type": "options",
+          "options": [
+            {
+              "name": "Completed",
+              "value": "completed",
+              "description": "Issue is completed"
+            },
+            {
+              "name": "Not Planned",
+              "value": "not_planned",
+              "description": "Issue is not planned"
+            },
+            {
+              "name": "Reopened",
+              "value": "reopened",
+              "description": "Issue is reopened"
+            }
+          ],
+          "default": "completed",
+          "description": "The reason for the state change"
+        },
+        {
+          "displayName": "Title",
+          "name": "title",
+          "type": "string",
+          "default": "",
+          "description": "The title of the issue"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "edit"
+          ],
+          "resource": [
+            "issue"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValueButtonText": "Add Field"
+      }
+    },
+    {
+      "displayName": "Issue Number",
+      "name": "issueNumber",
+      "type": "number",
+      "default": 0,
+      "description": "The issue number to get data for",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get"
+          ],
+          "resource": [
+            "issue"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Issue Number",
+      "name": "issueNumber",
+      "type": "number",
+      "default": 0,
+      "description": "The issue number to lock",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "lock"
+          ],
+          "resource": [
+            "issue"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Lock Reason",
+      "name": "lockReason",
+      "type": "options",
+      "default": "resolved",
+      "description": "The reason for locking the issue",
+      "options": [
+        {
+          "name": "Off-Topic",
+          "value": "off-topic",
+          "description": "The issue is Off-Topic"
+        },
+        {
+          "name": "Too Heated",
+          "value": "too heated",
+          "description": "The discussion is too heated"
+        },
+        {
+          "name": "Resolved",
+          "value": "resolved",
+          "description": "The issue got resolved"
+        },
+        {
+          "name": "Spam",
+          "value": "spam",
+          "description": "The issue is spam"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "lock"
+          ],
+          "resource": [
+            "issue"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Tag",
+      "name": "releaseTag",
+      "type": "string",
+      "default": "",
+      "description": "The tag of the release",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "release"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Name",
+          "name": "name",
+          "type": "string",
+          "default": "",
+          "description": "The name of the issue"
+        },
+        {
+          "displayName": "Body",
+          "name": "body",
+          "type": "string",
+          "typeOptions": {
+            "rows": 5
+          },
+          "default": "",
+          "description": "The body of the release"
+        },
+        {
+          "displayName": "Draft",
+          "name": "draft",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to create a draft (unpublished) release, \"false\" to create a published one"
+        },
+        {
+          "displayName": "Prerelease",
+          "name": "prerelease",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to point out that the release is non-production ready"
+        },
+        {
+          "displayName": "Target Commitish",
+          "name": "target_commitish",
+          "type": "string",
+          "default": "",
+          "description": "Specifies the commitish value that determines where the Git tag is created from. Can be any branch or commit SHA. Unused if the Git tag already exists. Default: the repository's default branch(usually master)."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "release"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValueButtonText": "Add Field"
+      }
+    },
+    {
+      "displayName": "Release ID",
+      "name": "release_id",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "release"
+          ],
+          "operation": [
+            "get",
+            "delete",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Body",
+          "name": "body",
+          "type": "string",
+          "typeOptions": {
+            "rows": 5
+          },
+          "default": "",
+          "description": "The body of the release"
+        },
+        {
+          "displayName": "Draft",
+          "name": "draft",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to create a draft (unpublished) release, \"false\" to create a published one"
+        },
+        {
+          "displayName": "Name",
+          "name": "name",
+          "type": "string",
+          "default": "",
+          "description": "The name of the release"
+        },
+        {
+          "displayName": "Prerelease",
+          "name": "prerelease",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to point out that the release is non-production ready"
+        },
+        {
+          "displayName": "Tag Name",
+          "name": "tag_name",
+          "type": "string",
+          "default": "",
+          "description": "The name of the tag"
+        },
+        {
+          "displayName": "Target Commitish",
+          "name": "target_commitish",
+          "type": "string",
+          "default": "",
+          "description": "Specifies the commitish value that determines where the Git tag is created from. Can be any branch or commit SHA. Unused if the Git tag already exists. Default: the repository's default branch(usually master)."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "release"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValueButtonText": "Add Field"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "release"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "release"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "repository"
+          ],
+          "operation": [
+            "getIssues"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "repository"
+          ],
+          "operation": [
+            "getIssues"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "getRepositoryIssuesFilters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Assignee",
+          "name": "assignee",
+          "type": "string",
+          "default": "",
+          "description": "Return only issues which are assigned to a specific user"
+        },
+        {
+          "displayName": "Creator",
+          "name": "creator",
+          "type": "string",
+          "default": "",
+          "description": "Return only issues which were created by a specific user"
+        },
+        {
+          "displayName": "Mentioned",
+          "name": "mentioned",
+          "type": "string",
+          "default": "",
+          "description": "Return only issues in which a specific user was mentioned"
+        },
+        {
+          "displayName": "Labels",
+          "name": "labels",
+          "type": "string",
+          "default": "",
+          "description": "Return only issues with the given labels. Multiple labels can be separated by comma."
+        },
+        {
+          "displayName": "Updated Since",
+          "name": "since",
+          "type": "dateTime",
+          "default": "",
+          "description": "Return only issues updated at or after this time"
+        },
+        {
+          "displayName": "State",
+          "name": "state",
+          "type": "options",
+          "options": [
+            {
+              "name": "All",
+              "value": "all",
+              "description": "Returns issues with any state"
+            },
+            {
+              "name": "Closed",
+              "value": "closed",
+              "description": "Return issues with \"closed\" state"
+            },
+            {
+              "name": "Open",
+              "value": "open",
+              "description": "Return issues with \"open\" state"
+            }
+          ],
+          "default": "open",
+          "description": "The state to set"
+        },
+        {
+          "displayName": "Sort",
+          "name": "sort",
+          "type": "options",
+          "options": [
+            {
+              "name": "Created",
+              "value": "created",
+              "description": "Sort by created date"
+            },
+            {
+              "name": "Updated",
+              "value": "updated",
+              "description": "Sort by updated date"
+            },
+            {
+              "name": "Comments",
+              "value": "comments",
+              "description": "Sort by comments"
+            }
+          ],
+          "default": "created",
+          "description": "The order the issues should be returned in"
+        },
+        {
+          "displayName": "Direction",
+          "name": "direction",
+          "type": "options",
+          "options": [
+            {
+              "name": "Ascending",
+              "value": "asc",
+              "description": "Sort in ascending order"
+            },
+            {
+              "name": "Descending",
+              "value": "desc",
+              "description": "Sort in descending order"
+            }
+          ],
+          "default": "desc",
+          "description": "The sort order"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getIssues"
+          ],
+          "resource": [
+            "repository"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValueButtonText": "Add Filter"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "repository"
+          ],
+          "operation": [
+            "getPullRequests"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "repository"
+          ],
+          "operation": [
+            "getPullRequests"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "getRepositoryPullRequestsFilters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "State",
+          "name": "state",
+          "type": "options",
+          "options": [
+            {
+              "name": "All",
+              "value": "all",
+              "description": "Returns pull requests with any state"
+            },
+            {
+              "name": "Closed",
+              "value": "closed",
+              "description": "Return pull requests with \"closed\" state"
+            },
+            {
+              "name": "Open",
+              "value": "open",
+              "description": "Return pull requests with \"open\" state"
+            }
+          ],
+          "default": "open",
+          "description": "The state to set"
+        },
+        {
+          "displayName": "Sort",
+          "name": "sort",
+          "type": "options",
+          "options": [
+            {
+              "name": "Created",
+              "value": "created",
+              "description": "Sort by created date"
+            },
+            {
+              "name": "Updated",
+              "value": "updated",
+              "description": "Sort by updated date"
+            },
+            {
+              "name": "Popularity",
+              "value": "popularity",
+              "description": "Sort by number of comments"
+            },
+            {
+              "name": "Long-Running",
+              "value": "long-running",
+              "description": "Sort by date created and will limit the results to pull requests that have been open for more than a month and have had activity within the past month"
+            }
+          ],
+          "default": "created",
+          "description": "The order the pull requests should be returned in"
+        },
+        {
+          "displayName": "Direction",
+          "name": "direction",
+          "type": "options",
+          "options": [
+            {
+              "name": "Ascending",
+              "value": "asc",
+              "description": "Sort in ascending order"
+            },
+            {
+              "name": "Descending",
+              "value": "desc",
+              "description": "Sort in descending order"
+            }
+          ],
+          "default": "desc",
+          "description": "The sort order"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getPullRequests"
+          ],
+          "resource": [
+            "repository"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValueButtonText": "Add Filter"
+      }
+    },
+    {
+      "displayName": "PR Number",
+      "name": "pullRequestNumber",
+      "type": "number",
+      "default": 0,
+      "description": "The number of the pull request",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get",
+            "update"
+          ],
+          "resource": [
+            "review"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Review ID",
+      "name": "reviewId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the review",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get",
+            "update"
+          ],
+          "resource": [
+            "review"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "PR Number",
+      "name": "pullRequestNumber",
+      "type": "number",
+      "default": 0,
+      "description": "The number of the pull request",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "review"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "review"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "review"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "PR Number",
+      "name": "pullRequestNumber",
+      "type": "number",
+      "default": 0,
+      "description": "The number of the pull request to review",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "review"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Event",
+      "name": "event",
+      "type": "options",
+      "default": "approve",
+      "description": "The review action you want to perform",
+      "options": [
+        {
+          "name": "Approve",
+          "value": "approve",
+          "description": "Approve the pull request"
+        },
+        {
+          "name": "Request Change",
+          "value": "requestChanges",
+          "description": "Request code changes"
+        },
+        {
+          "name": "Comment",
+          "value": "comment",
+          "description": "Add a comment without approval or change requests"
+        },
+        {
+          "name": "Pending",
+          "value": "pending",
+          "description": "You will need to submit the pull request review when you are ready"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "review"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Body",
+      "name": "body",
+      "type": "string",
+      "default": "",
+      "description": "The body of the review (required for events Request Changes or Comment)",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "review"
+          ],
+          "event": [
+            "requestChanges",
+            "comment"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Commit ID",
+          "name": "commitId",
+          "type": "string",
+          "default": "",
+          "description": "The SHA of the commit that needs a review, if different from the latest"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "review"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Body",
+      "name": "body",
+      "type": "string",
+      "default": "",
+      "description": "The body of the review",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "review"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getRepositories"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getRepositories"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Organization",
+      "name": "organization",
+      "type": "string",
+      "default": "",
+      "description": "The GitHub organization that the user is being invited to",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "invite"
+          ],
+          "resource": [
+            "user"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "The email address of the invited user",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "invite"
+          ],
+          "resource": [
+            "user"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "organization"
+          ],
+          "operation": [
+            "getRepositories"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "organization"
+          ],
+          "operation": [
+            "getRepositories"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "getRepositories",
+      "name": "Get Repositories",
+      "description": "Returns all repositories of an organization"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "githubApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "accessToken"
+          ]
+        }
+      }
+    },
+    {
+      "name": "githubOAuth2Api",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.862Z",
+  "api_version": "1.0.0"
+}

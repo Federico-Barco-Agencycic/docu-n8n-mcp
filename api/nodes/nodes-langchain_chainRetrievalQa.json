@@ -1,0 +1,224 @@
+{
+  "node_type": "nodes-langchain.chainRetrievalQa",
+  "display_name": "Question and Answer Chain",
+  "description": "Answer questions about retrieved documents",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1.6",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Question and Answer Chain node documentation\ndescription: Learn how to use the Question and Answer Chain node in n8n. Follow technical documentation to integrate Question and Answer Chain node into your workflows.\ncontentType: [integration, reference]\npriority: high\n---\n\n# Question and Answer Chain node\n\nUse the Question and Answer Chain node to use a [vector store](/glossary.md#ai-vector-store) as a retriever.\n\nOn this page, you'll find the node parameters for the Question and Answer Chain node, and links to more resources.\n\n## Node parameters\n\n### Query\n\nThe question you want to ask.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'retrieval-qanda-chain') ]]\n\n## Related resources\n\nRefer to [LangChain's documentation on retrieval chains](https://js.langchain.com/docs/tutorials/rag/){:target=_blank .external-link} for examples of how LangChain can use a vector store as a retriever.\n\n--8<-- \"_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md\"\n\n## Common issues\n\nFor common errors or issues and suggested resolution steps, refer to [Common Issues](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainretrievalqa/common-issues.md).\n\n--8<-- \"_glossary/ai-glossary.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Save time with an <a href=\"/templates/1960\" target=\"_blank\">example</a> of how this node works",
+      "name": "notice",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Query",
+      "name": "query",
+      "type": "string",
+      "default": "={{ $json.input }}",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Query",
+      "name": "query",
+      "type": "string",
+      "default": "={{ $json.chat_input }}",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1.1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Query",
+      "name": "query",
+      "type": "string",
+      "default": "={{ $json.chatInput }}",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1.2
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Source for Prompt (User Message)",
+      "name": "promptType",
+      "type": "options",
+      "default": "auto",
+      "options": [
+        {
+          "name": "Connected Chat Trigger Node",
+          "value": "auto",
+          "description": "Looks for an input field called 'chatInput' that is coming from a directly connected Chat Trigger"
+        },
+        {
+          "name": "Define below",
+          "value": "define",
+          "description": "Use an expression to reference data in previous nodes or enter static text"
+        }
+      ],
+      "displayOptions": {
+        "hide": {
+          "@version": [
+            {
+              "_cnd": {
+                "lte": 1.2
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Prompt (User Message)",
+      "name": "text",
+      "type": "string",
+      "default": "={{ $json.chatInput }}",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "promptType": [
+            "auto"
+          ],
+          "@version": [
+            {
+              "_cnd": {
+                "gte": 1.4
+              }
+            }
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 2
+      }
+    },
+    {
+      "displayName": "Prompt (User Message)",
+      "name": "text",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "promptType": [
+            "define"
+          ]
+        }
+      },
+      "typeOptions": {
+        "rows": 2
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "System Prompt Template",
+          "name": "systemPromptTemplate",
+          "type": "string",
+          "default": "You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question.\nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\nContext: {context}",
+          "typeOptions": {
+            "rows": 6
+          },
+          "description": "Template string used for the system prompt. This should include the variable `{context}` for the provided context. For text completion models, you should also include the variable `{question}` for the user’s query.",
+          "displayOptions": {
+            "show": {
+              "@version": [
+                {
+                  "_cnd": {
+                    "lt": 1.5
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "System Prompt Template",
+          "name": "systemPromptTemplate",
+          "type": "string",
+          "default": "You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question.\nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\nContext: {context}",
+          "typeOptions": {
+            "rows": 6
+          },
+          "description": "Template string used for the system prompt. This should include the variable `{context}` for the provided context. For text completion models, you should also include the variable `{input}` for the user’s query.",
+          "displayOptions": {
+            "show": {
+              "@version": [
+                {
+                  "_cnd": {
+                    "gte": 1.5
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Batch Processing",
+          "name": "batching",
+          "type": "collection",
+          "placeholder": "Add Batch Processing Option",
+          "description": "Batch processing options for rate limiting",
+          "default": {},
+          "options": [
+            {
+              "displayName": "Batch Size",
+              "name": "batchSize",
+              "default": 5,
+              "type": "number",
+              "description": "How many items to process in parallel. This is useful for rate limiting, but might impact the log output ordering."
+            },
+            {
+              "displayName": "Delay Between Batches",
+              "name": "delayBetweenBatches",
+              "default": 0,
+              "type": "number",
+              "description": "Delay in milliseconds between batches. This is useful for rate limiting."
+            }
+          ],
+          "displayOptions": {
+            "show": {
+              "@version": [
+                {
+                  "_cnd": {
+                    "gte": 1.6
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.246Z",
+  "api_version": "1.0.0"
+}

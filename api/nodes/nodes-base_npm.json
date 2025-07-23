@@ -1,0 +1,318 @@
+{
+  "node_type": "nodes-base.npm",
+  "display_name": "Npm",
+  "description": "Consume NPM registry API",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: npm node documentation\ndescription: Learn how to use the npm node in n8n. Follow technical documentation to integrate npm node into your workflows.\ncontentType: [integration, reference]\n---\n\n# npm node\n\nUse the npm node to automate work in npm, and integrate npm with other applications.\n\nOn this page, you'll find a list of operations the npm node supports and links to more resources.\n\n/// note | Credentials\nRefer to [npm credentials](/integrations/builtin/credentials/npm.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Package\n\t* Get Package Metadata\n\t* Get Package Versions\n\t* Search for Packages\n* Distribution Tag\n\t* Get All Tags\n\t* Update a Tag\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'npm') ]]\n\n## Related resources\n\nRefer to [npm's documentation](https://docs.npmjs.com/){:target=_blank .external-link} for more information about the service.\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "package",
+      "options": [
+        {
+          "name": "Package",
+          "value": "package"
+        },
+        {
+          "name": "Distribution Tag",
+          "value": "distTag"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getMetadata",
+      "options": [
+        {
+          "name": "Get Metadata",
+          "value": "getMetadata",
+          "action": "Returns all the metadata for a package at a specific version",
+          "description": "Returns all the metadata for a package at a specific version",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "=/{{ encodeURIComponent($parameter.packageName) }}/{{ $parameter.packageVersion }}"
+            }
+          }
+        },
+        {
+          "name": "Get Versions",
+          "value": "getVersions",
+          "action": "Returns all the versions for a package",
+          "description": "Returns all the versions for a package",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "=/{{ encodeURIComponent($parameter.packageName) }}"
+            },
+            "output": {
+              "postReceive": [
+                null
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search",
+          "value": "search",
+          "action": "Search for packages",
+          "description": "Search for packages",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "/-/v1/search",
+              "qs": {
+                "text": "={{$parameter.query}}",
+                "size": "={{$parameter.limit}}",
+                "from": "={{$parameter.offset}}",
+                "popularity": 0.99
+              }
+            },
+            "output": {
+              "postReceive": [
+                null
+              ]
+            }
+          }
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "package"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Package Name",
+      "name": "packageName",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "package"
+          ],
+          "operation": [
+            "getMetadata",
+            "getVersions"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Package Version",
+      "name": "packageVersion",
+      "type": "string",
+      "default": "latest",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "package"
+          ],
+          "operation": [
+            "getMetadata"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Query",
+      "name": "query",
+      "type": "string",
+      "default": "",
+      "description": "The query text used to search for packages",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "package"
+          ],
+          "operation": [
+            "search"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 10,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "package"
+          ],
+          "operation": [
+            "search"
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Offset",
+      "name": "offset",
+      "type": "number",
+      "default": 0,
+      "description": "Offset to return results from",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "package"
+          ],
+          "operation": [
+            "search"
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 0
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getMany",
+      "options": [
+        {
+          "name": "Get All",
+          "value": "getMany",
+          "action": "Returns all the dist-tags for a package",
+          "description": "Returns all the dist-tags for a package",
+          "routing": {
+            "request": {
+              "method": "GET",
+              "url": "=/-/package/{{ encodeURIComponent($parameter.packageName) }}/dist-tags"
+            }
+          }
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "action": "Update a the dist-tags for a package",
+          "description": "Update a the dist-tags for a package",
+          "routing": {
+            "request": {
+              "method": "PUT",
+              "url": "=/-/package/{{ encodeURIComponent($parameter.packageName) }}/dist-tags/{{ encodeURIComponent($parameter.distTagName) }}"
+            },
+            "send": {
+              "preSend": [
+                null
+              ]
+            }
+          }
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "distTag"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Package Name",
+      "name": "packageName",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "distTag"
+          ],
+          "operation": [
+            "getMany",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Package Version",
+      "name": "packageVersion",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "distTag"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Distribution Tag Name",
+      "name": "distTagName",
+      "type": "string",
+      "default": "latest",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "distTag"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "getMetadata",
+      "name": "Get Metadata",
+      "description": "Returns all the metadata for a package at a specific version"
+    },
+    {
+      "operation": "getVersions",
+      "name": "Get Versions",
+      "description": "Returns all the versions for a package"
+    },
+    {
+      "operation": "search",
+      "name": "Search",
+      "description": "Search for packages"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "npmApi",
+      "required": false
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.037Z",
+  "api_version": "1.0.0"
+}

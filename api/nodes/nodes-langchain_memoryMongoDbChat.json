@@ -1,0 +1,107 @@
+{
+  "node_type": "nodes-langchain.memoryMongoDbChat",
+  "display_name": "MongoDB Chat Memory",
+  "description": "Stores the chat history in MongoDB collection.",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": false,
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "This node must be connected to an AI agent. <a data-action='openSelectiveNodeCreator' data-action-parameter-creatorview='AI'>Insert one</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "typeOptions": {
+        "containerClass": "ndv-connection-hint-notice"
+      }
+    },
+    {
+      "displayName": "Session ID",
+      "name": "sessionIdType",
+      "type": "options",
+      "default": "fromInput",
+      "options": [
+        {
+          "name": "Connected Chat Trigger Node",
+          "value": "fromInput",
+          "description": "Looks for an input field called 'sessionId' that is coming from a directly connected Chat Trigger"
+        },
+        {
+          "name": "Define below",
+          "value": "customKey",
+          "description": "Use an expression to reference data in previous nodes or enter static text"
+        }
+      ]
+    },
+    {
+      "displayName": "Session Key From Previous Node",
+      "name": "sessionKey",
+      "type": "string",
+      "default": "={{ $json.sessionId }}",
+      "displayOptions": {
+        "show": {
+          "sessionIdType": [
+            "fromInput"
+          ],
+          "@version": [
+            {
+              "_cnd": {
+                "gte": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Key",
+      "name": "sessionKey",
+      "type": "string",
+      "default": "",
+      "description": "The key to use to store session ID in the memory",
+      "displayOptions": {
+        "show": {
+          "sessionIdType": [
+            "customKey"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Collection Name",
+      "name": "collectionName",
+      "type": "string",
+      "default": "n8n_chat_histories",
+      "description": "The collection name to store the chat history in. If collection does not exist, it will be created."
+    },
+    {
+      "displayName": "Database Name",
+      "name": "databaseName",
+      "type": "string",
+      "default": "",
+      "description": "The database name to store the chat history in. If not provided, the database from credentials will be used."
+    },
+    {
+      "displayName": "Context Window Length",
+      "name": "contextWindowLength",
+      "type": "number",
+      "default": 5
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "mongoDb",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.272Z",
+  "api_version": "1.0.0"
+}

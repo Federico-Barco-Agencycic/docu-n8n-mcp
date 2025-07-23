@@ -1,0 +1,947 @@
+{
+  "node_type": "nodes-base.dateTime",
+  "display_name": "Date & Time",
+  "description": "Allows you to manipulate date and time values",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "2",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Date & Time\ndescription: Documentation for the Date & Time node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: high\n---\n\n# Date & Time\n\nThe Date & Time node manipulates date and time data and convert it to different formats.\n\n--8<-- \"_snippets/integrations/builtin/core-nodes/schedule/timezone-settings.md\"\n\n/// note | Date and time in other nodes\nYou can work with data and time in the Code node, and in expressions in any node. n8n supports Luxon to help work with date and time in JavaScript. Refer to [Date and time with Luxon](/code/cookbook/luxon.md) for more information.\n///\n\n## Operations\n\n* **Add to a Date**: Add a specified amount of time to a date.\n* **Extract Part of a Date**: Extract part of a date, such as the year, month, or day.\n* **Format a Date**: Transform a date's format to a new format using preset options or a custom expression.\n* **Get Current Date**: Get the current date and choose whether to include the current time or not. Useful for triggering other flows and conditional logic.\n* **Get Time Between Dates**: Calculate the amount of time in specific units between two dates.\n* **Round a Date**: Round a date up or down to the nearest unit of your choice, such as month, day, or hour.\n* **Subtract From a Date**: Subtract a specified amount of time from a date.\n\nRefer to the sections below for parameters and options specific to each operation.\n\n## Add to a Date\n\nConfigure the node for this operation using these parameters:\n\n* **Date to Add To**: Enter the date you want to change.\n* **Time Unit to Add**: Select the time unit for the **Duration** parameter.\n* **Duration**: Enter the number of time units to add to the date.\n* **Output Field Name**: Enter the name of the field to output the new date to.\n\n### Add to a Date options\n\nThis operation has one option: **Include Input Fields**. If you'd like to include all of the input fields in the output, turn this option on. If turned off, only the **Output Field Name** and its contents are output.\n\n## Extract Part of a Date\n\nConfigure the node for this operation using these parameters:\n\n* **Date**: Enter the date you want to round or extract part of.\n* **Part**: Select the part of the date you want to extract. Choose from:\n    * **Year**\n    * **Month**\n    * **Week**\n    * **Day**\n    * **Hour**\n    * **Minute**\n    * **Second**\n* **Output Field Name**: Enter the name of the field to output the extracted date part to.\n\n### Extract Part of a Date options\n\nThis operation has one option: **Include Input Fields**. If you'd like to include all of the input fields in the output, turn this option on. If turned off, only the **Output Field Name** and its contents are output.\n\n## Format a Date\n\nConfigure the node for this operation using these parameters:\n\n* **Date**: Enter the date you want to format.\n* **Format**: Select the format you want to change the date to. Choose from:\n    * **Custom Format**: Enter your own custom format using Luxon's [special tokens](https://moment.github.io/luxon/#/formatting?id=table-of-tokens){:target=_blank .external-link}. Tokens are case-sensitive.\n    * **MM/DD/YYYY**: For `4 September 1986`, this formats the date as `09/04/1986`.\n    * **YYYY/MM/DD**: For `4 September 1986`, this formats the date as `1986/09/04`.\n    * **MMMM DD YYYY**: For `4 September 1986`, this formats the date as `September 04 1986`.\n    * **MM-DD-YYYY**: For `4 September 1986`, this formats the date as `09-04-1986`.\n    * **YYYY-MM-DD**: For `4 September 1986`, this formats the date as `1986-09-04`.\n* **Output Field Name**: Enter the name of the field to output the formatted date to.\n\n### Format a Date options\n\nThis operation includes these options:\n\n* **Include Input Fields**: If you'd like to include all of the input fields in the output, turn this option on. If turned off, only the **Output Field Name** and its contents are output.\n* **From Date Format**: If the node isn't recognizing the **Date** format correctly, enter the format for that **Date** here so the node can process it properly. Use Luxon's [special tokens](https://moment.github.io/luxon/#/formatting?id=table-of-tokens){:target=_blank .external-link} to enter the format. Tokens are case-sensitive\n* **Use Workflow Timezone**: Whether to use the input's time zone (turned off) or the workflow's timezone (turned on).\n\n## Get Current Date\n\nConfigure the node for this operation using these parameters:\n\n* **Include Current Time**: Choose whether to include the current time (turned on) or to set the time to midnight (turned off).\n* **Output Field Name**: Enter the name of the field to output the current date to.\n\n### Get Current Date options\n\nThis operation includes these options:\n\n* **Include Input Fields**: If you'd like to include all of the input fields in the output, turn this option on. If turned off, only the **Output Field Name** and its contents are output.\n* **Timezone**: Set the timezone to use. If left blank, the node uses the n8n instance's timezone.\n\n/// note | +00:00 timezone\nUse `GMT` for +00:00 timezone.\n///\n\n## Get Time Between Dates\n\nConfigure the node for this operation using these parameters:\n\n* **Start Date**: Enter the earlier date you want to compare.\n* **End Date**: Enter the later date you want to compare.\n* **Units**: Select the units you want to calculate the time between. You can include multiple units. Choose from:\n    * **Year**\n    * **Month**\n    * **Week**\n    * **Day**\n    * **Hour**\n    * **Minute**\n    * **Second**\n    * **Millisecond**\n* **Output Field Name**: Enter the name of the field to output the calculated time between to.\n\n### Get Time Between Dates options\n\nThe Get Time Between Dates operation includes the **Include Input Fields** option as well as an **Output as ISO String** option. If you leave this option off, each unit you selected will return its own time difference calculation, for example:\n\n    timeDifference\n    years : 1\n    months : 3\n    days : 13\n\nIf you turn on the **Output as ISO String** option, the node formats the output as a single ISO duration string, for example: `P1Y3M13D`.\n\nISO duration format displays a format as `P<n>Y<n>M<n>DT<n>H<n>M<n>S`. `<n>` is the number for the unit after it.\n\n* P = period (duration). It begins all ISO duration strings.\n* Y = years\n* M = months\n* W = weeks\n* D = days\n* T = delineator between dates and times, used to avoid confusion between months and minutes\n* H = hours\n* M = minutes\n* S = seconds\n\nMilliseconds don't get their own unit, but instead are decimal seconds. For example, 2.1 milliseconds is `0.0021S`.\n\n## Round a Date\n\nConfigure the node for this operation using these parameters:\n\n* **Date**: Enter the date you'd like to round.\n* **Mode**: Choose whether to **Round Down** or **Round Up**.\n* **To Nearest**: Select the unit you'd like to round to. Choose from:\n    * **Year**\n    * **Month**\n    * **Week**\n    * **Day**\n    * **Hour**\n    * **Minute**\n    * **Second**\n* **Output Field Name**: Enter the name of the field to output the rounded date to.\n\n### Round a Date options\n\nThis operation has one option: **Include Input Fields**. If you'd like to include all of the input fields in the output, turn this option on. If turned off, only the **Output Field Name** and its contents are output.\n\n## Subtract From a Date\n\nConfigure the node for this operation using these parameters:\n\n* **Date to Subtract From**: Enter the date you'd like to subtract from.\n* **Time Unit to Subtract**: Select the unit for the **Duration** amount you want to subtract.\n* **Duration**: Enter the amount of the time units you want to subtract from the **Date to Subtract From**.\n* **Output Field Name**: Enter the name of the field to output the rounded date to.\n\n### Subtract From a Date options\n\nThis operation has one option: **Include Input Fields**. If you'd like to include all of the input fields in the output, turn this option on. If turned off, only the **Output Field Name** and its contents are output.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'date-and-time') ]]\n\n## Related resources\n\nThe Date & Time node uses [Luxon](https://moment.github.io/luxon){:target=_blank .external-link}. You can also use Luxon in the [Code](/code/code-node.md) node and [expressions](/code/expressions.md). Refer to [Date and time with Luxon](/code/cookbook/luxon.md) for more information.\n\n### Supported date formats\n\nn8n supports all date formats [supported by Luxon](https://moment.github.io/luxon/#/formatting?id=table-of-tokens){:target=_blank .external-link}. Tokens are case-sensitive.\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getCurrentDate",
+      "options": [
+        {
+          "name": "Add to a Date",
+          "value": "addToDate"
+        },
+        {
+          "name": "Extract Part of a Date",
+          "value": "extractDate"
+        },
+        {
+          "name": "Format a Date",
+          "value": "formatDate"
+        },
+        {
+          "name": "Get Current Date",
+          "value": "getCurrentDate"
+        },
+        {
+          "name": "Get Time Between Dates",
+          "value": "getTimeBetweenDates"
+        },
+        {
+          "name": "Round a Date",
+          "value": "roundDate"
+        },
+        {
+          "name": "Subtract From a Date",
+          "value": "subtractFromDate"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "You can also refer to the current date in n8n expressions by using <code>{{$now}}</code> or <code>{{$today}}</code>. <a target=\"_blank\" href=\"https://docs.n8n.io/code/cookbook/luxon/\">More info</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getCurrentDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Include Current Time",
+      "name": "includeTime",
+      "type": "boolean",
+      "default": true,
+      "description": "When deactivated, the time will be set to midnight",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getCurrentDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Output Field Name",
+      "name": "outputFieldName",
+      "type": "string",
+      "default": "currentDate",
+      "description": "Name of the field to put the output in",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getCurrentDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Include Input Fields",
+          "name": "includeInputFields",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include all fields of the input item in the output item"
+        },
+        {
+          "displayName": "Timezone",
+          "name": "timezone",
+          "type": "string",
+          "placeholder": "America/New_York",
+          "default": "",
+          "description": "The timezone to use. If not set, the timezone of the n8n instance will be used. Use ‘GMT’ for +00:00 timezone."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getCurrentDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "You can also do this using an expression, e.g. <code>{{your_date.plus(5, 'minutes')}}</code>. <a target='_blank' href='https://docs.n8n.io/code/cookbook/luxon/'>More info</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "addToDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Date to Add To",
+      "name": "magnitude",
+      "type": "string",
+      "default": "",
+      "description": "The date that you want to change",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "addToDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Time Unit to Add",
+      "name": "timeUnit",
+      "type": "options",
+      "default": "days",
+      "description": "Time unit for Duration parameter below",
+      "options": [
+        {
+          "name": "Years",
+          "value": "years"
+        },
+        {
+          "name": "Quarters",
+          "value": "quarters"
+        },
+        {
+          "name": "Months",
+          "value": "months"
+        },
+        {
+          "name": "Weeks",
+          "value": "weeks"
+        },
+        {
+          "name": "Days",
+          "value": "days"
+        },
+        {
+          "name": "Hours",
+          "value": "hours"
+        },
+        {
+          "name": "Minutes",
+          "value": "minutes"
+        },
+        {
+          "name": "Seconds",
+          "value": "seconds"
+        },
+        {
+          "name": "Milliseconds",
+          "value": "milliseconds"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "addToDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Duration",
+      "name": "duration",
+      "type": "number",
+      "default": 0,
+      "description": "The number of time units to add to the date",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "addToDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Output Field Name",
+      "name": "outputFieldName",
+      "type": "string",
+      "default": "newDate",
+      "description": "Name of the field to put the output in",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "addToDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Include Input Fields",
+          "name": "includeInputFields",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include all fields of the input item in the output item"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "addToDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "You can also do this using an expression, e.g. <code>{{your_date.minus(5, 'minutes')}}</code>. <a target='_blank' href='https://docs.n8n.io/code/cookbook/luxon/'>More info</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "subtractFromDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Date to Subtract From",
+      "name": "magnitude",
+      "type": "string",
+      "default": "",
+      "description": "The date that you want to change",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "subtractFromDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Time Unit to Subtract",
+      "name": "timeUnit",
+      "type": "options",
+      "default": "days",
+      "description": "Time unit for Duration parameter below",
+      "options": [
+        {
+          "name": "Years",
+          "value": "years"
+        },
+        {
+          "name": "Quarters",
+          "value": "quarters"
+        },
+        {
+          "name": "Months",
+          "value": "months"
+        },
+        {
+          "name": "Weeks",
+          "value": "weeks"
+        },
+        {
+          "name": "Days",
+          "value": "days"
+        },
+        {
+          "name": "Hours",
+          "value": "hours"
+        },
+        {
+          "name": "Minutes",
+          "value": "minutes"
+        },
+        {
+          "name": "Seconds",
+          "value": "seconds"
+        },
+        {
+          "name": "Milliseconds",
+          "value": "milliseconds"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "subtractFromDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Duration",
+      "name": "duration",
+      "type": "number",
+      "default": 0,
+      "description": "The number of time units to subtract from the date",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "subtractFromDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Output Field Name",
+      "name": "outputFieldName",
+      "type": "string",
+      "default": "newDate",
+      "description": "Name of the field to put the output in",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "subtractFromDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Include Input Fields",
+          "name": "includeInputFields",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include all fields of the input item in the output item"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "subtractFromDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "You can also do this using an expression, e.g. <code>{{your_date.format('yyyy-MM-dd')}}</code>. <a target='_blank' href='https://docs.n8n.io/code/cookbook/luxon/'>More info</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "formatDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Date",
+      "name": "date",
+      "type": "string",
+      "default": "",
+      "description": "The date that you want to format",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "formatDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Format",
+      "name": "format",
+      "type": "options",
+      "default": "MM/dd/yyyy",
+      "description": "The format to convert the date to",
+      "options": [
+        {
+          "name": "Custom Format",
+          "value": "custom"
+        },
+        {
+          "name": "MM/DD/YYYY",
+          "value": "MM/dd/yyyy",
+          "description": "Example: 09/04/1986"
+        },
+        {
+          "name": "YYYY/MM/DD",
+          "value": "yyyy/MM/dd",
+          "description": "Example: 1986/04/09"
+        },
+        {
+          "name": "MMMM DD YYYY",
+          "value": "MMMM dd yyyy",
+          "description": "Example: April 09 1986"
+        },
+        {
+          "name": "MM-DD-YYYY",
+          "value": "MM-dd-yyyy",
+          "description": "Example: 09-04-1986"
+        },
+        {
+          "name": "YYYY-MM-DD",
+          "value": "yyyy-MM-dd",
+          "description": "Example: 1986-04-09"
+        },
+        {
+          "name": "Unix Timestamp",
+          "value": "X",
+          "description": "Example: 1672531200"
+        },
+        {
+          "name": "Unix Ms Timestamp",
+          "value": "x",
+          "description": "Example: 1674691200000"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "formatDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Custom Format",
+      "name": "customFormat",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "format": [
+            "custom"
+          ],
+          "operation": [
+            "formatDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Output Field Name",
+      "name": "outputFieldName",
+      "type": "string",
+      "default": "formattedDate",
+      "description": "Name of the field to put the output in",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "formatDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Include Input Fields",
+          "name": "includeInputFields",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include all fields of the input item in the output item"
+        },
+        {
+          "displayName": "From Date Format",
+          "name": "fromFormat",
+          "type": "string",
+          "default": "e.g yyyyMMdd",
+          "hint": "Tokens are case sensitive",
+          "description": "Format in which the input 'Date' is, it's helpful when the format is not recognized automatically. Use those <a href=\"https://moment.github.io/luxon/#/formatting?id=table-of-tokens&id=table-of-tokens\" target=\"_blank\">tokens</a> to define the format."
+        },
+        {
+          "displayName": "Use Workflow Timezone",
+          "name": "timezone",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to use the timezone of the input or the workflow's timezone"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "formatDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "You can also do this using an expression, e.g. <code>{{ your_date.beginningOf('month') }}</code> or <code>{{ your_date.endOfMonth() }}</code>. <a target='_blank' href='https://docs.n8n.io/code/cookbook/luxon/'>More info</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "roundDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Date",
+      "name": "date",
+      "type": "string",
+      "default": "",
+      "description": "The date that you want to round",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "roundDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Mode",
+      "name": "mode",
+      "type": "options",
+      "default": "roundDown",
+      "options": [
+        {
+          "name": "Round Down",
+          "value": "roundDown"
+        },
+        {
+          "name": "Round Up",
+          "value": "roundUp"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "roundDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "To Nearest",
+      "name": "toNearest",
+      "type": "options",
+      "default": "month",
+      "options": [
+        {
+          "name": "Year",
+          "value": "year"
+        },
+        {
+          "name": "Month",
+          "value": "month"
+        },
+        {
+          "name": "Week",
+          "value": "week"
+        },
+        {
+          "name": "Day",
+          "value": "day"
+        },
+        {
+          "name": "Hour",
+          "value": "hour"
+        },
+        {
+          "name": "Minute",
+          "value": "minute"
+        },
+        {
+          "name": "Second",
+          "value": "second"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "roundDate"
+          ],
+          "mode": [
+            "roundDown"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "To",
+      "name": "to",
+      "type": "options",
+      "default": "month",
+      "options": [
+        {
+          "name": "End of Month",
+          "value": "month"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "roundDate"
+          ],
+          "mode": [
+            "roundUp"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Output Field Name",
+      "name": "outputFieldName",
+      "type": "string",
+      "default": "roundedDate",
+      "description": "Name of the field to put the output in",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "roundDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Include Input Fields",
+          "name": "includeInputFields",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include all fields of the input item in the output item"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "roundDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Start Date",
+      "name": "startDate",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getTimeBetweenDates"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "End Date",
+      "name": "endDate",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getTimeBetweenDates"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Units",
+      "name": "units",
+      "type": "multiOptions",
+      "default": [
+        "day"
+      ],
+      "options": [
+        {
+          "name": "Year",
+          "value": "year"
+        },
+        {
+          "name": "Month",
+          "value": "month"
+        },
+        {
+          "name": "Week",
+          "value": "week"
+        },
+        {
+          "name": "Day",
+          "value": "day"
+        },
+        {
+          "name": "Hour",
+          "value": "hour"
+        },
+        {
+          "name": "Minute",
+          "value": "minute"
+        },
+        {
+          "name": "Second",
+          "value": "second"
+        },
+        {
+          "name": "Millisecond",
+          "value": "millisecond"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getTimeBetweenDates"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Output Field Name",
+      "name": "outputFieldName",
+      "type": "string",
+      "default": "timeDifference",
+      "description": "Name of the field to put the output in",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getTimeBetweenDates"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Include Input Fields",
+          "name": "includeInputFields",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include all fields of the input item in the output item"
+        },
+        {
+          "displayName": "Output as ISO String",
+          "name": "isoString",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to output the date as ISO string or not"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getTimeBetweenDates"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "You can also do this using an expression, e.g. <code>{{ your_date.extract(\"month\") }}}</code>. <a target=\"_blank\" href=\"https://docs.n8n.io/code/cookbook/luxon/\">More info</a>",
+      "name": "notice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "extractDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Date",
+      "name": "date",
+      "type": "string",
+      "default": "",
+      "description": "The date that you want to round",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "extractDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Part",
+      "name": "part",
+      "type": "options",
+      "default": "month",
+      "options": [
+        {
+          "name": "Year",
+          "value": "year"
+        },
+        {
+          "name": "Month",
+          "value": "month"
+        },
+        {
+          "name": "Week",
+          "value": "week"
+        },
+        {
+          "name": "Day",
+          "value": "day"
+        },
+        {
+          "name": "Hour",
+          "value": "hour"
+        },
+        {
+          "name": "Minute",
+          "value": "minute"
+        },
+        {
+          "name": "Second",
+          "value": "second"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "extractDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Output Field Name",
+      "name": "outputFieldName",
+      "type": "string",
+      "default": "datePart",
+      "description": "Name of the field to put the output in",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "extractDate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Include Input Fields",
+          "name": "includeInputFields",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include all fields of the input item in the output item"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "extractDate"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "addToDate",
+      "name": "Add to a Date"
+    },
+    {
+      "operation": "extractDate",
+      "name": "Extract Part of a Date"
+    },
+    {
+      "operation": "formatDate",
+      "name": "Format a Date"
+    },
+    {
+      "operation": "getCurrentDate",
+      "name": "Get Current Date"
+    },
+    {
+      "operation": "getTimeBetweenDates",
+      "name": "Get Time Between Dates"
+    },
+    {
+      "operation": "roundDate",
+      "name": "Round a Date"
+    },
+    {
+      "operation": "subtractFromDate",
+      "name": "Subtract From a Date"
+    }
+  ],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:21.804Z",
+  "api_version": "1.0.0"
+}

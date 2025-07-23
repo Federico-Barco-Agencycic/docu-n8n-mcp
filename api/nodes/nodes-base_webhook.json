@@ -1,0 +1,626 @@
+{
+  "node_type": "nodes-base.webhook",
+  "display_name": "Webhook",
+  "description": "Starts the workflow when a webhook is called",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "2",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Webhook node documentation \ndescription: Learn how to use the Webhook node in n8n. Follow technical documentation to integrate Webhook node into your workflows.\npriority: critical\ncontentType: [integration, reference]\ntags:\n  - \"webhook set route parameters\"\n  - \"get webhook URL\"\n  - \"call workflow externally\"\nhide:\n  - tags\n---\n\n# Webhook node\n\nUse the Webhook node to create [webhooks](https://en.wikipedia.org/wiki/Webhook){:target=_blank .external-link}, which can receive data from apps and services when an event occurs. It's a trigger node, which means it can start an n8n workflow. This allows services to connect to n8n and run a workflow.\n\nYou can use the Webhook node as a trigger for a workflow when you want to receive data and run a workflow based on the data. The Webhook node also supports returning the data generated at the end of a workflow. This makes it useful for building a workflow to process data and return the results, like an API endpoint.\n\nThe webhook allows you to trigger workflows from services that don't have a dedicated app trigger node.\n\n## Workflow development process\n\nn8n provides different **Webhook URL**s for testing and production. The testing URL includes an option to **Listen for test event**. Refer to [Workflow development](/integrations/builtin/core-nodes/n8n-nodes-base.webhook/workflow-development.md) for more information on building, testing, and shifting your Webhook node to production.\n\n## Node parameters\n\nUse these parameters to configure your node.\n\n### Webhook URLs\n\nThe Webhook node has two **Webhook URLs**: test and production. n8n displays the URLs at the top of the node panel.\n\nSelect **Test URL** or **Production URL** to toggle which URL n8n displays.\n\n<figure markdown=\"span\">\n![Sample Webhook URLs in the Webhook node's Parameters tab display a Test URL and Production URL](/_images/integrations/builtin/core-nodes/webhook/webhook-urls.png)\n<figcaption>Sample Webhook URLs in the Webhook node's Parameters tab</figcaption>\n</figure>\n\n* **Test**: n8n registers a test webhook when you select **Listen for Test Event** or **Execute workflow**, if the workflow isn't active. When you call the webhook URL, n8n displays the data in the workflow.\n* **Production**: n8n registers a production webhook when you activate the workflow. When using the production URL, n8n doesn't display the data in the workflow. You can still view workflow data for a production execution: select the **Executions** tab in the workflow, then select the workflow execution you want to view.\n\n### HTTP Method\n\nThe Webhook node supports standard [HTTP Request Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods){:target=_blank .external-link}:\n\n* DELETE\n* GET\n* HEAD\n* PATCH\n* POST\n* PUT\n\n    /// note | Webhook max payload\n\tThe webhook maximum payload size is 16MB.\n  If you're self-hosting n8n, you can change this using the [endpoint environment variable](/hosting/configuration/environment-variables/endpoints.md) `N8N_PAYLOAD_SIZE_MAX`.\n\t///\t\n\n### Path\n\nBy default, this field contains a randomly generated webhook URL path, to avoid conflicts with other webhook nodes. \n\nYou can manually specify a URL path, including adding route parameters. For example, you may need to do this if you use n8n to prototype an API and want consistent endpoint URLs.\n\nThe **Path** field can take the following formats:\n\n- `/:variable`\n- `/path/:variable`\n- `/:variable/path`\n- `/:variable1/path/:variable2`\n- `/:variable1/:variable2`\n\n### Supported authentication methods\n\nYou can require authentication for any service calling your webhook URL. Choose from these authentication methods:\n\n- Basic auth\n- Header auth\n- JWT auth\n- None\n\nRefer to [Webhook credentials](/integrations/builtin/credentials/webhook.md) for more information on setting up each credential type.\n\n### Respond\n\n* **Immediately**: The Webhook node returns the response code and the message **Workflow got started**.\n* **When Last Node Finishes**: The Webhook node returns the response code and the data output from the last node executed in the workflow.\n* **Using 'Respond to Webhook' Node**: The Webhook node responds as defined in the [Respond to Webhook](/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook.md) node.\n\n### Response Code\n\nCustomize the [HTTP response code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status){:target=_blank .external-link} that the Webhook node returns upon successful execution. Select from common response codes or create a custom code.\n\n### Response Data\n\nChoose what data to include in the response body:\n\n* **All Entries**: The Webhook returns all the entries of the last node in an array.\n* **First Entry JSON**: The Webhook returns the JSON data of the first entry of the last node in a JSON object.\n* **First Entry Binary**: The Webhook returns the binary data of the first entry of the last node in a binary file.\n* **No Response Body**: The Webhook returns without a body.\n\nApplies only to **Respond > When Last Node Finishes**.\n\n## Node options\n\nSelect **Add Option** to view more configuration options. The available options depend on your node parameters. Refer to the table for option availability.\n\n* **Allowed Origins (CORS)**: Set the permitted cross-origin domains. Enter a comma-separated list of URLs allowed for cross-origin non-preflight requests. Use `*` (default) to allow all origins.\n* **Binary Property**: Enabling this setting allows the Webhook node to receive binary data, such as an image or audio file. Enter the name of the binary property to write the data of the received file to.\n* **Ignore Bots**: Ignore requests from bots like link previewers and web crawlers.\n* **IP(s) Whitelist**: Enable this to limit who (or what) can invoke a Webhook trigger URL. Enter a comma-separated list of allowed IP addresses. Access from IP addresses outside the whitelist throws a 403 error. If left blank, all IP addresses can invoke the webhook trigger URL.\n* **No Response Body**: Enable this to prevent n8n sending a body with the response.\n* **Raw Body**: Specify that the Webhook node will receive data in a raw format, such as JSON or XML.\n* **Response Content-Type**: Choose the format for the webhook body.\n* **Response Data**: Send custom data with the response.\n* **Response Headers**: Send extra headers in the Webhook response. Refer to [MDN Web Docs | Response header](https://developer.mozilla.org/en-US/docs/Glossary/Response_header){:target=_blank .external-link} to learn more about response headers.\n* **Property Name**: by default, n8n returns all available data. You can choose to return a specific JSON key, so that n8n returns the value.\n\n| Option | Required node configuration |\n| ------ | --------------------------- | \n| Allowed Origins (CORS) | Any |\n| Binary Property | Either: <br />HTTP Method > POST <br /> HTTP Method > PATCH <br /> HTTP Method > PUT |\n| Ignore Bots | Any |\n| IP(s) Whitelist | Any |\n| Property Name | Both: <br /> Respond > When Last Node Finishes <br /> Response Data > First Entry JSON |\n| No Response Body | Respond > Immediately |\n| Raw Body | Any |\n| Response Code | Any except Respond > Using 'Respond to Webhook' Node |\n| Response Content-Type | Both: <br /> Respond > When Last Node Finishes <br /> Response Data > First Entry JSON |\n| Response Data | Respond > Immediately |\n| Response Headers | Any |\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'webhook') ]]\n\n## Common issues\n\nFor common questions or issues and suggested solutions, refer to [Common issues](/integrations/builtin/core-nodes/n8n-nodes-base.webhook/common-issues.md).\n",
+  "properties_schema": [
+    {
+      "displayName": "Allow Multiple HTTP Methods",
+      "name": "multipleMethods",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to allow the webhook to listen for multiple HTTP methods"
+    },
+    {
+      "displayName": "HTTP Method",
+      "name": "httpMethod",
+      "type": "options",
+      "default": "GET",
+      "description": "The HTTP method to listen to",
+      "options": [
+        {
+          "name": "DELETE",
+          "value": "DELETE"
+        },
+        {
+          "name": "GET",
+          "value": "GET"
+        },
+        {
+          "name": "HEAD",
+          "value": "HEAD"
+        },
+        {
+          "name": "PATCH",
+          "value": "PATCH"
+        },
+        {
+          "name": "POST",
+          "value": "POST"
+        },
+        {
+          "name": "PUT",
+          "value": "PUT"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "multipleMethods": [
+            false
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "HTTP Methods",
+      "name": "httpMethod",
+      "type": "multiOptions",
+      "default": [
+        "GET",
+        "POST"
+      ],
+      "description": "The HTTP methods to listen to",
+      "options": [
+        {
+          "name": "DELETE",
+          "value": "DELETE"
+        },
+        {
+          "name": "GET",
+          "value": "GET"
+        },
+        {
+          "name": "HEAD",
+          "value": "HEAD"
+        },
+        {
+          "name": "PATCH",
+          "value": "PATCH"
+        },
+        {
+          "name": "POST",
+          "value": "POST"
+        },
+        {
+          "name": "PUT",
+          "value": "PUT"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "multipleMethods": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Path",
+      "name": "path",
+      "type": "string",
+      "default": "",
+      "description": "The path to listen to, dynamic values could be specified by using ':', e.g. 'your-path/:dynamic-value'. If dynamic values are set 'webhookId' would be prepended to path.",
+      "required": true
+    },
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "none",
+      "description": "The way to authenticate",
+      "options": [
+        {
+          "name": "Basic Auth",
+          "value": "basicAuth"
+        },
+        {
+          "name": "Header Auth",
+          "value": "headerAuth"
+        },
+        {
+          "name": "JWT Auth",
+          "value": "jwtAuth"
+        },
+        {
+          "name": "None",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "displayName": "Respond",
+      "name": "responseMode",
+      "type": "options",
+      "default": "onReceived",
+      "description": "When and how to respond to the webhook",
+      "options": [
+        {
+          "name": "Immediately",
+          "value": "onReceived",
+          "description": "As soon as this node executes"
+        },
+        {
+          "name": "When Last Node Finishes",
+          "value": "lastNode",
+          "description": "Returns data of the last-executed node"
+        },
+        {
+          "name": "Using 'Respond to Webhook' Node",
+          "value": "responseNode",
+          "description": "Response defined in that node"
+        }
+      ]
+    },
+    {
+      "displayName": "Insert a 'Respond to Webhook' node to control when and how you respond. <a href=\"https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/\" target=\"_blank\">More details</a>",
+      "name": "webhookNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "responseMode": [
+            "responseNode"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Response Code",
+      "name": "responseCode",
+      "type": "number",
+      "default": 200,
+      "description": "The HTTP Response code to return",
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1,
+            1.1
+          ]
+        },
+        "hide": {
+          "responseMode": [
+            "responseNode"
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 100,
+        "maxValue": 599
+      }
+    },
+    {
+      "displayName": "Response Data",
+      "name": "responseData",
+      "type": "options",
+      "default": "firstEntryJson",
+      "description": "What data should be returned. If it should return all items as an array or only the first item as object.",
+      "options": [
+        {
+          "name": "All Entries",
+          "value": "allEntries",
+          "description": "Returns all the entries of the last node. Always returns an array."
+        },
+        {
+          "name": "First Entry JSON",
+          "value": "firstEntryJson",
+          "description": "Returns the JSON data of the first entry of the last node. Always returns a JSON object."
+        },
+        {
+          "name": "First Entry Binary",
+          "value": "firstEntryBinary",
+          "description": "Returns the binary data of the first entry of the last node. Always returns a binary file."
+        },
+        {
+          "name": "No Response Body",
+          "value": "noData",
+          "description": "Returns without a body"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "responseMode": [
+            "lastNode"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Property Name",
+      "name": "responseBinaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "description": "Name of the binary property to return",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "responseData": [
+            "firstEntryBinary"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Binary File",
+          "name": "binaryData",
+          "type": "boolean",
+          "displayOptions": {
+            "show": {
+              "/httpMethod": [
+                "PATCH",
+                "PUT",
+                "POST"
+              ],
+              "@version": [
+                1
+              ]
+            }
+          },
+          "default": false,
+          "description": "Whether the webhook will receive binary data"
+        },
+        {
+          "displayName": "Field Name for Binary Data",
+          "name": "binaryPropertyName",
+          "type": "string",
+          "default": "data",
+          "displayOptions": {
+            "hide": {
+              "@version": [
+                1
+              ]
+            }
+          },
+          "description": "The name of the output field to put any binary file data in. Only relevant if binary data is received."
+        },
+        {
+          "displayName": "Ignore Bots",
+          "name": "ignoreBots",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to ignore requests from bots like link previewers and web crawlers"
+        },
+        {
+          "displayName": "IP(s) Whitelist",
+          "name": "ipWhitelist",
+          "type": "string",
+          "placeholder": "e.g. 127.0.0.1",
+          "default": "",
+          "description": "Comma-separated list of allowed IP addresses. Leave empty to allow all IPs."
+        },
+        {
+          "displayName": "No Response Body",
+          "name": "noResponseBody",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to send any body in the response",
+          "displayOptions": {
+            "hide": {
+              "rawBody": [
+                true
+              ]
+            },
+            "show": {
+              "/responseMode": [
+                "onReceived"
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Property Name",
+          "name": "responsePropertyName",
+          "type": "string",
+          "displayOptions": {
+            "show": {
+              "/responseData": [
+                "firstEntryJson"
+              ],
+              "/responseMode": [
+                "lastNode"
+              ]
+            }
+          },
+          "default": "data",
+          "description": "Name of the property to return the data of instead of the whole JSON"
+        },
+        {
+          "displayName": "Put Output File in Field",
+          "name": "binaryPropertyName",
+          "type": "string",
+          "default": "data",
+          "displayOptions": {
+            "show": {
+              "binaryData": [
+                true
+              ],
+              "@version": [
+                1
+              ]
+            }
+          },
+          "hint": "The name of the output binary field to put the file in",
+          "description": "If the data gets received via \"Form-Data Multipart\" it will be the prefix and a number starting with 0 will be attached to it"
+        },
+        {
+          "displayName": "Raw Body",
+          "name": "rawBody",
+          "type": "boolean",
+          "displayOptions": {
+            "show": {
+              "@version": [
+                1
+              ]
+            },
+            "hide": {
+              "binaryData": [
+                true
+              ],
+              "noResponseBody": [
+                true
+              ]
+            }
+          },
+          "default": false,
+          "description": "Raw body (binary)"
+        },
+        {
+          "displayName": "Raw Body",
+          "name": "rawBody",
+          "type": "boolean",
+          "displayOptions": {
+            "hide": {
+              "noResponseBody": [
+                true
+              ],
+              "@version": [
+                1
+              ]
+            }
+          },
+          "default": false,
+          "description": "Whether to return the raw body"
+        },
+        {
+          "displayName": "Response Code",
+          "name": "responseCode",
+          "placeholder": "Add Response Code",
+          "type": "fixedCollection",
+          "default": {
+            "values": {
+              "responseCode": 200
+            }
+          },
+          "options": [
+            {
+              "name": "values",
+              "displayName": "Values",
+              "values": [
+                {
+                  "displayName": "Response Code",
+                  "name": "responseCode",
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "200",
+                      "value": 200,
+                      "description": "OK - Request has succeeded"
+                    },
+                    {
+                      "name": "201",
+                      "value": 201,
+                      "description": "Created - Request has been fulfilled"
+                    },
+                    {
+                      "name": "204",
+                      "value": 204,
+                      "description": "No Content - Request processed, no content returned"
+                    },
+                    {
+                      "name": "301",
+                      "value": 301,
+                      "description": "Moved Permanently - Requested resource moved permanently"
+                    },
+                    {
+                      "name": "302",
+                      "value": 302,
+                      "description": "Found - Requested resource moved temporarily"
+                    },
+                    {
+                      "name": "304",
+                      "value": 304,
+                      "description": "Not Modified - Resource has not been modified"
+                    },
+                    {
+                      "name": "400",
+                      "value": 400,
+                      "description": "Bad Request - Request could not be understood"
+                    },
+                    {
+                      "name": "401",
+                      "value": 401,
+                      "description": "Unauthorized - Request requires user authentication"
+                    },
+                    {
+                      "name": "403",
+                      "value": 403,
+                      "description": "Forbidden - Server understood, but refuses to fulfill"
+                    },
+                    {
+                      "name": "404",
+                      "value": 404,
+                      "description": "Not Found - Server has not found a match"
+                    },
+                    {
+                      "name": "Custom Code",
+                      "value": "customCode",
+                      "description": "Write any HTTP code"
+                    }
+                  ],
+                  "default": 200,
+                  "description": "The HTTP response code to return"
+                },
+                {
+                  "displayName": "Code",
+                  "name": "customCode",
+                  "type": "number",
+                  "default": 200,
+                  "placeholder": "e.g. 400",
+                  "typeOptions": {
+                    "minValue": 100
+                  },
+                  "displayOptions": {
+                    "show": {
+                      "responseCode": [
+                        "customCode"
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "displayOptions": {
+            "show": {
+              "@version": [
+                {
+                  "_cnd": {
+                    "gte": 2
+                  }
+                }
+              ]
+            },
+            "hide": {
+              "/responseMode": [
+                "responseNode"
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Response Content-Type",
+          "name": "responseContentType",
+          "type": "string",
+          "displayOptions": {
+            "show": {
+              "/responseData": [
+                "firstEntryJson"
+              ],
+              "/responseMode": [
+                "lastNode"
+              ]
+            }
+          },
+          "default": "",
+          "placeholder": "application/xml",
+          "description": "Set a custom content-type to return if another one as the \"application/json\" should be returned"
+        },
+        {
+          "displayName": "Response Data",
+          "name": "responseData",
+          "type": "string",
+          "displayOptions": {
+            "show": {
+              "/responseMode": [
+                "onReceived"
+              ]
+            },
+            "hide": {
+              "noResponseBody": [
+                true
+              ]
+            }
+          },
+          "default": "",
+          "placeholder": "success",
+          "description": "Custom response data to send"
+        },
+        {
+          "displayName": "Response Headers",
+          "name": "responseHeaders",
+          "placeholder": "Add Response Header",
+          "description": "Add headers to the webhook response",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": {},
+          "options": [
+            {
+              "name": "entries",
+              "displayName": "Entries",
+              "values": [
+                {
+                  "displayName": "Name",
+                  "name": "name",
+                  "type": "string",
+                  "default": "",
+                  "description": "Name of the header"
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": "",
+                  "description": "Value of the header"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "httpBasicAuth",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "basicAuth"
+          ]
+        }
+      }
+    },
+    {
+      "name": "httpHeaderAuth",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "headerAuth"
+          ]
+        }
+      }
+    },
+    {
+      "name": "jwtAuth",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "jwtAuth"
+          ]
+        }
+      }
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.212Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,95 @@
+{
+  "node_type": "nodes-base.postmarkTrigger",
+  "display_name": "Postmark Trigger",
+  "description": "Starts the workflow when Postmark events occur",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Postmark Trigger node documentation\ndescription: Learn how to use the Postmark Trigger node in n8n. Follow technical documentation to integrate Postmark Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Postmark Trigger node\n\n[Postmark](https://postmarkapp.com){:target=_blank .external-link} helps deliver and track application email. You can track statistics such as the number of emails sent or processed, opens, bounces and, spam complaints.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/postmark.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Postmark Trigger integrations](https://n8n.io/integrations/postmark-trigger/){:target=_blank .external-link} page.\n///\n",
+  "properties_schema": [
+    {
+      "displayName": "Events",
+      "name": "events",
+      "type": "multiOptions",
+      "default": [],
+      "description": "Webhook events that will be enabled for that endpoint",
+      "options": [
+        {
+          "name": "Bounce",
+          "value": "bounce",
+          "description": "Trigger on bounce"
+        },
+        {
+          "name": "Click",
+          "value": "click",
+          "description": "Trigger on click"
+        },
+        {
+          "name": "Delivery",
+          "value": "delivery",
+          "description": "Trigger on delivery"
+        },
+        {
+          "name": "Open",
+          "value": "open",
+          "description": "Trigger webhook on open"
+        },
+        {
+          "name": "Spam Complaint",
+          "value": "spamComplaint",
+          "description": "Trigger on spam complaint"
+        },
+        {
+          "name": "Subscription Change",
+          "value": "subscriptionChange",
+          "description": "Trigger on subscription change"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "First Open",
+      "name": "firstOpen",
+      "type": "boolean",
+      "default": false,
+      "description": "Only fires on first open for event \"Open\"",
+      "displayOptions": {
+        "show": {
+          "events": [
+            "open"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Include Content",
+      "name": "includeContent",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to include message content for events \"Bounce\" and \"Spam Complaint\"",
+      "displayOptions": {
+        "show": {
+          "events": [
+            "bounce",
+            "spamComplaint"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "postmarkApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.070Z",
+  "api_version": "1.0.0"
+}

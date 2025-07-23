@@ -1,0 +1,86 @@
+{
+  "node_type": "nodes-base.copperTrigger",
+  "display_name": "Copper Trigger",
+  "description": "Handle Copper events via webhooks",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Copper Trigger node documentation\ndescription: Learn how to use the Copper Trigger node in n8n. Follow technical documentation to integrate Copper Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Copper Trigger node\n\n[Copper](https://www.copper.com/){:target=_blank .external-link} is a CRM that focuses on strong integration with Google Workspace. It's mainly targeted towards small and medium-sized businesses.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/copper.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Copper Trigger integrations](https://n8n.io/integrations/copper-trigger/){:target=_blank .external-link} page.\n///\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "",
+      "description": "The resource which will fire the event",
+      "options": [
+        {
+          "name": "Company",
+          "value": "company"
+        },
+        {
+          "name": "Lead",
+          "value": "lead"
+        },
+        {
+          "name": "Opportunity",
+          "value": "opportunity"
+        },
+        {
+          "name": "Person",
+          "value": "person"
+        },
+        {
+          "name": "Project",
+          "value": "project"
+        },
+        {
+          "name": "Task",
+          "value": "task"
+        }
+      ],
+      "required": true,
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Event",
+      "name": "event",
+      "type": "options",
+      "default": "",
+      "description": "The event to listen to",
+      "options": [
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "An existing record is removed"
+        },
+        {
+          "name": "New",
+          "value": "new",
+          "description": "A new record is created"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Any field in the existing entity record is changed"
+        }
+      ],
+      "required": true
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "copperApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.797Z",
+  "api_version": "1.0.0"
+}

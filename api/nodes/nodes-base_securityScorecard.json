@@ -1,0 +1,1376 @@
+{
+  "node_type": "nodes-base.securityScorecard",
+  "display_name": "SecurityScorecard",
+  "description": "Consume SecurityScorecard API",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: SecurityScorecard node documentation\ndescription: Learn how to use the SecurityScorecard node in n8n. Follow technical documentation to integrate SecurityScorecard node into your workflows.\ncontentType: [integration, reference]\n---\n\n# SecurityScorecard node\n\nUse the SecurityScorecard node to automate work in SecurityScorecard, and integrate SecurityScorecard with other applications. n8n has built-in support for a wide range of SecurityScorecard features, including creating, updating, deleting, and getting portfolio, as well as getting a company's data.\n\nOn this page, you'll find a list of operations the SecurityScorecard node supports and links to more resources.\n\n/// note | Credentials\nRefer to [SecurityScorecard credentials](/integrations/builtin/credentials/securityscorecard.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Company\n    * Get company factor scores and issue counts\n    * Get company's historical factor scores\n    * Get company's historical scores\n    * Get company information and summary of their scorecard\n    * Get company's score improvement plan\n* Industry\n    * Get Factor Scores\n    * Get Historical Factor Scores\n    * Get Score\n* Invite\n    * Create an invite for a company/user\n* Portfolio\n    * Create a portfolio\n    * Delete a portfolio\n    * Get all portfolios\n    * Update a portfolio\n* Portfolio Company\n    * Add a company to portfolio\n    * Get all companies in a portfolio\n    * Remove a company from portfolio\n* Report\n    * Download a generated report\n    * Generate a report\n    * Get list of recently generated report\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'securityscorecard') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "company",
+      "options": [
+        {
+          "name": "Company",
+          "value": "company"
+        },
+        {
+          "name": "Industry",
+          "value": "industry"
+        },
+        {
+          "name": "Invite",
+          "value": "invite"
+        },
+        {
+          "name": "Portfolio",
+          "value": "portfolio"
+        },
+        {
+          "name": "Portfolio Company",
+          "value": "portfolioCompany"
+        },
+        {
+          "name": "Report",
+          "value": "report"
+        }
+      ],
+      "required": true,
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getFactor",
+      "options": [
+        {
+          "name": "Get Factor Scores",
+          "value": "getFactor",
+          "description": "Get company factor scores and issue counts",
+          "action": "Get a company factor scores and issue counts"
+        },
+        {
+          "name": "Get Historical Factor Scores",
+          "value": "getFactorHistorical",
+          "description": "Get company's historical factor scores",
+          "action": "Get a company's historical factor scores"
+        },
+        {
+          "name": "Get Historical Scores",
+          "value": "getHistoricalScore",
+          "description": "Get company's historical scores",
+          "action": "Get a company's historical scores"
+        },
+        {
+          "name": "Get Information and Scorecard",
+          "value": "getScorecard",
+          "description": "Get company information and summary of their scorecard",
+          "action": "Get company information and a summary of their scorecard"
+        },
+        {
+          "name": "Get Score Plan",
+          "value": "getScorePlan",
+          "description": "Get company's score improvement plan",
+          "action": "Get a company's score improvement plan"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "company"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Scorecard Identifier",
+      "name": "scorecardIdentifier",
+      "type": "string",
+      "default": "",
+      "description": "Primary identifier of a company or scorecard, i.e. domain.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "company"
+          ],
+          "operation": [
+            "getScorecard",
+            "getFactor",
+            "getFactorHistorical",
+            "getHistoricalScore",
+            "getScorePlan"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Score",
+      "name": "score",
+      "type": "number",
+      "default": 0,
+      "description": "Score target",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "company"
+          ],
+          "operation": [
+            "getScorePlan"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "company"
+          ],
+          "operation": [
+            "getFactor",
+            "getFactorHistorical",
+            "getHistoricalScore",
+            "getScorePlan"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "company"
+          ],
+          "operation": [
+            "getFactor",
+            "getFactorHistorical",
+            "getHistoricalScore",
+            "getScorePlan"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Simplify",
+      "name": "simple",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return a simplified version of the response instead of the raw data",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "company"
+          ],
+          "operation": [
+            "getFactorHistorical",
+            "getHistoricalScore"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Severity",
+          "name": "severity",
+          "type": "string",
+          "default": "",
+          "placeholder": ""
+        },
+        {
+          "displayName": "Severity In",
+          "description": "Filter issues by comma-separated severity list",
+          "name": "severity_in",
+          "type": "string",
+          "default": "",
+          "placeholder": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "company"
+          ],
+          "operation": [
+            "getFactor"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Date From",
+          "description": "History start date",
+          "name": "date_from",
+          "type": "dateTime",
+          "default": ""
+        },
+        {
+          "displayName": "Date To",
+          "description": "History end date",
+          "name": "date_to",
+          "type": "dateTime",
+          "default": ""
+        },
+        {
+          "displayName": "Timing",
+          "description": "Date granularity",
+          "name": "timing",
+          "type": "options",
+          "options": [
+            {
+              "name": "Daily",
+              "value": "daily"
+            },
+            {
+              "name": "Weekly",
+              "value": "weekly"
+            },
+            {
+              "name": "Monthly",
+              "value": "monthly"
+            }
+          ],
+          "default": "daily"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "company"
+          ],
+          "operation": [
+            "getFactorHistorical",
+            "getHistoricalScore"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getFactor",
+      "options": [
+        {
+          "name": "Get Factor Scores",
+          "value": "getFactor",
+          "action": "Get factor scores for an industry"
+        },
+        {
+          "name": "Get Historical Factor Scores",
+          "value": "getFactorHistorical",
+          "action": "Get historical factor scores for an industry"
+        },
+        {
+          "name": "Get Score",
+          "value": "getScore",
+          "action": "Get the score for an industry"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "industry"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Industry",
+      "name": "industry",
+      "type": "options",
+      "default": "food",
+      "options": [
+        {
+          "name": "Food",
+          "value": "food"
+        },
+        {
+          "name": "Healthcare",
+          "value": "healthcare"
+        },
+        {
+          "name": "Manofacturing",
+          "value": "manofacturing"
+        },
+        {
+          "name": "Retail",
+          "value": "retail"
+        },
+        {
+          "name": "Technology",
+          "value": "technology"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "industry"
+          ],
+          "operation": [
+            "getScore",
+            "getFactor",
+            "getFactorHistorical"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "industry"
+          ],
+          "operation": [
+            "getFactor",
+            "getFactorHistorical"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "industry"
+          ],
+          "operation": [
+            "getFactor",
+            "getFactorHistorical"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Simplify",
+      "name": "simple",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return a simplified version of the response instead of the raw data",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "industry"
+          ],
+          "operation": [
+            "getFactor",
+            "getFactorHistorical"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Date From",
+          "description": "History start date",
+          "name": "from",
+          "type": "dateTime",
+          "default": ""
+        },
+        {
+          "displayName": "Date To",
+          "description": "History end date",
+          "name": "to",
+          "type": "dateTime",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "industry"
+          ],
+          "operation": [
+            "getFactorHistorical"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create an invite for a company/user",
+          "action": "Create an invite"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "invite"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "invite"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "First Name",
+      "name": "firstName",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "invite"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Last Name",
+      "name": "lastName",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "invite"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Message",
+      "name": "message",
+      "type": "string",
+      "default": "",
+      "description": "Message for the invitee",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "invite"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Days to Resolve Issue",
+          "description": "Minimum days to resolve a scorecard issue",
+          "name": "days_to_resolve_issue",
+          "type": "number",
+          "default": 0
+        },
+        {
+          "displayName": "Domain",
+          "description": "Invitee company domain",
+          "name": "domain",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Grade to Maintain",
+          "description": "Request the invitee's organisation to maintain a minimum grade",
+          "name": "grade_to_maintain",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Is Organisation Point of Contact",
+          "description": "Is the invitee organisation's point of contact",
+          "name": "is_organization_point_of_contact",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Issue Description",
+          "name": "issue_desc",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Issue Title",
+          "name": "issue_title",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Issue Type",
+          "name": "issue_type",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Send Me a Copy",
+          "name": "sendme_copy",
+          "description": "Whether to send a copy of the invite to the requesting user",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "displayName": "Target URL",
+          "name": "target_url",
+          "type": "string",
+          "description": "Optional URL to take the invitee to when arriving to the platform",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "invite"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a portfolio",
+          "action": "Create a portfolio"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a portfolio",
+          "action": "Delete a portfolio"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many portfolios",
+          "action": "Get many portfolios"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a portfolio",
+          "action": "Update a portfolio"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "portfolio"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "portfolio"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "portfolio"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Portfolio ID",
+      "name": "portfolioId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "portfolio"
+          ],
+          "operation": [
+            "update",
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Portfolio Name",
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "description": "Name of the portfolio",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "portfolio"
+          ],
+          "operation": [
+            "create",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Description",
+      "name": "description",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "portfolio"
+          ],
+          "operation": [
+            "create",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Privacy",
+      "name": "privacy",
+      "type": "options",
+      "default": "shared",
+      "options": [
+        {
+          "name": "Private",
+          "value": "private",
+          "description": "Only visible to you"
+        },
+        {
+          "name": "Shared",
+          "value": "shared",
+          "description": "Visible to everyone in your company"
+        },
+        {
+          "name": "Team",
+          "value": "team",
+          "description": "Visible to the people on your team"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "portfolio"
+          ],
+          "operation": [
+            "create",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "add",
+      "options": [
+        {
+          "name": "Add",
+          "value": "add",
+          "description": "Add a company to portfolio",
+          "action": "Add a portfolio company"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many companies in a portfolio",
+          "action": "Get many portfolio companies"
+        },
+        {
+          "name": "Remove",
+          "value": "remove",
+          "description": "Remove a company from portfolio",
+          "action": "Remove a portfolio company"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "portfolioCompany"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Portfolio ID",
+      "name": "portfolioId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "portfolioCompany"
+          ],
+          "operation": [
+            "getAll",
+            "add",
+            "remove"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "portfolioCompany"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "portfolioCompany"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Grade",
+          "name": "grade",
+          "type": "string",
+          "placeholder": "",
+          "default": "",
+          "description": "Company score grade filter"
+        },
+        {
+          "displayName": "Industry",
+          "name": "industry",
+          "type": "string",
+          "placeholder": "",
+          "default": "",
+          "description": "Industry filter"
+        },
+        {
+          "displayName": "Issue Type",
+          "name": "issueType",
+          "type": "string",
+          "placeholder": "",
+          "description": "Issue type filter",
+          "default": ""
+        },
+        {
+          "displayName": "Status",
+          "name": "status",
+          "type": "options",
+          "options": [
+            {
+              "name": "Active",
+              "value": "active"
+            },
+            {
+              "name": "Inactive",
+              "value": "inactive"
+            }
+          ],
+          "default": ""
+        },
+        {
+          "displayName": "Vulnerability",
+          "name": "vulnerability",
+          "type": "string",
+          "placeholder": "",
+          "description": "CVE vulnerability filter",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "portfolioCompany"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Domain",
+      "name": "domain",
+      "type": "string",
+      "default": "",
+      "description": "Company's domain name",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "portfolioCompany"
+          ],
+          "operation": [
+            "add",
+            "remove"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Download",
+          "value": "download",
+          "description": "Download a generated report",
+          "action": "Download a report"
+        },
+        {
+          "name": "Generate",
+          "value": "generate",
+          "description": "Generate a report",
+          "action": "Generate a report"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get list of recently generated report",
+          "action": "Get many reports"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 100,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "displayName": "Report",
+      "name": "report",
+      "type": "options",
+      "default": "detailed",
+      "options": [
+        {
+          "name": "Company Detailed",
+          "value": "detailed"
+        },
+        {
+          "name": "Company Events",
+          "value": "events-json"
+        },
+        {
+          "name": "Company Issues",
+          "value": "issues"
+        },
+        {
+          "name": "Company Partnership",
+          "value": "partnership"
+        },
+        {
+          "name": "Company Summary",
+          "value": "summary"
+        },
+        {
+          "name": "Full Scorecard",
+          "value": "full-scorecard-json"
+        },
+        {
+          "name": "Portfolio",
+          "value": "portfolio"
+        },
+        {
+          "name": "Scorecard Footprint",
+          "value": "scorecard-footprint"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "generate"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Scorecard Identifier",
+      "name": "scorecardIdentifier",
+      "type": "string",
+      "default": "",
+      "description": "Primary identifier of a company or scorecard, i.e. domain.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "generate"
+          ],
+          "report": [
+            "detailed",
+            "events-json",
+            "full-scorecard-json",
+            "issues",
+            "partnership",
+            "scorecard-footprint",
+            "summary"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Portfolio ID",
+      "name": "portfolioId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "generate"
+          ],
+          "report": [
+            "portfolio"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Branding",
+      "name": "branding",
+      "type": "options",
+      "default": "securityscorecard",
+      "options": [
+        {
+          "name": "SecurityScorecard",
+          "value": "securityscorecard"
+        },
+        {
+          "name": "Company and SecurityScorecard",
+          "value": "company_and_securityscorecard"
+        },
+        {
+          "name": "Company",
+          "value": "company"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "generate"
+          ],
+          "report": [
+            "detailed",
+            "summary"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Date",
+      "name": "date",
+      "type": "dateTime",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "generate"
+          ],
+          "report": [
+            "events-json"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Format",
+          "name": "format",
+          "type": "options",
+          "default": "pdf",
+          "options": [
+            {
+              "name": "CSV",
+              "value": "csv"
+            },
+            {
+              "name": "PDF",
+              "value": "pdf"
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "generate"
+          ],
+          "report": [
+            "issues",
+            "portfolio"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Countries",
+          "name": "countries",
+          "type": "string",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": []
+        },
+        {
+          "displayName": "Format",
+          "name": "format",
+          "type": "options",
+          "default": "pdf",
+          "options": [
+            {
+              "name": "CSV",
+              "value": "csv"
+            },
+            {
+              "name": "PDF",
+              "value": "pdf"
+            }
+          ]
+        },
+        {
+          "displayName": "IPs",
+          "name": "ips",
+          "type": "string",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": []
+        },
+        {
+          "displayName": "Subdomains",
+          "name": "subdomains",
+          "type": "string",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "default": []
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "generate"
+          ],
+          "report": [
+            "scorecard-footprint"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Report URL",
+      "name": "url",
+      "type": "string",
+      "default": "",
+      "description": "URL to a generated report",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "download"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Put Output File in Field",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "report"
+          ],
+          "operation": [
+            "download"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "getFactor",
+      "name": "Get Factor Scores",
+      "description": "Get company factor scores and issue counts"
+    },
+    {
+      "operation": "getFactorHistorical",
+      "name": "Get Historical Factor Scores",
+      "description": "Get company's historical factor scores"
+    },
+    {
+      "operation": "getHistoricalScore",
+      "name": "Get Historical Scores",
+      "description": "Get company's historical scores"
+    },
+    {
+      "operation": "getScorecard",
+      "name": "Get Information and Scorecard",
+      "description": "Get company information and summary of their scorecard"
+    },
+    {
+      "operation": "getScorePlan",
+      "name": "Get Score Plan",
+      "description": "Get company's score improvement plan"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "securityScorecardApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.127Z",
+  "api_version": "1.0.0"
+}

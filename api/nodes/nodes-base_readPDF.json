@@ -1,0 +1,53 @@
+{
+  "node_type": "nodes-base.readPDF",
+  "display_name": "Read PDF",
+  "description": "Reads a PDF and extracts its content",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": false,
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "Input Binary Field",
+      "name": "binaryPropertyName",
+      "type": "string",
+      "default": "data",
+      "description": "Name of the binary property from which to read the PDF file",
+      "required": true
+    },
+    {
+      "displayName": "Encrypted",
+      "name": "encrypted",
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    {
+      "displayName": "Password",
+      "name": "password",
+      "type": "string",
+      "default": "",
+      "description": "Password to decrypt the PDF file with",
+      "displayOptions": {
+        "show": {
+          "encrypted": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "password": true
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.097Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,246 @@
+{
+  "node_type": "nodes-base.debugHelper",
+  "display_name": "DebugHelper",
+  "description": "Causes problems intentionally and generates useful data for debugging",
+  "category": "output",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Debug Helper\ndescription: Documentation for the Debug Helper node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Debug Helper\n\nUse the Debug Helper node to trigger different error types or generate random datasets to help test n8n workflows.\n\n## Operations\n\nDefine the operation by selecting the **Category**:\n\n* **Do Nothing**: Don't do anything.\n* [**Throw Error**](#throw-error): Throw an error with the specified type and message.\n* [**Out Of Memory**](#out-of-memory): Generate a specific memory size to simulate being out of memory.\n* [**Generate Random Data**](#generate-random-data): Generate some random data in a selected format.\n\n## Node parameters\n\nThe node parameters depend on the **Category** selected. The **Do Nothing** Category has no other parameters.\n\n### Throw Error\n\n* **Error Type**: Select the type of error to throw. Choose from:\n\t* **NodeApiError**\n\t* **NodeOperationError**\n\t* **Error**\n* **Error Message**: Enter the error message to throw.\n\n### Out Of Memory\n\nThe Out of Memory Category adds one parameter, the **Memory Size to Generate**. Enter the approximate amount of memory to generate.\n\n### Generate Random Data\n\n* **Data Type**: Choose the type of random data you'd like to generate. Options include:\n\t* **Address**\n\t* **Coordinates**\n\t* **Credit Card**\n\t* **Email**\n\t* **IPv4**\n\t* **IPv6**\n\t* **MAC**\n\t* **Nanoids**: If you select this data type, you'll also need to enter:\n\t\t* **Nanoid Alphabet**: The alphabet the generator will use to generate the nanoids.\n\t\t* **Nanoid Length**: The length of each nanoid.\n\t* **URL**\n\t* **User Data**\n\t* **UUID**\n\t* **Version**\n* **Seed**: If you'd like to generate the data using a specific seed, enter it here. This ensures the data gets generated consistently. If you'd rather use random data generation, leave this field empty.\n* **Number of Items to Generate**: Enter the number of random items you'd like to generate.\n* **Output as Single Array**: Whether to generate the data as a single array (turned on) or multiple items (turned off).\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'debughelper') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Category",
+      "name": "category",
+      "type": "options",
+      "default": "throwError",
+      "options": [
+        {
+          "name": "Do Nothing",
+          "value": "doNothing",
+          "description": "Does nothing"
+        },
+        {
+          "name": "Throw Error",
+          "value": "throwError",
+          "description": "Throws an error with the specified type and message"
+        },
+        {
+          "name": "Out Of Memory",
+          "value": "oom",
+          "description": "Generates a large amount of memory to cause an out of memory error"
+        },
+        {
+          "name": "Generate Random Data",
+          "value": "randomData",
+          "description": "Generates random data sets"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Error Type",
+      "name": "throwErrorType",
+      "type": "options",
+      "default": "NodeApiError",
+      "options": [
+        {
+          "name": "NodeApiError",
+          "value": "NodeApiError"
+        },
+        {
+          "name": "NodeOperationError",
+          "value": "NodeOperationError"
+        },
+        {
+          "name": "Error",
+          "value": "Error"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "category": [
+            "throwError"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Error Message",
+      "name": "throwErrorMessage",
+      "type": "string",
+      "default": "Node has thrown an error",
+      "description": "The message to send as part of the error",
+      "displayOptions": {
+        "show": {
+          "category": [
+            "throwError"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Memory Size to Generate",
+      "name": "memorySizeValue",
+      "type": "number",
+      "default": 10,
+      "description": "The approximate amount of memory to generate. Be generous...",
+      "displayOptions": {
+        "show": {
+          "category": [
+            "oom"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Data Type",
+      "name": "randomDataType",
+      "type": "options",
+      "default": "user",
+      "options": [
+        {
+          "name": "Address",
+          "value": "address"
+        },
+        {
+          "name": "Coordinates",
+          "value": "latLong"
+        },
+        {
+          "name": "Credit Card",
+          "value": "creditCard"
+        },
+        {
+          "name": "Email",
+          "value": "email"
+        },
+        {
+          "name": "IPv4",
+          "value": "ipv4"
+        },
+        {
+          "name": "IPv6",
+          "value": "ipv6"
+        },
+        {
+          "name": "MAC",
+          "value": "macAddress"
+        },
+        {
+          "name": "NanoIds",
+          "value": "nanoid"
+        },
+        {
+          "name": "URL",
+          "value": "url"
+        },
+        {
+          "name": "User Data",
+          "value": "user"
+        },
+        {
+          "name": "UUID",
+          "value": "uuid"
+        },
+        {
+          "name": "Version",
+          "value": "semver"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "category": [
+            "randomData"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "NanoId Alphabet",
+      "name": "nanoidAlphabet",
+      "type": "string",
+      "default": "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      "description": "The alphabet to use for generating the nanoIds",
+      "displayOptions": {
+        "show": {
+          "category": [
+            "randomData"
+          ],
+          "randomDataType": [
+            "nanoid"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "NanoId Length",
+      "name": "nanoidLength",
+      "type": "string",
+      "default": "16",
+      "description": "The length of each nanoIds",
+      "displayOptions": {
+        "show": {
+          "category": [
+            "randomData"
+          ],
+          "randomDataType": [
+            "nanoid"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Seed",
+      "name": "randomDataSeed",
+      "type": "string",
+      "default": "",
+      "description": "If set, seed to use for generating the data (same seed will generate the same data)",
+      "displayOptions": {
+        "show": {
+          "category": [
+            "randomData"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Number of Items to Generate",
+      "name": "randomDataCount",
+      "type": "number",
+      "default": 10,
+      "description": "The number of random data items to generate into an array",
+      "displayOptions": {
+        "show": {
+          "category": [
+            "randomData"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Output as Single Array",
+      "name": "randomDataSingleArray",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to output a single array instead of multiple items",
+      "displayOptions": {
+        "show": {
+          "category": [
+            "randomData"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:21.804Z",
+  "api_version": "1.0.0"
+}

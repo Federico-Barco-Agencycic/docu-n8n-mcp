@@ -1,0 +1,94 @@
+{
+  "node_type": "nodes-base.splitOut",
+  "display_name": "Split Out",
+  "description": "Turn a list inside item(s) into separate items",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Split Out\ndescription: Documentation for the Split Out node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: high\n---\n\n# Split Out\n\nUse the Split Out node to separate a single data item containing a list into multiple items. For example, a list of customers, and you want to split them so that you have an item for each customer.\n\n## Node parameters\n\nConfigure this node using the following parameters.\n\n### Field to Split Out\n\nEnter the field containing the list you want to separate out into individual items.\n\nIf you're working with binary data inputs, use `$binary` in an expression to set the field to split out.\n\n### Include\n\nSelect whether and how you want n8n to keep any other fields from the input data with each new individual item.\n\nYou can select:\n\n* **No Other Fields**: No other fields will be included.\n* **All Other Fields**: All other fields will be included.\n* **Selected Other Fields**: Only the selected fields will be included.\n    * **Fields to Include**: Enter a comma separated list of the fields you want to include.\n\n## Node options\n\n### Disable Dot Notation\n\nBy default, n8n enables dot notation to reference child fields in the format `parent.child`. Use this option to disable dot notation (turned on) or to continue using dot (turned off).\n\n### Destination Field Name\n\nEnter the field in the output where the split field contents should go.\n\n### Include Binary\n\nChoose whether to include binary data from the input in the new output (turned on) or not (turned off).\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'split-out') ]]\n\n## Related resources\n\n--8<-- \"_snippets/integrations/builtin/core-nodes/data-transformation-actions/data-section-link.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Fields To Split Out",
+      "name": "fieldToSplitOut",
+      "type": "string",
+      "default": "",
+      "description": "The name of the input fields to break out into separate items. Separate multiple field names by commas. For binary data, use $binary.",
+      "required": true
+    },
+    {
+      "displayName": "Include",
+      "name": "include",
+      "type": "options",
+      "default": "noOtherFields",
+      "description": "Whether to copy any other fields into the new items",
+      "options": [
+        {
+          "name": "No Other Fields",
+          "value": "noOtherFields"
+        },
+        {
+          "name": "All Other Fields",
+          "value": "allOtherFields"
+        },
+        {
+          "name": "Selected Other Fields",
+          "value": "selectedOtherFields"
+        }
+      ]
+    },
+    {
+      "displayName": "Fields To Include",
+      "name": "fieldsToInclude",
+      "type": "string",
+      "default": "",
+      "description": "Fields in the input items to aggregate together",
+      "displayOptions": {
+        "show": {
+          "include": [
+            "selectedOtherFields"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Disable Dot Notation",
+          "name": "disableDotNotation",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to disallow referencing child fields using `parent.child` in the field name"
+        },
+        {
+          "displayName": "Destination Field Name",
+          "name": "destinationFieldName",
+          "type": "string",
+          "requiresDataPath": "multiple",
+          "default": "",
+          "description": "The field in the output under which to put the split field contents"
+        },
+        {
+          "displayName": "Include Binary",
+          "name": "includeBinary",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include the binary data in the new items"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.149Z",
+  "api_version": "1.0.0"
+}

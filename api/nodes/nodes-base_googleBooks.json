@@ -1,0 +1,402 @@
+{
+  "node_type": "nodes-base.googleBooks",
+  "display_name": "Google Books",
+  "description": "Read data from Google Books",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "2",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Google Books node documentation\ndescription: Learn how to use the Google Books node in n8n. Follow technical documentation to integrate Google Books node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Google Books node\n\nUse the Google Books node to automate work in Google Books, and integrate Google Books with other applications. n8n has built-in support for a wide range of Google Books features, including retrieving a specific bookshelf resource for the specified user, adding volume to a bookshelf, and getting volume.\n\nOn this page, you'll find a list of operations the Google Books node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Google credentials](/integrations/builtin/credentials/google/index.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Bookshelf\n    * Retrieve a specific bookshelf resource for the specified user\n    * Get all public bookshelf resource for the specified user\n* Bookshelf Volume\n    * Add a volume to a bookshelf\n    * Clears all volumes from a bookshelf\n    * Get all volumes in a specific bookshelf for the specified user\n    * Moves a volume within a bookshelf\n    * Removes a volume from a bookshelf\n* Volume\n    * Get a volume resource based on ID\n    * Get all volumes filtered by query\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'google-books') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "serviceAccount",
+      "options": [
+        {
+          "name": "Service Account",
+          "value": "serviceAccount"
+        },
+        {
+          "name": "OAuth2",
+          "value": "oAuth2"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "oAuth2",
+      "options": [
+        {
+          "name": "OAuth2 (recommended)",
+          "value": "oAuth2"
+        },
+        {
+          "name": "Service Account",
+          "value": "serviceAccount"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "@version": [
+            2
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "bookshelf",
+      "options": [
+        {
+          "name": "Bookshelf",
+          "value": "bookshelf"
+        },
+        {
+          "name": "Bookshelf Volume",
+          "value": "bookshelfVolume"
+        },
+        {
+          "name": "Volume",
+          "value": "volume"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Retrieve a specific bookshelf resource for the specified user",
+          "action": "Get a bookshelf"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many public bookshelf resource for the specified user",
+          "action": "Get many bookshelves"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "bookshelf"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Add",
+          "value": "add",
+          "description": "Add a volume to a bookshelf",
+          "action": "Add a bookshelf volume"
+        },
+        {
+          "name": "Clear",
+          "value": "clear",
+          "description": "Clears all volumes from a bookshelf",
+          "action": "Clear a bookshelf volume"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many volumes in a specific bookshelf for the specified user",
+          "action": "Get many bookshelf volumes"
+        },
+        {
+          "name": "Move",
+          "value": "move",
+          "description": "Moves a volume within a bookshelf",
+          "action": "Move a bookshelf volume"
+        },
+        {
+          "name": "Remove",
+          "value": "remove",
+          "description": "Removes a volume from a bookshelf",
+          "action": "Remove a bookshelf volume"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "bookshelfVolume"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "get",
+      "options": [
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a volume resource based on ID",
+          "action": "Get a volume"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many volumes filtered by query",
+          "action": "Get many volumes"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "volume"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "My Library",
+      "name": "myLibrary",
+      "type": "boolean",
+      "default": false,
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get",
+            "getAll"
+          ],
+          "resource": [
+            "bookshelf",
+            "bookshelfVolume"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Search Query",
+      "name": "searchQuery",
+      "type": "string",
+      "default": "",
+      "description": "Full-text search query string",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "volume"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "User ID",
+      "name": "userId",
+      "type": "string",
+      "default": "",
+      "description": "ID of user",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get",
+            "getAll"
+          ],
+          "resource": [
+            "bookshelf",
+            "bookshelfVolume"
+          ]
+        },
+        "hide": {
+          "myLibrary": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Bookshelf ID",
+      "name": "shelfId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the bookshelf",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "get",
+            "add",
+            "clear",
+            "move",
+            "remove"
+          ],
+          "resource": [
+            "bookshelf",
+            "bookshelfVolume"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Bookshelf ID",
+      "name": "shelfId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the bookshelf",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "resource": [
+            "bookshelfVolume"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Volume ID",
+      "name": "volumeId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the volume",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "add",
+            "move",
+            "remove",
+            "get"
+          ],
+          "resource": [
+            "bookshelfVolume",
+            "volume"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Volume Position",
+      "name": "volumePosition",
+      "type": "string",
+      "default": "",
+      "description": "Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on)",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "move"
+          ],
+          "resource": [
+            "bookshelfVolume"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 40,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 40
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Retrieve a specific bookshelf resource for the specified user"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many public bookshelf resource for the specified user"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "googleApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "serviceAccount"
+          ]
+        }
+      }
+    },
+    {
+      "name": "googleBooksOAuth2Api",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.875Z",
+  "api_version": "1.0.0"
+}

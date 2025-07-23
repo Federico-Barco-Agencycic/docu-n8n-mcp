@@ -1,0 +1,166 @@
+{
+  "node_type": "nodes-base.kafkaTrigger",
+  "display_name": "Kafka Trigger",
+  "description": "Consume messages from a Kafka topic",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1.1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Kafka Trigger node documentation\ndescription: Learn how to use the Kafka Trigger node in n8n. Follow technical documentation to integrate Kafka Trigger node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Kafka Trigger node\n\n[Kafka](https://kafka.apache.org/){:target=_blank .external-link} is an open-source distributed event streaming platform that one can use for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/kafka.md).\n///\n\n/// note | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Kafka Trigger integrations](https://n8n.io/integrations/kafka-trigger/){:target=_blank .external-link} page.\n///\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Topic",
+      "name": "topic",
+      "type": "string",
+      "default": "",
+      "description": "Name of the queue of topic to consume from",
+      "required": true
+    },
+    {
+      "displayName": "Group ID",
+      "name": "groupId",
+      "type": "string",
+      "default": "",
+      "description": "ID of the consumer group",
+      "required": true
+    },
+    {
+      "displayName": "Use Schema Registry",
+      "name": "useSchemaRegistry",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to use Confluent Schema Registry"
+    },
+    {
+      "displayName": "Schema Registry URL",
+      "name": "schemaRegistryUrl",
+      "type": "string",
+      "default": "",
+      "description": "URL of the schema registry",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "useSchemaRegistry": [
+            true
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Allow Topic Creation",
+          "name": "allowAutoTopicCreation",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to allow sending message to a previously non exisiting topic"
+        },
+        {
+          "displayName": "Auto Commit Threshold",
+          "name": "autoCommitThreshold",
+          "type": "number",
+          "default": 0,
+          "description": "The consumer will commit offsets after resolving a given number of messages"
+        },
+        {
+          "displayName": "Auto Commit Interval",
+          "name": "autoCommitInterval",
+          "type": "number",
+          "default": 0,
+          "description": "The consumer will commit offsets after a given period, for example, five seconds",
+          "hint": "Value in milliseconds"
+        },
+        {
+          "displayName": "Heartbeat Interval",
+          "name": "heartbeatInterval",
+          "type": "number",
+          "default": 3000,
+          "description": "Heartbeats are used to ensure that the consumer's session stays active",
+          "hint": "The value must be set lower than Session Timeout"
+        },
+        {
+          "displayName": "Max Number of Requests",
+          "name": "maxInFlightRequests",
+          "type": "number",
+          "default": 1,
+          "description": "The maximum number of unacknowledged requests the client will send on a single connection"
+        },
+        {
+          "displayName": "Read Messages From Beginning",
+          "name": "fromBeginning",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to read message from beginning"
+        },
+        {
+          "displayName": "JSON Parse Message",
+          "name": "jsonParseMessage",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to try to parse the message to an object"
+        },
+        {
+          "displayName": "Parallel Processing",
+          "name": "parallelProcessing",
+          "type": "boolean",
+          "default": true,
+          "displayOptions": {
+            "hide": {
+              "@version": [
+                1
+              ]
+            }
+          },
+          "description": "Whether to process messages in parallel or by keeping the message in order"
+        },
+        {
+          "displayName": "Only Message",
+          "name": "onlyMessage",
+          "type": "boolean",
+          "displayOptions": {
+            "show": {
+              "jsonParseMessage": [
+                true
+              ]
+            }
+          },
+          "default": false,
+          "description": "Whether to return only the message property"
+        },
+        {
+          "displayName": "Return Headers",
+          "name": "returnHeaders",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to return the headers received from Kafka"
+        },
+        {
+          "displayName": "Session Timeout",
+          "name": "sessionTimeout",
+          "type": "number",
+          "default": 30000,
+          "description": "The time to await a response in ms",
+          "hint": "Value in milliseconds"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "kafka",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.946Z",
+  "api_version": "1.0.0"
+}

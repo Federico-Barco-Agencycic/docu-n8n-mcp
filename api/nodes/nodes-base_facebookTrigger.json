@@ -1,0 +1,140 @@
+{
+  "node_type": "nodes-base.facebookTrigger",
+  "display_name": "Facebook Trigger",
+  "description": "Starts the workflow when Facebook events occur",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Facebook Trigger\ndescription: Learn how to use the Facebook Trigger node in n8n. Follow technical documentation to integrate Facebook Trigger node into your workflows.\ncontentType: [integration, reference]\npriority: medium\n---\n\n# Facebook Trigger node\n\n[Facebook](https://www.facebook.com/){:target=_blank .external-link} is a social networking site to connect and share with family and friends online.\n\nUse the Facebook Trigger node to trigger a workflow when events occur in Facebook.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/facebookapp.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Facebook Trigger integrations](https://n8n.io/integrations/facebook-trigger/){:target=_blank .external-link} page.\n///\n\n## Objects\n\n- [**Ad Account**](/integrations/builtin/trigger-nodes/n8n-nodes-base.facebooktrigger/ad-account.md): Get updates for certain ads changes.\n- [**Application**](/integrations/builtin/trigger-nodes/n8n-nodes-base.facebooktrigger/application.md): Get updates sent to the application.\n- [**Certificate Transparency**](/integrations/builtin/trigger-nodes/n8n-nodes-base.facebooktrigger/certificate-transparency.md): Get updates when new security certificates are generated for your subscribed domains, including new certificates and potential phishing attempts.\n- Activity and events in a [**Group**](/integrations/builtin/trigger-nodes/n8n-nodes-base.facebooktrigger/group.md)\n- [**Instagram**](/integrations/builtin/trigger-nodes/n8n-nodes-base.facebooktrigger/instagram.md): Get updates when someone comments on the Media objects of your app users; @mentions your app users; or when Stories of your app users expire.\n- [**Link**](/integrations/builtin/trigger-nodes/n8n-nodes-base.facebooktrigger/link.md): Get updates about the links for rich previews by an external provider\n- [**Page**](/integrations/builtin/trigger-nodes/n8n-nodes-base.facebooktrigger/page.md) updates\n- [**Permissions**](/integrations/builtin/trigger-nodes/n8n-nodes-base.facebooktrigger/permissions.md): Updates when granting or revoking permissions\n- [**User**](/integrations/builtin/trigger-nodes/n8n-nodes-base.facebooktrigger/user.md) profile updates\n- [**WhatsApp Business Account**](/integrations/builtin/trigger-nodes/n8n-nodes-base.facebooktrigger/whatsapp.md)\n    \n    /// note | Use WhatsApp Trigger\n    n8n recommends using the [WhatsApp Trigger node](/integrations/builtin/trigger-nodes/n8n-nodes-base.whatsapptrigger.md) with the [WhatsApp credentials](/integrations/builtin/credentials/whatsapp.md) instead of the Facebook Trigger node for these events. The WhatsApp Trigger node has more events to listen to.\n    ///\n\n- [**Workplace Security**](/integrations/builtin/trigger-nodes/n8n-nodes-base.facebooktrigger/workplace-security.md)\n\nFor each **Object**, use the **Field Names or IDs** dropdown to select more details on what data to receive. Refer to the linked pages for more details.\n\n## Related resources\n\nView [example workflows and related content](https://n8n.io/integrations/facebook-trigger/){:target=_blank .external-link} on n8n's website.\n\nRefer to Meta's [Graph API documentation](https://developers.facebook.com/docs/graph-api/webhooks/reference){:target=_blank .external-link} for details about their API.\n",
+  "properties_schema": [
+    {
+      "displayName": "APP ID",
+      "name": "appId",
+      "type": "string",
+      "default": "",
+      "description": "Facebook APP ID",
+      "required": true
+    },
+    {
+      "displayName": "To watch Whatsapp business account events use the Whatsapp trigger node",
+      "name": "whatsappBusinessAccountNotice",
+      "type": "notice",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "object": [
+            "whatsappBusinessAccount"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Object",
+      "name": "object",
+      "type": "options",
+      "default": "user",
+      "description": "The object to subscribe to",
+      "options": [
+        {
+          "name": "Ad Account",
+          "value": "adAccount",
+          "description": "Get updates about Ad Account"
+        },
+        {
+          "name": "Application",
+          "value": "application",
+          "description": "Get updates about the app"
+        },
+        {
+          "name": "Certificate Transparency",
+          "value": "certificateTransparency",
+          "description": "Get updates about Certificate Transparency"
+        },
+        {
+          "name": "Group",
+          "value": "group",
+          "description": "Get updates about activity in groups and events in groups for Workplace"
+        },
+        {
+          "name": "Instagram",
+          "value": "instagram",
+          "description": "Get updates about comments on your media"
+        },
+        {
+          "name": "Link",
+          "value": "link",
+          "description": "Get updates about links for rich previews by an external provider"
+        },
+        {
+          "name": "Page",
+          "value": "page",
+          "description": "Page updates"
+        },
+        {
+          "name": "Permissions",
+          "value": "permissions",
+          "description": "Updates regarding granting or revoking permissions"
+        },
+        {
+          "name": "User",
+          "value": "user",
+          "description": "User profile updates"
+        },
+        {
+          "name": "Whatsapp Business Account",
+          "value": "whatsappBusinessAccount",
+          "description": "Get updates about Whatsapp business account"
+        },
+        {
+          "name": "Workplace Security",
+          "value": "workplaceSecurity",
+          "description": "Get updates about Workplace Security"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "Field Names or IDs",
+      "name": "fields",
+      "type": "multiOptions",
+      "default": [],
+      "description": "The set of fields in this object that are subscribed to. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "typeOptions": {
+        "loadOptionsMethod": "getObjectFields",
+        "loadOptionsDependsOn": [
+          "object"
+        ]
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Include Values",
+          "name": "includeValues",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether change notifications should include the new values"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "facebookGraphAppApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.832Z",
+  "api_version": "1.0.0"
+}

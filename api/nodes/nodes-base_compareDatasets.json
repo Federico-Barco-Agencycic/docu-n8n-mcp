@@ -1,0 +1,244 @@
+{
+  "node_type": "nodes-base.compareDatasets",
+  "display_name": "Compare Datasets",
+  "description": "Compare two inputs for changes",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "2.3",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Compare Datasets\ndescription: Documentation for the Compare Datasets node in n8n, a workflow automation platform. Includes guidance on usage, and links to examples.\ncontentType: [integration, reference]\npriority: high\n---\n\n# Compare Datasets\n\nThe Compare Datasets node helps you compare data from two input streams.\n\n## Node parameters\n\n1. Decide which fields to compare. In **Input A Field**, enter the name of the field you want to use from input stream A. In **Input B Field**, enter the name of the field you want to use from input stream B. \n2. **Optional**: You can compare by multiple fields. Select **Add Fields to Match** to set up more comparisons.\n3. Choose how to handle differences between the datasets. In **When There Are Differences**, select one of the following:\n\t* **Use Input A Version** to treat input stream A as the source of truth.\n\t* **Use Input B Version** to treat input stream B as the source of truth.\n\t* **Use a Mix of Versions** to use different inputs for different fields.\n\t\t* Use **Prefer** to select either **Input A Version** or **Input B Version** as the main source of truth.\n\t\t* Enter input fields that are exceptions to **For Everything Except** to pull from the other input source. To add multiple input fields, enter a comma-separated list.\n\t* **Include Both Versions** to include both input streams in the output, which may make the structure more complex.\n4. Decide whether to use **Fuzzy Compare**. When turned on, the comparison will tolerate small type differences when comparing fields. For example, the number 3 and the string `3` are treated as the same with **Fuzzy Compare** turned on, but wouldn't be treated the same with it turned off.\n\n## Understand item comparison\n\nItem comparison is a two stage process:\n\n1. n8n checks if the values of the fields you selected to compare match across both inputs.\n2. If the fields to compare match, n8n then compares all fields within the items, to determine if the items are the same or different.\n\n## Node options\n\nUse the node **Options** to refine your comparison or tweak comparison behavior.\n\n### Fields to Skip Comparing\n\nEnter field names that you want to ignore in the comparison.\n\nFor example, if you compare the two datasets below using `person.language` as the **Fields to Match**, n8n returns them as different. If you add `person.name` to **Fields to Skip Comparing**, n8n returns them as matching.\n\n```json\n\t// Input 1\n\t[\n\t\t{\n\t\t\t\"person\":\n\t\t\t{\n\t\t\t\t\"name\":\t\"Stefan\",\n\t\t\t\t\"language\":\t\"de\"\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"person\":\n\t\t\t{\n\t\t\t\t\"name\":\t\"Jim\",\n\t\t\t\t\"language\":\t\"en\"\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"person\":\n\t\t\t{\n\t\t\t\t\"name\":\t\"Hans\",\n\t\t\t\t\"language\":\t\"de\"\n\t\t\t}\n\t\t}\n\t]\n\t// Input 2\n\t\t[\n\t\t{\n\t\t\t\"person\":\n\t\t\t{\n\t\t\t\t\"name\":\t\"Sara\",\n\t\t\t\t\"language\":\t\"de\"\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"person\":\n\t\t\t{\n\t\t\t\t\"name\":\t\"Jane\",\n\t\t\t\t\"language\":\t\"en\"\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"person\":\n\t\t\t{\n\t\t\t\t\"name\":\t\"Harriet\",\n\t\t\t\t\"language\":\t\"de\"\n\t\t\t}\n\t\t}\n\t]\n```\n\n### Disable Dot Notation\n\nWhether to disallow referencing child fields using `parent.child` in the field name (turned on) or allow it (turned off, default).\n\n### Multiple Matches\n\nChoose how to handle duplicate data. The default is **Include All Matches**. You can choose **Include First Match Only**.\n\nFor example, given these two datasets:\n```json\n\t// Input 1\n\t[\n\t\t{\n\t\t\t\"fruit\": {\n\t\t\t\t\"type\": \"apple\",\n\t\t\t\t\"color\": \"red\"\n\t\t\t}\n\t\t},\n\t\t\t\t{\n\t\t\t\"fruit\": {\n\t\t\t\t\"type\": \"apple\",\n\t\t\t\t\"color\": \"red\"\n\t\t\t}\n\t\t},\n\t\t\t\t{\n\t\t\t\"fruit\": {\n\t\t\t\t\"type\": \"banana\",\n\t\t\t\t\"color\": \"yellow\"\n\t\t\t}\n\t\t}\n\t]\n\t// Input 2\n\t[\n\t\t{\n\t\t\t\"fruit\": {\n\t\t\t\t\"type\": \"apple\",\n\t\t\t\t\"color\": \"red\"\n\t\t\t}\n\t\t},\n\t\t\t\t{\n\t\t\t\"fruit\": {\n\t\t\t\t\"type\": \"apple\",\n\t\t\t\t\"color\": \"red\"\n\t\t\t}\n\t\t},\n\t\t\t\t{\n\t\t\t\"fruit\": {\n\t\t\t\t\"type\": \"banana\",\n\t\t\t\t\"color\": \"yellow\"\n\t\t\t}\n\t\t}\n\t]\n```\n\nn8n returns three items in the **Same Branch** tab. The data is the same in both branches.\n\nIf you select **Include First Match Only**, n8n returns two items, in the **Same Branch** tab. The data is the same in both branches, but n8n only returns the first occurrence of the matching \"apple\" items.\n\n\n## Understand the output\n\nThere are four output options:\n\n* **In A only Branch**: Contains data that occurs only in the first input.\n* **Same Branch**: Contains data that's the same in both inputs.\n* **Different Branch**: Contains data that's different between inputs.\n* **In B only Branch**: Contains data that occurs only in the second output.\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'compare-datasets') ]]\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Items from different branches are paired together when the fields below match. If paired, the rest of the fields are compared to determine whether the items are the same or different",
+      "name": "infoBox",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Fields to Match",
+      "name": "mergeByFields",
+      "type": "fixedCollection",
+      "default": {
+        "values": [
+          {
+            "field1": "",
+            "field2": ""
+          }
+        ]
+      },
+      "options": [
+        {
+          "displayName": "Values",
+          "name": "values",
+          "values": [
+            {
+              "displayName": "Input A Field",
+              "name": "field1",
+              "type": "string",
+              "default": "",
+              "placeholder": "e.g. id",
+              "hint": " Enter the field name as text",
+              "requiresDataPath": "single"
+            },
+            {
+              "displayName": "Input B Field",
+              "name": "field2",
+              "type": "string",
+              "default": "",
+              "placeholder": "e.g. id",
+              "hint": " Enter the field name as text",
+              "requiresDataPath": "single"
+            }
+          ]
+        }
+      ],
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "When There Are Differences",
+      "name": "resolve",
+      "type": "options",
+      "default": "preferInput2",
+      "options": [
+        {
+          "name": "Use Input A Version",
+          "value": "preferInput1"
+        },
+        {
+          "name": "Use Input B Version",
+          "value": "preferInput2"
+        },
+        {
+          "name": "Use a Mix of Versions",
+          "value": "mix",
+          "description": "Output uses different inputs for different fields"
+        },
+        {
+          "name": "Include Both Versions",
+          "value": "includeBoth",
+          "description": "Output contains all data (but structure more complex)"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "@version": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "When There Are Differences",
+      "name": "resolve",
+      "type": "options",
+      "default": "includeBoth",
+      "options": [
+        {
+          "name": "Use Input A Version",
+          "value": "preferInput1"
+        },
+        {
+          "name": "Use Input B Version",
+          "value": "preferInput2"
+        },
+        {
+          "name": "Use a Mix of Versions",
+          "value": "mix",
+          "description": "Output uses different inputs for different fields"
+        },
+        {
+          "name": "Include Both Versions",
+          "value": "includeBoth",
+          "description": "Output contains all data (but structure more complex)"
+        }
+      ],
+      "displayOptions": {
+        "hide": {
+          "@version": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Fuzzy Compare",
+      "name": "fuzzyCompare",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to tolerate small type differences when comparing fields. E.g. the number 3 and the string '3' are treated as the same.",
+      "displayOptions": {
+        "hide": {
+          "@version": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Prefer",
+      "name": "preferWhenMix",
+      "type": "options",
+      "default": "input1",
+      "options": [
+        {
+          "name": "Input A Version",
+          "value": "input1"
+        },
+        {
+          "name": "Input B Version",
+          "value": "input2"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resolve": [
+            "mix"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "For Everything Except",
+      "name": "exceptWhenMix",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resolve": [
+            "mix"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Fields to Skip Comparing",
+          "name": "skipFields",
+          "type": "string",
+          "default": "",
+          "placeholder": "e.g. updated_at, updated_by",
+          "hint": "Enter the field names as text, separated by commas",
+          "description": "Fields that shouldn't be included when checking whether two items are the same",
+          "requiresDataPath": "multiple"
+        },
+        {
+          "displayName": "Fuzzy Compare",
+          "name": "fuzzyCompare",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to tolerate small type differences when comparing fields. E.g. the number 3 and the string '3' are treated as the same.",
+          "displayOptions": {
+            "show": {
+              "@version": [
+                1
+              ]
+            }
+          }
+        },
+        {
+          "displayName": "Disable Dot Notation",
+          "name": "disableDotNotation",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to disallow referencing child fields using `parent.child` in the field name"
+        },
+        {
+          "displayName": "Multiple Matches",
+          "name": "multipleMatches",
+          "type": "options",
+          "default": "first",
+          "options": [
+            {
+              "name": "Include First Match Only",
+              "value": "first",
+              "description": "Only ever output a single item per match"
+            },
+            {
+              "name": "Include All Matches",
+              "value": "all",
+              "description": "Output multiple items if there are multiple matches"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:21.789Z",
+  "api_version": "1.0.0"
+}

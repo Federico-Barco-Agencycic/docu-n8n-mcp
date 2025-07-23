@@ -1,0 +1,1707 @@
+{
+  "node_type": "nodes-base.mailchimp",
+  "display_name": "Mailchimp",
+  "description": "Consume Mailchimp API",
+  "category": "output",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Mailchimp node documentation\ndescription: Learn how to use the Mailchimp node in n8n. Follow technical documentation to integrate Mailchimp node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Mailchimp node\n\nUse the Mailchimp node to automate work in Mailchimp, and integrate Mailchimp with other applications. n8n has built-in support for a wide range of Mailchimp features, including creating, updating, and deleting campaigns, as well as getting list groups. \n\nOn this page, you'll find a list of operations the Mailchimp node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Mailchimp credentials](/integrations/builtin/credentials/mailchimp.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Campaign\n    * Delete a campaign\n    * Get a campaign\n    * Get all the campaigns\n    * Replicate a campaign\n    * Creates a Resend to Non-Openers version of this campaign\n    * Send a campaign\n* List Group\n    * Get all groups\n* Member\n    * Create a new member on list\n    * Delete a member on list\n    * Get a member on list\n    * Get all members on list\n    * Update a new member on list\n* Member Tag\n    * Add tags from a list member\n    * Remove tags from a list member\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'mailchimp') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "apiKey",
+      "options": [
+        {
+          "name": "API Key",
+          "value": "apiKey"
+        },
+        {
+          "name": "OAuth2",
+          "value": "oAuth2"
+        }
+      ]
+    },
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "member",
+      "options": [
+        {
+          "name": "Campaign",
+          "value": "campaign"
+        },
+        {
+          "name": "List Group",
+          "value": "listGroup"
+        },
+        {
+          "name": "Member",
+          "value": "member"
+        },
+        {
+          "name": "Member Tag",
+          "value": "memberTag"
+        }
+      ],
+      "required": true,
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a new member on list",
+          "action": "Create a member"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a member on list",
+          "action": "Delete a member"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a member on list",
+          "action": "Get a member"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many members on a list",
+          "action": "Get many members"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a new member on list",
+          "action": "Update a member"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Add tags from a list member",
+          "action": "Create a member tag"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Remove tags from a list member",
+          "action": "Delete a member tag"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "memberTag"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many groups",
+          "action": "Get many list groups"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "listGroup"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "getAll",
+      "options": [
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a campaign",
+          "action": "Delete a campaign"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a campaign",
+          "action": "Get a campaign"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many campaigns",
+          "action": "Get many campaigns"
+        },
+        {
+          "name": "Replicate",
+          "value": "replicate",
+          "description": "Replicate a campaign",
+          "action": "Replicate a campaign"
+        },
+        {
+          "name": "Resend",
+          "value": "resend",
+          "description": "Creates a Resend to Non-Openers version of this campaign",
+          "action": "Resend a campaign"
+        },
+        {
+          "name": "Send",
+          "value": "send",
+          "description": "Send a campaign",
+          "action": "Send a campaign"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "List Name or ID",
+      "name": "list",
+      "type": "options",
+      "default": "",
+      "description": "List of lists. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getLists"
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "Email address for a subscriber",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Status",
+      "name": "status",
+      "type": "options",
+      "default": "",
+      "description": "Subscriber's current status",
+      "options": [
+        {
+          "name": "Cleaned",
+          "value": "cleaned"
+        },
+        {
+          "name": "Pending",
+          "value": "pending"
+        },
+        {
+          "name": "Subscribed",
+          "value": "subscribed"
+        },
+        {
+          "name": "Transactional",
+          "value": "transactional"
+        },
+        {
+          "name": "Unsubscribed",
+          "value": "unsubscribed"
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "JSON Parameters",
+      "name": "jsonParameters",
+      "type": "boolean",
+      "default": false,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Email Type",
+          "name": "emailType",
+          "type": "options",
+          "options": [
+            {
+              "name": "HTML",
+              "value": "html"
+            },
+            {
+              "name": "Text",
+              "value": "text"
+            }
+          ],
+          "default": "",
+          "description": "Type of email this member asked to get"
+        },
+        {
+          "displayName": "Language",
+          "name": "language",
+          "type": "string",
+          "default": "",
+          "description": "If set/detected, the subscriber's language"
+        },
+        {
+          "displayName": "Opt-in IP",
+          "name": "ipOptIn",
+          "type": "string",
+          "default": "",
+          "description": "The IP address the subscriber used to confirm their opt-in status"
+        },
+        {
+          "displayName": "Signup IP",
+          "name": "ipSignup",
+          "type": "string",
+          "default": "",
+          "description": "IP address the subscriber signed up from"
+        },
+        {
+          "displayName": "Signup Timestamp",
+          "name": "timestampSignup",
+          "type": "dateTime",
+          "default": "",
+          "description": "The date and time the subscriber signed up for the list in ISO 8601 format"
+        },
+        {
+          "displayName": "Tags",
+          "name": "tags",
+          "type": "string",
+          "default": "",
+          "description": "The tags that are associated with a member separeted by ,"
+        },
+        {
+          "displayName": "Vip",
+          "name": "vip",
+          "type": "boolean",
+          "default": false,
+          "description": "Vip status for subscribers"
+        },
+        {
+          "displayName": "Opt-in Timestamp",
+          "name": "timestampOpt",
+          "type": "dateTime",
+          "default": "",
+          "description": "The date and time the subscribe confirmed their opt-in status in ISO 8601 format"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Location",
+      "name": "locationFieldsUi",
+      "type": "fixedCollection",
+      "default": {},
+      "description": "Subscriber location information.n",
+      "options": [
+        {
+          "name": "locationFieldsValues",
+          "displayName": "Location",
+          "values": [
+            {
+              "displayName": "Latitude",
+              "name": "latitude",
+              "type": "string",
+              "required": true,
+              "description": "The location latitude",
+              "default": ""
+            },
+            {
+              "displayName": "Longitude",
+              "name": "longitude",
+              "type": "string",
+              "required": true,
+              "description": "The location longitude",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "create"
+          ],
+          "jsonParameters": [
+            false
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Merge Fields",
+      "name": "mergeFieldsUi",
+      "type": "fixedCollection",
+      "default": {},
+      "description": "An individual merge var and value for a member",
+      "options": [
+        {
+          "name": "mergeFieldsValues",
+          "displayName": "Field",
+          "typeOptions": {
+            "multipleValueButtonText": "Add Field"
+          },
+          "values": [
+            {
+              "displayName": "Field Name or ID",
+              "name": "name",
+              "type": "options",
+              "typeOptions": {
+                "loadOptionsMethod": "getMergeFields",
+                "loadOptionsDependsOn": [
+                  "list"
+                ]
+              },
+              "required": true,
+              "description": "Merge Field name. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+              "default": ""
+            },
+            {
+              "displayName": "Field Value",
+              "name": "value",
+              "required": true,
+              "type": "string",
+              "default": "",
+              "description": "Merge field value"
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "create"
+          ],
+          "jsonParameters": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Merge Fields",
+      "name": "mergeFieldsJson",
+      "type": "json",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "create"
+          ],
+          "jsonParameters": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "alwaysOpenEditWindow": true
+      }
+    },
+    {
+      "displayName": "Location",
+      "name": "locationJson",
+      "type": "json",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "create"
+          ],
+          "jsonParameters": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "alwaysOpenEditWindow": true
+      }
+    },
+    {
+      "displayName": "Interest Groups",
+      "name": "groupsUi",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "name": "groupsValues",
+          "displayName": "Group",
+          "typeOptions": {
+            "multipleValueButtonText": "Add Interest Group"
+          },
+          "values": [
+            {
+              "displayName": "Category Name or ID",
+              "name": "categoryId",
+              "type": "options",
+              "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+              "typeOptions": {
+                "loadOptionsMethod": "getGroupCategories",
+                "loadOptionsDependsOn": [
+                  "list"
+                ]
+              },
+              "default": ""
+            },
+            {
+              "displayName": "Category Field ID",
+              "name": "categoryFieldId",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "boolean",
+              "default": false
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "create"
+          ],
+          "jsonParameters": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Interest Groups",
+      "name": "groupJson",
+      "type": "json",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "create"
+          ],
+          "jsonParameters": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "alwaysOpenEditWindow": true
+      }
+    },
+    {
+      "displayName": "List Name or ID",
+      "name": "list",
+      "type": "options",
+      "default": "",
+      "description": "List of lists. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getLists"
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "Member's email",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "List Name or ID",
+      "name": "list",
+      "type": "options",
+      "default": "",
+      "description": "List of lists. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getLists"
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "Member's email",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Fields",
+          "name": "fields",
+          "type": "string",
+          "default": "",
+          "description": "A comma-separated list of fields to return"
+        },
+        {
+          "displayName": "Exclude Fields",
+          "name": "excludeFields",
+          "type": "string",
+          "default": "",
+          "description": "A comma-separated list of fields to exclude"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "List Name or ID",
+      "name": "list",
+      "type": "options",
+      "default": "",
+      "description": "List of lists. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getLists"
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 500,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 1000
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Before Last Changed",
+          "name": "beforeLastChanged",
+          "type": "dateTime",
+          "default": "",
+          "description": "Restrict results to subscribers whose information changed before the set timeframe"
+        },
+        {
+          "displayName": "Before Timestamp Opt",
+          "name": "beforeTimestampOpt",
+          "type": "dateTime",
+          "default": "",
+          "description": "Restrict results to subscribers who opted-in before the set timeframe"
+        },
+        {
+          "displayName": "Email Type",
+          "name": "emailType",
+          "type": "options",
+          "options": [
+            {
+              "name": "HTML",
+              "value": "html"
+            },
+            {
+              "name": "Text",
+              "value": "text"
+            }
+          ],
+          "default": "",
+          "description": "Type of email this member asked to get"
+        },
+        {
+          "displayName": "Status",
+          "name": "status",
+          "type": "options",
+          "options": [
+            {
+              "name": "Cleaned",
+              "value": "cleaned"
+            },
+            {
+              "name": "Pending",
+              "value": "pending"
+            },
+            {
+              "name": "Subscribed",
+              "value": "subscribed"
+            },
+            {
+              "name": "Transactional",
+              "value": "transactional"
+            },
+            {
+              "name": "Unsubscribed",
+              "value": "unsubscribed"
+            }
+          ],
+          "default": "",
+          "description": "Subscriber's current status"
+        },
+        {
+          "displayName": "Since Last Changed",
+          "name": "sinceLastChanged",
+          "type": "dateTime",
+          "default": "",
+          "description": "Restrict results to subscribers whose information changed after the set timeframe"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "List Name or ID",
+      "name": "list",
+      "type": "options",
+      "default": "",
+      "description": "List of lists. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getLists"
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "Email address of the subscriber",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "JSON Parameters",
+      "name": "jsonParameters",
+      "type": "boolean",
+      "default": false,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Email Type",
+          "name": "emailType",
+          "type": "options",
+          "options": [
+            {
+              "name": "HTML",
+              "value": "html"
+            },
+            {
+              "name": "Text",
+              "value": "text"
+            }
+          ],
+          "default": "",
+          "description": "Type of email this member asked to get"
+        },
+        {
+          "displayName": "Interest Groups",
+          "name": "groupsUi",
+          "placeholder": "Add Interest Group",
+          "type": "fixedCollection",
+          "default": {},
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "displayOptions": {
+            "show": {
+              "/resource": [
+                "member"
+              ],
+              "/operation": [
+                "update"
+              ],
+              "/jsonParameters": [
+                false
+              ]
+            }
+          },
+          "options": [
+            {
+              "name": "groupsValues",
+              "displayName": "Group",
+              "typeOptions": {
+                "multipleValueButtonText": "Add Interest Group"
+              },
+              "values": [
+                {
+                  "displayName": "Category Name or ID",
+                  "name": "categoryId",
+                  "type": "options",
+                  "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+                  "typeOptions": {
+                    "loadOptionsMethod": "getGroupCategories",
+                    "loadOptionsDependsOn": [
+                      "list"
+                    ]
+                  },
+                  "default": ""
+                },
+                {
+                  "displayName": "Category Field ID",
+                  "name": "categoryFieldId",
+                  "type": "string",
+                  "default": ""
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "boolean",
+                  "default": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Language",
+          "name": "language",
+          "type": "string",
+          "default": "",
+          "description": "If set/detected, the subscriber's language"
+        },
+        {
+          "displayName": "Merge Fields",
+          "name": "mergeFieldsUi",
+          "placeholder": "Add Merge Fields",
+          "type": "fixedCollection",
+          "default": {},
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "displayOptions": {
+            "show": {
+              "/resource": [
+                "member"
+              ],
+              "/operation": [
+                "update"
+              ],
+              "/jsonParameters": [
+                false
+              ]
+            }
+          },
+          "description": "An individual merge var and value for a member",
+          "options": [
+            {
+              "name": "mergeFieldsValues",
+              "displayName": "Field",
+              "typeOptions": {
+                "multipleValueButtonText": "Add Field"
+              },
+              "values": [
+                {
+                  "displayName": "Field Name or ID",
+                  "name": "name",
+                  "type": "options",
+                  "typeOptions": {
+                    "loadOptionsMethod": "getMergeFields",
+                    "loadOptionsDependsOn": [
+                      "list"
+                    ]
+                  },
+                  "required": true,
+                  "description": "Merge Field name. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+                  "default": ""
+                },
+                {
+                  "displayName": "Field Value",
+                  "name": "value",
+                  "required": true,
+                  "type": "string",
+                  "default": "",
+                  "description": "Merge field value"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Opt-in IP",
+          "name": "ipOptIn",
+          "type": "string",
+          "default": "",
+          "description": "The IP address the subscriber used to confirm their opt-in status"
+        },
+        {
+          "displayName": "Signup IP",
+          "name": "ipSignup",
+          "type": "string",
+          "default": "",
+          "description": "IP address the subscriber signed up from"
+        },
+        {
+          "displayName": "Signup Timestamp",
+          "name": "timestampSignup",
+          "type": "dateTime",
+          "default": "",
+          "description": "The date and time the subscriber signed up for the list in ISO 8601 format"
+        },
+        {
+          "displayName": "Skip Merge Validation",
+          "name": "skipMergeValidation",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether member data will be accepted without merge field values, even if the merge field is usually required"
+        },
+        {
+          "displayName": "Status",
+          "name": "status",
+          "type": "options",
+          "options": [
+            {
+              "name": "Cleaned",
+              "value": "cleaned"
+            },
+            {
+              "name": "Pending",
+              "value": "pending"
+            },
+            {
+              "name": "Subscribed",
+              "value": "subscribed"
+            },
+            {
+              "name": "Transactional",
+              "value": "transactional"
+            },
+            {
+              "name": "Unsubscribed",
+              "value": "unsubscribed"
+            }
+          ],
+          "default": "",
+          "description": "Subscriber's current status"
+        },
+        {
+          "displayName": "Vip",
+          "name": "vip",
+          "type": "boolean",
+          "default": false,
+          "description": "Vip status for subscribers"
+        },
+        {
+          "displayName": "Location",
+          "name": "locationFieldsUi",
+          "type": "fixedCollection",
+          "placeholder": "Add Location",
+          "default": {},
+          "description": "Subscriber location information.n",
+          "displayOptions": {
+            "show": {
+              "/resource": [
+                "member"
+              ],
+              "/operation": [
+                "update"
+              ],
+              "/jsonParameters": [
+                false
+              ]
+            }
+          },
+          "options": [
+            {
+              "name": "locationFieldsValues",
+              "displayName": "Location",
+              "values": [
+                {
+                  "displayName": "Latitude",
+                  "name": "latitude",
+                  "type": "string",
+                  "required": true,
+                  "description": "The location latitude",
+                  "default": ""
+                },
+                {
+                  "displayName": "Longitude",
+                  "name": "longitude",
+                  "type": "string",
+                  "required": true,
+                  "description": "The location longitude",
+                  "default": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Opt-in Timestamp",
+          "name": "timestampOpt",
+          "type": "dateTime",
+          "default": "",
+          "description": "The date and time the subscribe confirmed their opt-in status in ISO 8601 format"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Merge Fields",
+      "name": "mergeFieldsJson",
+      "type": "json",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "update"
+          ],
+          "jsonParameters": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "alwaysOpenEditWindow": true
+      }
+    },
+    {
+      "displayName": "Location",
+      "name": "locationJson",
+      "type": "json",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "update"
+          ],
+          "jsonParameters": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "alwaysOpenEditWindow": true
+      }
+    },
+    {
+      "displayName": "Interest Groups",
+      "name": "groupJson",
+      "type": "json",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "member"
+          ],
+          "operation": [
+            "update"
+          ],
+          "jsonParameters": [
+            true
+          ]
+        }
+      },
+      "typeOptions": {
+        "alwaysOpenEditWindow": true
+      }
+    },
+    {
+      "displayName": "List Name or ID",
+      "name": "list",
+      "type": "options",
+      "default": "",
+      "description": "List of lists. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "memberTag"
+          ],
+          "operation": [
+            "create",
+            "delete"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getLists"
+      }
+    },
+    {
+      "displayName": "Email",
+      "name": "email",
+      "type": "string",
+      "default": "",
+      "description": "Email address of the subscriber",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "memberTag"
+          ],
+          "operation": [
+            "create",
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Tags",
+      "name": "tags",
+      "type": "string",
+      "default": [],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "memberTag"
+          ],
+          "operation": [
+            "create",
+            "delete"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true,
+        "multipleValueButtonText": "Add Tag"
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Is Syncing",
+          "name": "isSyncing",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether automations based on the tags in the request will not fire"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "memberTag"
+          ],
+          "operation": [
+            "create",
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "List Name or ID",
+      "name": "list",
+      "type": "options",
+      "default": "",
+      "description": "List of lists. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "listGroup"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getLists"
+      }
+    },
+    {
+      "displayName": "Group Category Name or ID",
+      "name": "groupCategory",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "listGroup"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getGroupCategories",
+        "loadOptionsDependsOn": [
+          "list"
+        ]
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "listGroup"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 500,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "listGroup"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 1000
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 10,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 1000
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Before Create Time",
+          "name": "beforeCreateTime",
+          "type": "dateTime",
+          "default": "",
+          "description": "Restrict the response to campaigns created before the set time"
+        },
+        {
+          "displayName": "Before Send Time",
+          "name": "beforeSendTime",
+          "type": "dateTime",
+          "default": "",
+          "description": "Restrict the response to campaigns sent before the set time"
+        },
+        {
+          "displayName": "Exclude Field Names or IDs",
+          "name": "excludeFields",
+          "type": "multiOptions",
+          "typeOptions": {
+            "loadOptionsMethod": "getCampaignsFields"
+          },
+          "default": [],
+          "description": "A comma-separated list of fields to exclude. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Field Names or IDs",
+          "name": "fields",
+          "type": "multiOptions",
+          "typeOptions": {
+            "loadOptionsMethod": "getCampaignsFields"
+          },
+          "default": [
+            "campaigns.id",
+            "campaigns.status",
+            "campaigns.tracking",
+            "campaigns.settings.from_name",
+            "campaigns.settings.reply_to",
+            "campaigns.settings.title"
+          ],
+          "description": "A comma-separated list of fields to return. Choose from the list, or specify IDs using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "List Name or ID",
+          "name": "listId",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsMethod": "getLists"
+          },
+          "default": "",
+          "description": "List of lists. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Since Create Time",
+          "name": "sinceCreateTime",
+          "type": "dateTime",
+          "default": "",
+          "description": "Restrict the response to campaigns created after the set time"
+        },
+        {
+          "displayName": "Since Send Time",
+          "name": "sinceSendTime",
+          "type": "dateTime",
+          "default": "",
+          "description": "Restrict the response to campaigns sent after the set time"
+        },
+        {
+          "displayName": "Sort Direction",
+          "name": "sortDirection",
+          "type": "options",
+          "options": [
+            {
+              "name": "ASC",
+              "value": "ASC"
+            },
+            {
+              "name": "DESC",
+              "value": "DESC"
+            }
+          ],
+          "default": "",
+          "description": "Determines the order direction for sorted results"
+        },
+        {
+          "displayName": "Sort Field",
+          "name": "sortField",
+          "type": "options",
+          "options": [
+            {
+              "name": "Create Time",
+              "value": "create_time"
+            },
+            {
+              "name": "Send Time",
+              "value": "send_time"
+            }
+          ],
+          "default": "",
+          "description": "Returns files sorted by the specified field"
+        },
+        {
+          "displayName": "Status",
+          "name": "status",
+          "type": "options",
+          "options": [
+            {
+              "name": "Save",
+              "value": "save"
+            },
+            {
+              "name": "Sending",
+              "value": "sending"
+            },
+            {
+              "name": "Sent",
+              "value": "sent"
+            },
+            {
+              "name": "Schedule",
+              "value": "schedule"
+            }
+          ],
+          "default": "",
+          "description": "The status of the campaign"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Campaign ID",
+      "name": "campaignId",
+      "type": "string",
+      "default": "",
+      "description": "List of Campaigns",
+      "options": [],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "campaign"
+          ],
+          "operation": [
+            "send",
+            "get",
+            "delete",
+            "replicate",
+            "resend"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a new member on list"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a member on list"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a member on list"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many members on a list"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update a new member on list"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "mailchimpApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "apiKey"
+          ]
+        }
+      }
+    },
+    {
+      "name": "mailchimpOAuth2Api",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.967Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,252 @@
+{
+  "node_type": "nodes-base.lemlistTrigger",
+  "display_name": "Lemlist Trigger",
+  "description": "Handle Lemlist events via webhooks",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Lemlist Trigger node documentation\ndescription: Learn how to use the Lemlist Trigger node in n8n. Follow technical documentation to integrate Lemlist Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Lemlist Trigger node\n\n[Lemlist](https://Lemlist.com){:target=_blank .external-link} is an email outreach platform that allows you to automatically generate personalized images and videos and send personalized cold emails.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/lemlist.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Lemlist Trigger integrations](https://n8n.io/integrations/lemlist-trigger/){:target=_blank .external-link} page.\n///\n\n## Events\n\n<!-- vale Vale.Spelling = NO -->\n- *\n- Aircall Created\n- Aircall Done\n- Aircall Ended\n- Aircall Interested\n- Aircall Not Interested\n- Api Done\n- Api Failed\n- Api Interested\n- Api Not Interested\n- Attracted\n- Connection Issue\n- Contacted\n- Custom Domain Errors\n- Emails Bounced\n- Emails Clicked\n- Emails Failed\n- Emails Interested\n- Emails Not Interested\n- Emails Opened\n- Emails Replied\n- Emails Send Failed\n- Emails Sent\n- Emails Unsubscribed\n- Hooked\n- Interested\n- Lemwarm Paused\n- LinkedIn Interested\n- LinkedIn Invite Accepted\n- LinkedIn Invite Done\n- LinkedIn Invite Failed\n- LinkedIn Not Interested\n- LinkedIn Replied\n- LinkedIn Send Failed\n- LinkedIn Sent\n- LinkedIn Visit Done\n- LinkedIn Visit Failed\n- LinkedIn Voice Note Done\n- LinkedIn Voice Note Failed\n- Manual Interested\n- Manual Not Interested\n- Not Interested\n- Opportunities Done\n- Paused\n- Resumed\n- Send Limit Reached\n- Skipped\n- Warmed\n<!-- vale Vale.Spelling = YES -->\n",
+  "properties_schema": [
+    {
+      "displayName": "Event",
+      "name": "event",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "*",
+          "value": "*"
+        },
+        {
+          "name": "Contacted",
+          "value": "contacted"
+        },
+        {
+          "name": "Hooked",
+          "value": "hooked"
+        },
+        {
+          "name": "Attracted",
+          "value": "attracted"
+        },
+        {
+          "name": "Warmed",
+          "value": "warmed"
+        },
+        {
+          "name": "Interested",
+          "value": "interested"
+        },
+        {
+          "name": "Skipped",
+          "value": "skipped"
+        },
+        {
+          "name": "Not Interested",
+          "value": "notInterested"
+        },
+        {
+          "name": "Emails Sent",
+          "value": "emailsSent"
+        },
+        {
+          "name": "Emails Opened",
+          "value": "emailsOpened"
+        },
+        {
+          "name": "Emails Clicked",
+          "value": "emailsClicked"
+        },
+        {
+          "name": "Emails Replied",
+          "value": "emailsReplied"
+        },
+        {
+          "name": "Emails Bounced",
+          "value": "emailsBounced"
+        },
+        {
+          "name": "Emails Send Failed",
+          "value": "emailsSendFailed"
+        },
+        {
+          "name": "Emails Failed",
+          "value": "emailsFailed"
+        },
+        {
+          "name": "Emails Unsubscribed",
+          "value": "emailsUnsubscribed"
+        },
+        {
+          "name": "Emails Interested",
+          "value": "emailsInterested"
+        },
+        {
+          "name": "Emails Not Interested",
+          "value": "emailsNotInterested"
+        },
+        {
+          "name": "Opportunities Done",
+          "value": "opportunitiesDone"
+        },
+        {
+          "name": "Aircall Created",
+          "value": "aircallCreated"
+        },
+        {
+          "name": "Aircall Ended",
+          "value": "aircallEnded"
+        },
+        {
+          "name": "Aircall Done",
+          "value": "aircallDone"
+        },
+        {
+          "name": "Aircall Interested",
+          "value": "aircallInterested"
+        },
+        {
+          "name": "Aircall Not Interested",
+          "value": "aircallNotInterested"
+        },
+        {
+          "name": "Api Done",
+          "value": "apiDone"
+        },
+        {
+          "name": "Api Interested",
+          "value": "apiInterested"
+        },
+        {
+          "name": "Api Not Interested",
+          "value": "apiNotInterested"
+        },
+        {
+          "name": "Api Failed",
+          "value": "apiFailed"
+        },
+        {
+          "name": "LinkedIn Visit Done",
+          "value": "linkedinVisitDone"
+        },
+        {
+          "name": "LinkedIn Visit Failed",
+          "value": "linkedinVisitFailed"
+        },
+        {
+          "name": "LinkedIn Invite Done",
+          "value": "linkedinInviteDone"
+        },
+        {
+          "name": "LinkedIn Invite Failed",
+          "value": "linkedinInviteFailed"
+        },
+        {
+          "name": "LinkedIn Invite Accepted",
+          "value": "linkedinInviteAccepted"
+        },
+        {
+          "name": "LinkedIn Replied",
+          "value": "linkedinReplied"
+        },
+        {
+          "name": "LinkedIn Sent",
+          "value": "linkedinSent"
+        },
+        {
+          "name": "LinkedIn Voice Note Done",
+          "value": "linkedinVoiceNoteDone"
+        },
+        {
+          "name": "LinkedIn Voice Note Failed",
+          "value": "linkedinVoiceNoteFailed"
+        },
+        {
+          "name": "LinkedIn Interested",
+          "value": "linkedinInterested"
+        },
+        {
+          "name": "LinkedIn Not Interested",
+          "value": "linkedinNotInterested"
+        },
+        {
+          "name": "LinkedIn Send Failed",
+          "value": "linkedinSendFailed"
+        },
+        {
+          "name": "Manual Interested",
+          "value": "manualInterested"
+        },
+        {
+          "name": "Manual Not Interested",
+          "value": "manualNotInterested"
+        },
+        {
+          "name": "Paused",
+          "value": "paused"
+        },
+        {
+          "name": "Resumed",
+          "value": "resumed"
+        },
+        {
+          "name": "Custom Domain Errors",
+          "value": "customDomainErrors"
+        },
+        {
+          "name": "Connection Issue",
+          "value": "connectionIssue"
+        },
+        {
+          "name": "Send Limit Reached",
+          "value": "sendLimitReached"
+        },
+        {
+          "name": "Lemwarm Paused",
+          "value": "lemwarmPaused"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Campaign Name or ID",
+          "name": "campaignId",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsMethod": "getCampaigns"
+          },
+          "default": "",
+          "description": "We'll call this hook only for this campaignId. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Is First",
+          "name": "isFirst",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to call this hook only the first time this activity happened"
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "lemlistApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.953Z",
+  "api_version": "1.0.0"
+}

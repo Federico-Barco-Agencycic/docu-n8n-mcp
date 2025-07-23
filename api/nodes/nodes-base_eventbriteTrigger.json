@@ -1,0 +1,162 @@
+{
+  "node_type": "nodes-base.eventbriteTrigger",
+  "display_name": "Eventbrite Trigger",
+  "description": "Handle Eventbrite events via webhooks",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Eventbrite Trigger node documentation\ndescription: Learn how to use the Eventbrite Trigger node in n8n. Follow technical documentation to integrate Eventbrite Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Eventbrite Trigger node\n\n[Eventbrite](https://www.eventbrite.com/){:target=_blank .external-link} is an event management and ticketing website. The service allows users to browse, create, and promote local events.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/eventbrite.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Eventbrite Trigger integrations](https://n8n.io/integrations/eventbrite-trigger/){:target=_blank .external-link} page.\n///\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "privateKey",
+      "options": [
+        {
+          "name": "Private Key",
+          "value": "privateKey"
+        },
+        {
+          "name": "OAuth2",
+          "value": "oAuth2"
+        }
+      ]
+    },
+    {
+      "displayName": "Organization Name or ID",
+      "name": "organization",
+      "type": "options",
+      "default": "",
+      "description": "The Eventbrite Organization to work on. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "typeOptions": {
+        "loadOptionsMethod": "getOrganizations"
+      }
+    },
+    {
+      "displayName": "Event Name or ID",
+      "name": "event",
+      "type": "options",
+      "default": "",
+      "description": "Limit the triggers to this event. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "typeOptions": {
+        "loadOptionsDependsOn": [
+          "organization"
+        ],
+        "loadOptionsMethod": "getEvents"
+      }
+    },
+    {
+      "displayName": "Actions",
+      "name": "actions",
+      "type": "multiOptions",
+      "default": [],
+      "description": "One or more action to subscribe to",
+      "options": [
+        {
+          "name": "attendee.checked_in",
+          "value": "attendee.checked_in"
+        },
+        {
+          "name": "attendee.checked_out",
+          "value": "attendee.checked_out"
+        },
+        {
+          "name": "attendee.updated",
+          "value": "attendee.updated"
+        },
+        {
+          "name": "event.created",
+          "value": "event.created"
+        },
+        {
+          "name": "event.published",
+          "value": "event.published"
+        },
+        {
+          "name": "event.unpublished",
+          "value": "event.unpublished"
+        },
+        {
+          "name": "event.updated",
+          "value": "event.updated"
+        },
+        {
+          "name": "order.placed",
+          "value": "order.placed"
+        },
+        {
+          "name": "order.refunded",
+          "value": "order.refunded"
+        },
+        {
+          "name": "order.updated",
+          "value": "order.updated"
+        },
+        {
+          "name": "organizer.updated",
+          "value": "organizer.updated"
+        },
+        {
+          "name": "ticket_class.created",
+          "value": "ticket_class.created"
+        },
+        {
+          "name": "ticket_class.deleted",
+          "value": "ticket_class.deleted"
+        },
+        {
+          "name": "ticket_class.updated",
+          "value": "ticket_class.updated"
+        },
+        {
+          "name": "venue.updated",
+          "value": "venue.updated"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "Resolve Data",
+      "name": "resolveData",
+      "type": "boolean",
+      "default": true,
+      "description": "By default does the webhook-data only contain the URL to receive the object data manually. If this option gets activated, it will resolve the data automatically."
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "eventbriteApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "privateKey"
+          ]
+        }
+      }
+    },
+    {
+      "name": "eventbriteOAuth2Api",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.826Z",
+  "api_version": "1.0.0"
+}

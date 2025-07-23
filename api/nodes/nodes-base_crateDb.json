@@ -1,0 +1,250 @@
+{
+  "node_type": "nodes-base.crateDb",
+  "display_name": "CrateDB",
+  "description": "Add and update data in CrateDB",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: CrateDB node documentation\ndescription: Learn how to use the CrateDB node in n8n. Follow technical documentation to integrate CrateDB node into your workflows.\ncontentType: [integration, reference]\n---\n\n# CrateDB node\n\nUse the CrateDB node to automate work in CrateDB, and integrate CrateDB with other applications. n8n has built-in support for a wide range of CrateDB features, including executing, inserting, and updating rows in the database.\n\nOn this page, you'll find a list of operations the CrateDB node supports and links to more resources.\n\n/// note | Credentials\nRefer to [CrateDB credentials](/integrations/builtin/credentials/cratedb.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Execute an SQL query\n* Insert rows in database\n* Update rows in database\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'cratedb') ]]\n\n## Node reference\n\n### Specify a column's data type\n\nTo specify a column's data type, append the column name with `:type`, where `type` is the data type you want for the column. For example, if you want to specify the type `int` for the column **id** and type `text` for the column **name**, you can use the following snippet in the **Columns** field: `id:int,name:text`.\n\n\n\n\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "insert",
+      "options": [
+        {
+          "name": "Execute Query",
+          "value": "executeQuery",
+          "description": "Execute an SQL query",
+          "action": "Execute a SQL query"
+        },
+        {
+          "name": "Insert",
+          "value": "insert",
+          "description": "Insert rows in database",
+          "action": "Insert rows in database"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update rows in database",
+          "action": "Update rows in database"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Query",
+      "name": "query",
+      "type": "string",
+      "default": "",
+      "description": "The SQL query to execute. You can use n8n expressions or $1 and $2 in conjunction with query parameters.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "executeQuery"
+          ]
+        }
+      },
+      "typeOptions": {
+        "editor": "sqlEditor",
+        "rows": 5,
+        "sqlDialect": "PostgreSQL"
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Schema",
+      "name": "schema",
+      "type": "string",
+      "default": "doc",
+      "description": "Name of the schema the table belongs to",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "insert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Table",
+      "name": "table",
+      "type": "string",
+      "default": "",
+      "description": "Name of the table in which to insert data to",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "insert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Columns",
+      "name": "columns",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of the properties which should used as columns for the new rows",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "insert"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Schema",
+      "name": "schema",
+      "type": "string",
+      "default": "doc",
+      "description": "Name of the schema the table belongs to",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Table",
+      "name": "table",
+      "type": "string",
+      "default": "",
+      "description": "Name of the table in which to update data in",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Key",
+      "name": "updateKey",
+      "type": "string",
+      "default": "id",
+      "description": "Comma-separated list of the properties which decides which rows in the database should be updated. Normally that would be \"id\".",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Columns",
+      "name": "columns",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of the properties which should used as columns for rows to update",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return Fields",
+      "name": "returnFields",
+      "type": "string",
+      "default": "*",
+      "description": "Comma-separated list of the fields that the operation will return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "insert",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Mode",
+          "name": "mode",
+          "type": "options",
+          "options": [
+            {
+              "name": "Independently",
+              "value": "independently",
+              "description": "Execute each query independently"
+            },
+            {
+              "name": "Multiple Queries",
+              "value": "multiple",
+              "description": "<b>Default</b>. Sends multiple queries at once to database."
+            }
+          ],
+          "default": "multiple",
+          "description": "The way queries should be sent to database. Can be used in conjunction with <b>Continue on Fail</b>. See <a href=\"https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.cratedb/\">the docs</a> for more examples."
+        },
+        {
+          "displayName": "Query Parameters",
+          "name": "queryParams",
+          "type": "string",
+          "displayOptions": {
+            "show": {
+              "/operation": [
+                "executeQuery"
+              ]
+            }
+          },
+          "default": "",
+          "placeholder": "quantity,price",
+          "description": "Comma-separated list of properties which should be used as query parameters"
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "operation": "executeQuery",
+      "name": "Execute Query",
+      "description": "Execute an SQL query"
+    },
+    {
+      "operation": "insert",
+      "name": "Insert",
+      "description": "Insert rows in database"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update rows in database"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "crateDb",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.799Z",
+  "api_version": "1.0.0"
+}

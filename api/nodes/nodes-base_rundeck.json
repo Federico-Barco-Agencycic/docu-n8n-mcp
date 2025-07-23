@@ -1,0 +1,163 @@
+{
+  "node_type": "nodes-base.rundeck",
+  "display_name": "Rundeck",
+  "description": "Manage Rundeck API",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Rundeck node documentation\ndescription: Learn how to use the Rundeck node in n8n. Follow technical documentation to integrate Rundeck node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Rundeck node\n\nUse the Rundeck node to automate work in Rundeck, and integrate Rundeck with other applications. n8n has built-in support for executing jobs and getting metadata.\n\nOn this page, you'll find a list of operations the Rundeck node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Rundeck credentials](/integrations/builtin/credentials/rundeck.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n- **Job**\n    - Execute a job\n    - Get metadata of a job\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'rundeck') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n## Find the job ID\n\n1. Access your Rundeck dashboard.\n2. Open the project that contains the job you want to use with n8n.\n3. In the sidebar, select **JOBS**.\n4. Under **All Jobs**, select the name of the job you want to use with n8n.\n5. In the top left corner, under the name of the job, copy the string that's displayed in smaller font below the job name. This is your job ID.\n6. Paste this job ID in the **Job Id** field in n8n.\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "job",
+      "options": [
+        {
+          "name": "Job",
+          "value": "job"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "execute",
+      "options": [
+        {
+          "name": "Execute",
+          "value": "execute",
+          "description": "Execute a job",
+          "action": "Execute a job"
+        },
+        {
+          "name": "Get Metadata",
+          "value": "getMetadata",
+          "description": "Get metadata of a job",
+          "action": "Get metadata of a job"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Job ID",
+      "name": "jobid",
+      "type": "string",
+      "default": "",
+      "description": "The job ID to execute",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "execute"
+          ],
+          "resource": [
+            "job"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Arguments",
+      "name": "arguments",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "name": "arguments",
+          "displayName": "Arguments",
+          "values": [
+            {
+              "displayName": "Name",
+              "name": "name",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "execute"
+          ],
+          "resource": [
+            "job"
+          ]
+        }
+      },
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "displayName": "Filter",
+      "name": "filter",
+      "type": "string",
+      "default": "",
+      "description": "Filter Rundeck nodes by name",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "execute"
+          ],
+          "resource": [
+            "job"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Job ID",
+      "name": "jobid",
+      "type": "string",
+      "default": "",
+      "description": "The job ID to get metadata off",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "getMetadata"
+          ],
+          "resource": [
+            "job"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "execute",
+      "name": "Execute",
+      "description": "Execute a job"
+    },
+    {
+      "operation": "getMetadata",
+      "name": "Get Metadata",
+      "description": "Get metadata of a job"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "rundeckApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.111Z",
+  "api_version": "1.0.0"
+}

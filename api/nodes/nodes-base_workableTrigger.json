@@ -1,0 +1,71 @@
+{
+  "node_type": "nodes-base.workableTrigger",
+  "display_name": "Workable Trigger",
+  "description": "Starts the workflow when Workable events occur",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Workable Trigger node documentation\ndescription: Learn how to use the Workable Trigger node in n8n. Follow technical documentation to integrate Workable Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Workable Trigger node\n\nUse the Workable Trigger node to respond to events in the [Workable](https://www.workable.com/){:target=_blank .external-link} recruiting platform and integrate Workable with other applications. n8n has built-in support for a wide range of Workable events, including candidate created and moved.\n\nOn this page, you'll find a list of events the Workable Trigger node can respond to and links to more resources.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/workable.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Workable Trigger integrations](https://n8n.io/integrations/workable-trigger/){:target=_blank .external-link} page.\n///\n\n## Events\n\n- **Candidate Created**\n- **Candidate Moved**\n\n## Related resources\n\nView [example workflows and related content](https://n8n.io/integrations/workable-trigger/){:target=_blank .external-link} on n8n's website.\n\nRefer to [Workable's API documentation](https://developers.workable.com/){:target=_blank .external-link} for details about using the service.\n",
+  "properties_schema": [
+    {
+      "displayName": "Trigger On",
+      "name": "triggerOn",
+      "type": "options",
+      "default": "",
+      "options": [
+        {
+          "name": "Candidate Created",
+          "value": "candidateCreated"
+        },
+        {
+          "name": "Candidate Moved",
+          "value": "candidateMoved"
+        }
+      ],
+      "required": true
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Job Name or ID",
+          "name": "job",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsMethod": "getJobs"
+          },
+          "default": "",
+          "description": "Get notifications only for one job. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        },
+        {
+          "displayName": "Stage Name or ID",
+          "name": "stage",
+          "type": "options",
+          "typeOptions": {
+            "loadOptionsMethod": "getStages"
+          },
+          "default": "",
+          "description": "Get notifications for specific stages. e.g. 'hired'. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+        }
+      ]
+    }
+  ],
+  "operations": [],
+  "credentials_required": [
+    {
+      "name": "workableApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.225Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,173 @@
+{
+  "node_type": "nodes-base.stackby",
+  "display_name": "Stackby",
+  "description": "Read, write, and delete data in Stackby",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Stackby node documentation\ndescription: Learn how to use the Stackby node in n8n. Follow technical documentation to integrate Stackby node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Stackby node\n\nUse the Stackby node to automate work in Stackby, and integrate Stackby with other applications. n8n has built-in support for a wide range of Stackby features, including appending, deleting, listing and reading. \n\nOn this page, you'll find a list of operations the Stackby node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Stackby credentials](/integrations/builtin/credentials/stackby.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n- Append\n- Delete\n- List\n- Read\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'stackby') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "append",
+      "options": [
+        {
+          "name": "Append",
+          "value": "append"
+        },
+        {
+          "name": "Delete",
+          "value": "delete"
+        },
+        {
+          "name": "List",
+          "value": "list"
+        },
+        {
+          "name": "Read",
+          "value": "read"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Stack ID",
+      "name": "stackId",
+      "type": "string",
+      "default": "",
+      "description": "The ID of the stack to access",
+      "required": true
+    },
+    {
+      "displayName": "Table",
+      "name": "table",
+      "type": "string",
+      "default": "",
+      "description": "Enter Table Name",
+      "required": true
+    },
+    {
+      "displayName": "ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "ID of the record to return",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "read",
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 1000,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "list"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 1000
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "View",
+          "name": "view",
+          "type": "string",
+          "default": "",
+          "placeholder": "All Stories",
+          "description": "The name or ID of a view in the Stories table. If set, only the records in that view will be returned. The records will be sorted according to the order of the view."
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Columns",
+      "name": "columns",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of the properties which should used as columns for the new rows",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "append"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "append",
+      "name": "Append"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete"
+    },
+    {
+      "operation": "list",
+      "name": "List"
+    },
+    {
+      "operation": "read",
+      "name": "Read"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "stackbyApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.154Z",
+  "api_version": "1.0.0"
+}

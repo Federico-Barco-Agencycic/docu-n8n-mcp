@@ -1,0 +1,128 @@
+{
+  "node_type": "nodes-base.twake",
+  "display_name": "Twake",
+  "description": "Consume Twake API",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Twake node documentation\ndescription: Learn how to use the Twake node in n8n. Follow technical documentation to integrate Twake node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Twake node\n\nUse the Twake node to automate work in Twake, and integrate Twake with other applications. n8n supports sending messages with Twake.\n\nOn this page, you'll find a list of operations the Twake node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Twake credentials](/integrations/builtin/credentials/twake.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Message\n    * Send a message\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'twake') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "message",
+      "options": [
+        {
+          "name": "Message",
+          "value": "message",
+          "description": "Send data to the message app"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "send",
+      "options": [
+        {
+          "name": "Send",
+          "value": "send",
+          "description": "Send a message",
+          "action": "Send a message"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "message"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Channel Name or ID",
+      "name": "channelId",
+      "type": "options",
+      "default": "",
+      "description": "Channel's ID. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "send"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getChannels"
+      }
+    },
+    {
+      "displayName": "Content",
+      "name": "content",
+      "type": "string",
+      "default": "",
+      "description": "Message content",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Sender Icon",
+          "name": "senderIcon",
+          "type": "string",
+          "default": "",
+          "description": "URL of the image/icon"
+        },
+        {
+          "displayName": "Sender Name",
+          "name": "senderName",
+          "type": "string",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "send"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "send",
+      "name": "Send",
+      "description": "Send a message"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "twakeCloudApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.187Z",
+  "api_version": "1.0.0"
+}

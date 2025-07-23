@@ -1,0 +1,193 @@
+{
+  "node_type": "nodes-base.mocean",
+  "display_name": "Mocean",
+  "description": "Send SMS and voice messages via Mocean",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Mocean node documentation\ndescription: Learn how to use the Mocean node in n8n. Follow technical documentation to integrate Mocean node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Mocean node\n\nUse the Mocean node to automate work in Mocean, and integrate Mocean with other applications. n8n has built-in support for a wide range of Mocean features, including sending SMS, and voice messages. \n\nOn this page, you'll find a list of operations the Mocean node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Mocean credentials](/integrations/builtin/credentials/mocean.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* SMS\n    * Send SMS/Voice message\n* Voice\n    * Send SMS/Voice message\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'mocean') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "sms",
+      "options": [
+        {
+          "name": "SMS",
+          "value": "sms"
+        },
+        {
+          "name": "Voice",
+          "value": "voice"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "send",
+      "options": [
+        {
+          "name": "Send",
+          "value": "send",
+          "description": "Send SMS/Voice message",
+          "action": "Send an SMS"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "sms",
+            "voice"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "From",
+      "name": "from",
+      "type": "string",
+      "default": "",
+      "description": "Number to which to send the message",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "send"
+          ],
+          "resource": [
+            "sms",
+            "voice"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "To",
+      "name": "to",
+      "type": "string",
+      "default": "",
+      "description": "Number from which to send the message",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "send"
+          ],
+          "resource": [
+            "sms",
+            "voice"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Language",
+      "name": "language",
+      "type": "options",
+      "default": "en-US",
+      "options": [
+        {
+          "name": "Chinese Mandarin (China)",
+          "value": "cmn-CN"
+        },
+        {
+          "name": "English (United Kingdom)",
+          "value": "en-GB"
+        },
+        {
+          "name": "English (United States)",
+          "value": "en-US"
+        },
+        {
+          "name": "Japanese (Japan)",
+          "value": "ja-JP"
+        },
+        {
+          "name": "Korean (Korea)",
+          "value": "ko-KR"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "send"
+          ],
+          "resource": [
+            "voice"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Message",
+      "name": "message",
+      "type": "string",
+      "default": "",
+      "description": "Message to send",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "send"
+          ],
+          "resource": [
+            "sms",
+            "voice"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Delivery Report URL",
+          "name": "dlrUrl",
+          "type": "string",
+          "default": "",
+          "placeholder": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "send"
+          ],
+          "resource": [
+            "sms"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "send",
+      "name": "Send",
+      "description": "Send SMS/Voice message"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "moceanApi",
+      "required": true,
+      "testedBy": "moceanApiTest"
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.009Z",
+  "api_version": "1.0.0"
+}

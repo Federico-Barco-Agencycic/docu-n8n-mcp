@@ -1,0 +1,34 @@
+{
+  "node_type": "nodes-langchain.memoryChatRetriever",
+  "display_name": "Chat Messages Retriever",
+  "description": "Retrieve chat messages from memory and use them in the workflow",
+  "category": "transform",
+  "development_style": "programmatic",
+  "package_name": "@n8n/n8n-nodes-langchain",
+  "version": "1",
+  "is_ai_tool": false,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": false,
+  "documentation": null,
+  "properties_schema": [
+    {
+      "displayName": "This node is deprecated. Use 'Chat Memory Manager' node instead.",
+      "name": "deprecatedNotice",
+      "type": "notice",
+      "default": ""
+    },
+    {
+      "displayName": "Simplify Output",
+      "name": "simplifyOutput",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to simplify the output to only include the sender and the text"
+    }
+  ],
+  "operations": [],
+  "credentials_required": [],
+  "generated_at": "2025-07-23T02:24:22.270Z",
+  "api_version": "1.0.0"
+}

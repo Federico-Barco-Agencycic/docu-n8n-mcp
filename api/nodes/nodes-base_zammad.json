@@ -1,0 +1,1742 @@
+{
+  "node_type": "nodes-base.zammad",
+  "display_name": "Zammad",
+  "description": "Consume the Zammad API",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Zammad node documentation\ndescription: Learn how to use the Zammad node in n8n. Follow technical documentation to integrate Zammad node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Zammad node\n\nUse the Zammad node to automate work in Zammad, and integrate Zammad with other applications. n8n has built-in support for a wide range of Zammad features, including creating, retrieving, and deleting groups and organizations.\n\nOn this page, you'll find a list of operations the Zammad node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Zammad credentials](/integrations/builtin/credentials/zammad.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Group\n    * Create\n    * Delete\n    * Get\n    * Get many\n    * Update\n* Organization\n    * Create\n    * Delete\n    * Get\n    * Get many\n    * Update\n* Ticket\n    * Create\n    * Delete\n    * Get\n    * Get many\n* User\n    * Create\n    * Delete\n    * Get\n    * Get many\n\t* Get self\n    * Update\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'zammad') ]]\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "tokenAuth",
+      "options": [
+        {
+          "name": "Basic Auth",
+          "value": "basicAuth"
+        },
+        {
+          "name": "Token Auth",
+          "value": "tokenAuth"
+        }
+      ]
+    },
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "user",
+      "options": [
+        {
+          "name": "Group",
+          "value": "group"
+        },
+        {
+          "name": "Organization",
+          "value": "organization"
+        },
+        {
+          "name": "Ticket",
+          "value": "ticket"
+        },
+        {
+          "name": "User",
+          "value": "user"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a group",
+          "action": "Create a group"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a group",
+          "action": "Delete a group"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Retrieve a group",
+          "action": "Get a group"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Get many groups",
+          "action": "Get many groups"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a group",
+          "action": "Update a group"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "group"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Group Name",
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "group"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Group ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "Group to update. Specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "group"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Group ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "Group to delete. Specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "group"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Group ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "Group to retrieve. Specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "group"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Active",
+          "name": "active",
+          "type": "boolean",
+          "default": true
+        },
+        {
+          "displayName": "Custom Fields",
+          "name": "customFieldsUi",
+          "type": "fixedCollection",
+          "default": {},
+          "placeholder": "Add Custom Field",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "options": [
+            {
+              "name": "customFieldPairs",
+              "displayName": "Custom Field",
+              "values": [
+                {
+                  "displayName": "Field Name or ID",
+                  "name": "name",
+                  "type": "options",
+                  "typeOptions": {
+                    "loadOptionsMethod": "loadGroupCustomFields"
+                  },
+                  "default": "",
+                  "description": "Name of the custom field to set. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+                },
+                {
+                  "displayName": "Field Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": "",
+                  "description": "Value to set on the custom field"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Notes",
+          "name": "note",
+          "type": "string",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "group"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Active",
+          "name": "active",
+          "type": "boolean",
+          "default": true
+        },
+        {
+          "displayName": "Custom Fields",
+          "name": "customFieldsUi",
+          "type": "fixedCollection",
+          "default": {},
+          "placeholder": "Add Custom Field",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "options": [
+            {
+              "name": "customFieldPairs",
+              "displayName": "Custom Field",
+              "values": [
+                {
+                  "displayName": "Field Name or ID",
+                  "name": "name",
+                  "type": "options",
+                  "typeOptions": {
+                    "loadOptionsMethod": "loadGroupCustomFields"
+                  },
+                  "default": "",
+                  "description": "Name of the custom field to set. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+                },
+                {
+                  "displayName": "Field Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": "",
+                  "description": "Value to set on the custom field"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Group Name",
+          "name": "name",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Notes",
+          "name": "note",
+          "type": "string",
+          "default": ""
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "group"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "group"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "group"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create an organization",
+          "action": "Create an organization"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete an organization",
+          "action": "Delete an organization"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Retrieve an organization",
+          "action": "Get an organization"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Retrieve many organizations",
+          "action": "Get many organizations"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update an organization",
+          "action": "Update an organization"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "organization"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Organization Name",
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "organization"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Organization ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "Organization to update. Specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "organization"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Organization ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "Organization to delete. Specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "organization"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Organization ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "Organization to retrieve. Specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "organization"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Shared",
+          "name": "shared",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the organization is shared with other instances"
+        },
+        {
+          "displayName": "Domain",
+          "name": "domain",
+          "type": "string",
+          "default": "",
+          "description": "The domain associated with the organization"
+        },
+        {
+          "displayName": "Domain Assignment",
+          "name": "domain_assignment",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to assign users based on their email domain"
+        },
+        {
+          "displayName": "Active",
+          "name": "active",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether the organization is active"
+        },
+        {
+          "displayName": "VIP",
+          "name": "vip",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the organization is marked as VIP"
+        },
+        {
+          "displayName": "Notes",
+          "name": "note",
+          "type": "string",
+          "default": "",
+          "description": "A note about the organization"
+        },
+        {
+          "displayName": "Custom Fields",
+          "name": "customFieldsUi",
+          "type": "fixedCollection",
+          "default": {},
+          "placeholder": "Add Custom Field",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "options": [
+            {
+              "name": "customFieldPairs",
+              "displayName": "Custom Field",
+              "values": [
+                {
+                  "displayName": "Field Name or ID",
+                  "name": "name",
+                  "type": "options",
+                  "typeOptions": {
+                    "loadOptionsMethod": "loadOrganizationCustomFields"
+                  },
+                  "default": "",
+                  "description": "Name of the custom field to set. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": "",
+                  "description": "Value to set on the custom field"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ],
+          "resource": [
+            "organization"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Shared",
+          "name": "shared",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the organization is shared with other instances"
+        },
+        {
+          "displayName": "Domain",
+          "name": "domain",
+          "type": "string",
+          "default": "",
+          "description": "The domain associated with the organization"
+        },
+        {
+          "displayName": "Domain Assignment",
+          "name": "domain_assignment",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to assign users based on their email domain"
+        },
+        {
+          "displayName": "Active",
+          "name": "active",
+          "type": "boolean",
+          "default": true,
+          "description": "Whether the organization is active"
+        },
+        {
+          "displayName": "VIP",
+          "name": "vip",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the organization is marked as VIP"
+        },
+        {
+          "displayName": "Notes",
+          "name": "note",
+          "type": "string",
+          "default": "",
+          "description": "A note about the organization"
+        },
+        {
+          "displayName": "Custom Fields",
+          "name": "customFieldsUi",
+          "type": "fixedCollection",
+          "default": {},
+          "placeholder": "Add Custom Field",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "options": [
+            {
+              "name": "customFieldPairs",
+              "displayName": "Custom Field",
+              "values": [
+                {
+                  "displayName": "Field Name or ID",
+                  "name": "name",
+                  "type": "options",
+                  "typeOptions": {
+                    "loadOptionsMethod": "loadOrganizationCustomFields"
+                  },
+                  "default": "",
+                  "description": "Name of the custom field to set. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": "",
+                  "description": "Value to set on the custom field"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "organization"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "organization"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "organization"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a ticket",
+          "action": "Create a ticket"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a ticket",
+          "action": "Delete a ticket"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Retrieve a ticket",
+          "action": "Get a ticket"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Retrieve many tickets",
+          "action": "Get many tickets"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "ticket"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Title",
+      "name": "title",
+      "type": "string",
+      "default": "",
+      "description": "Title of the ticket to create",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "ticket"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Group Name or ID",
+      "name": "group",
+      "type": "options",
+      "default": "",
+      "description": "Group that will own the ticket to create. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "ticket"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "loadGroupNames"
+      }
+    },
+    {
+      "displayName": "Customer Email Name or ID",
+      "name": "customer",
+      "type": "options",
+      "default": "",
+      "description": "Email address of the customer concerned in the ticket to create. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "ticket"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "loadCustomerEmails"
+      }
+    },
+    {
+      "displayName": "Ticket ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "Ticket to retrieve. Specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "ticket"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Ticket ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "Ticket to delete. Specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "ticket"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Article",
+      "name": "article",
+      "type": "fixedCollection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Article Details",
+          "name": "articleDetails",
+          "values": [
+            {
+              "displayName": "Subject",
+              "name": "subject",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Body",
+              "name": "body",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "displayName": "Visibility",
+              "name": "visibility",
+              "type": "options",
+              "default": "internal",
+              "options": [
+                {
+                  "name": "External",
+                  "value": "external",
+                  "description": "Visible to customers"
+                },
+                {
+                  "name": "Internal",
+                  "value": "internal",
+                  "description": "Visible to help desk"
+                }
+              ]
+            },
+            {
+              "displayName": "Sender",
+              "name": "sender",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Agent",
+                  "value": "Agent"
+                },
+                {
+                  "name": "Customer",
+                  "value": "Customer"
+                },
+                {
+                  "name": "System",
+                  "value": "System",
+                  "description": "Only subject will be displayed in Zammad"
+                }
+              ],
+              "default": "Agent"
+            },
+            {
+              "displayName": "Article Type",
+              "name": "type",
+              "type": "options",
+              "options": [
+                {
+                  "name": "Chat",
+                  "value": "chat"
+                },
+                {
+                  "name": "Email",
+                  "value": "email"
+                },
+                {
+                  "name": "Fax",
+                  "value": "fax"
+                },
+                {
+                  "name": "Note",
+                  "value": "note"
+                },
+                {
+                  "name": "Phone",
+                  "value": "phone"
+                },
+                {
+                  "name": "SMS",
+                  "value": "sms"
+                }
+              ],
+              "default": "note"
+            },
+            {
+              "displayName": "Reply To",
+              "name": "reply_to",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "ticket"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Custom Fields",
+          "name": "customFieldsUi",
+          "type": "fixedCollection",
+          "default": {},
+          "placeholder": "Add Custom Field",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "options": [
+            {
+              "name": "customFieldPairs",
+              "displayName": "Custom Field",
+              "values": [
+                {
+                  "displayName": "Field Name or ID",
+                  "name": "name",
+                  "type": "options",
+                  "typeOptions": {
+                    "loadOptionsMethod": "loadTicketCustomFields"
+                  },
+                  "default": "",
+                  "description": "Name of the custom field to set. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+                },
+                {
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": "",
+                  "description": "Value to set on the custom field"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "ticket"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "ticket"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "ticket"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1
+      }
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "create",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a user",
+          "action": "Create a user"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a user",
+          "action": "Delete a user"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Retrieve a user",
+          "action": "Get a user"
+        },
+        {
+          "name": "Get Many",
+          "value": "getAll",
+          "description": "Retrieve many users",
+          "action": "Get many users"
+        },
+        {
+          "name": "Get Self",
+          "value": "getSelf",
+          "description": "Retrieve currently logged-in user",
+          "action": "Get currently logged-in user"
+        },
+        {
+          "name": "Update",
+          "value": "update",
+          "description": "Update a user",
+          "action": "Update a user"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "First Name",
+      "name": "firstname",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Last Name",
+      "name": "lastname",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "User ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "User to update. Specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "User ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "User to delete. Specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "User ID",
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "description": "User to retrieve. Specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "get"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Additional Fields",
+      "name": "additionalFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Active",
+          "name": "active",
+          "type": "boolean",
+          "default": true
+        },
+        {
+          "displayName": "Address",
+          "name": "addressUi",
+          "type": "fixedCollection",
+          "placeholder": "Add Address",
+          "default": {},
+          "options": [
+            {
+              "displayName": "Address Details",
+              "name": "addressDetails",
+              "values": [
+                {
+                  "displayName": "City",
+                  "name": "city",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "Berlin"
+                },
+                {
+                  "displayName": "Country",
+                  "name": "country",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "Germany"
+                },
+                {
+                  "displayName": "Street & Number",
+                  "name": "address",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "Borsigstr. 27"
+                },
+                {
+                  "displayName": "Zip Code",
+                  "name": "zip",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "10115"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Custom Fields",
+          "name": "customFieldsUi",
+          "type": "fixedCollection",
+          "default": {},
+          "placeholder": "Add Custom Field",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "options": [
+            {
+              "name": "customFieldPairs",
+              "displayName": "Custom Field",
+              "values": [
+                {
+                  "displayName": "Field Name or ID",
+                  "name": "name",
+                  "type": "options",
+                  "typeOptions": {
+                    "loadOptionsMethod": "loadUserCustomFields"
+                  },
+                  "default": "",
+                  "description": "Name of the custom field to set. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+                },
+                {
+                  "displayName": "Field Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": "",
+                  "description": "Value to set on the custom field"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Department",
+          "name": "department",
+          "type": "string",
+          "default": "",
+          "placeholder": "Finance"
+        },
+        {
+          "displayName": "Email Address",
+          "name": "email",
+          "type": "string",
+          "placeholder": "name@email.com",
+          "default": ""
+        },
+        {
+          "displayName": "Fax",
+          "name": "fax",
+          "type": "string",
+          "default": "",
+          "placeholder": "+49 30 901820"
+        },
+        {
+          "displayName": "Notes",
+          "name": "note",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Organization Name or ID",
+          "name": "organization",
+          "type": "options",
+          "description": "Name of the organization to assign to the user. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+          "default": "",
+          "typeOptions": {
+            "loadOptionsMethod": "loadOrganizations"
+          }
+        },
+        {
+          "displayName": "Phone (Landline)",
+          "name": "phone",
+          "type": "string",
+          "default": "",
+          "placeholder": "+49 30 901820"
+        },
+        {
+          "displayName": "Phone (Mobile)",
+          "name": "mobile",
+          "type": "string",
+          "default": "",
+          "placeholder": "+49 1522 3433333"
+        },
+        {
+          "displayName": "Verified",
+          "name": "verified",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the user has been verified"
+        },
+        {
+          "displayName": "VIP",
+          "name": "vip",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the user is a Very Important Person"
+        },
+        {
+          "displayName": "Website",
+          "name": "web",
+          "type": "string",
+          "default": "",
+          "placeholder": "https://n8n.io"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Update Fields",
+      "name": "updateFields",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Active",
+          "name": "active",
+          "type": "boolean",
+          "default": true
+        },
+        {
+          "displayName": "Address",
+          "name": "addressUi",
+          "type": "fixedCollection",
+          "placeholder": "Add Address",
+          "default": {},
+          "options": [
+            {
+              "displayName": "Address Details",
+              "name": "addressDetails",
+              "values": [
+                {
+                  "displayName": "City",
+                  "name": "city",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "Berlin"
+                },
+                {
+                  "displayName": "Country",
+                  "name": "country",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "Germany"
+                },
+                {
+                  "displayName": "Street & Number",
+                  "name": "address",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "Borsigstr. 27"
+                },
+                {
+                  "displayName": "Zip Code",
+                  "name": "zip",
+                  "type": "string",
+                  "default": "",
+                  "placeholder": "10115"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Custom Fields",
+          "name": "customFieldsUi",
+          "type": "fixedCollection",
+          "default": {},
+          "placeholder": "Add Custom Field",
+          "typeOptions": {
+            "multipleValues": true
+          },
+          "options": [
+            {
+              "name": "customFieldPairs",
+              "displayName": "Custom Field",
+              "values": [
+                {
+                  "displayName": "Field Name or ID",
+                  "name": "name",
+                  "type": "options",
+                  "typeOptions": {
+                    "loadOptionsMethod": "loadUserCustomFields"
+                  },
+                  "default": "",
+                  "description": "Name of the custom field to set. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>."
+                },
+                {
+                  "displayName": "Field Value",
+                  "name": "value",
+                  "type": "string",
+                  "default": "",
+                  "description": "Value to set on the custom field"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "displayName": "Department",
+          "name": "department",
+          "type": "string",
+          "default": "",
+          "placeholder": "Finance"
+        },
+        {
+          "displayName": "Email Address",
+          "name": "email",
+          "type": "string",
+          "default": "",
+          "placeholder": "hello@n8n.io"
+        },
+        {
+          "displayName": "Fax",
+          "name": "fax",
+          "type": "string",
+          "default": "",
+          "placeholder": "+49 30 901820"
+        },
+        {
+          "displayName": "First Name",
+          "name": "firstname",
+          "type": "string",
+          "default": "",
+          "placeholder": "John"
+        },
+        {
+          "displayName": "Last Name",
+          "name": "lastname",
+          "type": "string",
+          "default": "",
+          "placeholder": "Smith"
+        },
+        {
+          "displayName": "Notes",
+          "name": "note",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "displayName": "Organization Name or ID",
+          "name": "organization",
+          "type": "options",
+          "description": "Name of the organization to assign to the user. Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>.",
+          "default": "",
+          "typeOptions": {
+            "loadOptionsMethod": "loadOrganizationNames"
+          }
+        },
+        {
+          "displayName": "Phone (Landline)",
+          "name": "phone",
+          "type": "string",
+          "default": "",
+          "placeholder": "+49 30 901820"
+        },
+        {
+          "displayName": "Phone (Mobile)",
+          "name": "mobile",
+          "type": "string",
+          "default": "",
+          "placeholder": "+49 1522 3433333"
+        },
+        {
+          "displayName": "Verified",
+          "name": "verified",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the user has been verified"
+        },
+        {
+          "displayName": "VIP",
+          "name": "vip",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the user is a Very Important Person"
+        },
+        {
+          "displayName": "Website",
+          "name": "web",
+          "type": "string",
+          "default": "",
+          "placeholder": "https://n8n.io"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "update"
+          ],
+          "resource": [
+            "user"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Query",
+      "name": "query",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "search"
+          ],
+          "resource": [
+            "user"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "search"
+          ],
+          "resource": [
+            "user"
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 50,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getAll"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Query",
+          "name": "query",
+          "type": "string",
+          "default": "",
+          "description": "Query to filter results by",
+          "placeholder": "user.firstname:john"
+        },
+        {
+          "displayName": "Sort",
+          "name": "sortUi",
+          "type": "fixedCollection",
+          "placeholder": "Add Sort Options",
+          "default": {},
+          "options": [
+            {
+              "displayName": "Sort Options",
+              "name": "sortDetails",
+              "values": [
+                {
+                  "displayName": "Sort Key Name or ID",
+                  "name": "sort_by",
+                  "type": "options",
+                  "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+                  "typeOptions": {
+                    "loadOptionsMethod": "loadUserFields"
+                  },
+                  "default": ""
+                },
+                {
+                  "displayName": "Sort Order",
+                  "name": "order_by",
+                  "type": "options",
+                  "options": [
+                    {
+                      "name": "Ascending",
+                      "value": "asc"
+                    },
+                    {
+                      "name": "Descending",
+                      "value": "desc"
+                    }
+                  ],
+                  "default": "asc"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "user"
+          ],
+          "operation": [
+            "getAll"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a group"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a group"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Retrieve a group"
+    },
+    {
+      "operation": "getAll",
+      "name": "Get Many",
+      "description": "Get many groups"
+    },
+    {
+      "operation": "update",
+      "name": "Update",
+      "description": "Update a group"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "zammadBasicAuthApi",
+      "required": true,
+      "testedBy": "zammadBasicAuthApiTest",
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "basicAuth"
+          ]
+        }
+      }
+    },
+    {
+      "name": "zammadTokenAuthApi",
+      "required": true,
+      "testedBy": "zammadTokenAuthApiTest",
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "tokenAuth"
+          ]
+        }
+      }
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.232Z",
+  "api_version": "1.0.0"
+}

@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "total_nodes": 526,
+    "ai_tools": 263,
+    "triggers": 108,
+    "webhooks": 79,
+    "categories": 5,
+    "packages": 2,
+    "templates": 499,
+    "last_updated": "2025-07-23T01:57:57.188Z",
+    "version": "1.0.0",
+    "database_source": "n8n-mcp"
+  },
+  "endpoints": {
+    "all_nodes": "/api/nodes.json",
+    "ai_tools": "/api/ai-tools.json",
+    "triggers": "/api/triggers.json",
+    "webhooks": "/api/webhooks.json",
+    "categories": "/api/categories/",
+    "packages": "/api/packages/",
+    "search": "/api/search.json",
+    "templates": "/api/templates.json"
+  },
+  "available_categories": [
+    "input",
+    "organization",
+    "output",
+    "transform",
+    "trigger"
+  ],
+  "available_packages": [
+    "@n8n/n8n-nodes-langchain",
+    "n8n-nodes-base"
+  ],
+  "popular_nodes": [
+    {
+      "node_type": "nodes-base.Brandfetch",
+      "display_name": "Brandfetch",
+      "category": "output",
+      "is_ai_tool": true
+    },
+    {
+      "node_type": "nodes-base.actionNetwork",
+      "display_name": "Action Network",
+      "category": "transform",
+      "is_ai_tool": true
+    },
+    {
+      "node_type": "nodes-base.activeCampaign",
+      "display_name": "ActiveCampaign",
+      "category": "transform",
+      "is_ai_tool": true
+    },
+    {
+      "node_type": "nodes-base.activeCampaignTrigger",
+      "display_name": "ActiveCampaign Trigger",
+      "category": "trigger",
+      "is_ai_tool": true
+    },
+    {
+      "node_type": "nodes-base.acuitySchedulingTrigger",
+      "display_name": "Acuity Scheduling Trigger",
+      "category": "trigger",
+      "is_ai_tool": false
+    },
+    {
+      "node_type": "nodes-base.adalo",
+      "display_name": "Adalo",
+      "category": "transform",
+      "is_ai_tool": true
+    },
+    {
+      "node_type": "nodes-base.affinity",
+      "display_name": "Affinity",
+      "category": "output",
+      "is_ai_tool": true
+    },
+    {
+      "node_type": "nodes-base.affinityTrigger",
+      "display_name": "Affinity Trigger",
+      "category": "trigger",
+      "is_ai_tool": false
+    },
+    {
+      "node_type": "nodes-base.agileCrm",
+      "display_name": "Agile CRM",
+      "category": "transform",
+      "is_ai_tool": true
+    },
+    {
+      "node_type": "nodes-base.aiTransform",
+      "display_name": "AI Transform",
+      "category": "transform",
+      "is_ai_tool": true
+    }
+  ]
+}

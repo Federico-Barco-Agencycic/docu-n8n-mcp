@@ -1,0 +1,160 @@
+{
+  "node_type": "nodes-base.awsSns",
+  "display_name": "AWS SNS",
+  "description": "Sends data to AWS SNS",
+  "category": "output",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: AWS SNS node documentation\ndescription: Learn how to use the AWS SNS node in n8n. Follow technical documentation to integrate AWS SNS node into your workflows.\ncontentType: [integration, reference]\n---\n\n# AWS SNS node\n\nUse the AWS SNS node to automate work in AWS SNS, and integrate AWS SNS with other applications. n8n has built-in support for a wide range of AWS SNS features, including publishing messages.\n\nOn this page, you'll find a list of operations the AWS SNS node supports and links to more resources.\n\n/// note | Credentials\nRefer to [AWS SNS credentials](/integrations/builtin/credentials/aws.md) for guidance on setting up authentication.\n///\n\n## Operations\n\n* Publish a message to a topic\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'aws-sns') ]]\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "publish",
+      "options": [
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Create a topic",
+          "action": "Create a topic"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a topic",
+          "action": "Delete a topic"
+        },
+        {
+          "name": "Publish",
+          "value": "publish",
+          "description": "Publish a message to a topic",
+          "action": "Publish a message to a topic"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Name",
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Options",
+      "name": "options",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Display Name",
+          "name": "displayName",
+          "type": "string",
+          "default": "",
+          "description": "The display name to use for a topic with SMS subscriptions"
+        },
+        {
+          "displayName": "Fifo Topic",
+          "name": "fifoTopic",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the topic you want to create is a FIFO (first-in-first-out) topic"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "create"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Topic",
+      "name": "topic",
+      "type": "resourceLocator",
+      "default": {
+        "mode": "list",
+        "value": ""
+      },
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "publish",
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Subject",
+      "name": "subject",
+      "type": "string",
+      "default": "",
+      "description": "Subject when the message is delivered to email endpoints",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "publish"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Message",
+      "name": "message",
+      "type": "string",
+      "default": "",
+      "description": "The message you want to send",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "operation": [
+            "publish"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "create",
+      "name": "Create",
+      "description": "Create a topic"
+    },
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a topic"
+    },
+    {
+      "operation": "publish",
+      "name": "Publish",
+      "description": "Publish a message to a topic"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "aws",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.750Z",
+  "api_version": "1.0.0"
+}

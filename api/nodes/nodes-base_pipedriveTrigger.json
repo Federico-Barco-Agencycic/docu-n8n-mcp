@@ -1,0 +1,336 @@
+{
+  "node_type": "nodes-base.pipedriveTrigger",
+  "display_name": "Pipedrive Trigger",
+  "description": "Starts the workflow when Pipedrive events occur",
+  "category": "trigger",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1.1",
+  "is_ai_tool": false,
+  "is_trigger": true,
+  "is_webhook": true,
+  "is_versioned": true,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Pipedrive Trigger node documentation\ndescription: Learn how to use the Pipedrive Trigger node in n8n. Follow technical documentation to integrate Pipedrive Trigger node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Pipedrive Trigger node\n\n[Pipedrive](https://www.pipedrive.com/){:target=_blank .external-link} is a cloud-based sales software company that aims to improve the productivity of businesses through the use of their software.\n\n/// note | Credentials\nYou can find authentication information for this node [here](/integrations/builtin/credentials/pipedrive.md).\n///\n\n///  note  | Examples and templates\nFor usage examples and templates to help you get started, refer to n8n's [Pipedrive Trigger integrations](https://n8n.io/integrations/pipedrive-trigger/){:target=_blank .external-link} page.\n///\n",
+  "properties_schema": [
+    {
+      "displayName": "Authentication",
+      "name": "authentication",
+      "type": "options",
+      "default": "apiToken",
+      "options": [
+        {
+          "name": "API Token",
+          "value": "apiToken"
+        },
+        {
+          "name": "OAuth2",
+          "value": "oAuth2"
+        }
+      ]
+    },
+    {
+      "displayName": "Incoming Authentication",
+      "name": "incomingAuthentication",
+      "type": "options",
+      "default": "none",
+      "description": "If authentication should be activated for the webhook (makes it more secure)",
+      "options": [
+        {
+          "name": "Basic Auth",
+          "value": "basicAuth"
+        },
+        {
+          "name": "None",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "displayName": "Action",
+      "name": "action",
+      "type": "options",
+      "default": "*",
+      "description": "Type of action to receive notifications about",
+      "options": [
+        {
+          "name": "Added",
+          "value": "added",
+          "description": "Data got added",
+          "action": "Data was added"
+        },
+        {
+          "name": "All",
+          "value": "*",
+          "description": "Any change",
+          "action": "Any change"
+        },
+        {
+          "name": "Deleted",
+          "value": "deleted",
+          "description": "Data got deleted",
+          "action": "Data was deleted"
+        },
+        {
+          "name": "Merged",
+          "value": "merged",
+          "description": "Data got merged",
+          "action": "Data was merged"
+        },
+        {
+          "name": "Updated",
+          "value": "updated",
+          "description": "Data got updated",
+          "action": "Data was updated"
+        }
+      ],
+      "displayOptions": {
+        "hide": {
+          "@version": [
+            {
+              "_cnd": {
+                "gte": 1.1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Action",
+      "name": "action",
+      "type": "options",
+      "default": "*",
+      "description": "Type of action to receive notifications about",
+      "options": [
+        {
+          "name": "All",
+          "value": "*",
+          "description": "Any change",
+          "action": "Any change"
+        },
+        {
+          "name": "Create",
+          "value": "create",
+          "description": "Data got added",
+          "action": "Data was added"
+        },
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Data got deleted",
+          "action": "Data was deleted"
+        },
+        {
+          "name": "Change",
+          "value": "change",
+          "description": "Data got changed",
+          "action": "Data was changed"
+        }
+      ],
+      "displayOptions": {
+        "hide": {
+          "@version": [
+            {
+              "_cnd": {
+                "lte": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Entity",
+      "name": "entity",
+      "type": "options",
+      "default": "*",
+      "description": "Type of object to receive notifications about",
+      "options": [
+        {
+          "name": "Activity",
+          "value": "activity"
+        },
+        {
+          "name": "Activity Type",
+          "value": "activityType"
+        },
+        {
+          "name": "All",
+          "value": "*"
+        },
+        {
+          "name": "Deal",
+          "value": "deal"
+        },
+        {
+          "name": "Note",
+          "value": "note"
+        },
+        {
+          "name": "Organization",
+          "value": "organization"
+        },
+        {
+          "name": "Person",
+          "value": "person"
+        },
+        {
+          "name": "Pipeline",
+          "value": "pipeline"
+        },
+        {
+          "name": "Product",
+          "value": "product"
+        },
+        {
+          "name": "Stage",
+          "value": "stage"
+        },
+        {
+          "name": "User",
+          "value": "user"
+        }
+      ],
+      "displayOptions": {
+        "hide": {
+          "@version": [
+            {
+              "_cnd": {
+                "lte": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Object",
+      "name": "object",
+      "type": "options",
+      "default": "*",
+      "description": "Type of object to receive notifications about",
+      "options": [
+        {
+          "name": "Activity",
+          "value": "activity"
+        },
+        {
+          "name": "Activity Type",
+          "value": "activityType"
+        },
+        {
+          "name": "All",
+          "value": "*"
+        },
+        {
+          "name": "Deal",
+          "value": "deal"
+        },
+        {
+          "name": "Note",
+          "value": "note"
+        },
+        {
+          "name": "Organization",
+          "value": "organization"
+        },
+        {
+          "name": "Person",
+          "value": "person"
+        },
+        {
+          "name": "Pipeline",
+          "value": "pipeline"
+        },
+        {
+          "name": "Product",
+          "value": "product"
+        },
+        {
+          "name": "Stage",
+          "value": "stage"
+        },
+        {
+          "name": "User",
+          "value": "user"
+        }
+      ],
+      "displayOptions": {
+        "hide": {
+          "@version": [
+            {
+              "_cnd": {
+                "gte": 1.1
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "added",
+      "name": "Added",
+      "description": "Data got added"
+    },
+    {
+      "operation": "*",
+      "name": "All",
+      "description": "Any change"
+    },
+    {
+      "operation": "deleted",
+      "name": "Deleted",
+      "description": "Data got deleted"
+    },
+    {
+      "operation": "merged",
+      "name": "Merged",
+      "description": "Data got merged"
+    },
+    {
+      "operation": "updated",
+      "name": "Updated",
+      "description": "Data got updated"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "pipedriveApi",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "apiToken"
+          ]
+        }
+      }
+    },
+    {
+      "name": "pipedriveOAuth2Api",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "authentication": [
+            "oAuth2"
+          ]
+        }
+      }
+    },
+    {
+      "name": "httpBasicAuth",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "incomingAuthentication": [
+            "basicAuth"
+          ]
+        }
+      }
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:22.064Z",
+  "api_version": "1.0.0"
+}

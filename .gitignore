@@ -92,9 +92,9 @@ data/*.db
 data/*.db-shm
 data/*.db-wal
 
-# Generated API files (these will be built by CI)
-api/
-!api/.gitkeep
+# Generated API files - committed for GitHub Pages deployment
+# api/
+# !api/.gitkeep
 
 # Temporary files
 *.tmp

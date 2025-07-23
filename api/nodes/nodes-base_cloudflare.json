@@ -1,0 +1,261 @@
+{
+  "node_type": "nodes-base.cloudflare",
+  "display_name": "Cloudflare",
+  "description": "Consume Cloudflare API",
+  "category": "input",
+  "development_style": "programmatic",
+  "package_name": "n8n-nodes-base",
+  "version": "1",
+  "is_ai_tool": true,
+  "is_trigger": false,
+  "is_webhook": false,
+  "is_versioned": false,
+  "has_documentation": true,
+  "documentation": "---\n#https://www.notion.so/n8n/Frontmatter-432c2b8dff1f43d4b1c8d20075510fe4\ntitle: Cloudflare node documentation\ndescription: Learn how to use the Cloudflare node in n8n. Follow technical documentation to integrate Cloudflare node into your workflows.\ncontentType: [integration, reference]\n---\n\n# Cloudflare node\n\nUse the Cloudflare node to automate work in Cloudflare, and integrate Cloudflare with other applications. n8n has built-in support for a wide range of Cloudflare features, including deleting, getting, and uploading zone certificates.\n\nOn this page, you'll find a list of operations the Cloudflare node supports and links to more resources.\n\n/// note | Credentials\nRefer to [Cloudflare  credentials](/integrations/builtin/credentials/cloudflare.md) for guidance on setting up authentication. \n///\n\n## Operations\n\n* Zone Certificate\n\t* Delete\n\t* Get\n\t* Get Many\n\t* Upload\n\n## Templates and examples\n\n<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->\n[[ templatesWidget(page.title, 'cloudflare') ]]\n\n## Related resources\n\nRefer to [Cloudflare's API documentation on zone-level authentication](https://api.cloudflare.com/#zone-level-authenticated-origin-pulls-properties){:target=_blank .external-link} for more information on this service.\n\n--8<-- \"_snippets/integrations/builtin/app-nodes/operation-not-supported.md\"\n\n",
+  "properties_schema": [
+    {
+      "displayName": "Resource",
+      "name": "resource",
+      "type": "options",
+      "default": "zoneCertificate",
+      "options": [
+        {
+          "name": "Zone Certificate",
+          "value": "zoneCertificate"
+        }
+      ],
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Operation",
+      "name": "operation",
+      "type": "options",
+      "default": "upload",
+      "options": [
+        {
+          "name": "Delete",
+          "value": "delete",
+          "description": "Delete a certificate",
+          "action": "Delete a certificate"
+        },
+        {
+          "name": "Get",
+          "value": "get",
+          "description": "Get a certificate",
+          "action": "Get a certificate"
+        },
+        {
+          "name": "Get Many",
+          "value": "getMany",
+          "description": "Get many certificates",
+          "action": "Get many certificates"
+        },
+        {
+          "name": "Upload",
+          "value": "upload",
+          "description": "Upload a certificate",
+          "action": "Upload a certificate"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "zoneCertificate"
+          ]
+        }
+      },
+      "noDataExpression": true
+    },
+    {
+      "displayName": "Zone Name or ID",
+      "name": "zoneId",
+      "type": "options",
+      "default": "",
+      "description": "Choose from the list, or specify an ID using an <a href=\"https://docs.n8n.io/code/expressions/\">expression</a>",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "zoneCertificate"
+          ],
+          "operation": [
+            "upload",
+            "getMany",
+            "get",
+            "delete"
+          ]
+        }
+      },
+      "typeOptions": {
+        "loadOptionsMethod": "getZones"
+      }
+    },
+    {
+      "displayName": "Certificate Content",
+      "name": "certificate",
+      "type": "string",
+      "default": "",
+      "description": "The zone's leaf certificate",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "zoneCertificate"
+          ],
+          "operation": [
+            "upload"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Private Key",
+      "name": "privateKey",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "zoneCertificate"
+          ],
+          "operation": [
+            "upload"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Return All",
+      "name": "returnAll",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to return all results or only up to a given limit",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "zoneCertificate"
+          ],
+          "operation": [
+            "getMany"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Limit",
+      "name": "limit",
+      "type": "number",
+      "default": 25,
+      "description": "Max number of results to return",
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "zoneCertificate"
+          ],
+          "operation": [
+            "getMany"
+          ],
+          "returnAll": [
+            false
+          ]
+        }
+      },
+      "typeOptions": {
+        "minValue": 1,
+        "maxValue": 50
+      }
+    },
+    {
+      "displayName": "Filters",
+      "name": "filters",
+      "type": "collection",
+      "default": {},
+      "options": [
+        {
+          "displayName": "Status",
+          "name": "status",
+          "type": "options",
+          "options": [
+            {
+              "name": "Active",
+              "value": "active"
+            },
+            {
+              "name": "Expired",
+              "value": "expired"
+            },
+            {
+              "name": "Deleted",
+              "value": "deleted"
+            },
+            {
+              "name": "Pending",
+              "value": "pending"
+            }
+          ],
+          "default": "",
+          "description": "Status of the zone's custom SSL"
+        }
+      ],
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "zoneCertificate"
+          ],
+          "operation": [
+            "getMany"
+          ]
+        }
+      }
+    },
+    {
+      "displayName": "Certificate ID",
+      "name": "certificateId",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "displayOptions": {
+        "show": {
+          "resource": [
+            "zoneCertificate"
+          ],
+          "operation": [
+            "get",
+            "delete"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation": "delete",
+      "name": "Delete",
+      "description": "Delete a certificate"
+    },
+    {
+      "operation": "get",
+      "name": "Get",
+      "description": "Get a certificate"
+    },
+    {
+      "operation": "getMany",
+      "name": "Get Many",
+      "description": "Get many certificates"
+    },
+    {
+      "operation": "upload",
+      "name": "Upload",
+      "description": "Upload a certificate"
+    }
+  ],
+  "credentials_required": [
+    {
+      "name": "cloudflareApi",
+      "required": true
+    }
+  ],
+  "generated_at": "2025-07-23T02:24:21.785Z",
+  "api_version": "1.0.0"
+}
