@@ -1,0 +1,148 @@
+name: Build and Deploy Static API
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    # Run daily at 2 AM UTC to catch any updates
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      force_rebuild:
+        description: 'Force complete rebuild'
+        required: false
+        default: 'false'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Create data directory
+      run: mkdir -p data
+      
+    - name: Download n8n-mcp database
+      run: |
+        echo "📥 Downloading latest n8n-mcp database..."
+        curl -L -o data/nodes.db "https://github.com/fbarco/n8n-mcp/raw/main/data/nodes.db"
+        
+        # Verify download
+        if [ ! -f data/nodes.db ]; then
+          echo "❌ Failed to download database"
+          exit 1
+        fi
+        
+        echo "✅ Database downloaded successfully"
+        ls -lh data/nodes.db
+        
+    - name: Export database to JSON
+      run: |
+        echo "📊 Exporting database to JSON collections..."
+        # Update script to use local database
+        sed -i 's|../n8n-mcp/data/nodes.db|./data/nodes.db|g' scripts/export-database.js
+        sed -i 's|../n8n-mcp/data/nodes.db|./data/nodes.db|g' scripts/build-static-api.js
+        
+        npm run export
+        
+    - name: Build static API
+      run: |
+        echo "🏗️ Building static API with individual files..."
+        npm run build
+        
+    - name: Validate JSON files
+      run: |
+        echo "🔍 Validating all generated JSON files..."
+        npm run validate
+        
+    - name: Update README timestamp
+      run: |
+        echo "📅 Updating last updated timestamp..."
+        current_time=$(date -u '+%Y-%m-%d %H:%M:%S UTC')
+        sed -i "s|<!-- This will be updated by GitHub Actions -->|Last updated: **$current_time**|g" README.md
+        
+    - name: Generate deployment summary
+      run: |
+        echo "📊 Generating deployment summary..."
+        
+        # Count files
+        total_files=$(find api -name "*.json" | wc -l)
+        api_size=$(du -sh api | cut -f1)
+        
+        echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "- **Total JSON files**: $total_files" >> $GITHUB_STEP_SUMMARY
+        echo "- **API size**: $api_size" >> $GITHUB_STEP_SUMMARY
+        echo "- **Deployment time**: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        # Show API endpoints
+        echo "### 📋 Main Endpoints" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "- [API Index](https://fbarco.github.io/docu-n8n-mcp/api/index.json)" >> $GITHUB_STEP_SUMMARY
+        echo "- [All Nodes](https://fbarco.github.io/docu-n8n-mcp/api/nodes.json)" >> $GITHUB_STEP_SUMMARY
+        echo "- [AI Tools](https://fbarco.github.io/docu-n8n-mcp/api/ai-tools.json)" >> $GITHUB_STEP_SUMMARY
+        echo "- [Search Index](https://fbarco.github.io/docu-n8n-mcp/api/search.json)" >> $GITHUB_STEP_SUMMARY
+        
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      
+    - name: Upload to GitHub Pages
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./api
+        
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+        
+    - name: Commit updated README
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        if [ -n "$(git status --porcelain)" ]; then
+          git add README.md
+          git commit -m "docs: update timestamp - $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || true
+          git push || true
+        else
+          echo "No changes to commit"
+        fi
+        
+    - name: Create release on major updates
+      if: github.event_name == 'workflow_dispatch' && github.event.inputs.force_rebuild == 'true'
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v$(date +'%Y.%m.%d')
+        release_name: API Update $(date +'%Y-%m-%d')
+        body: |
+          🚀 **Automated API Update**
+          
+          This release contains the latest n8n node documentation and metadata.
+          
+          **What's Updated:**
+          - Fresh node data from n8n-mcp database
+          - Updated statistics and manifests
+          - All JSON files validated
+          
+          **API Base URL:** https://fbarco.github.io/docu-n8n-mcp/api/
+        draft: false
+        prerelease: false

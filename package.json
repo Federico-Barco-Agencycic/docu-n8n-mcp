@@ -1,0 +1,46 @@
+{
+  "name": "docu-n8n-mcp",
+  "version": "1.0.0",
+  "description": "Static JSON API for n8n node documentation and metadata",
+  "main": "index.js",
+  "scripts": {
+    "build": "node scripts/build-static-api.js",
+    "export": "node scripts/export-database.js",
+    "validate": "node scripts/validate-json.js",
+    "serve": "python -m http.server 8080",
+    "deploy": "npm run export && npm run build && npm run validate",
+    "clean": "rimraf api/*",
+    "dev": "npm run clean && npm run deploy && npm run serve"
+  },
+  "keywords": [
+    "n8n",
+    "documentation",
+    "api",
+    "static",
+    "json",
+    "mcp",
+    "nodes",
+    "workflow",
+    "automation"
+  ],
+  "author": "fbarco",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fbarco/docu-n8n-mcp.git"
+  },
+  "homepage": "https://fbarco.github.io/docu-n8n-mcp/",
+  "bugs": {
+    "url": "https://github.com/fbarco/docu-n8n-mcp/issues"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.2.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.1.1",
+    "rimraf": "^5.0.5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
